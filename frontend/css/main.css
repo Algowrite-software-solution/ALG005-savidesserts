@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* color */
+  --primary: ;
+  --secondary: ;
+  --light: ;
+  --dark: ;
+
+  /* font */
+  --font-h1-lg: 24px;
+  --font-h1-md: 20px;
+  --font-h1: 16px;
+
+}
+
+
+/* main classes */
+/* background color */
+.alg-bg-primary { 
+    background-color: var(--primary);
+}
+
+.alg-bg-secondary { 
+    background-color: var(--secondary);
+}
+
+
+/* colors */
+
+
+/* input */
+    /* main */
+    /* hover, focus, active */
+
+
+/* link */
