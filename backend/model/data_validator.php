@@ -5,6 +5,8 @@
 ## --  id_int
 ## --  email
 ## --  text_255
+## --  name
+## --  password
 
 final class data_validator
 {
