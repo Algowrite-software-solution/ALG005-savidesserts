@@ -1,8 +1,4 @@
 <?php
-#logger deleting time : 1 hour
-#logger new file creating time : 1 min
-#max log file count : 60
-
 require_once("database_driver.php");
 
 class AdvancedSearchEngine
