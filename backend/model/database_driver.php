@@ -10,9 +10,9 @@ class database_driver
     {
         $host = 'localhost';
         $user = 'root';
-        $password = 'JanithNirmal12#$'; // janith
-        // $password = '#Apeamma2001'; //madusha
-        $database = 'alg005_db';
+        // $password = 'JanithNirmal12#$'; // janith
+        $password = '#Apeamma2001'; //madusha
+        $database = 'savi_dessert_shop';
 
         // Connect to the database using mysqli
         $this->connection = new mysqli($host, $user, $password, $database);
@@ -36,7 +36,10 @@ class database_driver
         $stmt->execute();
 
         // Return the statement object
-        return $stmt;
+        // return $stmt;
+
+        // Return an associative array containing the statement and the result
+        return ['stmt' => $stmt, 'result' => $stmt->get_result()];
     }
 
 
