@@ -21,10 +21,8 @@ $userId = $userData["user_id"];
 
 //search card data
 $db = new database_driver();
-$searchQuery = "SELECT c.id AS card_id, c.product_item_id, c.weight_id AS card_weight_id, c.qty, c.extra_item_id, w.id, w.weight, e.id, e.extra_id, i.id, i.product_product_id FROM `card` AS c 
-INNER JOIN `product_item` AS i ON c.product_item_id = i.id  
-INNER JOIN `weight` AS w ON  c.weight_id = w.id
-INNER JOIN `extra_item` AS e ON c.extra_item_id = e.id WHERE c.user_user_id = ?";
+$searchQuery = "SELECT w.id AS watchlist_id, w.product_item_id AS watchlist_product_item_id, i.id, i.product_product_id FROM `watchlist` AS w 
+INNER JOIN `product_item` AS i ON w.product_item_id = i.id WHERE w.user_user_id = ?";
 $resultSet = $db->execute_query($searchQuery, 's', array($userId));
 
 //result and stmt
@@ -36,14 +34,9 @@ $responseArray = array();
 if ($result->num_rows > 0) {
      while ($row = $result->fetch_assoc()) {
           $resRowDetailObject = new stdClass();
-          $resRowDetailObject->card_id = $row['card_id'];
-          $resRowDetailObject->weight_id = $row['card_weight_id'];
-          $resRowDetailObject->weight = $row['weight'];
-          $resRowDetailObject->qty = $row['qty'];
+          $resRowDetailObject->watchlist_id = $row['watchlist_id'];
           $resRowDetailObject->product_item_id = $row['product_item_id'];
           $resRowDetailObject->product_id = $row['product_product_id'];
-          $resRowDetailObject->extra_item_id = $row['extra_item_id'];
-          $resRowDetailObject->extra_id = $row['extra_id'];
 
           array_push($responseArray, $resRowDetailObject);
      }

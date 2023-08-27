@@ -8,12 +8,6 @@ require_once("../model/user_access_updater.php");
 $responseObject = new stdClass();
 $responseObject->status = 'failed';
 
-//check card_id 
-if (!isset($_POST['card_id'])) {
-     $responseObject->error = "Access denied";
-     response_sender::sendJson($responseObject);
-     die();
-}
 
 //check is login user
 $userCheckSession = new UseerAccess();
@@ -23,10 +17,19 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
      die();
 }
 
+//check card_id 
+if (!isset($_POST['watchlist_id'])) {
+     $responseObject->error = "Access denied";
+     response_sender::sendJson($responseObject);
+     die();
+}
+
+
+
 //database object
 $db = new database_driver();
-$card_id = $_POST['card_id'];
-$deleteQuery = "DELETE FROM `card` WHERE `card_id`=?";
-$db->execute_query($deleteQuery, 's', array($card_id));
+$watchlist = $_POST['watchlist_id'];
+$deleteQuery = "DELETE FROM `watchlist` WHERE `id`=?";
+$db->execute_query($deleteQuery, 's', array($watchlist));
 $responseObject->error = "Delete successfully";
 response_sender::sendJson($responseObject);
