@@ -1,8 +1,8 @@
 <?php
 
-class UseerAccess
+class SessionManager
 {
-    private $sessionVariable = "alg001_user";
+    private $sessionVariable = "alg005_user";
 
     public function __construct()
     {

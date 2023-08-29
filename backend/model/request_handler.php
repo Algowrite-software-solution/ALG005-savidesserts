@@ -18,27 +18,39 @@ class request_handler
     // check for the existant of the given request method parameters
     public static function postMethodHasError(...$variables)
     {
+        $error = null;
         if (self::isPostMethod()) {
             foreach ($variables as $value) {
-                if (!isset($_POST[$value]) || empty(trim($_POST[$value]))) {
-                    return "invalid request method parameters";
+                if (!isset($_POST[$value])) {
+                    $error = "invalid request method parameter";
+                    break;
+                } else if (empty(trim($_POST[$value]))) {
+                    $error = "empty value for " . $value;
+                    break;
                 }
             }
         } else {
-            return "invalid method";
+            $error =  "invalid method";
         }
+        return $error;
     }
 
     public static function getMethodHasError(...$variables)
     {
+        $error = null;
         if (self::isGetMethod()) {
             foreach ($variables as $value) {
-                if (!isset($_GET[$value]) || empty(trim($_GET[$value]))) {
-                    return "invalid request method parameters";
+                if (!isset($_GET[$value])) {
+                    $error = "invalid request method parameter";
+                    break;
+                } else if (empty(trim($_GET[$value]))) {
+                    $error = "empty value for " . $value;
+                    break;
                 }
             }
         } else {
-            return "invalid method";
+            $error =  "invalid method";
         }
+        return $error;
     }
 }
