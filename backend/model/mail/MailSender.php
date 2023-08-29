@@ -1,4 +1,9 @@
 <?php
+# developer : janith nirmal
+# algowrite software solution
+## date : 30-08-2023 
+## version - 1.0.0
+
 require_once "SMTP.php";
 require_once "PHPMailer.php";
 require_once "Exception.php";
@@ -20,8 +25,8 @@ final class MailSender
         $this->toAddress = $toAddress;
     }
 
-    public function mailInitiate($subject, $title, $bodyContent)
-    {
+    -public function mailInitiate($subject, $title, $bodyContent)
+   - {
         // email code
         $this->mail = new PHPMailer;
         $this->mail->IsSMTP();
