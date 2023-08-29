@@ -1,6 +1,6 @@
 <?php
 
-class request_handler
+class RequestHandler
 {
     // validate the request methods
     // post
