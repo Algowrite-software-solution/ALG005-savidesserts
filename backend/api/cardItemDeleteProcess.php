@@ -2,7 +2,7 @@
 //include models
 require_once("../model/database_driver.php");
 require_once("../model/response_sender.php");
-require_once("../model/user_access_updater.php");
+require_once("../model/SessionManager.php");
 
 //response object
 $responseObject = new stdClass();
@@ -16,7 +16,7 @@ if (!isset($_POST['card_id'])) {
 }
 
 //check is login user
-$userCheckSession = new UseerAccess();
+$userCheckSession = new SessionManager();
 if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
      $responseObject->error = 'Please login';
      response_sender::sendJson($responseObject);

@@ -3,7 +3,7 @@ require_once("../model/database_driver.php");
 require_once("../model/data_validator.php");
 require_once("../model/response_sender.php");
 require_once("../model/passwordEncryptor.php");
-require_once("../model/user_access_updater.php");
+require_once("../model/SessionManager.php");
 
 //response sending object
 $response = new stdClass();
@@ -83,7 +83,7 @@ if ($result->num_rows == 0) {
           //success login
 
           //set a session variable for email and password and userId
-          $userAccess = new UseerAccess();
+          $userAccess = new SessionManager();
           $userAccess->login($row);
 
 

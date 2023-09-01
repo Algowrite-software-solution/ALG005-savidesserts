@@ -12,6 +12,7 @@ $response->status = "error";
 if (!isset($_POST['email'])) {
      $response->error = "invalid request";
      response_sender::sendJson($response);
+     die();
 }
 
 //send 6 number of verification code our email and update our db();
@@ -19,7 +20,7 @@ if (!isset($_POST['email'])) {
 $random_verification_code = substr(uniqid(true), 0, 6);
 $db = new database_driver();
 $updateQuery = "UPDATE `user` SET `confomation_code`=? WHERE `email`=?";
-$db->execute_query($updateQuery, 'ss', $random_verification_code, $_POST['email']);
+$db->execute_query($updateQuery, 'ss', array($random_verification_code, $_POST['email']));
 
 // send verification code user email
 $sendMail = new MailSender($_POST['email']);
