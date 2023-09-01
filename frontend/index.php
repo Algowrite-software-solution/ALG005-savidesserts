@@ -18,11 +18,7 @@
 
 <body>
 
-    <!-- <?php include "./pages/banner.php" ?>
-    <?php include "./pages/aboutUs.php" ?>
-    <?php include "./pages/singleProductView.php" ?>
-    <?php include "./pages/testamonials.php" ?>
-    <?php include "./pages/footer.php" ?> -->
+    <!-- content -->
 
 </body>
 
