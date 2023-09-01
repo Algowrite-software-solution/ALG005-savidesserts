@@ -26,3 +26,38 @@ let slideIndex = 1;
       dots[slideIndex-1].className += " active";
       captionText.innerHTML = dots[slideIndex-1].alt;
     }
+var swiper = new Swiper(".mySwiper", { 
+    effect: "coverflow",
+    grabCursor: true,
+    slidesPerView: "auto",
+    centeredSlides: true,
+    coverflowEffect: {
+      rotate: 20,
+      stretch: -20,
+      depth: 300,
+      modifier: 1,
+    },
+    autoplay: {
+      delay: 250,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+      dynamicBullets: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    scrollbar: {
+      el: ".swiper-scrollbar",
+    },
+    breakpoints: {
+      0: {},
+    },
+  });
+
+
+  // main slider
+
