@@ -1,4 +1,10 @@
 <?php
+// search model
+// by janith nirmal
+// version - 1.0.0
+// 03-09-2023
+
+
 require_once("database_driver.php");
 
 class AdvancedSearchEngine
@@ -13,6 +19,7 @@ class AdvancedSearchEngine
     public function searchProducts($searchTerm = null, $category = null, $orderBy = null, $orderDirection = null)
     {
         // validate data
+        $searchTermArray = explode(" ", $searchTerm);
 
         // generate query
         $baseQuery = "SELECT * FROM `product_item` 
@@ -20,128 +27,102 @@ class AdvancedSearchEngine
         INNER JOIN `category` ON `product`.`category_id`=`category`.`id` 
         INNER JOIN `weight` ON `product_item`.`weight_id`=`weight`.`id` 
         INNER JOIN `product_status` ON `product_item`.`product_status_id` = `product_status`.`id`  
-        WHERE ";
+        WHERE `product_status`.`type` = 'active' ";
+
 
         // chech for search term
         $searchTermQuerySection = "";
-        $searchTermExists = false;
-        if ($searchTerm) {
-            $searchTermExists = true;
-            // add term to query
-            $searchTermQuerySection .= " `product`.`product_name` LIKE '%" . $searchTerm . "% '"
-                . " OR `category`.`category_type` LIKE '%" . $searchTerm . "%' "
-                . " OR `product`.`product_description` LIKE '%" . $searchTerm . "%' "
-                . " OR `weight`.`weight` LIKE '%" . $searchTerm . "%' "
-                . " OR `product_item`.`price` LIKE '%" . $searchTerm . "%' ";
+        if (isset($searchTerm) && count($searchTermArray)) {
+            $count = 0;
+            foreach ($searchTermArray as $value) {
+                // add term to query
+
+                if ($count == 0) {
+                    $searchTermQuerySection = " AND ";
+                } else {
+                    $searchTermQuerySection = " OR ";
+                }
+
+
+                $searchTermQuerySection .= " ( `product`.`product_name` LIKE '%" . $value . "%' "
+                    . " OR `category`.`category_type` LIKE '%" . $value . "%' "
+                    . " OR `product`.`product_description` LIKE '%" . $value . "%' "
+                    . " OR `weight`.`weight` LIKE '%" . $value . "%' "
+                    . " OR `product_item`.`price` LIKE '%" . $value . "%' ) ";
+                $count++;
+            }
         }
 
         // check for category
-        $categoryQuerySection = "";
-        if ($category) {
-            if ($searchTermExists) {
-                $categoryQuerySection .= " OR ";
-            }
+        $categoryQuerySection = " AND ";
+        if (isset($category)) {
             // add category to query
-            $categoryQuerySection .= " `category`.`category_type` LIKE '%" . $searchTerm . "%' ";
+            $categoryQuerySection .= "  ( `category`.`category_type` LIKE '%" . $category . "%' ) ";
         }
+
+
 
         // check for order
         $orderQuerySection = "";
-        $orderStatus = false;
         // add order to query
         if ($orderBy) {
-            $orderQuerySection .= " ORDER BY `product_item`.`price` ";
-            $orderStatus = true;
+            switch ($orderBy) {
+                case 'price':
+                    $orderQuerySection .= " ORDER BY `product_item`.`price` ";
+                    print_r("\n order by price added");
+                    break;
+                default:
+                    $orderQuerySection .= " ORDER BY `product`.`product_id` ";
+                    print_r("\n order by default added 1");
+                    break;
+            }
         } else {
-            $orderQuerySection .= " ORDER BY DEFAULT ";
+            $orderQuerySection .= " ORDER BY `product`.`product_id` ";
+            print_r("\n order by default added 2");
         }
 
         // check for direction
         $orderDirectionQuerySection = "";
-        if ($orderDirection && $orderStatus) {
-            if ($searchTermExists) {
-                $orderDirectionQuerySection .= " ASC ";
-            } else {
-                // add direction to query
-                $orderDirectionQuerySection .= " " . $orderDirection . " ";
+        if ($orderDirection) {
+            // add direction to query
+            switch ($orderDirection) {
+                case 'low to high':
+                    $orderDirectionQuerySection .= " ASC ";
+                    break;
+                case 'high to low':
+                    $orderDirectionQuerySection .= " DESC ";
+                    break;
+                default:
+                    $orderDirectionQuerySection .= " ASC ";
+                    break;
             }
+        } else {
+            $orderDirectionQuerySection .= " ASC ";
         }
 
-        $finalizedQuery = $baseQuery . $searchTermQuerySection . $categoryQuerySection . $orderQuerySection . $orderDirectionQuerySection;
-        return $finalizedQuery;
-
-
-
+        $finalizedQuery = $baseQuery . $searchTermQuerySection . $categoryQuerySection  . $orderQuerySection . $orderDirectionQuerySection;
 
         // get item from db
-        // validate
-        // generate output
+        $searchResultArray = [];
+        $resultSet =  $this->database->query($finalizedQuery);
+        for ($i = 0; $i < $resultSet->num_rows; $i++) {
+            // generate output
+            $result = $resultSet->fetch_assoc();
+            array_push($searchResultArray,);
+            print_r("\n" . $result["product_name"] . " " . $result["price"]);
+        }
+
         // output
-
-
-
-
-        // $query = "SELECT * FROM `product_item` 
-        // INNER JOIN `product` ON `product_item`.`product_product_id`=`product`.`product_id` 
-        // INNER JOIN `category` ON `product`.`category_id`=`category`.`id` 
-        // INNER JOIN `weight` ON `product_item`.`weight_id`=`weight`.`id` 
-        // INNER JOIN `product_status` ON `product_item`.`product_status_id` = `product_status`.`id`  
-        // WHERE ";
-
-
-        // for ($i = 0; $i < count($columns); $i++) {
-        //     // Construct the search query based on search fieldss
-        //     $searchConditions = [];
-        //     foreach ($searchTerms as $fields) {
-        //         $searchConditions[] = " `$columns[$i]` LIKE ? ";
-        //     }
-        //     $query .= implode(" OR ", $searchConditions);
-
-        //     if ($i + 1 !== count($columns)) {
-        //         $query .= " OR ";
-        //     }
-        // }
-
-
-        // Add ordering based on hierarchical parameters
-        // $orderByClauses = [];
-        // switch ($orderBy) {
-        //     case 'product':
-        //         $orderByClauses[] = "`product_name`";
-        //         break;
-        //     case 'date':
-        //         $orderByClauses[] = "`add_date`";
-        //         break;
-        //         // Add more cases for other parameters
-        //     default:
-        //         // Default ordering logic
-        //         $orderByClauses[] = "`product_id`";
-        //         break;
-        // }
-
-
-        // $query .= " ORDER BY " . implode(", ", $orderByClauses) . " $orderDirection";
-
-        // // Execute the query using the DatabaseDriver
-        // $dataTypes = str_repeat("s", count($searchTerms) * count($columns)); // Assuming all fieldss are strings
-        // $dataValues = [];
-        // foreach ($columns as $value) {
-        //     $dataValues = array_merge($dataValues, array_map(function ($fields) {
-        //         return "%" . $fields . "%";
-        //     }, $searchTerms));
-        // }
-
-        // print_r($dataValues);
-        // return $this->database->execute_query($query, $dataTypes, $dataValues);
+        // return $searchResultArray;
     }
 }
 
 
 $searchEngine = new AdvancedSearchEngine();
-$searchTerms = 'C';
+$searchTerms = 'Pudin';
 
 $orderBy = 'price';
-$orderDirection = 'DESC';
+$orderDirection = 'high to low';
 
-$foundProducts = $searchEngine->searchProducts($searchTerms, null, null, $orderDirection);
+$foundProducts = $searchEngine->searchProducts($searchTerms, "Watalappan", 'price', $orderDirection);
 print_r($foundProducts);
