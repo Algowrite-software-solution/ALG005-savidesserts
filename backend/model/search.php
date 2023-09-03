@@ -1,7 +1,7 @@
 <?php
 // search model
 // by janith nirmal
-// version - 1.0.0
+// version - 1.0.1
 // 03-09-2023
 
 
@@ -16,7 +16,7 @@ class AdvancedSearchEngine
         $this->database = new database_driver();
     }
 
-    public function searchProducts($searchTerm = null, $category = null, $orderBy = null, $orderDirection = null)
+    public function searchProducts($searchTerm = null, $category = null, $orderBy = null, $orderDirection = null, $limit = 10)
     {
         // validate data
         $searchTermArray = explode(" ", $searchTerm);
@@ -100,7 +100,8 @@ class AdvancedSearchEngine
             $orderDirectionQuerySection .= " ASC ";
         }
 
-        $finalizedQuery = $baseQuery . $searchTermQuerySection . $categoryQuerySection  . $orderQuerySection . $orderDirectionQuerySection;
+        $limitQuerySection = " LIMIT " . $limit;
+        $finalizedQuery = $baseQuery . $searchTermQuerySection . $categoryQuerySection  . $orderQuerySection . $orderDirectionQuerySection . $limitQuerySection;
 
         // get item from db
         $searchResultArray = [];
@@ -119,10 +120,10 @@ class AdvancedSearchEngine
 
 
 $searchEngine = new AdvancedSearchEngine();
-$searchTerms = 'Pudin';
+$searchTerms = '';
 
 $orderBy = 'price';
 $orderDirection = 'high to low';
 
-$foundProducts = $searchEngine->searchProducts($searchTerms, "Watalappan", 'price', $orderDirection);
+$foundProducts = $searchEngine->searchProducts($searchTerms, "", 'price', $orderDirection);
 print_r($foundProducts);
