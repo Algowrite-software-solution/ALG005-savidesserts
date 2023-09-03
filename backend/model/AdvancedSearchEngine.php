@@ -1,7 +1,7 @@
 <?php
-// search model
+// Advanced Search Engine model
 // by janith nirmal
-// version - 1.0.1
+// version - 1.0.2
 // 03-09-2023
 
 
@@ -16,7 +16,7 @@ class AdvancedSearchEngine
         $this->database = new database_driver();
     }
 
-    public function searchProducts($searchTerm = null, $category = null, $orderBy = null, $orderDirection = null, $limit = 10)
+    public function searchProducts($searchTerm = "", $category = "", $orderBy = "", $orderDirection = "", $limit = 10)
     {
         // validate data
         $searchTermArray = explode(" ", $searchTerm);
@@ -69,16 +69,13 @@ class AdvancedSearchEngine
             switch ($orderBy) {
                 case 'price':
                     $orderQuerySection .= " ORDER BY `product_item`.`price` ";
-                    print_r("\n order by price added");
                     break;
                 default:
                     $orderQuerySection .= " ORDER BY `product`.`product_id` ";
-                    print_r("\n order by default added 1");
                     break;
             }
         } else {
             $orderQuerySection .= " ORDER BY `product`.`product_id` ";
-            print_r("\n order by default added 2");
         }
 
         // check for direction
@@ -109,21 +106,21 @@ class AdvancedSearchEngine
         for ($i = 0; $i < $resultSet->num_rows; $i++) {
             // generate output
             $result = $resultSet->fetch_assoc();
-            array_push($searchResultArray,);
-            print_r("\n" . $result["product_name"] . " " . $result["price"]);
+            array_push($searchResultArray, $result);
         }
 
         // output
-        // return $searchResultArray;
+        return $searchResultArray;
     }
 }
 
 
-$searchEngine = new AdvancedSearchEngine();
-$searchTerms = '';
+// // test
+// $searchEngine = new AdvancedSearchEngine();
+// $searchTerms = '';
 
-$orderBy = 'price';
-$orderDirection = 'high to low';
+// $orderBy = 'price';
+// $orderDirection = 'high to low';
 
-$foundProducts = $searchEngine->searchProducts($searchTerms, "", 'price', $orderDirection);
-print_r($foundProducts);
+// $foundProducts = $searchEngine->searchProducts($searchTerms, "", 'price', $orderDirection);
+// print_r($foundProducts);
