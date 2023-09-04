@@ -24,30 +24,35 @@
 
 </head>
 
-<body style="overflow-x: hidden;">
+<body class="scrollbar w-100" style="overflow-x: hidden;">
 
-    <!-- <?php include "./pages/banner.php" ?>
-    <?php include "./pages/aboutUs.php" ?>
-    <?php include "./pages/singleProductView.php" ?>
-    <?php include "./pages/testamonials.php" ?>
-    <?php include "./pages/footer.php" ?> -->
+   
+ 
     <!-- content -->
 <?php include("pages/components/header.php") ?>
-<?php include("pages/components/mainSlider.php") ?>
+<?php include("pages/components/home.php") ?>
+<?php include "pages/components/banner.php" ?>
+<?php include("pages/components/services.php") ?>
 <?php include("pages/components/category.php") ?>
 <?php include("pages/components/productViewCard.php") ?>
-<?php include("pages/components/services.php") ?>
+<?php include "pages/components/aboutUs.php" ?>
+
+<?php include "pages/components/testamonials.php" ?>
 <?php include("pages/components/contactUs.php") ?>
-<?php include("pages/components/searchBar.php") ?>
-<?php include("pages/components/cardItem.php") ?>
+<?php include "pages/components/footer.php" ?>
+
+
+
 <?php include("pages/components/watchlist.php") ?>
-<?php include("pages/components/profileNavigation.php") ?>
-<?php include("pages/components/profileViewCard.php") ?>
+
+
 <?php include("pages/components/cart.php") ?>
-<?php include("pages/components/productPurchasingHistory.php") ?>
-<?php include("pages/components/addressView.php") ?>
 
+    
 
+    <?php include "pages/components/signInModel.php" ?>
+<a href="./singleProductView.php">singleProduct View</a>
+<a href="./profileViewCard.php">profile View</a>
 </body>
 
 </html>

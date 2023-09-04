@@ -1,14 +1,7 @@
-.banner-main{
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #122620;
-    height: 433px;
-    flex-shrink: 0;
-    color: #F4EBD0;
-    font-size: 24px;
-}
-/* navbar */
+
+/* header */
 .alg-logo-img {
-    width: 140px;
-    height: 100px;
+    height: 60px;
 }
 
 .alg-navmarginLeft {
@@ -41,50 +34,46 @@
     color: #D6AD60;
 }
 
-
-.alg-nav-hover:hover {
-    background-color: #F4EBD0;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.cursor {
-    cursor: pointer;
-}
-
 .img {
     margin-left: -10px;
-    /* padding:0; */
-    /* background-position: center; */
-    /* background-size:contain; */
 }
 
-/* main slider */
+
+
+/* home */
+
+
+.alg-main-img {
+    width: 100%;
+    height: 90vh;
+    /* min-height:80vh; */
+    /* max-height:65vh; */
+}
+
+
+/* home slider */
 
 .mainSlider.swiper {
-    width:100%;
+    width: 100%;
     height: 50vh;
-  }
+}
 
-  .mainSlider.swiper-slide {
+.mainSlider.swiper-slide {
     text-align: center;
     font-size: 18px;
     /* background: #fff; */
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  .mainSlider.swiper-slide img {
-    width: 80%;
-    height: 30vh;
-    /* object-fit: cover; */
-  }
-
-.alg-main-img{
-    width:100%;
-    height:80vh;
 }
+
+.mainSlider.swiper-slide img {
+    /* width: 80%;
+    height: 30vh; */
+    /* object-fit: cover; */
+    
+}
+
 
 /* category */
 
@@ -92,13 +81,14 @@
     width: 100%;
     padding-top: 50px;
     padding-bottom: 50px;
+    /* background-color: red; */
 }
 
 .category-swiper.swiper-slide {
     background-position: center;
     background-size: cover;
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
     /* background-color:rgb(235, 195, 136); */
 }
 
@@ -107,14 +97,14 @@
     width: 100%;
 }
 
-.about-us-main{
+.about-us-main {
     background: #F4EBD0;
     width: 1440px;
     height: 614px;
     flex-shrink: 0;
 }
 
-.img-box{
+.img-box {
     width: 316px;
     height: 350px;
     flex-shrink: 0;
@@ -125,80 +115,85 @@
     box-shadow: 0px 0px 22px 15px rgba(0, 0, 0, 0.20);
 }
 
-.about-us-title{
+.about-us-title {
     color: #122620;
     font-size: 34px;
     font-style: normal;
     font-weight: 700;
 }
 
-.desc-box{
+.desc-box {
     background: #122620;
-    height: 420px;
+    height: 370px;
     overflow-x: hidden;
     overflow-y: auto;
-    text-align:justify;
+    text-align: justify;
     padding: 22px;
 
     /* shadow */
     box-shadow: 0px 0px 22px 15px rgba(0, 0, 0, 0.20);
 }
-.desc-box{
+
+/* .desc-box {
     @media (max-width:1550px) {
         height: 400px;
     }
+
     @media (max-width:1400px) {
         height: 380px;
     }
+
     @media (max-width:1300px) {
         height: 320px;
     }
+
     @media (max-width:1000px) {
         height: 290px;
     }
+
     @media (max-width:750px) {
         height: 250px;
     }
-}
+} */
 
 /* width */
 .scrollbar::-webkit-scrollbar {
     width: 20px;
     scroll-padding-right: 20px;
-  }
-  
-  /* Track */
+}
+
+/* Track */
 .scrollbar::-webkit-scrollbar-track {
-    background: white; 
+    background: white;
     border-radius: 10px;
-  }
-   
-  /* Handle */
+}
+
+/* Handle */
 .scrollbar::-webkit-scrollbar-thumb {
-    background: #B68B40; 
+    background: #B68B40;
     border-radius: 10px;
     padding-right: 20px;
-  }
+}
 
-.testm-main{
-    background: #F4EBD0;
+.testm-main {
+    /* background: #F4EBD0; */
     /* width: 1440px;
     height: 382px; */
     flex-shrink: 0;
 }
 
-.testm-card{
+.testm-card {
     border-radius: 32px;
-    background: #122620;
+    /* background: #122620; */
     width: 389px;
     height: 179px;
-    flex-shrink: 0; 
+    flex-shrink: 0;
 
     /* shadow */
     box-shadow: 0px 0px 22px 15px rgba(0, 0, 0, 0.20);
 }
 
-.testm-card-img{
+.testm-card-img {
     width: 104px;
     height: 104px;
     flex-shrink: 0;
@@ -207,60 +202,61 @@
     border-radius: 50%;
 }
 
-.card-para{
-    color: #FFF;
+.card-para {
+    /* color: #FFF; */
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
 
-.footer-main{
-    width: 1440px;
-    height: 148px;
+.footer-main {
+    /* width: 1440px; */
+    /* height: 148px;
     flex-shrink: 0;
-    background: #060D0B;
+    background: #060D0B; */
 }
 
-.ALG-singleProductImg-box{
-    background:  #122620;
-}
-
-.ALG-singleProduct-main{
-    background: #F4EBD0;
-}
-
-.ALG-singleProduct-tag{
+.ALG-singleProductImg-box {
     background: #122620;
 }
 
-  /* Hide the images by default */
-  .mySlides {
-    display: none;
-  }
-
-  /* Add a transparency effect for thumnbail images */
-  .demo {
-    opacity: 0.6;
-  }
-  
-  .active,
-  .demo:hover {
-    opacity: 1;
-  }
-
-  .ALG-main-model{
-    background:  #122620;
-  }
-
-  .ALG-main-model2{
+.ALG-singleProduct-main {
     background: #F4EBD0;
-  }
+}
 
-  .ALG-model-button{
-    background-color:  #D6AD60;
+.ALG-singleProduct-tag {
+    background: #122620;
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+    opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+    opacity: 1;
+}
+
+.ALG-main-model {
+    background: #122620;
+}
+
+.ALG-main-model2 {
+    background: #F4EBD0;
+}
+
+.ALG-model-button {
+    background-color: #D6AD60;
     border: none;
-  }
+}
+
 /* section2 */
 
 /* service */
@@ -280,29 +276,43 @@
 }
 
 
-/* /* .swiper-container {
+
+
+
+/* main slider */
+
+
+
+/* promotion slider */
+
+.banner-main {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #122620;
+    /* height: 433px; */
+    flex-shrink: 0;
+    color: #F4EBD0;
+    font-size: 24px;
+}
+
+
+.promotionSwiper.swiper {
     width: 100%;
     height: 100%;
-  } */
+}
 
-/* .swiper-slide {
+.promotionSwiper.swiper-slide {
     text-align: center;
     font-size: 18px;
-    background: #fff;
+    /* background: #fff; */
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+    width:300px;
+}
 
-.swiper-slide img {
+.promotionSwiper.swiper-slide img {
     display: block;
-    width: 10%;
-    height: 10%;
+    width: 100%;
+    height: 30vh;
     object-fit: cover;
-  }  */
-
-
-  /* main slider */
-
-
- 
+    border-radius: 20px;
+}

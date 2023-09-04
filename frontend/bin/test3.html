@@ -7,6 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
   <!-- Link Swiper's CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/style.css">
 
   <!-- Demo styles -->
   <style>
@@ -108,15 +111,102 @@
 
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">
-      <div class="swiper-slide">Slide 1</div>
-      <div class="swiper-slide">Slide 2</div>
-      <div class="swiper-slide">Slide 3</div>
-      <div class="swiper-slide">Slide 4</div>
+      <div class="swiper-slide">
+        <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-center ">
+          <div class="d-flex flex-column justify-content-end">
+
+              <div> <img src="../resources/images/category1.png" alt="" class="position-relative pt-4" style="width:247.3px; height:320px;"></div>
+
+              <div class="mx-4 position-absolute mt-3" style="width:200px;">
+                  <div class="px-1 m-0 alg-bg-tan p-2  rounded-1">
+                      <div class="d-flex justify-content-between pb-1">
+                          <span class="text-white fw-bold">Product Title</span>
+                          <span class="fw-bold">LKR 1300</span>
+                      </div>
+
+                      <div>
+                          <p class="alg-text-h3-lg lh-1 pb-1 my-0 text-white">This is the product description and it contain small details.</p>
+                      </div>
+
+                      <div>
+                          <i class="bi bi-star-fill text-warning"></i>
+                          <i class="bi bi-star-fill text-warning"></i>
+                          <i class="bi bi-star-fill text-warning"></i>
+                          <i class="bi bi-star-fill text-warning"></i>
+                          <i class="bi bi-star-fill"></i>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-center ">
+          <div class="d-flex flex-column justify-content-end">
+
+              <div> <img src="../resources/images/" alt="" class="position-relative pt-4" style="width:247.3px; height:320px;"></div>
+
+              <div class="mx-4 position-absolute mt-3" style="width:200px;">
+                  <div class="px-1 m-0 alg-bg-tan p-2  rounded-1">
+                      <div class="d-flex justify-content-between pb-1">
+                          <span class="text-white fw-bold">Product Title</span>
+                          <span class="fw-bold">LKR 1300</span>
+                      </div>
+
+                      <div>
+                          <p class="alg-text-h3-lg lh-1 pb-1 my-0 text-white">This is the product description and it contain small details.</p>
+                      </div>
+
+                      <div>
+                          <i class="bi bi-star-fill text-warning"></i>
+                          <i class="bi bi-star-fill text-warning"></i>
+                          <i class="bi bi-star-fill text-warning"></i>
+                          <i class="bi bi-star-fill text-warning"></i>
+                          <i class="bi bi-star-fill"></i>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-center ">
+          <div class="d-flex flex-column justify-content-end">
+
+              <div> <img src="resources/images/item3.png" alt="" class="position-relative pt-4" style="width:247.3px; height:320px;"></div>
+
+              <div class="mx-4 position-absolute mt-3" style="width:200px;">
+                  <div class="px-1 m-0 alg-bg-tan p-2  rounded-1">
+                      <div class="d-flex justify-content-between pb-1">
+                          <span class="text-white fw-bold">Product Title</span>
+                          <span class="fw-bold">LKR 1300</span>
+                      </div>
+
+                      <div>
+                          <p class="alg-text-h3-lg lh-1 pb-1 my-0 text-white">This is the product description and it contain small details.</p>
+                      </div>
+
+                      <div>
+                          <i class="bi bi-star-fill text-warning"></i>
+                          <i class="bi bi-star-fill text-warning"></i>
+                          <i class="bi bi-star-fill text-warning"></i>
+                          <i class="bi bi-star-fill text-warning"></i>
+                          <i class="bi bi-star-fill"></i>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+      </div>
+      <!-- <div class="swiper-slide">Slide 4</div>
       <div class="swiper-slide">Slide 5</div>
       <div class="swiper-slide">Slide 6</div>
       <div class="swiper-slide">Slide 7</div>
       <div class="swiper-slide">Slide 8</div>
-      <div class="swiper-slide">Slide 9</div>
+      <div class="swiper-slide">Slide 9</div> -->
     </div>
   </div>
 
@@ -128,6 +218,15 @@
     var swiper = new Swiper(".mySwiper", {
       effect: "cards",
       grabCursor: true,
+      cardsEffect: {
+        // centerInsufficientSlides:true,
+        centeredSlides: true,
+        // centeredSlidesBounds: true,
+        perSlideOffset: 80,
+        perSlideRotate: 4,
+        // rotate: true,
+         
+      }
     });
   </script>
 </body>

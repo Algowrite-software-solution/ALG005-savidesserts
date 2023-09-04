@@ -1,13 +1,13 @@
 <section>
-    <div class="row alg-bg-dark mt-5 pb-5">
+    <div class="row alg-bg-light pb-5 pt-3">
         <div class="col-12">
             <div class="row">
                 <div class="col-12 text-center mt-lg-4">
-                    <h3 class="text-white">CONTACT US</h3>
+                    <span class="alg-text-h2 alg-text-gold fw-bold">CONTACT US</span>
                 </div>
             </div>
 
-            <div class="row mt-5">
+            <div class="row mt-4">
                 <div class="col-12">
                     <div class="row d-felx flex-column flex-md-row justify-content-center align-items-center gap-5">
                         <div class="col-10 col-md-5">
@@ -16,27 +16,27 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-5 d-flex flex-column gap-4">
-                            <div class="row d-flex justify-content-center">
+                            <div class="row d-flex justify-content-center cursor">
                                 <div class="col-10">
-                                    <div class="bg-white p-2 d-flex align-items-center gap-5 px-3 rounded-4">
+                                    <div class="bg-white p-2 d-flex align-items-center gap-5 px-3 alg-div-hover rounded-4">
                                         <span><i class='bx bx-mobile fs-5 fw-bold'></i></span>
                                         <span class="fw-bold">+9421436564</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row d-flex justify-content-center">
+                            <div class="row d-flex justify-content-center cursor">
                                 <div class="col-10">
-                                    <div class="bg-white p-2 d-flex align-items-center gap-5 px-3 rounded-4">
+                                    <div class="bg-white p-2 d-flex align-items-center gap-5 px-3 alg-div-hover rounded-4">
                                         <span><i class='bx bxs-envelope fs-5 fw-bold'></i></span>
                                         <span class="fw-bold">saviproudcts@gmail.com</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row d-flex justify-content-center">
+                            <div class="row d-flex justify-content-center cursor">
                                 <div class="col-10">
-                                    <div class="bg-white p-2 d-flex align-items-center gap-5 px-3 rounded-4">
+                                    <div class="bg-white p-2 d-flex align-items-center gap-5 px-3 alg-div-hover rounded-4">
                                         <span><i class="bi bi-geo-alt-fill fs-5 fw-bold"></i></span>
                                         <span class="fw-bold">+9421436564</span>
                                     </div>
@@ -46,9 +46,9 @@
                             <div class="row">
                                 <div class="row d-flex justify-content-center">
                                     <div class="col-6 bg-lg-white p-2 d-flex gap-4 rounded-4 px-3 justify-content-center">
-                                        <span><i class="bi bi-facebook alg-header-text fs-5"></i></span>
-                                        <span><i class="bi bi-instagram alg-header-text fs-5"></i></span>
-                                        <span><i class="bi bi-linkedin alg-header-text fs-5"></i></span>
+                                        <span><i class="bi bi-facebook alg-header-text fs-5 alg-text-hover cursor"></i></span>
+                                        <span><i class="bi bi-instagram alg-header-text fs-5 alg-text-hover cursor"></i></span>
+                                        <span><i class="bi bi-linkedin alg-header-text fs-5 alg-text-hover cursor"></i></span>
                                     </div>
                                 </div>
                             </div>

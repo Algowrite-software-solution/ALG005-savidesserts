@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="col-11 bg-dark mx-auto text-center rounded-5 p-1">
-        <span class="alg-text-h1-lg text-white">NAVIGATION</span>
+<div class="row mt-4">
+    <div class="col-10 bg-dark mx-auto text-center rounded-5 p-2">
+        <span class="alg-text-h2 text-white">NAVIGATION</span>
     </div>
 </div>
