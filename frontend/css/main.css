@@ -7,9 +7,9 @@
 :root {
   /* color */
   --dark: #122620;
-  --tan: #B68B40;
-  --gold: #D6AD60;
-  --light: #F4EBD0;
+  --tan: #b68b40;
+  --gold: #d6ad60;
+  --light: #f4ebd0;
 
   /* font */
   --font-h1-lg: 48px;
@@ -24,8 +24,15 @@
   --font-h3-md: 13px;
   --font-h3: 11px;
 
-}
+  --font-p-lg: 12px;
+  --font-p-md: 10px;
+  --font-p: 8px;
 
+  /* radius */
+  --rounded-large: 50px;
+  --rounded-mid: 25px;
+  --rounded-small: 15px;
+}
 
 /* background color */
 .alg-bg-dark {
@@ -62,7 +69,6 @@
   color: var(--dark);
 }
 
-
 /* hover */
 
 .alg-button-hover:hover {
@@ -74,7 +80,7 @@
 }
 
 .alg-div-hover:hover {
-  background-color: #F4EBD0;
+  background-color: #f4ebd0;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -83,8 +89,12 @@
   cursor: pointer;
 }
 
+.alg-text-p {
+  font-size: var(--font-p-small);
+  line-height: 10px;
+}
 
-@media screen and (min-width:1070px) {
+@media screen and (min-width: 1070px) {
   .alg-text-h1 {
     font-size: var(--font-h1-lg);
   }
@@ -103,7 +113,7 @@
   }
 }
 
-@media screen and (max-width:1070px) and (min-width:575px) {
+@media screen and (max-width: 1070px) and (min-width: 575px) {
   .alg-text-h1 {
     font-size: var(--font-h1-md);
   }
@@ -122,7 +132,7 @@
   }
 }
 
-@media screen and (max-width:575px) {
+@media screen and (max-width: 575px) {
   .alg-text-h1 {
     font-size: var(--font-h1);
   }

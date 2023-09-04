@@ -213,95 +213,33 @@
                 <span class="alg-text-h2 alg-text-gold fw-bold">BEST SELLING</span>
                 <div class="promotionSwiper swiper mySwiperBestSelling mt-4">
                     <div class="swiper-wrapper mx-auto">
-                        <div class="promotionSwiper swiper-slide">
-                            <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-center ">
-                                <div class="d-flex flex-column justify-content-end">
 
-                                    <div> <img src="resources/images/item1.png" alt="" class="position-relative pt-4" style="width:247.3px; height:320px;"></div>
-
-                                    <div class="mx-4 position-absolute mt-3" style="width:200px;">
-                                        <div class="px-1 m-0 alg-bg-tan p-2  rounded-1">
-                                            <div class="d-flex justify-content-between pb-1">
-                                                <span class="text-white fw-bold">Product Title</span>
-                                                <span class="fw-bold">LKR 1300</span>
-                                            </div>
-
-                                            <div>
-                                                <p class="alg-text-h3 lh-1 pb-1 my-0 text-white">This is the product description and it contain small details.</p>
-                                            </div>
-
-                                            <div>
-                                                <i class="bi bi-star-fill text-warning"></i>
-                                                <i class="bi bi-star-fill text-warning"></i>
-                                                <i class="bi bi-star-fill text-warning"></i>
-                                                <i class="bi bi-star-fill text-warning"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                            </div>
-                                        </div>
+                        <div class="promotionSwiper swiper-slide ">
+                            <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-end overflow-hidden flex-column ld-bs-card w-100">
+                                <div class="ld-bs-card-content d-flex flex-column text-start">
+                                    <div class="d-flex fw-bold justify-content-between">
+                                        <div class="">Product Title</div>
+                                        <div class="text-white">LKR 3000</div>
                                     </div>
-
+                                    <div class="fs-6">this is some little descrioption for the product......</div>
+                                    <div class="d-flex">
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-white"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="promotionSwiper swiper-slide">
-                            <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-center ">
-                                <div class="d-flex flex-column justify-content-end">
+                        <div class="promotionSwiper swiper-slide ">
+                            <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-center ld-bs-card w-100">
 
-                                    <div> <img src="resources/images/item1.png" alt="" class="im position-relative pt-4" style="width:247.3px; height:320px;"></div>
-
-                                    <div class="mx-4 position-absolute mt-3" style="width:200px;">
-                                        <div class="px-1 m-0 alg-bg-tan p-2  rounded-1">
-                                            <div class="d-flex justify-content-between pb-1">
-                                                <span class="text-white fw-bold">Product Title</span>
-                                                <span class="fw-bold">LKR 1300</span>
-                                            </div>
-
-                                            <div>
-                                                <p class="alg-text-h3 lh-1 pb-1 my-0 text-white">This is the product description and it contain small details.</p>
-                                            </div>
-
-                                            <div>
-                                                <i class="bi bi-star-fill text-warning"></i>
-                                                <i class="bi bi-star-fill text-warning"></i>
-                                                <i class="bi bi-star-fill text-warning"></i>
-                                                <i class="bi bi-star-fill text-warning"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
                             </div>
                         </div>
+                        <div class="promotionSwiper swiper-slide ">
+                            <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-center ld-bs-card w-100">
 
-                        <div class="promotionSwiper swiper-slide">
-                            <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-center ">
-                                <div class="d-flex flex-column justify-content-end">
-
-                                    <div> <img src="resources/images/item1.png" alt="" class="position-relative pt-4" style="width:247.3px; height:320px;"></div>
-
-                                    <div class="mx-4 position-absolute mt-3 alg-shadow" style="width:200px;">
-                                        <div class="px-1 m-0 alg-bg-tan p-2  rounded-1">
-                                            <div class="d-flex justify-content-between pb-1">
-                                                <span class="text-white fw-bold">Product Title</span>
-                                                <span class="fw-bold">LKR 1300</span>
-                                            </div>
-
-                                            <div>
-                                                <p class="alg-text-h3 lh-1 pb-1 my-0 text-white">This is the product description and it contain small details.</p>
-                                            </div>
-
-                                            <div>
-                                                <i class="bi bi-star-fill text-warning"></i>
-                                                <i class="bi bi-star-fill text-warning"></i>
-                                                <i class="bi bi-star-fill text-warning"></i>
-                                                <i class="bi bi-star-fill text-warning"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
                             </div>
                         </div>
 
