@@ -23,7 +23,6 @@
 
 <body>
 
-    <!-- Footer Start -->
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ALG-SignIn-Modal">
@@ -47,7 +46,7 @@
 
                         <div class="d-flex justify-content-center align-items-center col-12 p-0">
                             <div class="col-4 p-0">
-                                <img src="../resources/images/icons/ori-02.png" class="img-fluid" alt="">
+                                <img src="resources/images/icons/ori-02.png" class="img-fluid" alt="">
                             </div>
                         </div>
 
