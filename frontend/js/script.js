@@ -91,7 +91,9 @@ var swiper = new Swiper(".mySwiperBestSelling", {
       stretch: -400,
       depth: 900,
       modifier: 1,
+      slideShadows:false,
   },
+
   autoplay: {
       delay: 3500,
       disableOnInteraction: false,

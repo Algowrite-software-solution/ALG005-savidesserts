@@ -311,6 +311,8 @@
     justify-content: center;
     align-items: center;
     width:300px;
+    /* box-shadow: none; */
+   
 }
 
 .promotionSwiper.swiper-slide img {
@@ -319,4 +321,8 @@
     height: 30vh;
     object-fit: cover;
     border-radius: 20px;
+}
+
+.alg-shadow{
+    box-shadow: 0px 0px 14px 15px rgba(142, 196, 140, 0.8);
 }

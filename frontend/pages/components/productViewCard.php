@@ -217,7 +217,7 @@
                             <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-center ">
                                 <div class="d-flex flex-column justify-content-end">
 
-                                    <div> <img src="resources/images/item1.png" alt="" class="im position-relative pt-4" style="width:247.3px; height:320px;"></div>
+                                    <div> <img src="resources/images/item1.png" alt="" class="position-relative pt-4" style="width:247.3px; height:320px;"></div>
 
                                     <div class="mx-4 position-absolute mt-3" style="width:200px;">
                                         <div class="px-1 m-0 alg-bg-tan p-2  rounded-1">
@@ -227,7 +227,7 @@
                                             </div>
 
                                             <div>
-                                                <p class="alg-text-h3-lg lh-1 pb-1 my-0 text-white">This is the product description and it contain small details.</p>
+                                                <p class="alg-text-h3 lh-1 pb-1 my-0 text-white">This is the product description and it contain small details.</p>
                                             </div>
 
                                             <div>
@@ -257,7 +257,7 @@
                                             </div>
 
                                             <div>
-                                                <p class="alg-text-h3-lg lh-1 pb-1 my-0 text-white">This is the product description and it contain small details.</p>
+                                                <p class="alg-text-h3 lh-1 pb-1 my-0 text-white">This is the product description and it contain small details.</p>
                                             </div>
 
                                             <div>
@@ -278,9 +278,9 @@
                             <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-center ">
                                 <div class="d-flex flex-column justify-content-end">
 
-                                    <div> <img src="resources/images/item1.png" alt="" class="im position-relative pt-4" style="width:247.3px; height:320px;"></div>
+                                    <div> <img src="resources/images/item1.png" alt="" class="position-relative pt-4" style="width:247.3px; height:320px;"></div>
 
-                                    <div class="mx-4 position-absolute mt-3" style="width:200px;">
+                                    <div class="mx-4 position-absolute mt-3 alg-shadow" style="width:200px;">
                                         <div class="px-1 m-0 alg-bg-tan p-2  rounded-1">
                                             <div class="d-flex justify-content-between pb-1">
                                                 <span class="text-white fw-bold">Product Title</span>
@@ -288,7 +288,7 @@
                                             </div>
 
                                             <div>
-                                                <p class="alg-text-h3-lg lh-1 pb-1 my-0 text-white">This is the product description and it contain small details.</p>
+                                                <p class="alg-text-h3 lh-1 pb-1 my-0 text-white">This is the product description and it contain small details.</p>
                                             </div>
 
                                             <div>
