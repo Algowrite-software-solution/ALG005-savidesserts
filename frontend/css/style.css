@@ -185,7 +185,7 @@
 .testm-card {
     border-radius: 32px;
     /* background: #122620; */
-    width: 389px;
+    width: 350px;
     height: 179px;
     flex-shrink: 0;
 
@@ -197,7 +197,7 @@
     width: 104px;
     height: 104px;
     flex-shrink: 0;
-    background: url("https://s3-alpha-sig.figma.com/img/38b5/be5b/aa1a8d78fd3fad7cdc6809e9444cbaad?Expires=1693785600&Signature=iljwz5wgR72sppk1tLjtQRmdSH4~s0essXz18~WI1Nsvq3mqqIIACCzxldjY-oT-F7eXnFetTEIBIL9bzO7Rjov3vuh~WjSOZWspxIAH21VeRi8TJu4iXb6lbdqrSK7~HYfIfOGmE8Hysv69ltguQDKScnAqTgbm7pPZr2YJF~ew3RfDnGm0~UYA4EfoqKNzsSADhcUm-1l48O8d5HpC6edFVt3krtFQLD9N5yMam-sBpTWVvVq6vzhX7ySrBtRtQeEg5JduPrTL3FNHSOU8p2mZAWGyTZeQviKiBWUz49BXYzmfUARAnwC3JnwRjGkvceRRS0PgDhYS2mfKDTgsQQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"), lightgray 50% / cover no-repeat;
+    background: url("https://javainstitute.edu.lk/img/faculty/dr-ishantha.jpg"), lightgray 50% / cover no-repeat;
     background-size: 104px 104px;
     border-radius: 50%;
 }
@@ -227,6 +227,10 @@
 
 .ALG-singleProduct-tag {
     background: #122620;
+}
+
+.ALG-singleProduct-btn {
+    background: #B68B40;
 }
 
 /* Hide the images by default */
