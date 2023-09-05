@@ -1,8 +1,8 @@
 <?php
 // load category api
 // by janith nirmal
-// version - 1.0.0
-// 03-09-2023
+// version - 1.0.1 (updated - 06-09-2023)
+// developed - 03-09-2023
 
 require_once("../model/database_driver.php");
 require_once("../model/data_validator.php");
@@ -16,19 +16,15 @@ $responseObject = new stdClass();
 $responseObject->status = "failed";
 
 //handle the request
-if (RequestHandler::getMethodHasError("category", "limit")) {
+if (!RequestHandler::isGetMethod("limit")) {
     $responseObject->error = "invalid request";
     response_sender::sendJson($responseObject);
 }
 
-$category = $_GET['category'];
-$limit = $_GET['limit'];
+$limit = (!empty($_GET['limit'])) ? $_GET['limit'] : 15; // defult limit
 
 
 $validateReadyObject = (object) [
-    "text_255" => [
-        (object) ["datakey" => "category", "value" => $category]
-    ],
     "id_int" => [
         (object) ["datakey" => "limit", "value" => $limit]
     ],

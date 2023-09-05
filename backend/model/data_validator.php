@@ -22,6 +22,20 @@ final class data_validator
     {
         foreach ($this->data as $key => $valueArray) {
 
+            // validate as an int or null
+            if ($key == "int_or_null") {
+                foreach ($valueArray as $valueObject) {
+                    $this->int_or_null_validator($valueObject);
+                }
+            }
+
+            // validate as a string or null
+            if ($key == "string_or_null") {
+                foreach ($valueArray as $valueObject) {
+                    $this->string_or_null_validator($valueObject);
+                }
+            }
+
             // validate as an integer
             if ($key == "id_int") {
                 foreach ($valueArray as $valueObject) {
@@ -69,7 +83,45 @@ final class data_validator
     }
 
 
-    // name validator as integer
+    // string or null validator as integer
+    private function string_or_null_validator($dataToValidate)
+    {
+        $key = $dataToValidate->datakey;
+        $value = $dataToValidate->value;
+
+        // Trim and remove any whitespace
+        $value = trim($value);
+
+        // Check if the value is empty, including an empty string
+        if (!is_string($value)) {
+            $this->errorObject->$key =  "Invalid String for " . $key;
+        }
+    }
+
+    // int or null validator as integer
+    private function int_or_null_validator($dataToValidate)
+    {
+        $key = $dataToValidate->datakey;
+        $value = $dataToValidate->value;
+
+        // Trim and remove any whitespace
+        $value = trim($value);
+
+        // Check if the value is empty, including an empty string
+        if (!is_numeric($value) && ($value !== '' || $value !== '0')) {
+            return true; // Empty, including empty string, or non-numeric value
+            $this->errorObject->$key =  "Invalid id for " . $key;
+        }
+
+        // Check if the value is a valid integer
+        $intValue = (int)$value; // Attempt to cast to integer
+
+        if ((string)$intValue !== $value) {
+            $this->errorObject->$key =  "Invalid id for " . $key;
+        }
+    }
+
+    // password validator as integer
     private function password_validator($dataToValidate)
     {
         $key = $dataToValidate->datakey;
@@ -92,7 +144,7 @@ final class data_validator
         }
     }
 
-    // name validator as integer
+    // date validator as integer
     private function date_validator($dataToValidate)
     {
         $key = $dataToValidate->datakey;
