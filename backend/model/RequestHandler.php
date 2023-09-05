@@ -4,13 +4,13 @@ class RequestHandler
 {
     // validate the request methods
     // post
-    private static function isPostMethod()
+    public static function isPostMethod()
     {
         return ($_SERVER["REQUEST_METHOD"] === "POST") ? true : false;
     }
 
     // get
-    private static function isGetMethod()
+    public static function isGetMethod()
     {
         return ($_SERVER["REQUEST_METHOD"] === "GET") ? true : false;
     }

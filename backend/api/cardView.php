@@ -1,8 +1,18 @@
 <?php
+
+// cart item load api
+// by madusha pravinda
+// version - 1.0.0
+// 03-09-2023
+
+
 //include models
 require_once("../model/database_driver.php");
 require_once("../model/response_sender.php");
 require_once("../model/SessionManager.php");
+
+// headers
+header("Content-Type: application/json; charset=UTF-8");
 
 //response object
 $responseObject = new stdClass();
