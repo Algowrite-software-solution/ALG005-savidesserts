@@ -29,7 +29,6 @@ $resultSet = $db->execute_query($searchQuery, 's', array($userId));
 
 //result and stmt
 $result = $resultSet['result'];
-$stmt = $queryResult['stmt'];
 
 $responseArray = array();
 

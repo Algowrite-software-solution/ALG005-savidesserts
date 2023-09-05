@@ -27,7 +27,6 @@ $resultSet = $db->execute_query($searchQuery, 's', array($userId));
 
 //result and stmt
 $result = $resultSet['result'];
-$stmt = $queryResult['stmt'];
 
 $responseArray = array();
 
@@ -35,7 +34,7 @@ if ($result->num_rows > 0) {
      while ($row = $result->fetch_assoc()) {
           $resRowDetailObject = new stdClass();
           $resRowDetailObject->watchlist_id = $row['watchlist_id'];
-          $resRowDetailObject->product_item_id = $row['product_item_id'];
+          $resRowDetailObject->product_item_id = $row['watchlist_product_item_id'];
           $resRowDetailObject->product_id = $row['product_product_id'];
 
           array_push($responseArray, $resRowDetailObject);

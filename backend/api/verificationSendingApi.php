@@ -15,16 +15,19 @@ if (!isset($_POST['email'])) {
      die();
 }
 
+$email = $_POST['email'];
+
 //send 6 number of verification code our email and update our db();
 //generate 6 number of id
-$random_verification_code = substr(uniqid(true), 0, 6);
+$six_digit_random_number = random_int(100000, 999999);
+
 $db = new database_driver();
 $updateQuery = "UPDATE `user` SET `confomation_code`=? WHERE `email`=?";
-$db->execute_query($updateQuery, 'ss', array($random_verification_code, $_POST['email']));
+$db->execute_query($updateQuery, 'ss', array($six_digit_random_number, $email));
 
 // send verification code user email
-$sendMail = new MailSender($_POST['email']);
-$sendMail->mailInitiate('Verification Code', 'Savi Dessert', "Your Verification Code : '.$random_verification_code.'");
+$sendMail = new MailSender($email);
+$sendMail->mailInitiate('Verification Code', 'Savi Dessert', "Your Verification Code : $six_digit_random_number ");
 $sendMail->sendMail();
 
 $response->status = "success";

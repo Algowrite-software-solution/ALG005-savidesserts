@@ -16,6 +16,8 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
      response_sender::sendJson($responseObject);
      die();
 }
+$userData = $userCheckSession->getUserId();
+$userId = $userData["user_id"];
 
 //check card_id 
 if (!isset($_POST['watchlist_id'])) {
@@ -29,7 +31,7 @@ if (!isset($_POST['watchlist_id'])) {
 //database object
 $db = new database_driver();
 $watchlist = $_POST['watchlist_id'];
-$deleteQuery = "DELETE FROM `watchlist` WHERE `id`=?";
-$db->execute_query($deleteQuery, 's', array($watchlist));
-$responseObject->error = "Delete successfully";
+$deleteQuery = "DELETE FROM `watchlist` WHERE `id`=? AND `user_user_id`=?";
+$db->execute_query($deleteQuery, 'ss', array($watchlist,$userId));
+$responseObject->status = "Delete successfully";
 response_sender::sendJson($responseObject);

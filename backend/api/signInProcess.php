@@ -59,7 +59,6 @@ $db = new database_driver();
 $searchQuery = "SELECT * FROM `user` WHERE `email`=?";
 $queryResult = $db->execute_query($searchQuery, 's', array($email));
 
-$stmt = $queryResult['stmt'];
 $result = $queryResult['result'];
 
 if ($result->num_rows == 0) {

@@ -30,18 +30,17 @@ $extraItemId = $cardAddingData->extraItemId;
 //check qty have our store
 $db = new database_driver();
 $searchQuery = "SELECT qty FROM `product_item` WHERE `id`=? AND `weight_id`=?";
-$resultSet = $db->execute_query($searchQuery, 's', array($productItemId, $weightId));
+$resultSet = $db->execute_query($searchQuery, 'ss', array($productItemId, $weightId));
 
 //result and stmt
 $result = $resultSet['result'];
-$stmt = $queryResult['stmt'];
 
 //fetch related data
 $qty = $result->fetch_assoc();
 
 //qty checking
-if ($qty < $incomingQty) {
-     $responseObject->error = 'Qty invalid ';
+if ($qty['qty'] < $incomingQty) {
+     $responseObject->error = 'invalid qty';
      response_sender::sendJson($responseObject);
      die();
 }

@@ -21,6 +21,7 @@ if ($queryResult['result']->num_rows > 0) {
           $resRowDetailObject->promotion_id = $row['promotion_id'];
           $resRowDetailObject->start_date_time = $row['start_date_time'];
           $resRowDetailObject->end_date_time = $row['end_date_time'];
+          $resRowDetailObject->product_item_id = $row['product_item_id'];
           array_push($responseArray, $resRowDetailObject);
      }
      $responseObject->status = 'success';

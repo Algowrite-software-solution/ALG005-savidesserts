@@ -35,23 +35,22 @@ $weightId = $cardQtyUpdateData->weightId;
 //qty validation
 $db = new database_driver();
 $searchQuery = "SELECT qty FROM `product_item` WHERE `id`=? AND `weight_id`=?";
-$resultSet = $db->execute_query($searchQuery, 's', array($productItemId, $weightId));
+$resultSet = $db->execute_query($searchQuery, 'ss', array($productItemId, $weightId));
 
 //result and stmt
 $result = $resultSet['result'];
-$stmt = $queryResult['stmt'];
 
 //fetch related data
 $qty = $result->fetch_assoc();
 
 //qty checking
-if ($qty < $incomingQty || $incomingQty == 0) {
+if ($qty['qty'] < $incomingQty || $incomingQty <= 0) {
      $responseObject->error = 'Qty invalid ';
      response_sender::sendJson($responseObject);
      die();
 } else {
      //update qty
-     $updateQuery = "UPDATE `card` SET `qty`=? WHERE `card_id`=? AND `user_user_id`=?";
+     $updateQuery = "UPDATE `card` SET `qty`=? WHERE `id`=? AND `user_user_id`=?";
      $db->execute_query($updateQuery, 'sss', array($incomingQty, $cardId, $userId));
      $responseObject->status = 'Updated';
      response_sender::sendJson($responseObject);

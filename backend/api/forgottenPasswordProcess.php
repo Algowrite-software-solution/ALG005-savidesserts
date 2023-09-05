@@ -6,7 +6,7 @@ require_once("../model/passwordEncryptor.php");
 
 //response sending object
 $response = new stdClass();
-$response->status = "error";
+$response->status = "failed";
 
 //handle the request
 if (!isset($_POST['email']) || !isset($_POST['newPassword']) && !isset($_POST['confPassword'])) {

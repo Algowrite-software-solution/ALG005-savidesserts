@@ -26,7 +26,7 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
 //database object
 $db = new database_driver();
 $card_id = $_POST['card_id'];
-$deleteQuery = "DELETE FROM `card` WHERE `card_id`=?";
+$deleteQuery = "DELETE FROM `card` WHERE `id`=?";
 $db->execute_query($deleteQuery, 's', array($card_id));
-$responseObject->error = "Delete successfully";
+$responseObject->status = "Delete successfully";
 response_sender::sendJson($responseObject);
