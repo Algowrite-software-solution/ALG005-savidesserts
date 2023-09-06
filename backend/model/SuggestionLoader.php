@@ -9,9 +9,9 @@ require_once("AdvancedSearchEngine.php");
 class SuggestionLoader
 {
 
-    public $keyWords = [];
+    private $keyWords = [];
 
-    public function prepareWords($searchTerms)
+    private function prepareWords($searchTerms)
     {
         // validate
         $stringPartsToRemove = [
@@ -36,7 +36,7 @@ class SuggestionLoader
     }
 
     // get keywords
-    public function getSuggestions($searchTerms,  $count = 10)
+    public function getSuggestions($searchTerms,  $count = 2)
     {
         $this->prepareWords($searchTerms);
 
