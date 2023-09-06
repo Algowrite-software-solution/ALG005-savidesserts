@@ -1,8 +1,8 @@
 <?php
 // Advanced Search Engine model
 // by janith nirmal
-// version - 1.0.2
-// 03-09-2023
+// version - 1.0.3 (06-09-2023 - updated)
+// developed - 03-09-2023
 
 
 require_once("database_driver.php");
@@ -113,9 +113,30 @@ class AdvancedSearchEngine
         // output
         return $searchResultArray;
     }
+
+    public function searchSingleProduct($id)
+    {
+        $query = "SELECT `product_id`, `product_name`, `product_description`, `category_id`, `add_date`, `category_type`, `type` as `product_status`, `qty`, `price` as `item_price`, `weight` 
+        FROM `product_item` 
+        INNER JOIN `product` ON `product_item`.`product_product_id`=`product`.`product_id` 
+        INNER JOIN `category` ON `product`.`category_id`=`category`.`id` 
+        INNER JOIN `weight` ON `product_item`.`weight_id`=`weight`.`id` 
+        INNER JOIN `product_status` ON `product_item`.`product_status_id` = `product_status`.`id`  
+        WHERE `product_status`.`type` = 'active' AND `product`.`product_id` = ?";
+        $resultResponse = $this->database->execute_query($query, "i", [$id]);
+        $resultSet = $resultResponse["result"];
+
+        // generate output
+        $result = $resultSet->fetch_assoc();
+        return $result;
+    }
 }
 
-
+// 
+// 
+// 
+// 
+// 
 // // test
 // $searchEngine = new AdvancedSearchEngine();
 // $searchTerms = '';
