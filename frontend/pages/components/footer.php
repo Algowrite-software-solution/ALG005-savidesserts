@@ -1,7 +1,7 @@
 <footer>
     <div class="row">
 
-        <div class="col-12 d-lg-flex text-sm-center align-items-lg-center justify-content-around alg-bg-dark pt-4 pb-4">
+        <div class="col-12 d-lg-flex text-sm-center align-items-lg-center justify-content-around bg-black pt-4 pb-4">
             <div class="d-flex flex-column justify-content-center align-items-center text-white">
                 <h6>Designed & Developed</h6>
                 <h5>by <a href="http://www.algowrite.com" style="text-decoration: none;">Algowrite</a></h5>

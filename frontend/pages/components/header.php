@@ -1,11 +1,11 @@
 <header class="alg-bg-dark">
     <div class="container">
         <nav>
-            <div class="row m-auto position-relative px-lg-5 px-3">
-                <div class="col-12 d-flex justify-content-between align-items-center m-0 p-0">
+            <div class="row position-relative px-lg-5">
+                <div class="col-12 d-flex justify-content-between align-items-center m-0 px-3">
 
                     <div class="p-3">
-                        <img src="resources/images/logo.png" alt="" class="alg-logo-img" />
+                        <img src="resources/images/logo.png" alt="some thing went wrong" class="alg-logo-img" />
                     </div>
 
                     <div class="d-none d-md-block d-lg-block">
@@ -19,17 +19,16 @@
 
                     <div class="d-flex gap-3 align-items-center">
                         <div class="d-none d-md-block d-lg-block mx-2 ">
-                            <a href="" class="alg-button-hover" data-bs-toggle="modal" data-bs-target="#staticBackdrop1"><i class="bi bi-cart-fill alg-header-text fs-4 mx-3 alg-text-hover"></i></a>
-                            <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"><i class="bi bi-heart-fill alg-header-text fs-4 alg-text-hover"></i></a>
+                            <a href="#cart" class="alg-button-hover" data-bs-toggle="modal" data-bs-target="#staticBackdrop1"><i class="bi bi-cart-fill alg-header-text fs-4 mx-3 alg-text-hover"></i></a>
+                            <a href="#watchlist" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"><i class="bi bi-heart-fill alg-header-text fs-4 alg-text-hover"></i></a>
                         </div>
                         <div class="d-flex align-items-center gap-3">
                             <div class="d-flex align-items-center gap-3 cursor">
                                 <span class="rounded-circle"><i class="bi bi-whatsapp text-success fs-4"></i></i></span>
-                                <div class="alg-user-Word alg-bg-gold"><span class="d-flex justify-content-center align-items-center fw-semibold">ml</span></div>
+                                <div class="alg-user-Word alg-bg-gold"><span class="d-flex justify-content-center align-items-center fw-semibold"><a href="profileViewCard.php" class="text-decoration-none text-black">ml</a></span></div>
                             </div>
                             <div class="alg-toggle-button d-md-none d-lg-none fs-2">
                                 <i class="bx bx-menu alg-header-text alg-nav-hover"></i>
-                                <!-- <span class="fs-2" id="close"><i class='bx bx-x'></i></span> -->
                             </div>
                         </div>
                     </div>

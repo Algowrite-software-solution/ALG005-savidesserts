@@ -217,31 +217,60 @@
                         <div class="promotionSwiper swiper-slide ">
                             <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-end overflow-hidden flex-column ld-bs-card w-100">
                                 <div class="ld-bs-card-content d-flex flex-column text-start">
-                                    <div class="d-flex fw-bold justify-content-between">
-                                        <div class="">Product Title</div>
-                                        <div class="text-white">LKR 3000</div>
+                                    <div class="d-flex gap-1 fw-bold justify-content-between">
+                                        <div class="text-white alg-text-h3">Product Title</div>
+                                        <div class="alg-text-h3">LKR 3000</div>
                                     </div>
-                                    <div class="fs-6">this is some little descrioption for the product......</div>
-                                    <div class="d-flex">
-                                        <i class="bi bi-star-fill text-warning"></i>
-                                        <i class="bi bi-star-fill text-warning"></i>
-                                        <i class="bi bi-star-fill text-warning"></i>
-                                        <i class="bi bi-star-fill text-warning"></i>
-                                        <i class="bi bi-star-fill text-white"></i>
+                                    <div class="alg-text-h3 text-white">this is some little descrioption for the product......</div>
+                                    <div class="d-flex gap-2">
+                                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                                        <i class="bi bi-star-fill text-white fs-6"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                     
                         <div class="promotionSwiper swiper-slide ">
-                            <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-center ld-bs-card w-100">
-
+                            <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-end overflow-hidden flex-column ld-bs-card w-100">
+                                <div class="ld-bs-card-content d-flex flex-column text-start">
+                                    <div class="d-flex gap-1 fw-bold justify-content-between">
+                                        <div class="text-white alg-text-h3">Product Title</div>
+                                        <div class="alg-text-h3">LKR 3000</div>
+                                    </div>
+                                    <div class="alg-text-h3 text-white">this is some little descrioption for the product......</div>
+                                    <div class="d-flex gap-2">
+                                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                                        <i class="bi bi-star-fill text-white fs-6"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                     
                         <div class="promotionSwiper swiper-slide ">
-                            <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-center ld-bs-card w-100">
-
+                            <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-end overflow-hidden flex-column ld-bs-card w-100">
+                                <div class="ld-bs-card-content d-flex flex-column text-start">
+                                    <div class="d-flex gap-1 fw-bold justify-content-between">
+                                        <div class="text-white alg-text-h3">Product Title</div>
+                                        <div class="alg-text-h3">LKR 3000</div>
+                                    </div>
+                                    <div class="alg-text-h3 text-white">this is some little descrioption for the product......</div>
+                                    <div class="d-flex gap-2">
+                                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                                        <i class="bi bi-star-fill text-white fs-6"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                     
 
 
                     </div>

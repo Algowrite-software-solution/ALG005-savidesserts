@@ -19,12 +19,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-7 col-md-3">
-                            <div class="swiper mainSlider mySwiperHome">
-                                <div class="swiper-wrapper">
-                                    <div class="mainSlider swiper-slide"><img src="resources/images/item1.png" class="rounded-5  img-fluid" alt="Some thing went wrong"></div>
+                        <div class="col-7 col-md-3 bg-warnin m-0 pt-5">
+                            <div class="mainSlider swiper mySwiperHome bg-dange m-0 p-0">
+                                <div class="swiper-wrapper bg-dar mt-2">
+                                    <!-- <div class="mainSlider swiper-slide"><img src="resources/images/item1.png" class="rounded-5  img-fluid" alt="Some thing went wrong"></div> -->
                                     <div class="mainSlider swiper-slide"><img src="resources/images/mainSliderImg.png" class="rounded-5 img-fluid" alt="Some thing went wrong"></div>
-                                    <div class="mainSlider swiper-slide"><img src="resources/images/item1.png" class="rounded-5 img-fluid" alt="Some thing went wrong"></div>
+                                    <div class="mainSlider swiper-slide"><img src="resources/images/mainSliderImg.png" class="rounded-5 img-fluid" alt="Some thing went wrong"></div>
+                                    <div class="mainSlider swiper-slide"><img src="resources/images/mainSliderImg.png" class="rounded-5 img-fluid" alt="Some thing went wrong"></div>
+                                    <!-- <div class="mainSlider swiper-slide"><img src="resources/images/item1.png" class="rounded-5 img-fluid" alt="Some thing went wrong"></div> -->
                                     <div class="mainSlider swiper-slide"><img src="resources/images/mainSliderImg.png" class="rounded-5 img-fluid" alt="Some thing went wrong"></div>
                                 </div>
                             </div>

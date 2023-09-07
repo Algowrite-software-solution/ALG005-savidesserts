@@ -41,32 +41,22 @@
                                         for ($x = 0; $x < 6; $x++) {
                                         ?>
                                             <div class="col-5 col-md-6 col-lg-4 d-flex justify-content-center mx-auto">
-                                                <div class="d-flex flex-column justify-content-end">
-
-                                                    <div> <img src="resources/images/item1.png" alt="" class="im position-relative pt-4" style="width:222.3px; height:320px;"></div>
-
-                                                    <div class="mx-4 position-absolute mt-3" style="width:176.6px;">
-                                                        <div class="px-1 m-0 alg-bg-tan p-2  rounded-1">
-                                                            <div class="d-flex justify-content-between pb-1">
-                                                                <span class="text-white fw-bold alg-text-h3">Product Title</span>
-                                                                <span class="fw-bold alg-text-h3">LKR 1300</span>
-                                                            </div>
-
-                                                            <div>
-                                                                <p class="alg-text-h3 lh-1 pb-1 my-0 text-white">This is the product description and it contain small details.</p>
-                                                            </div>
-
-                                                            <div>
-                                                                <i class="bi bi-star-fill text-warning"></i>
-                                                                <i class="bi bi-star-fill text-warning"></i>
-                                                                <i class="bi bi-star-fill text-warning"></i>
-                                                                <i class="bi bi-star-fill text-warning"></i>
-                                                                <i class="bi bi-star-fill"></i>
-                                                            </div>
-                                                        </div>
+                                            <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-end overflow-hidden flex-column ld-bs-card w-100">
+                                                <div class="ld-bs-card-content d-flex flex-column text-start">
+                                                    <div class="d-flex gap-1 fw-bold justify-content-between">
+                                                        <div class="text-white alg-text-h3">Product Title</div>
+                                                        <div class="alg-text-h3">LKR 3000</div>
                                                     </div>
-
+                                                    <div class="alg-text-h3 text-white">this is some little descrioption for the product......</div>
+                                                    <div class="d-flex gap-2">
+                                                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                                                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                                                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                                                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                                                        <i class="bi bi-star-fill text-white fs-6"></i>
+                                                    </div>
                                                 </div>
+                                            </div>
                                             </div>
                                         <?php
                                         }
