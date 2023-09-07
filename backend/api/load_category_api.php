@@ -16,7 +16,7 @@ $responseObject = new stdClass();
 $responseObject->status = "failed";
 
 //handle the request
-if (!RequestHandler::isGetMethod("limit")) {
+if (!RequestHandler::isGetMethod()) {
     $responseObject->error = "invalid request";
     response_sender::sendJson($responseObject);
 }
