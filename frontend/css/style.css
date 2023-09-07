@@ -182,19 +182,27 @@
   box-shadow: 0px 0px 22px 15px rgba(0, 0, 0, 0.2);
 }
 
+.testm-card {
+  @media (max-width:320px) {
+      width: 300px;
+  }
+}
+
+
+
 .testm-card-img {
-  width: 104px;
+  /* width: 104px;
   height: 104px;
   flex-shrink: 0;
   background: url("https://javainstitute.edu.lk/img/faculty/dr-ishantha.jpg"),
     lightgray 50% / cover no-repeat;
-  background-size: 104px 104px;
+  background-size: 104px 104px; */
   border-radius: 50%;
 }
 
 .card-para {
   /* color: #FFF; */
-  font-size: 12px;
+  font-size: 11px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
