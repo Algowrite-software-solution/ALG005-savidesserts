@@ -3,7 +3,7 @@
   height: 60px;
 }
 
-.alg-navmarginLeft {
+.hd-marginLeft {
   margin-left: 110px;
 }
 
@@ -26,10 +26,6 @@
   width: 26px;
   height: 26px;
   border-radius: 100%;
-}
-
-.alg-header-text {
-  color: #d6ad60;
 }
 
 .img {
