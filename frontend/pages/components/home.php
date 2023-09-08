@@ -14,7 +14,7 @@
                                 </div>
                             </div>
                             <div class="row mx-4 mx-0">
-                                <div class="col-12 col-md-4 mt-2 pb-2 m-lg-0 p-lg-0 d-flex justify-content-center justify-content-lg-start bg-dange">
+                                <div class="col-12 col-md-4 mt-5 mt-lg-2 pb-2 m-lg-0 p-lg-0 d-flex justify-content-center justify-content-lg-start bg-dange">
                                     <button class="alg-bg-gold alg-button-hover p-2 rounded-4 text-white fw-bold alg-text-h2">ORDER NOW</button>
                                 </div>
                             </div>
