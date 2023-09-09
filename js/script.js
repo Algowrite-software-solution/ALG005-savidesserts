@@ -97,3 +97,10 @@ let swiperBestSelling = new Swiper(".mySwiperBestSelling", {
 });
 
 // promotion section
+
+//cart and watch list data fetch
+//cart request data
+
+//product adding from cart
+
+
