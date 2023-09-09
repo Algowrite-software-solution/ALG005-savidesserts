@@ -13,6 +13,7 @@ $confPassword = $_POST['confPassword'];
 
 //response sending object
 $response = new stdClass();
+$response->status = 'failed';
 
 //database class
 $db = new database_driver();

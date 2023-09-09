@@ -7,6 +7,7 @@ require_once("../model/SessionManager.php");
 
 //response sending object
 $response = new stdClass();
+$response->status = 'failed';
 
 //handle the request
 if (!isset($_POST['email']) || !isset($_POST['password'])) {
