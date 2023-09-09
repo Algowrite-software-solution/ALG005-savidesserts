@@ -23,24 +23,24 @@
 </head>
 
 <body style="overflow-x:hidden;">
-    
-        <div class="row">
-            <div class="col-12z">
 
-                <?php include("pages/components/header.php") ?>
-                <?php include ("pages/components/category.php") ?>
-                <?php include("pages/components/searchBar.php") ?>
+    <div class="row">
+        <div class="col-12z">
 
-                <section>
-                    <div class="row">
-                        <div class="col-12 alg-bg-light px-2">
-                            <div class="row  d-flex justify-content-center align-items-center gap-5 gap-lg-0">
-                                <div class="col-11 col-md-8 pb-4 mt-3 px-2">
-                                    <div class="row">
-                                        <?php
-                                        for ($x = 0; $x < 6; $x++) {
-                                        ?>
-                                            <div class="col-5 col-md-6 col-lg-4 d-flex justify-content-center mx-auto">
+            <?php include("pages/components/header.php") ?>
+            <?php include("pages/components/category.php") ?>
+            <?php include("pages/components/searchBar.php") ?>
+
+            <section>
+                <div class="row">
+                    <div class="col-12 alg-bg-light px-2">
+                        <div class="row  d-flex justify-content-center align-items-center gap-5 gap-lg-0">
+                            <div class="col-11 col-md-8 pb-4 mt-3 px-2">
+                                <div class="row">
+                                    <?php
+                                    for ($x = 0; $x < 6; $x++) {
+                                    ?>
+                                        <div class="col-5 col-md-6 col-lg-4 d-flex justify-content-center mx-auto">
                                             <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-end overflow-hidden flex-column ld-bs-card w-100">
                                                 <div class="ld-bs-card-content d-flex flex-column text-start">
                                                     <div class="d-flex gap-1 fw-bold justify-content-between">
@@ -57,21 +57,21 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            </div>
-                                        <?php
-                                        }
-                                        ?>
-                                    </div>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <?php include("pages/components/footer.php") ?>
-            </div>
+            <?php include("pages/components/footer.php") ?>
         </div>
-    
+    </div>
+
 </body>
 
 </html>

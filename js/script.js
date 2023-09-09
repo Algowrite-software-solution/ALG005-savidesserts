@@ -1,20 +1,18 @@
 // header
-const toggle = document.querySelector('.alg-toggle-button');
-const toggleIcon = document.querySelector('.bx-menu');
-const navBox = document.querySelector('.nav-box');
+const toggle = document.querySelector(".alg-toggle-button");
+const toggleIcon = document.querySelector(".bx-menu");
+const navBox = document.querySelector(".nav-box");
 
 toggle.onclick = () => {
-
-    navBox.classList.toggle('alg-nav-box');
-    toggleIcon.classList.toggle('bx-x');
-}
+  navBox.classList.toggle("alg-nav-box");
+  toggleIcon.classList.toggle("bx-x");
+};
 
 //  home slider
-
-var swiper = new Swiper(".mySwiperHome", {
+let swiperHome = new Swiper(".mySwiperHome", {
   direction: "vertical",
   spaceBetween: 30,
-    grabCursor: true,
+  grabCursor: true,
   pagination: {
     el: ".swiper-pagination",
     clickable: true,
@@ -26,8 +24,8 @@ var swiper = new Swiper(".mySwiperHome", {
 });
 
 // promotion slider
-var swiper = new Swiper(".mySwiperPromotion", {
-  type: 'loop',
+let swiperPromotion = new Swiper(".mySwiperPromotion", {
+  type: "loop",
   perPage: 6,
   perMove: 1,
   autoplay: true,
@@ -35,8 +33,8 @@ var swiper = new Swiper(".mySwiperPromotion", {
   arrows: false,
 });
 
-
-var swiper = new Swiper(".mySwiperCategory", {
+// category
+let swiperCategory = new Swiper(".mySwiperCategory", {
   // pagination: {
   //   el: ".swiper-pagination",
   //   type: "fraction",
@@ -47,7 +45,7 @@ var swiper = new Swiper(".mySwiperCategory", {
   },
   // type: 'loop',
   // perPage: 3,
-  slidesPerView:3,
+  slidesPerView: 3,
   // spaceBetween:90,
   // centeredSlides:true,
   // perMove: 1,
@@ -56,9 +54,9 @@ var swiper = new Swiper(".mySwiperCategory", {
   //   nextE1:".swiper-button-next",
   //   prevE1:".swiper-button-prev",
   // },
-  pagination:{
-    el:".swiper-pagination",
-    clickable:true,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
   },
   breakpoints: {
     200: {
@@ -78,37 +76,24 @@ var swiper = new Swiper(".mySwiperCategory", {
   // arrows: false,
 });
 
-
-// category slider
-
-var swiper = new Swiper(".mySwiperBestSelling", {
+// best selling slider
+let swiperBestSelling = new Swiper(".mySwiperBestSelling", {
   effect: "coverflow",
   grabCursor: true,
   slidesPerView: "auto",
   centeredSlides: true,
   coverflowEffect: {
-      rotate: 20,
-      stretch: -400,
-      depth: 900,
-      modifier: 1,
-      slideShadows:false,
+    rotate: 20,
+    stretch: -400,
+    depth: 900,
+    modifier: 1,
+    slideShadows: false,
   },
 
   autoplay: {
-      delay: 3500,
-      disableOnInteraction: false,
+    delay: 3500,
+    disableOnInteraction: false,
   },
- 
 });
 
-
-
-
-
-
-
-  // promotion section
-
-
-
- 
+// promotion section

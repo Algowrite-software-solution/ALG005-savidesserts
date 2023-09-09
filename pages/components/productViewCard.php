@@ -215,7 +215,7 @@
                     <div class="swiper-wrapper mx-auto">
 
                         <div class="promotionSwiper swiper-slide ">
-                            <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-end overflow-hidden flex-column ld-bs-card w-100">
+                            <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-end overflow-hidden flex-column ld-bs-card w-100" style="background: url('resources/images/item1.png');">
                                 <div class="ld-bs-card-content d-flex flex-column text-start">
                                     <div class="d-flex gap-1 fw-bold justify-content-between">
                                         <div class="text-white alg-text-h3">Product Title</div>
@@ -232,9 +232,9 @@
                                 </div>
                             </div>
                         </div>
-                     
+
                         <div class="promotionSwiper swiper-slide ">
-                            <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-end overflow-hidden flex-column ld-bs-card w-100">
+                            <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-end overflow-hidden flex-column ld-bs-card w-100" style="background: url('resources/images/item1.png');">
                                 <div class="ld-bs-card-content d-flex flex-column text-start">
                                     <div class="d-flex gap-1 fw-bold justify-content-between">
                                         <div class="text-white alg-text-h3">Product Title</div>
@@ -251,9 +251,9 @@
                                 </div>
                             </div>
                         </div>
-                     
+
                         <div class="promotionSwiper swiper-slide ">
-                            <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-end overflow-hidden flex-column ld-bs-card w-100">
+                            <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-end overflow-hidden flex-column ld-bs-card w-100" style="background: url('resources/images/item1.png');">
                                 <div class="ld-bs-card-content d-flex flex-column text-start">
                                     <div class="d-flex gap-1 fw-bold justify-content-between">
                                         <div class="text-white alg-text-h3">Product Title</div>
@@ -270,7 +270,7 @@
                                 </div>
                             </div>
                         </div>
-                     
+
 
 
                     </div>
