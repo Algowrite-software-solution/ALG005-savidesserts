@@ -1,23 +1,15 @@
-// URL to the API endpoint you want to fetch data from
-const apiUrl = "https://api.example.com/data";
-
-// Optional: Request headers
-const headers = new Headers();
-headers.append("Content-Type", "application/json");
-headers.append("Authorization", "Bearer YourAccessToken");
-
-// Optional: Request options
-const requestOptions = {
-  method: "GET", // HTTP request method (GET, POST, PUT, DELETE, etc.)
-  headers: headers, // Headers to include in the request
-  mode: "cors", // Request mode ('cors', 'no-cors', 'same-origin')
-  cache: "default", // Cache mode ('default', 'no-store', 'reload', etc.)
-  redirect: "follow", // Redirect behavior ('follow', 'error', 'manual')
-  referrerPolicy: "no-referrer", // Referrer policy ('no-referrer', 'origin', 'unsafe-url', etc.)
-};
-
-// Make the Fetch request
-fetch(apiUrl, requestOptions)
+// Fetch request
+fetch("https://api.example.com/data", {
+  method: "POST", // HTTP request method
+  headers: {
+    "Content-Type": "application/json", // Request headers
+  },
+  body: JSON.stringify({
+    // Request body (if sending data)
+    key1: "value1",
+    key2: "value2",
+  }),
+})
   .then((response) => {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
