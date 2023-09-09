@@ -1,7 +1,7 @@
 // header
 const toggle = document.querySelector('.alg-toggle-button');
 const toggleIcon = document.querySelector('.bx-menu');
-const navBox = document.querySelector('.nav_box');
+const navBox = document.querySelector('.nav-box');
 
 toggle.onclick = () => {
 
