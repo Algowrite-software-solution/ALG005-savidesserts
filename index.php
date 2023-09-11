@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
 
     <!-- script -->
-    <!-- <script defer src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script> -->
+    <script defer src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script defer src="js/bootstrap.bundle.js"></script>
     <script defer src="js/script.js"></script>
 
@@ -42,15 +42,6 @@
     <?php include "pages/components/footer.php" ?>
 
 
-
-    <?php include("pages/components/watchlist.php") ?>
-
-
-    <?php include("pages/components/cart.php") ?>
-
-
-
-    <?php include "pages/components/signInModel.php" ?>
     <a href="./singleProductView.php">singleProduct View</a>
     <a href="./profileViewCard.php">profile View</a>
 </body>

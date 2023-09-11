@@ -21,8 +21,8 @@
 
                     <div class="d-flex gap-3 align-items-center">
                         <div class="d-none d-md-block d-lg-block mx-2 ">
-                            <a href="#cart" class="alg-button-hover" data-bs-toggle="modal" data-bs-target="#staticBackdrop1"><i class="bi bi-cart-fill alg-text-gold fs-4 mx-3 alg-text-hover"></i></a>
-                            <a href="#watchlist" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"><i class="bi bi-heart-fill alg-text-gold fs-4 alg-text-hover"></i></a>
+                            <a href="#cart" class="alg-button-hover" onclick="toggleCartModel('open')"><i class="bi bi-cart-fill alg-text-gold fs-4 mx-3 alg-text-hover"></i></a>
+                            <!-- <a href="#watchlist" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"><i class="bi bi-heart-fill alg-text-gold fs-4 alg-text-hover"></i></a> -->
                         </div>
                         <div class="d-flex align-items-center gap-3">
                             <div class="d-flex align-items-center gap-3 alg-cursor">
@@ -40,11 +40,17 @@
                     <div class="d-flex flex-column d-block d-md-none pb-3">
                         <span class="mt-3 alg-div-hover"><a href="index.php" class="text-decoration-none fw-semibold">Home</a></span>
                         <span class="mt-3 alg-div-hover"><a href="cardItem.php" class="text-decoration-none fw-semibold">Products</a></span>
-                        <span class="mt-3 alg-div-hover" data-bs-toggle="modal" data-bs-target="#staticBackdrop1"><a href="#cart" class="text-decoration-none fw-semibold">Cart</a></span>
-                        <span class="mt-3 alg-div-hover" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"><a href="#watchlist" class="text-decoration-none fw-semibold">Watchlist</a></span>
+                        <span class="mt-3 alg-div-hover" onclick="toggleCartModel('open')"><a href="#cart" class="text-decoration-none fw-semibold">Cart</a></span>
+                        <!-- <span class="mt-3 alg-div-hover" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"><a href="#watchlist" class="text-decoration-none fw-semibold">Watchlist</a></span> -->
                     </div>
                 </div>
             </div>
         </nav>
     </div>
 </header>
+
+<?php include_once("cart.php") ?>
+
+<?php include_once("watchlist.php") ?>
+
+<?php include_once("signInModel.php") ?>
