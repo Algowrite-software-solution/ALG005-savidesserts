@@ -154,8 +154,8 @@
 
 /* width */
 .scrollbar::-webkit-scrollbar {
-  width: 20px;
-  scroll-padding-right: 20px;
+  width: 10px;
+  scroll-padding-right: 10px;
 }
 
 /* Track */
@@ -168,7 +168,7 @@
 .scrollbar::-webkit-scrollbar-thumb {
   background: #b68b40;
   border-radius: 10px;
-  padding-right: 20px;
+  padding-right: 10px;
 }
 
 .testm-main {

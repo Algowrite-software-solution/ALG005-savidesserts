@@ -1,9 +1,8 @@
 const SERVER_URL = "http://localhost:9001/";
 
 document.addEventListener("DOMContentLoaded", () => {
-  cartProductView();
+  // cartProductView();
   watchlistDataView();
-  productPromotionView();
 });
 
 // header
@@ -111,12 +110,10 @@ let swiperBestSelling = new Swiper(".mySwiperBestSelling", {
 
 //product adding from cart
 function productAddingCart() {
-
-  const qty = document.getElementById('qty').value;
-  const productItemId = document.getElementById('productItemId').value;
-  const weightId = document.getElementById('weightId').value;
-  const extraItemId = document.getElementById('extraItemId').value;
-
+  const qty = document.getElementById("qty").value;
+  const productItemId = document.getElementById("productItemId").value;
+  const weightId = document.getElementById("weightId").value;
+  const extraItemId = document.getElementById("extraItemId").value;
 
   // Fetch request
   fetch(SERVER_URL + "backend/api/cardAddingProcess.php", {
@@ -150,35 +147,34 @@ function productAddingCart() {
     });
 }
 
-//cart product View
-function cartProductView() {
-  // Fetch request
-  fetch(SERVER_URL + "backend/api/ cardView.php", {
-    method: "GET", // HTTP request method
-    headers: {
-      "Content-Type": "application/json", // Request headers
-    },
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json(); // Parse the response body as JSON
-    })
-    .then((data) => {
-      // Handle the JSON data received from the API
-      console.log("Data from the API:", data);
-    })
-    .catch((error) => {
-      // Handle errors that occur during the Fetch request
-      console.error("Fetch error:", error);
-    });
-}
+// //cart product View
+// function cartProductView() {
+//   // Fetch request
+//   fetch(SERVER_URL + "backend/api/ cardView.php", {
+//     method: "GET", // HTTP request method
+//     headers: {
+//       "Content-Type": "application/json", // Request headers
+//     },
+//   })
+//     .then((response) => {
+//       if (!response.ok) {
+//         throw new Error(`HTTP error! Status: ${response.status}`);
+//       }
+//       return response.json(); // Parse the response body as JSON
+//     })
+//     .then((data) => {
+//       // Handle the JSON data received from the API
+//       console.log("Data from the API:", data);
+//     })
+//     .catch((error) => {
+//       // Handle errors that occur during the Fetch request
+//       console.error("Fetch error:", error);
+//     });
+// }
 
 //product Delete From a cart
 function cartProductDelete() {
-
-  const card_id = document.getElementById('card_id').value;
+  const card_id = document.getElementById("card_id").value;
 
   const data = new FormData();
   data.append("card_id", card_id);
@@ -208,10 +204,10 @@ function cartProductDelete() {
 
 //cart qty update
 function cartQtyUpdate() {
-  const cardId = document.getElementById('card_id');
-  const productId = document.getElementById('product_id');
-  const qty = document.getElementById('qty').value;
-  const weightId = document.getElementById('weightId');
+  const cardId = document.getElementById("card_id");
+  const productId = document.getElementById("product_id");
+  const qty = document.getElementById("qty").value;
+  const weightId = document.getElementById("weightId");
   // Fetch request
   fetch(SERVER_URL + "backend/api/cardQtyUpdate.php", {
     method: "POST", // HTTP request method
@@ -219,11 +215,12 @@ function cartQtyUpdate() {
       "Content-Type": "application/json", // Request headers
     },
     body:
-      "cardQtyUpdate=" + JSON.stringify({
+      "cardQtyUpdate=" +
+      JSON.stringify({
         cardId,
         productId,
         qty,
-        weightId
+        weightId,
       }),
   })
     .then((response) => {
@@ -244,7 +241,7 @@ function cartQtyUpdate() {
 //watchlist request
 //product adding a watchlist
 function productAddingWatchlist() {
-  const productItemId = document.getElementById('product_item_id');
+  const productItemId = document.getElementById("product_item_id");
 
   const data = new FormData();
   data.append("product_item_id", productItemId);
@@ -299,7 +296,7 @@ function watchlistDataView() {
 
 //watchlist product delete
 function watchlistProductDelete() {
-  const watchlist_id = document.getElementById('watchlist_id');
+  const watchlist_id = document.getElementById("watchlist_id");
 
   const data = new FormData();
   data.append("watchlist_id", watchlist_id);
@@ -327,30 +324,13 @@ function watchlistProductDelete() {
     });
 }
 
-//product promotion view section
-function productPromotionView() {
-  // Fetch request
-  fetch(SERVER_URL + "backend/api/promotionDataView.php", {
-    method: "GET", // HTTP request method
-    headers: {
-      "Content-Type": "application/json", // Request headers
-    },
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json(); // Parse the response body as JSON
-    })
-    .then((data) => {
-      // Handle the JSON data received from the API
-      console.log("Data from the API:", data);
-    })
-    .catch((error) => {
-      // Handle errors that occur during the Fetch request
-      console.error("Fetch error:", error);
-    });
+// cart open
+let cartModel;
+function toggleCartModel(type) {
+  cartModel = new bootstrap.Modal("#cartModel");
+  if (type == "open") {
+    cartModel.show();
+  } else if (type == "close") {
+    cartModel.show();
+  }
 }
-
-
-

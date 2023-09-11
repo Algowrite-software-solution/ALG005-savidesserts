@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade modal-xl" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade modal-xl" id="cartModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 
 
@@ -93,31 +93,31 @@
                 </div>
 
 
-               
 
-              
-               
+
+
+
 
 
             </div>
 
-      
-                <div class="row d-flex justify-content-end mx-3">
-                    <div class="col-5 col-md-3  text-white alg-bg-dark rounded-4">
-                        <div class="row">
-                            <div class="col-12 text-center bg-black rounded-top rounded-4">
-                                <span class="fw-semibold">Sub Total</span>
-                            </div>
+
+            <div class="row d-flex justify-content-end mx-3">
+                <div class="col-5 col-md-3  text-white alg-bg-dark rounded-4">
+                    <div class="row">
+                        <div class="col-12 text-center bg-black rounded-top rounded-4">
+                            <span class="fw-semibold">Sub Total</span>
                         </div>
-                        <div class="row">
-                            <div class="col-12 p-3">
-                                <span class="alg-text-h3">Discount 0%</span><br/>
-                                <span class="alg-text-h2 fw-bold">LKR 6000</span>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 p-3">
+                            <span class="alg-text-h3">Discount 0%</span><br />
+                            <span class="alg-text-h2 fw-bold">LKR 6000</span>
                         </div>
                     </div>
                 </div>
-           
+            </div>
+
         </div>
 
 

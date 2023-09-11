@@ -1,5 +1,3 @@
-const SERVER_URL = "http://localhost:9001/";
-
 document.getElementById('signupBtn').addEventListener('click', () => {
 console.log("1");
     // let email = document.getElementById('signUp-email').value;
