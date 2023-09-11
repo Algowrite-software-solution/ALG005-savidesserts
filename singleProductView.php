@@ -41,7 +41,7 @@
                     <div
                         class="col-lg-5 order-2 order-lg-1 d-flex flex-column pt-4 pb-4 mx-5 mt-lg-0 mt-3 rounded-5 justify-content-center align-items-center ALG-singleProductImg-box">
                         <div class="col-11">
-                            <div class="container">
+                            <div class="container singleProductImgInner-box">
                                 <div class="mySlides main-box ">
                                     <img src="https://cdn.pixabay.com/photo/2017/01/11/11/33/cake-1971552_1280.jpg"
                                         style="width:100%" class="rounded-5">
