@@ -16,6 +16,7 @@
     <!-- script -->
     <script defer src="../js/bootstrap.bundle.js"></script>
     <script defer src="../js/script.js"></script>
+    <script defer src="../js/signIn.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
@@ -150,8 +151,8 @@
 
                             <!-- Submit button -->
                             <div class="d-flex justify-content-center align-items-center ">
-                                <button type="submit"
-                                    class="p-2 mb-4 w-100 rounded-5 ALG-model-button text-white fw-bolder">Sign
+                                <button
+                                    class="p-2 mb-4 w-100 rounded-5 ALG-model-button text-white fw-bolder" id="signupBtn" onclick="signUp();">Sign
                                     up</button>
                             </div>
 
@@ -205,7 +206,6 @@
         </div>
         <!--forgotPassword Modal -->
     </div>
-
 </body>
 
 </html>

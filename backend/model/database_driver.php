@@ -10,9 +10,10 @@ class database_driver
     {
         $host = 'localhost';
         $user = 'root';
-        $password = 'JanithNirmal12#$'; // janith
+        // $password = 'JanithNirmal12#$'; // janith
         // $password = '#Apeamma2001'; //madusha
         // $database = 'savi_dessert_shop';
+        $password = 'Assiment@1234ABC';
         $database = 'alg005_db';
 
         // Connect to the database using mysqli
