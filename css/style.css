@@ -110,7 +110,8 @@
 
 .desc-box {
   background: #122620;
-  height: 370px;
+  /* height: 330px; */
+  max-height: 330px;
   overflow-x: hidden;
   overflow-y: auto;
   text-align: justify;
@@ -120,27 +121,36 @@
   box-shadow: 0px 0px 22px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* .desc-box {
-    @media (max-width:1550px) {
+.abtus-image-div{
+  max-height: 330px;
+  height: 330px;
+  /* width: auto; */
+}
+
+.abtus-image-div {
+    @media (max-width:1440px) {
         height: 400px;
     }
 
-    @media (max-width:1400px) {
+    @media (max-width:1250px) {
         height: 380px;
     }
 
-    @media (max-width:1300px) {
-        height: 320px;
-    }
-
     @media (max-width:1000px) {
-        height: 290px;
+        height: 820px;
     }
 
     @media (max-width:750px) {
+        height: 490px;
+    }
+
+    @media (max-width:550px) {
         height: 250px;
     }
-} */
+    @media (max-width:350px) {
+      height: 250px;
+  }
+}
 
 /* width */
 .scrollbar::-webkit-scrollbar {
@@ -215,6 +225,7 @@
 .ALG-singleProductImg-box {
   background: #122620;
 }
+
 
 .ALG-singleProduct-main {
   background: #f4ebd0;
