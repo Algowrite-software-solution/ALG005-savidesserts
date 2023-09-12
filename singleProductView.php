@@ -34,14 +34,14 @@
 
             <!-- Start singleProduct -->
 
-            <div class="col-12 d-flex ALG-singleProduct-main">
+            <div class="col-12 d-flex singleProduct-main">
 
                 <div class="flex-column flex-lg-row col-12 d-flex justify-content-center align-items-center mt-5 mb-5">
 
                     <div
-                        class="col-lg-5 order-2 order-lg-1 d-flex flex-column pt-4 pb-4 mx-5 mt-lg-0 mt-3 rounded-5 justify-content-center align-items-center ALG-singleProductImg-box">
+                        class="col-lg-5 order-2 order-lg-1 d-flex flex-column pt-4 pb-4 mx-5 mt-lg-0 mt-3 rounded-5 justify-content-center align-items-center singleProductImg-box">
                         <div class="col-11">
-                            <div class="container singleProductImgInner-box">
+                            <div class="container ">
                                 <div class="mySlides main-box ">
                                     <img src="https://cdn.pixabay.com/photo/2017/01/11/11/33/cake-1971552_1280.jpg"
                                         style="width:100%" class="rounded-5">
@@ -95,7 +95,7 @@
                             <div>
                                 <h2 class="fw-bolder">Watalappan Delight</h2>
                             </div>
-                            <div class="col-lg-2 my-3 ALG-singleProduct-tag text-white text-center rounded-5 fs-6 p-1">
+                            <div class="col-lg-2 my-3 singleProduct-tag text-white text-center rounded-5 fs-6 p-1">
                                 Category
                             </div>
                             <p class="px-4 px-lg-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat,
@@ -106,7 +106,7 @@
                                 totam
                                 nemo iste?</p>
                             <div
-                                class="d-flex my-3 text-white p-2 px-2 ALG-singleProduct-tag justify-content-around align-items-center rounded-5">
+                                class="d-flex my-3 text-white p-2 px-2 singleProduct-tag justify-content-around align-items-center rounded-5">
                                 <div class="px-3 fs-6">RATING</div>
                                 <div class="bg-white d-flex rounded-end-5 p-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24"
@@ -151,12 +151,12 @@
                                     </select>
                                 </div>
                                 <div
-                                    class="col-5 d-flex mx-3 p-2 justify-content-center align-items-center rounded-5 ALG-singleProduct-tag text-white">
+                                    class="col-5 d-flex mx-3 p-2 justify-content-center align-items-center rounded-5 singleProduct-tag text-white">
                                     LKR 2500
                                 </div>
                             </div>
                             <div class="col-10 d-grid mt-4">
-                                <button type="button" class="ALG-singleProduct-btn border-0 rounded-5 p-2 fw-bolder">Add
+                                <button type="button" class="singleProduct-btn border-0 rounded-5 p-2 fw-bolder">Add
                                     to
                                     cart</button>
                             </div>
