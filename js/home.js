@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  //   loadProductPromotions();
-  loadCategory();
+  loadProductPromotions();
+  // loadCategory();
 });
 
 //product promotion view section
@@ -19,8 +19,29 @@ function loadProductPromotions() {
       return response.json(); // Parse the response body as JSON
     })
     .then((data) => {
-      // Handle the JSON data received from the API
-      console.log("Data from the API:", data);
+
+      const promotionSliderContainer = document.getElementById("promotionSliderContainer");
+
+      if (data.status == "success") {
+        promotionSliderContainer.innerHTML = "";
+        data.response.forEach((element) => {
+          promotionSliderContainer.innerHTML += `
+                <div class="promotionSwiper swiper-slide">
+                    <div>
+                       ${element.product_item_id}
+                       ${element.start_date_time}
+                       ${element.end_date_time}
+                       ${element.promotion_id}
+                       <img src="resources/images/banner.png" class="" alt="">
+                    </div>
+                </div>
+            `;
+        });
+
+      } else {
+        console.log("no promotion results");
+      }
+
     })
     .catch((error) => {
       // Handle errors that occur during the Fetch request

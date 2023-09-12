@@ -2,7 +2,7 @@ const SERVER_URL = "http://localhost:9001/";
 
 document.addEventListener("DOMContentLoaded", () => {
   // cartProductView();
-  watchlistDataView();
+  // watchlistDataView();
 });
 
 // header
