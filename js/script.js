@@ -331,17 +331,20 @@ function toggleCartModel(type) {
   if (type == "open") {
     cartModel.show();
   } else if (type == "close") {
-    cartModel.hide();
+    cartModel.dispose();
   }
 }
 
 // signin open
 let signInModel;
-function openSignInModel(type) {
+function openSignInModel() {
   signInModel = new bootstrap.Modal("#signInModel");
-  if (type == "open") {
-    signInModel.show();
-  } else if (type == "close") {
-    signInModel.hide();
-  }
+  signInModel.show();
+}
+
+// signun open
+let signUnModel;
+function openSignUpModel() {
+  signInModel = new bootstrap.Modal("#signUpModel");
+  signInModel.show();
 }

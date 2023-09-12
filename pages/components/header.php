@@ -32,7 +32,7 @@ if ($sessionManager->isLoggedIn()) {
 
                     <div class="d-flex gap-3 align-items-center">
                         <div class="d-none d-md-block d-lg-block mx-2 ">
-                            <a href="#cart" class="alg-button-hover" onclick="toggleCartModel('open')"><i class="bi bi-cart-fill alg-text-gold fs-4 mx-3 alg-text-hover"></i></a>
+                            <a href="#cart" class="alg-button-hover" onclick="openSignInModel('open')"><i class="bi bi-cart-fill alg-text-gold fs-4 mx-3 alg-text-hover"></i></a>
                             <!-- <a href="#watchlist" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"><i class="bi bi-heart-fill alg-text-gold fs-4 alg-text-hover"></i></a> -->
                         </div>
                         <div class="d-flex align-items-center gap-3">
@@ -46,7 +46,7 @@ if ($sessionManager->isLoggedIn()) {
                                     <?php
                                     } else {
                                     ?>
-                                        <button type="button" class="btn btn-primary" onclick="openSignInModel('open')">Click</button>
+                                        <button type="button" class="btn btn-primary" onclick="openSignInModel()">Click</button>
                                     <?php
                                     }
                                     ?>
@@ -63,7 +63,7 @@ if ($sessionManager->isLoggedIn()) {
                     <div class="d-flex flex-column d-block d-md-none pb-3">
                         <span class="mt-3 alg-div-hover"><a href="index.php" class="text-decoration-none fw-semibold">Home</a></span>
                         <span class="mt-3 alg-div-hover"><a href="cardItem.php" class="text-decoration-none fw-semibold">Products</a></span>
-                        <span class="mt-3 alg-div-hover" onclick="toggleCartModel('open')"><a href="#cart" class="text-decoration-none fw-semibold">Cart</a></span>
+                        <span class="mt-3 alg-div-hover" onclick="openSignInModel('open')"><a href="#cart" class="text-decoration-none fw-semibold">Cart</a></span>
                         <!-- <span class="mt-3 alg-div-hover" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"><a href="#watchlist" class="text-decoration-none fw-semibold">Watchlist</a></span> -->
                     </div>
                 </div>
@@ -74,59 +74,48 @@ if ($sessionManager->isLoggedIn()) {
 
 <!-- models -->
 <!--SignIn Modal -->
-<div class="modal fade" id="ALG-SignIn-Modal" tabindex="-1" aria-labelledby="ALG-SignIn-Modal-Label" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-
-                <button type="button" class="btn-close" onclick="openSignInModel('close')"></button>
-            </div>
-            <div class="modal-body ALG-main-model">
-                <div class=" d-flex justify-content-center align-items-center flex-column pb-3">
-                    <h3 class="text-white">SIGN IN</h3>
-                </div>
-                <div class="ALG-main-model2 p-3 rounded-5">
-
-                    <div class="d-flex justify-content-center align-items-center col-12 p-0">
-                        <div class="col-4 p-0">
-                            <img src="resources/images/icons/ori-02.png" class="img-fluid" alt="">
-                        </div>
+<div class="modal fade" id="signInModel" tabindex="-1" aria-labelledby="ALG-SignIn-Modal-Label" aria-hidden="true">
+    <div class="modal-dialog p-0">
+        <div class="modal-content rounded-5">
+            <div class="modal-body p-0">
+                <div class="rounded-5">
+                    <div class="alg-model-head d-flex justify-content-between align-items-center p-3">
+                        <h3 class="text-white">SIGN IN</h3>
+                        <button class="alg-btn-circle alg-text-dark alg-bg-light fs-5 fw-bold" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x text-dark"></i></button>
                     </div>
-
-                    <form>
-                        <!-- Email input -->
-                        <div class="form-outline mb-4">
-                            <input type="email" id="form2Example1" class="ALG-model-input form-control rounded-5" placeholder="Email address" />
-
+                    <div class="alg-model-body p-3">
+                        <div class="d-flex justify-content-center align-items-center col-12 p-0">
+                            <div class="col-4 p-0">
+                                <img src="resources/images/icons/ori-02.png" class="img-fluid" alt="">
+                            </div>
                         </div>
+                        <form>
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                                <input type="email" id="email" class="ALG-model-input form-control rounded-5" placeholder="Email address" />
+                            </div>
 
-                        <!-- Password input -->
-                        <div class="form-outline mb-4">
-                            <input type="password" id="form2Example2" class="form-control rounded-5" placeholder="Password" />
+                            <!-- Password input -->
+                            <div class="form-outline mb-4">
+                                <input type="password" id="password" class="form-control rounded-5" placeholder="Password" />
+                            </div>
 
-                        </div>
+                            <!-- Submit button -->
+                            <div class="d-flex justify-content-center align-items-center ">
+                                <button type="submit" class="p-2 mb-4 w-100 rounded-5 ALG-model-button text-white fw-bolder">Sign In</button>
+                            </div>
 
-                        <!-- Submit button -->
-                        <div class="d-flex justify-content-center align-items-center ">
-                            <button type="submit" class="p-2 mb-4 w-100 rounded-5 ALG-model-button text-white fw-bolder">Sign
-                                in</button>
-                        </div>
-
-                        <!-- Register buttons -->
-                        <div class="text-center">
-                            <button type="button" class="btn text-primary" data-bs-toggle="modal" data-bs-target="#ALG-forgotPassword-Modal">
+                            <!-- Register buttons -->
+                            <div class="text-center">
                                 <p>Forgot your password?</p>
-                            </button>
-                        </div>
+                            </div>
 
-                        <!-- Register buttons -->
-                        <div class="text-center">
-                            <p>Not a member? <button type="button" class="btn text-primary" data-bs-toggle="modal" data-bs-target="#ALG-SignUp-Modal">
-                                    Register
-                                </button></p>
-                        </div>
-                    </form>
-
+                            <!-- Register buttons -->
+                            <div class="text-center">
+                                <p>Not a member? <button type="button" class="btn text-primary" onclick="openSignUpModel();">Register</button></p>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -134,7 +123,7 @@ if ($sessionManager->isLoggedIn()) {
 </div>
 
 <!-- SignUp modal -->
-<div class="modal fade" id="signInModel" tabindex="-1" aria-labelledby="ALG-SignUp-Modal-Label" aria-hidden="true">
+<div class="modal fade" id="signUpModel" tabindex="-1" aria-labelledby="ALG-SignUp-Modal-Label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -189,5 +178,3 @@ if ($sessionManager->isLoggedIn()) {
 <?php include_once("cart.php") ?>
 
 <?php include_once("watchlist.php") ?>
-
-<?php include_once("signInModel.php") ?>

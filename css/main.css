@@ -10,6 +10,7 @@
   --tan: #b68b40;
   --gold: #d6ad60;
   --light: #f4ebd0;
+  --white: #ffffff;
 
   /* font */
   --font-h1-lg: 48px;
@@ -52,7 +53,6 @@
 }
 
 /* text-color */
-
 .alg-text-gold {
   color: var(--gold);
 }
@@ -70,7 +70,6 @@
 }
 
 /* hover */
-
 .alg-button-hover:hover {
   scale: 1.1;
 }
@@ -80,7 +79,7 @@
 }
 
 .alg-div-hover:hover {
-  background-color: #f4ebd0;
+  background-color: var(--light);
   border-radius: 10px;
   cursor: pointer;
 }
@@ -92,6 +91,44 @@
 .alg-text-p {
   font-size: var(--font-p-small);
   line-height: 10px;
+}
+
+/* border radius */
+.alg-rounded-large {
+  border-radius: var(--rounded-large);
+}
+
+.alg-rounded-mid {
+  border-radius: var(--rounded-mid);
+}
+
+.alg-rounded-small {
+  border-radius: var(--rounded-small);
+}
+
+/* button */
+.alg-btn-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 1000px;
+  border: none;
+  color: var(--white);
+  background-color: var(--light);
+}
+
+.alg-btn-circle:hover {
+  background-color: var(--gold);
+}
+
+/* models */
+.alg-model-head {
+  border-radius: var(--rounded-mid) var(--rounded-mid) 0 0;
+  background-color: var(--dark);
+}
+
+.alg-model-body {
+  border-radius: 0 0 var(--rounded-mid) var(--rounded-mid);
+  background-color: var(--light);
 }
 
 @media screen and (min-width: 1070px) {

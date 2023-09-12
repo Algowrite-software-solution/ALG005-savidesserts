@@ -1,6 +1,6 @@
-<div class="row alg-bg-dark pt-0 pb-2">
-    <div class="col-12 p-2">
-        <div class="row d-flex justify-content-center justify-content-around align-items-center px-2">
+<div class="w-100 alg-bg-dark pt-0 pb-2">
+    <div class="col-12 p-0">
+        <div class="row d-flex justify-content-center justify-content-around align-items-center px-2 m-0--">
             <div class="col-6 col-md-2 order-2 order-md-1 alg-bg-gold p-1 p-md-2 px-4 fw-bold mt-3 mt-lg-0 rounded-5 text-center cursor">
                 Advanced
             </div>
@@ -29,4 +29,3 @@
         </div>
     </div>
 </div>
-
