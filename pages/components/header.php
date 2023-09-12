@@ -42,7 +42,7 @@ if ($sessionManager->isLoggedIn()) {
                                     <?php
                                     if ($isLoggedIn) {
                                     ?>
-                                        <span class="d-flex justify-content-center align-items-center fw-semibold"><a href="profileViewCard.php" class="text-decoration-none text-black"><?php echo (substr($userData["first_name"], 1, 1)) ?></a></span>
+                                        <span class="d-flex justify-content-center align-items-center fw-semibold"><a href="profileViewCard.php" class="text-decoration-none text-black"><?php echo (substr($userData["full_name"], 0, 2)) ?></a></span>
                                     <?php
                                     } else {
                                     ?>
@@ -89,7 +89,7 @@ if ($sessionManager->isLoggedIn()) {
                                 <img src="resources/images/icons/ori-02.png" class="img-fluid" alt="">
                             </div>
                         </div>
-                        <form>
+                        <div>
                             <!-- Email input -->
                             <div class="form-outline mb-4">
                                 <input type="email" id="email" class="ALG-model-input form-control rounded-5" placeholder="Email address" />
@@ -102,7 +102,7 @@ if ($sessionManager->isLoggedIn()) {
 
                             <!-- Submit button -->
                             <div class="d-flex justify-content-center align-items-center ">
-                                <button type="submit" class="p-2 mb-4 w-100 rounded-5 ALG-model-button text-white fw-bolder">Sign In</button>
+                                <button class="p-2 mb-4 w-100 rounded-5 ALG-model-button text-white fw-bolder" onclick="signIn()">Sign In</button>
                             </div>
 
                             <!-- Register buttons -->
@@ -114,7 +114,7 @@ if ($sessionManager->isLoggedIn()) {
                             <div class="text-center">
                                 <p>Not a member? <button type="button" class="btn text-primary" onclick="openSignUpModel();">Register</button></p>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
