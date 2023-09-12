@@ -331,6 +331,17 @@ function toggleCartModel(type) {
   if (type == "open") {
     cartModel.show();
   } else if (type == "close") {
-    cartModel.show();
+    cartModel.hide();
+  }
+}
+
+// signin open
+let signInModel;
+function openSignInModel(type) {
+  signInModel = new bootstrap.Modal("#signInModel");
+  if (type == "open") {
+    signInModel.show();
+  } else if (type == "close") {
+    signInModel.hide();
   }
 }
