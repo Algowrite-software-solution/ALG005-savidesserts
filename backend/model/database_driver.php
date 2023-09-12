@@ -1,6 +1,5 @@
 <?php
 class database_driver
-
 {
 
     private $connection;
@@ -13,7 +12,7 @@ class database_driver
         // $password = 'JanithNirmal12#$'; // janith
         // $password = '#Apeamma2001'; //madusha
         // $database = 'savi_dessert_shop';
-        $password = 'Assiment@1234ABC';
+        $password = 'Nisal#2000';
         $database = 'alg005_db';
 
         // Connect to the database using mysqli

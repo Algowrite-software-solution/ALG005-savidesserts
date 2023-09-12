@@ -116,6 +116,7 @@
   overflow-y: auto;
   text-align: justify;
   padding: 22px;
+  border-radius: 15px;
 
   /* shadow */
   box-shadow: 0px 0px 22px 15px rgba(0, 0, 0, 0.2);
@@ -124,6 +125,7 @@
 .abtus-image-div{
   max-height: 330px;
   height: 330px;
+  border-radius: 25px;
   /* width: auto; */
 }
 
@@ -179,7 +181,7 @@
 }
 
 .testm-card {
-  border-radius: 32px;
+  border-radius: 25px;
   /* background: #122620; */
   width: 350px;
   height: 179px;
