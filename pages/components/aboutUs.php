@@ -6,9 +6,9 @@
             <div class="row d-flex justify-content-center align-items-center gap-3 mt-5">
                 <div class="col-10 col-lg-4 abtus-image-div">
                     <img src="https://gayathryfernando955.files.wordpress.com/2017/01/15625749_1256794761032888_7057254753393063070_o.jpg?w=748"
-                        alt="" class="abtus-image-div w-100 rounded-5">
+                        alt="" class="abtus-image-div w-100">
                 </div>
-                <div class="col-10 col-lg-4 desc-box scrollbar rounded-4">
+                <div class="col-10 col-lg-4 desc-box scrollbar">
                     <div>
                         <h4 class="pb-2 alg-text-tan">This is how Savi dessert started.....</h4>
                         <p class="alg-text-light">Contrary to popular belief, Lorem Ipsum is not simply random text. It

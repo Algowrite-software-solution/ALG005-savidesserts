@@ -46,10 +46,12 @@
 
 .alg-bg-gold {
   background-color: var(--gold);
+  border-radius: var(--rounded-mid);
 }
 
 .alg-bg-light {
   background-color: var(--light);
+  border-radius: var(--rounded-large);
 }
 
 /* text-color */
@@ -76,6 +78,14 @@
 
 .alg-text-hover:hover {
   color: var(--light);
+}
+
+.alg-contct-info-box{
+  border-radius: var(--rounded-mid);
+}
+
+.alg-contct-map{
+  border-radius: var(--rounded-mid);
 }
 
 .alg-div-hover:hover {
