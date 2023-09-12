@@ -1,3 +1,14 @@
+<?php
+require_once("backend/model/SessionManager.php");
+$sessionManager = new SessionManager();
+$isLoggedIn = false;
+$userData = null;
+if ($sessionManager->isLoggedIn()) {
+    $isLoggedIn = true;
+    $userData = $sessionManager->getUserId();
+}
+?>
+
 <header class="alg-bg-dark">
     <div class="container-fluid">
         <nav>
@@ -27,7 +38,19 @@
                         <div class="d-flex align-items-center gap-3">
                             <div class="d-flex align-items-center gap-3 alg-cursor">
                                 <span class="rounded-circle"><i class="bi bi-whatsapp text-success fs-4"></i></i></span>
-                                <div class="alg-user-Word alg-bg-gold"><span class="d-flex justify-content-center align-items-center fw-semibold"><a href="profileViewCard.php" class="text-decoration-none text-black">ml</a></span></div>
+                                <div class="alg-user-Word alg-bg-gold">
+                                    <?php
+                                    if ($isLoggedIn) {
+                                    ?>
+                                        <span class="d-flex justify-content-center align-items-center fw-semibold"><a href="profileViewCard.php" class="text-decoration-none text-black"><?php echo (substr($userData["first_name"], 1, 1)) ?></a></span>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <button type="button" class="btn btn-primary" onclick="openSignInModel('open')">Click</button>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
                             </div>
                             <div class="alg-toggle-button d-md-none d-lg-none fs-2">
                                 <i class="bx bx-menu alg-text-gold alg-nav-hover"></i>
@@ -48,6 +71,120 @@
         </nav>
     </div>
 </header>
+
+<!-- models -->
+<!--SignIn Modal -->
+<div class="modal fade" id="ALG-SignIn-Modal" tabindex="-1" aria-labelledby="ALG-SignIn-Modal-Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="btn-close" onclick="openSignInModel('close')"></button>
+            </div>
+            <div class="modal-body ALG-main-model">
+                <div class=" d-flex justify-content-center align-items-center flex-column pb-3">
+                    <h3 class="text-white">SIGN IN</h3>
+                </div>
+                <div class="ALG-main-model2 p-3 rounded-5">
+
+                    <div class="d-flex justify-content-center align-items-center col-12 p-0">
+                        <div class="col-4 p-0">
+                            <img src="resources/images/icons/ori-02.png" class="img-fluid" alt="">
+                        </div>
+                    </div>
+
+                    <form>
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input type="email" id="form2Example1" class="ALG-model-input form-control rounded-5" placeholder="Email address" />
+
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <input type="password" id="form2Example2" class="form-control rounded-5" placeholder="Password" />
+
+                        </div>
+
+                        <!-- Submit button -->
+                        <div class="d-flex justify-content-center align-items-center ">
+                            <button type="submit" class="p-2 mb-4 w-100 rounded-5 ALG-model-button text-white fw-bolder">Sign
+                                in</button>
+                        </div>
+
+                        <!-- Register buttons -->
+                        <div class="text-center">
+                            <button type="button" class="btn text-primary" data-bs-toggle="modal" data-bs-target="#ALG-forgotPassword-Modal">
+                                <p>Forgot your password?</p>
+                            </button>
+                        </div>
+
+                        <!-- Register buttons -->
+                        <div class="text-center">
+                            <p>Not a member? <button type="button" class="btn text-primary" data-bs-toggle="modal" data-bs-target="#ALG-SignUp-Modal">
+                                    Register
+                                </button></p>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SignUp modal -->
+<div class="modal fade" id="signInModel" tabindex="-1" aria-labelledby="ALG-SignUp-Modal-Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ALG-main-model">
+                <div class=" d-flex justify-content-center align-items-center flex-column pb-3">
+                    <h3 class="text-white">SIGN UP</h3>
+                </div>
+                <div class="ALG-main-model2 p-3 rounded-5">
+
+                    <div class="d-flex justify-content-center align-items-center col-12 p-0">
+                        <div class="col-4 p-0">
+                            <img src="../resources/images/icons/ori-02.png" class="img-fluid" alt="">
+                        </div>
+                    </div>
+
+                    <form>
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input type="email" id="signUp-email" class="ALG-model-input form-control rounded-5" placeholder="Email address" />
+                        </div>
+
+                        <!-- Full name -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="signUp-fullname" class="form-control rounded-5" placeholder="Full Name" />
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <input type="password" id="signUp-password" class="form-control rounded-5" placeholder="Password" />
+                        </div>
+
+
+                        <div class="form-outline mb-4">
+                            <input type="password" id="signUp-retypepassword" class="form-control rounded-5" placeholder="Retype the Password" />
+                        </div>
+
+                        <!-- Submit button -->
+                        <div class="d-flex justify-content-center align-items-center ">
+                            <button class="p-2 mb-4 w-100 rounded-5 ALG-model-button text-white fw-bolder" id="signupBtn" onclick="signUp();">Sign
+                                up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php include_once("cart.php") ?>
 
