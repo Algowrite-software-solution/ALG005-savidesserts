@@ -1,5 +1,4 @@
 <!-- Start testamonials -->
-
 <section>
     <div class="col-12 d-flex flex-column justify-content-center align-items-center testm-main w-100 pt-3 alg-bg-dark px-5">
         <span class="alg-text-h2 text-white fw-bold">TESTAMONIALS</span>
