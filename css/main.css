@@ -51,7 +51,6 @@
 
 .alg-bg-light {
   background-color: var(--light);
-  border-radius: var(--rounded-large);
 }
 
 /* text-color */
@@ -80,11 +79,11 @@
   color: var(--light);
 }
 
-.alg-contct-info-box{
+.alg-contct-info-box {
   border-radius: var(--rounded-mid);
 }
 
-.alg-contct-map{
+.alg-contct-map {
   border-radius: var(--rounded-mid);
 }
 

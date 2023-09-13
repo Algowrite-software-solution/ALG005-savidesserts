@@ -24,7 +24,7 @@
 </head>
 
 <body style="overflow-x:hidden;">
-    <div class="col-12">
+    <div class="col-12 p-0">
         <?php include("pages/components/header.php") ?>
         <?php include("pages/components/category.php") ?>
         <?php include("pages/components/searchBar.php") ?>
@@ -33,7 +33,7 @@
     <section class="alg-bg-light">
         <div class="container">
             <div class="col-12 p-0">
-                <div class="row d-flex justify-content-center align-items-center gap-5 gap-lg-0">
+                <div class="row d-flex justify-content-center align-items-center gap-5 gap-lg-0 m-0">
                     <?php
                     for ($x = 0; $x < 6; $x++) {
                     ?>

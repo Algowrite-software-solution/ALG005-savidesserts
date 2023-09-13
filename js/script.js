@@ -326,13 +326,16 @@ function watchlistProductDelete() {
 
 // cart open
 let cartModel;
-function toggleCartModel(type) {
+function openCartModel() {
   cartModel = new bootstrap.Modal("#cartModel");
-  if (type == "open") {
-    cartModel.show();
-  } else if (type == "close") {
-    cartModel.dispose();
-  }
+  cartModel.show();
+}
+
+// watchlist open
+let watchlistModel;
+function openWatchlistModel() {
+  watchlistModel = new bootstrap.Modal("#watchlist");
+  watchlistModel.show();
 }
 
 // signin open
