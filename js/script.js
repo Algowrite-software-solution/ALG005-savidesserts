@@ -331,6 +331,13 @@ function openCartModel() {
   cartModel.show();
 }
 
+// watchlist open
+let watchlistModel;
+function openWatchlistModel() {
+  watchlistModel = new bootstrap.Modal("#watchlist");
+  watchlistModel.show();
+}
+
 // signin open
 let signInModel;
 function openSignInModel() {
@@ -340,13 +347,6 @@ function openSignInModel() {
 
 // signun open
 let signUnModel;
-function openSignUpModel() {
-  signInModel = new bootstrap.Modal("#signUpModel");
-  signInModel.show();
-}
-
-// watchlist open
-let watchlistModel;
 function openSignUpModel() {
   signInModel = new bootstrap.Modal("#signUpModel");
   signInModel.show();
