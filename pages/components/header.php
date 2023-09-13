@@ -32,8 +32,8 @@ if ($sessionManager->isLoggedIn()) {
 
                     <div class="d-flex gap-3 align-items-center">
                         <div class="d-none d-md-block d-lg-block mx-2 ">
-                            <a href="#cart" class="alg-button-hover"><i class="bi bi-cart-fill alg-text-gold fs-4 mx-3 alg-text-hover"></i></a>
-                            <!-- <a href="#watchlist" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"><i class="bi bi-heart-fill alg-text-gold fs-4 alg-text-hover"></i></a> -->
+                            <a href="#cart" class="alg-button-hover" onclick="openCartModel();"><i class="bi bi-cart-fill alg-text-gold fs-4 mx-3 alg-text-hover"></i></a>
+                            <a href="#watchlist" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"><i class="bi bi-heart-fill alg-text-gold fs-4 alg-text-hover"></i></a>
                         </div>
                         <div class="d-flex align-items-center gap-3">
                             <div class="d-flex align-items-center gap-3 alg-cursor">
