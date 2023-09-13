@@ -12,9 +12,8 @@ if ($sessionManager->isLoggedIn()) {
 <header class="alg-bg-dark">
     <div class="container-fluid">
         <nav>
-            <div class="row position-relative px-lg-5">
+            <div class="position-relative px-lg-5">
                 <div class="col-12 d-flex justify-content-between align-items-center m-0 px-5">
-
                     <div class="p-3">
                         <img src="resources/images/logo.png" alt="some thing went wrong" class="header-logo-img" />
                     </div>
@@ -72,7 +71,6 @@ if ($sessionManager->isLoggedIn()) {
     </div>
 </header>
 
-<!-- models -->
 <!--SignIn Modal -->
 <div class="modal fade" id="signInModel" tabindex="-1" aria-labelledby="ALG-SignIn-Modal-Label" aria-hidden="true">
     <div class="modal-dialog p-0">
@@ -176,8 +174,6 @@ if ($sessionManager->isLoggedIn()) {
 </div>
 
 <!-- cart -->
-
-<!-- Modal -->
 <div class="modal fade modal-xl" id="cartModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 
@@ -251,7 +247,6 @@ if ($sessionManager->isLoggedIn()) {
                     </div>
                 </div>
 
-
                 <div class="row mt-2">
                     <div class="col-12 alg-bg-dark rounded-4">
                         <div class="row d-flex justify-content-around align-items-center text-white p-2 px-4">
@@ -270,16 +265,7 @@ if ($sessionManager->isLoggedIn()) {
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
-
-
             </div>
-
 
             <div class="row d-flex justify-content-end mx-3">
                 <div class="col-5 col-md-3  text-white alg-bg-dark rounded-4">
@@ -296,31 +282,24 @@ if ($sessionManager->isLoggedIn()) {
                     </div>
                 </div>
             </div>
-
         </div>
-
-
     </div>
 </div>
 
 
 
 <!-- watchlist -->
-
-
-<!-- Modal -->
 <div class="modal fade modal-xl" id="watchlist" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 
-
-        <div class="modal-content alg-bg-light" >
+        <div class="modal-content alg-bg-light">
             <div class="modal-header alg-bg-dark">
                 <h1 class="modal-title fs-5 text-white" id="staticBackdropLabel">WATCHLIST</h1>
                 <button type="button" class="" data-bs-dismiss="modal" aria-label="Close"> <i class="bx bx-x fs-5 fw-bold"></i></button>
             </div>
 
             <div class="modal-body">
-                <div class="row bg-black text-white fw-bold rounded-3 p-0 m-0 px-3">
+                <div class="w-100 bg-black text-white fw-bold rounded-3 p-0 m-0 px-3">
                     <div class="col-12">
                         <div class="row d-flex justify-content-around alg-text-h2 m-0 p-0">
                             <div class="col-8 m-0 p-0">
@@ -336,17 +315,17 @@ if ($sessionManager->isLoggedIn()) {
 
                 <!-- empty watchlist -->
 
-                 <!-- <div class="text-center alg-header-text alg-text-h2 mt-4 fw-bold">
+                <!-- <div class="text-center alg-header-text alg-text-h2 mt-4 fw-bold">
                     <span>Select your favorite sweat .........</span>
                  </div> -->
 
                 <!-- empty watchlsit -->
 
-                <div class="row mt-2">
+                <div class="w-100 mt-2">
                     <div class="col-12 alg-bg-dark rounded-4">
                         <div class="row d-flex justify-content-around align-items-center text-white m-0 p-2 px-3">
                             <div class="col-8 d-flex gap-3 m-0 p-0">
-                                <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-3 mt-md-0"> 
+                                <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-3 mt-md-0">
                                 <div class="lh-1">
                                     <span class="alg-text-h2 fw-semibold">Product Title Goes Here</span><br />
                                     <span class="alg-text-h3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt </span>
@@ -360,29 +339,11 @@ if ($sessionManager->isLoggedIn()) {
                     </div>
                 </div>
 
-                <div class="row mt-2">
+                <div class="w-100 mt-2">
                     <div class="col-12 alg-bg-dark rounded-4">
                         <div class="row d-flex justify-content-around align-items-center text-white m-0 p-2 px-3">
                             <div class="col-8 d-flex gap-3 m-0 p-0">
-                                <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-3 mt-md-0"> 
-                                <div class="lh-1">
-                                    <span class="alg-text-h2 fw-semibold">Product Title Goes Here</span><br />
-                                    <span class="alg-text-h3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt </span>
-                                </div>
-                            </div>
-                            <div class="col-3 d-flex gap-5 alg-text-h3 m-0 p-0">
-                                <span>LKR 2300</span>
-                                <span><i class="bi bi-trash-fill"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-               
-                <div class="row mt-2">
-                    <div class="col-12 alg-bg-dark rounded-4">
-                        <div class="row d-flex justify-content-around align-items-center text-white m-0 p-2 px-3">
-                            <div class="col-8 d-flex gap-3 m-0 p-0">
-                                <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-3 mt-md-0"> 
+                                <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-3 mt-md-0">
                                 <div class="lh-1">
                                     <span class="alg-text-h2 fw-semibold">Product Title Goes Here</span><br />
                                     <span class="alg-text-h3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt </span>
@@ -396,12 +357,24 @@ if ($sessionManager->isLoggedIn()) {
                     </div>
                 </div>
 
-               
-              
-
+                <div class="w-100 mt-2">
+                    <div class="col-12 alg-bg-dark rounded-4">
+                        <div class="row d-flex justify-content-around align-items-center text-white m-0 p-2 px-3">
+                            <div class="col-8 d-flex gap-3 m-0 p-0">
+                                <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-3 mt-md-0">
+                                <div class="lh-1">
+                                    <span class="alg-text-h2 fw-semibold">Product Title Goes Here</span><br />
+                                    <span class="alg-text-h3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt </span>
+                                </div>
+                            </div>
+                            <div class="col-3 d-flex gap-5 alg-text-h3 m-0 p-0">
+                                <span>LKR 2300</span>
+                                <span><i class="bi bi-trash-fill"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-
     </div>
 </div>
