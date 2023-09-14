@@ -10,7 +10,7 @@ if ($sessionManager->isLoggedIn()) {
 ?>
 
 <header class="alg-bg-dark">
-    <div class="container-fluid">
+    <div class="container">
         <nav>
             <div class="position-relative px-lg-5">
                 <div class="col-12 d-flex justify-content-between align-items-center m-0 px-0">
@@ -178,7 +178,7 @@ if ($sessionManager->isLoggedIn()) {
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 
 
-        <div class="modal-content alg-bg-light pb-3">
+        <div class="modal-content alg-bg-light pb-3 rounded-4">
             <div class="modal-header alg-bg-dark">
                 <h1 class="modal-title fs-5 text-white" id="staticBackdropLabel">CART</h1>
                 <button type="button" class="rounded-circle d-flex justify-content-center p-1" data-bs-dismiss="modal" aria-label="Close"> <i class="bx bx-x fs-5 fw-bold"></i></button>
@@ -292,20 +292,20 @@ if ($sessionManager->isLoggedIn()) {
 <div class="modal fade modal-xl" id="watchlist" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 
-        <div class="modal-content alg-bg-light">
+        <div class="modal-content alg-bg-light rounded-4">
             <div class="modal-header alg-bg-dark">
                 <h1 class="modal-title fs-5 text-white" id="staticBackdropLabel">WATCHLIST</h1>
-                <button type="button" class="" data-bs-dismiss="modal" aria-label="Close"> <i class="bx bx-x fs-5 fw-bold"></i></button>
+                <button type="button" class="rounded-circle d-flex justify-content-center p-1" data-bs-dismiss="modal" aria-label="Close"> <i class="bx bx-x fs-5 fw-bold"></i></button>
             </div>
 
-            <div class="modal-body">
-                <div class="w-100 bg-black text-white fw-bold rounded-3 p-0 m-0 px-3">
+            <div class="modal-body px-2 px-lg-3">
+                <div class="w-100 bg-black text-white fw-bold rounded-5 m-0 px-5">
                     <div class="col-12">
                         <div class="row d-flex justify-content-around alg-text-h2 m-0 p-0">
                             <div class="col-8 m-0 p-0">
                                 <span>Product</span>
                             </div>
-                            <div class="col-3 d-flex gap-4 gap-lg-5 m-0 p-0">
+                            <div class="col-3 d-flex gap-3 gap-lg-5 m-0 px-lg-1">
                                 <span>Price</span>
                                 <span>Remove</span>
                             </div>

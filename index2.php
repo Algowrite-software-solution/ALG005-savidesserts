@@ -25,7 +25,7 @@
     <?php include("pages/components/header.php") ?>
 
     <!-- home -->
-    <section class="ld-s1-hero">
+    <section class="ld-s1-hero pt-3">
         <div class="container">
             <div class="w-100 m-0 p-0">
                 <div class="pt-lg-5">
@@ -39,12 +39,12 @@
                                 </div>
                             </div>
                             <div class="row mx-4 mx-0">
-                                <div class="col-12 col-md-4 mt-5 mt-lg-2 pb-2 m-lg-0 p-lg-0 d-flex justify-content-center justify-content-lg-start bg-dange">
+                                <div class="col-12 col-md-4 mt-3 mt-lg-2 pb-2 m-lg-0 p-lg-0 d-flex justify-content-center justify-content-lg-start bg-dange">
                                     <button class="alg-bg-gold alg-button-hover p-2 rounded-4 text-white fw-bold alg-text-h2">ORDER NOW</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-7 col-lg-4 m-0 pb-5">
+                        <div class="col-7 col-lg-4 m-0 pb-5 d-flex align-self-center mt-5 mt-lg-0">
                             <div class="mainSlider swiper mySwiperHome bg-dange m-0 p-0">
                                 <div class="swiper-wrapper bg-dar mt-2">
                                     <!-- <div class="mainSlider swiper-slide"><img src="resources/images/item1.png" class="rounded-5  img-fluid" alt="Some thing went wrong"></div> -->
@@ -64,7 +64,7 @@
 
     <!-- Banner -->
     <section class="alg-bg-light">
-        <div class="d-flex">
+        <div class="container">
             <div class="col-12 text-center pt-2 px-2">
                 <span class="alg-text-h2 alg-text-dark fw-bold m-0 p-0">PROMOTION</span>
                 <div class="promotionSwiper swiper mySwiperPromotion mt-0">

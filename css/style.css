@@ -49,6 +49,19 @@
   height: 478px;
 }
 
+
+@media (max-width: 768px) {
+  .mainSlider.swiper {
+    height: 439px; 
+  }
+}
+
+@media (max-width: 440px) {
+  .mainSlider.swiper {
+    height: 239px;
+  }
+}
+
 .mainSlider.swiper-slide {
   text-align: center;
   font-size: 18px;
