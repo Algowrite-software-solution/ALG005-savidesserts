@@ -186,12 +186,12 @@ if ($sessionManager->isLoggedIn()) {
 
             <div class="modal-body px-4">
                 <div class="row bg-black text-white fw-bold rounded-5 px-4">
-                    <div class="col-12">
+                    <div class="col-12 p-1">
                         <div class="row d-flex justify-content-around alg-text-h2">
-                            <div class="col-8 col-md-8 m-0 p-0">
+                            <div class="col-8 col-md-8 col-lg-9 m-0 p-0">
                                 <span>Product</span>
                             </div>
-                            <div class="col-3 col-md-3 d-flex gap-3 gap-lg-5 m-0 p-0">
+                            <div class="col-3 col-lg-3 col-md-3 d-flex gap-3 gap-lg-5 m-0 p-0">
                                 <span>QTY</span>
                                 <span>Price</span>
                                 <!-- <span class="d-none d-md-block">Remove</span> -->
