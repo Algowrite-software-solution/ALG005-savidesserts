@@ -13,7 +13,7 @@ if ($sessionManager->isLoggedIn()) {
     <div class="container-fluid">
         <nav>
             <div class="position-relative px-lg-5">
-                <div class="col-12 d-flex justify-content-between align-items-center m-0 px-5">
+                <div class="col-12 d-flex justify-content-between align-items-center m-0 px-0">
                     <div class="p-3">
                         <img src="resources/images/logo.png" alt="some thing went wrong" class="header-logo-img" />
                     </div>
@@ -174,18 +174,18 @@ if ($sessionManager->isLoggedIn()) {
 </div>
 
 <!-- cart -->
-<div class="modal fade modal-xl" id="cartModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade modal-xl rounded-5" id="cartModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 
 
         <div class="modal-content alg-bg-light pb-3">
             <div class="modal-header alg-bg-dark">
                 <h1 class="modal-title fs-5 text-white" id="staticBackdropLabel">CART</h1>
-                <button type="button" class="" data-bs-dismiss="modal" aria-label="Close"> <i class="bx bx-x fs-5 fw-bold"></i></button>
+                <button type="button" class="rounded-circle d-flex justify-content-center p-1" data-bs-dismiss="modal" aria-label="Close"> <i class="bx bx-x fs-5 fw-bold"></i></button>
             </div>
 
-            <div class="modal-body">
-                <div class="row bg-black text-white fw-bold rounded-3 px-4">
+            <div class="modal-body px-4">
+                <div class="row bg-black text-white fw-bold rounded-5 px-4">
                     <div class="col-12">
                         <div class="row d-flex justify-content-around alg-text-h2">
                             <div class="col-8 col-md-8 m-0 p-0">
@@ -267,14 +267,14 @@ if ($sessionManager->isLoggedIn()) {
                 </div>
             </div>
 
-            <div class="row d-flex justify-content-end mx-3">
+            <div class="d-flex justify-content-end mx-3">
                 <div class="col-5 col-md-3  text-white alg-bg-dark rounded-4">
-                    <div class="row">
-                        <div class="col-12 text-center bg-black rounded-top rounded-4">
+                    <div class="">
+                        <div class="col-12 text-center bg-black rounded-4">
                             <span class="fw-semibold">Sub Total</span>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="">
                         <div class="col-12 p-3">
                             <span class="alg-text-h3">Discount 0%</span><br />
                             <span class="alg-text-h2 fw-bold">LKR 6000</span>

@@ -128,9 +128,8 @@
     <?php include("pages/components/category.php") ?>
 
     <!-- best selling -->
-    <section>
-        <div class="container">
-            <div class="row alg-bg-dark d-flex justify-content-center m-0 p-0">
+    <section class="alg-bg-dark">
+            <div class="d-flex justify-content-center m-0 p-0">
                 <div class="col-10 p-0">
                     <div class=" text-center pb-4 pt-3 px-3">
                         <span class="alg-text-h2 alg-text-gold fw-bold">BEST SELLING</span>
@@ -206,7 +205,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <!-- about us -->
