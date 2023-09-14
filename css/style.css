@@ -49,10 +49,9 @@
   height: 478px;
 }
 
-
 @media (max-width: 768px) {
   .mainSlider.swiper {
-    height: 439px; 
+    height: 439px;
   }
 }
 
@@ -238,7 +237,7 @@
   background: #f4ebd0;
 }
 
-.singleProduct-title{
+.singleProduct-title {
   font-size: 30px;
 }
 
@@ -340,7 +339,14 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: red;
+  background-color: var(--gold);
+  cursor: pointer;
+  transition: var(--transition2);
+}
+
+.ld-bs-card:hover {
+  transform: scale(103%);
+  transition: var(--transition2);
 }
 
 .ld-bs-card-content {
