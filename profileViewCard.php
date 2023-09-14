@@ -25,30 +25,33 @@
 
 <body>
 
-    <div class="row alg-bg-light">
-        <div class="col-12">
-            <?php include("pages/components/header.php") ?>
-            <?php include("pages/components/profileNavigation.php") ?>
+    <section class="container-fluid m-0 alg-bg-light">
 
-            <div class="row mt-3">
-                <div class="col-12  d-flex justify-content-center">
-                    <div class="row">
-                        <div class="col-12 d-flex flex-column justify-content-center align-items-center alg-bg-dark p-4 px-5 rounded-4">
-                            <div class="alg-profile-round alg-bg-light d-flex justify-content-center align-items-center fw-bold">NP</div>
-                            <div class="d-flex flex-column align-items-center alg-text-light text-white mt-1 px-4">
-                                <span class="fw-bold">Nimal Perera</span>
-                                <span>nimal@gmail.com</span>
-                                <span>+9421543678</span>
-                            </div>
+        <?php include("pages/components/header.php") ?>
+        <?php include("pages/components/profileNavigation.php") ?>
+
+        <div class="mt-3">
+            <div class="col-12  d-flex justify-content-center">
+                <div class="">
+                    <div
+                        class="col-12 d-flex flex-column justify-content-center align-items-center alg-bg-dark p-4 px-5 rounded-4">
+                        <div
+                            class="alg-profile-round alg-bg-light d-flex justify-content-center align-items-center fw-bold">
+                            NP</div>
+                        <div class="d-flex flex-column align-items-center alg-text-light text-white mt-1 px-4">
+                            <span class="fw-bold">Nimal Perera</span>
+                            <span>nimal@gmail.com</span>
+                            <span>+9421543678</span>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <?php include("pages/components/addressView.php") ?>
-            <?php include("pages/components/productPurchasingHistory.php") ?>
         </div>
-    </div>
+
+        <?php include("pages/components/addressView.php") ?>
+        <?php include("pages/components/productPurchasingHistory.php") ?>
+
+    </section>
     <?php include("pages/components/footer.php") ?>
 </body>
 
