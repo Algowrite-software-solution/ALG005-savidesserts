@@ -1,8 +1,7 @@
 const SERVER_URL = "http://localhost:9001/";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // cartProductView();
-  // watchlistDataView();
+
 });
 
 // header
@@ -153,42 +152,121 @@ function productAddingCart() {
 }
 
 // //cart product View
-// function cartProductView() {
-//   // Fetch request
-//   fetch(SERVER_URL + "backend/api/ cardView.php", {
-//     method: "GET", // HTTP request method
-//     headers: {
-//       "Content-Type": "application/json", // Request headers
-//     },
-//   })
-//     .then((response) => {
-//       if (!response.ok) {
-//         throw new Error(`HTTP error! Status: ${response.status}`);
-//       }
-//       return response.json(); // Parse the response body as JSON
-//     })
-//     .then((data) => {
-//       // Handle the JSON data received from the API
-//       console.log("Data from the API:", data);
-//     })
-//     .catch((error) => {
-//       // Handle errors that occur during the Fetch request
-//       console.error("Fetch error:", error);
-//     });
-// }
+function cartProductView() {
+  // Fetch request
+  fetch(SERVER_URL + "backend/api/cardView.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+
+      const cartMainContainer = document.getElementById('cartMainContainer');
+      const cartTotalContainer = document.getElementById('cartTotalContainer');
+      const cartEmptyContainer = document.getElementById('cartEmptyContainer');
+
+
+
+      let Total = 0;
+
+      if (data.status === 'success') {
+        cartEmptyContainer.innerHTML = "";
+        cartMainContainer.innerHTML = "";
+
+        data.response.forEach((element) => {
+
+          const itemPrice = element.qty * element.price;
+          Total += itemPrice;
+
+          cartMainContainer.innerHTML += `
+                    <div class="col-12 p-3 alg-bg-dark rounded-4">
+                        <div class="row d-flex justify-content-around align-items-center text-white p-2 px-4">
+                            <div class="col-8 col-md-8 d-flex gap-3 m-0 p-0">
+                                <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-2 mt-md-0">
+                                <div class="lh-1 m-0 p-0">
+                                    <span class="alg-text-h2 fw-semibold">${element.product_name}</span><br />
+                                    <span class="alg-text-h3">${element.category_type}</span>
+                                </div>
+                            </div>
+                            <div class="col-4 col-lg-3 d-flex gap-3 gap-lg-5 alg-text-h3 p-0 m-0">
+                                <span>${element.extra_fruit_name}</span>
+                                <span>${element.qty}</span>
+                                <span>${element.weight}</span>
+                                <span>LKR ${itemPrice}</span>
+                                <span class="mx-2 mx-lg-0"><i class="bi bi-trash-fill" onclick="deleteCartProduct(${element.card_id});"></i></span>
+                            </div>
+                        </div>
+                    </div>
+          `;
+
+
+        });
+        cartEmptyContainer.innerHTML = "";
+        cartTotalContainer.innerHTML = "";
+        cartTotalContainer.innerHTML += `
+
+                <div class="col-5 col-md-3  text-white alg-bg-dark rounded-4">
+                    <div class="row">
+                        <div class="col-12 text-center bg-black rounded-top rounded-4">
+                            <span class="fw-semibold">Sub Total</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 p-3">
+                            <span class="alg-text-h3">Discount 0%</span><br />
+                            <span class="alg-text-h2 fw-bold">LKR ${Total}</span>
+                        </div>
+                    </div>
+                </div>
+        `;
+
+      } else {
+        cartMainContainer.innerHTML = "";
+        cartTotalContainer.innerHTML = "";
+        cartEmptyContainer.innerHTML = "";
+        cartEmptyContainer.innerHTML += `
+
+        
+        <span>Select your favorite sweat .........</span>
+        
+        
+        `;
+      }
+
+      if (data.error === 'Please login') {
+        cartMainContainer.innerHTML = "";
+        cartTotalContainer.innerHTML = "";
+        cartEmptyContainer.innerHTML = "";
+        cartEmptyContainer.innerHTML += `
+        <span>Please Login .........</span>
+        `;
+      }
+      // console.log(Total);
+      // console.log(data.status);
+      // console.log(data.response);
+    })
+    .catch((error) => {
+      // Handle errors that occur during the Fetch request
+      console.error("Fetch error:", error.error);
+    });
+}
 
 //product Delete From a cart
-function cartProductDelete() {
-  const card_id = document.getElementById("card_id").value;
+function deleteCartProduct(card_id) {
 
   const data = new FormData();
   data.append("card_id", card_id);
   // Fetch request
   fetch(SERVER_URL + "backend/api/cardItemDeleteProcess.php", {
     method: "POST", // HTTP request method
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded", // Request headers
-    },
     body: data,
   })
     .then((response) => {
@@ -200,6 +278,7 @@ function cartProductDelete() {
     .then((data) => {
       // Handle the JSON data received from the API
       console.log("Data from the API:", data);
+      cartProductView();
     })
     .catch((error) => {
       // Handle errors that occur during the Fetch request
@@ -334,6 +413,7 @@ let cartModel;
 function openCartModel() {
   cartModel = new bootstrap.Modal("#cartModel");
   cartModel.show();
+  cartProductView();
 }
 
 // watchlist open
