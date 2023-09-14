@@ -122,7 +122,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   text-align: justify;
-  padding: 22px;
+  padding: 0 22px 22px 22px;
   border-radius: 15px;
 
   /* shadow */
@@ -190,7 +190,7 @@
 .testm-card {
   border-radius: 25px;
   /* background: #122620; */
-  width: 350px;
+  width: 300px;
   height: 179px;
   flex-shrink: 0;
 
