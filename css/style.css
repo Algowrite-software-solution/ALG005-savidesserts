@@ -360,3 +360,20 @@
     min-height: max-content;
   }
 }
+
+/* products page */
+/* search bar section */
+.pp-search-btn {
+  background-color: var(--gold);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 100px 0 0;
+  transition: var(--transition1);
+  cursor: pointer;
+}
+
+.pp-search-btn:hover {
+  background-color: var(--tan);
+  transition: var(--transition1);
+}
