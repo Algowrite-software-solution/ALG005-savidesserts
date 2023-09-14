@@ -24,44 +24,58 @@
 </head>
 
 <body style="overflow-x:hidden;">
-    <div class="col-12 p-0">
-        <?php include("pages/components/header.php") ?>
-        <?php include("pages/components/category.php") ?>
-        <?php include("pages/components/searchBar.php") ?>
-    </div>
 
-    <section class="alg-bg-light">
+    <!-- header -->
+    <?php include("pages/components/header.php") ?>
+
+    <!-- category -->
+    <?php include("pages/components/category.php") ?>
+
+    <!-- search bar -->
+    <section class="alg-bg-dark">
         <div class="container">
-            <div class="col-12 p-0">
-                <div class="row d-flex justify-content-center align-items-center gap-5 gap-lg-0 m-0">
-                    <?php
-                    for ($x = 0; $x < 6; $x++) {
-                    ?>
-                        <div class="col-5 col-md-6 col-lg-4 d-flex justify-content-center my-3">
-                            <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-end overflow-hidden flex-column ld-bs-card w-100">
-                                <div class="ld-bs-card-content d-flex flex-column text-start">
-                                    <div class="d-flex gap-1 fw-bold justify-content-between">
-                                        <div class="text-white alg-text-h3">Product Title</div>
-                                        <div class="alg-text-h3">LKR 3000</div>
-                                    </div>
-                                    <div class="alg-text-h3 text-white">this is some little descrioption for the product......</div>
-                                    <div class="d-flex gap-2">
-                                        <i class="bi bi-star-fill text-warning fs-6"></i>
-                                        <i class="bi bi-star-fill text-warning fs-6"></i>
-                                        <i class="bi bi-star-fill text-warning fs-6"></i>
-                                        <i class="bi bi-star-fill text-warning fs-6"></i>
-                                        <i class="bi bi-star-fill text-white fs-6"></i>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="col-12 p-0 ">
+                <div class="row px-2 m-0 d-flex flex-column flex-md-row justify-content-around align-items-center py-3">
+                    <button class="col-6 col-md-3 order-2 order-md-1 alg-btn-pill">
+                        Advanced
+                    </button>
+                    <div class="col-12 col-md-6 order-1 order-md-2">
+                        <div class="row m-0">
+                            <input id="seachBar" type="text" placeholder="Search products..." class="alg-searchbar border-0 alg-bg-light py-1 px-3 border-0 col-10 p-0 alg-bg-light rounded-end rounded-5">
+                            <button class="pp-search-btn col-2  rounded-start rounded-5 py-1 px-3 border-0">
+                                <i class="bi bi-search text-white fs-4"></i>
+                            </button>
                         </div>
-                    <?php
-                    }
-                    ?>
+                    </div>
+                    <div class="col-6 col-md-3  order-3 order-md-3 position-relative">
+                        <button class="alg-btn-pill dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </button>
+                        <ul class="dropdown-menu alg-bg-tan rounded-4 w-100">
+                            <li><a class="dropdown-item alg-text-light fw-bold" href="#">Menu item</a></li>
+                            <li><a class="dropdown-item alg-text-light fw-bold" href="#">Menu item</a></li>
+                            <li><a class="dropdown-item alg-text-light fw-bold" href="#">Menu item</a></li>
+                        </ul>
+
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- product list -->
+    <section class="alg-bg-light">
+        <div class="container">
+            <div class="col-12 p-0">
+                <div class="row d-flex justify-content-center align-items-center m-0 py-2" id="productListViewContainer">
+                    <!-- product list goes here -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
     <?php include("pages/components/footer.php") ?>
 </body>
 

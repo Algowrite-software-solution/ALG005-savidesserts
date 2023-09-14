@@ -49,6 +49,7 @@ let swiperCategory = new Swiper(".mySwiperCategory", {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
   },
+  slideShadows: false,
   // type: 'loop',
   // perPage: 3,
   slidesPerView: 3,
@@ -69,8 +70,12 @@ let swiperCategory = new Swiper(".mySwiperCategory", {
       slidesPerView: 1,
       // spaceBetween: 10,
     },
-    700: {
+    468: {
       slidesPerView: 2,
+      // spaceBetween: 40,
+    },
+    980: {
+      slidesPerView: 3,
       // spaceBetween: 40,
     },
     1024: {

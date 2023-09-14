@@ -34,9 +34,9 @@
 
 /* home */
 
-.alg-main-img {
+.ld-s1-hero {
   width: 100%;
-  height: 90vh;
+  min-height: 90vh;
   background-image: url("../resources/images/mainImg.png");
   background-size: cover;
   background-position: center;
@@ -46,7 +46,19 @@
 
 .mainSlider.swiper {
   width: 100%;
-  height: 46vh;
+  height: 478px;
+}
+
+@media (max-width: 768px) {
+  .mainSlider.swiper {
+    height: 439px;
+  }
+}
+
+@media (max-width: 440px) {
+  .mainSlider.swiper {
+    height: 239px;
+  }
 }
 
 .mainSlider.swiper-slide {
@@ -110,7 +122,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   text-align: justify;
-  padding: 22px;
+  padding: 0 22px 22px 22px;
   border-radius: 15px;
 
   /* shadow */
@@ -178,9 +190,8 @@
 .testm-card {
   border-radius: 25px;
   /* background: #122620; */
-  width: 350px;
+  width: 300px;
   height: 179px;
-  flex-shrink: 0;
 
   /* shadow */
   box-shadow: 0px 0px 22px 15px rgba(0, 0, 0, 0.2);
@@ -192,6 +203,10 @@
   }
 }
 
+.testm-card-img-div{
+  height: 179px;
+}
+
 .testm-card-img {
   /* width: 104px;
   height: 104px;
@@ -199,7 +214,9 @@
   background: url("https://javainstitute.edu.lk/img/faculty/dr-ishantha.jpg"),
     lightgray 50% / cover no-repeat;
   background-size: 104px 104px; */
-  border-radius: 50%;
+  border-radius: 15px;
+  /* height: 179px; */
+  width: 100%;
 }
 
 .card-para {
@@ -225,8 +242,13 @@
   background: #f4ebd0;
 }
 
+.singleProduct-title {
+  font-size: 30px;
+}
+
 .singleProduct-tag {
   background: #122620;
+  font-size: 14px;
 }
 
 .singleProduct-btn {
@@ -247,8 +269,6 @@
 .demo:hover {
   opacity: 1;
 }
-
-
 
 .ALG-model-button {
   background-color: #d6ad60;
@@ -312,6 +332,32 @@
   border-radius: 20px;
 }
 
+/* category slider */
+
+.categorySwiper.swiper {
+  width: 100%;
+}
+
+.categorySwiper.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  /* background: #fff; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 220px;
+  height: 300px;
+  /* box-shadow: none; */
+}
+
+.categorySwiper.swiper-slide img {
+  display: block;
+  width: 100%;
+  /* object-fit: cover; */
+  border-radius: 20px;
+}
+
+
 .alg-shadow {
   box-shadow: 0px 0px 14px 15px rgba(142, 196, 140, 0.8);
 }
@@ -324,11 +370,41 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: red;
+  background-color: var(--gold);
+  cursor: pointer;
+  transition: var(--transition2);
+}
+
+.ld-bs-card:hover {
+  transform: scale(103%);
+  transition: var(--transition2);
 }
 
 .ld-bs-card-content {
   min-height: 100px;
   background-color: var(--tan);
   padding: 10px;
+}
+
+@media (min-width: 1440px) {
+  .ld-s1-hero {
+    min-height: max-content;
+  }
+}
+
+/* products page */
+/* search bar section */
+.pp-search-btn {
+  background-color: var(--gold);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 100px 0 0;
+  transition: var(--transition1);
+  cursor: pointer;
+}
+
+.pp-search-btn:hover {
+  background-color: var(--tan);
+  transition: var(--transition1);
 }

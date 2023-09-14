@@ -1,13 +1,13 @@
 <section>
-    <div class="row alg-bg-light pb-5 pt-3">
+    <div class="container alg-bg-light pb-5 pt-3">
         <div class="col-12">
-            <div class="row">
+            <div class="">
                 <div class="col-12 text-center mt-lg-4">
                     <span class="alg-text-h2 alg-text-gold fw-bold">CONTACT US</span>
                 </div>
             </div>
 
-            <div class="row mt-4">
+            <div class="mt-4">
                 <div class="col-12">
                     <div class="row d-felx flex-column flex-md-row justify-content-center align-items-center gap-5">
                         <div class="col-10 col-md-5">
