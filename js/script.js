@@ -71,8 +71,12 @@ let swiperCategory = new Swiper(".mySwiperCategory", {
       slidesPerView: 1,
       // spaceBetween: 10,
     },
-    700: {
+    468: {
       slidesPerView: 2,
+      // spaceBetween: 40,
+    },
+    980: {
+      slidesPerView: 3,
       // spaceBetween: 40,
     },
     1024: {
