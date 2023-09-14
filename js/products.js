@@ -1,3 +1,5 @@
+let selectedCategory = "";
+
 document.addEventListener("DOMContentLoaded", () => {
   loadCategory();
   loadProducts("");
@@ -129,4 +131,10 @@ function loadProducts(
       // Handle errors that occur during the Fetch request
       console.error("Fetch error:", error);
     });
+}
+
+function searchProducts() {
+  const searchTerm = document.getElementById("searchBar").value;
+
+  loadProducts(searchTerm, selectedCategory);
 }
