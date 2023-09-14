@@ -191,20 +191,9 @@
   border-radius: 25px;
   /* background: #122620; */
   width: 300px;
-  height: 179px;
 
   /* shadow */
   box-shadow: 0px 0px 22px 15px rgba(0, 0, 0, 0.2);
-}
-
-.testm-card {
-  @media (max-width: 320px) {
-    width: 300px;
-  }
-}
-
-.testm-card-img-div{
-  height: 179px;
 }
 
 .testm-card-img {
@@ -219,7 +208,7 @@
   width: 100%;
 }
 
-.card-para {
+.ld-tes-card-paragraph {
   /* color: #FFF; */
   font-size: 11px;
   font-style: normal;
@@ -356,7 +345,6 @@
   /* object-fit: cover; */
   border-radius: 20px;
 }
-
 
 .alg-shadow {
   box-shadow: 0px 0px 14px 15px rgba(142, 196, 140, 0.8);
