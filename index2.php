@@ -213,7 +213,7 @@
         <div class="alg-bg-light pb-5">
             <div class="col-12 text-center mt-0">
                 <span class="alg-text-h2 alg-text-dark fw-bold">ABOUT US</span>
-                <div class="row d-flex justify-content-center align-items-center gap-3 mt-5">
+                <div class="d-flex justify-content-center align-items-center gap-3 mt-5">
                     <div class="col-10 col-lg-4 abtus-image-div">
                         <img src="https://gayathryfernando955.files.wordpress.com/2017/01/15625749_1256794761032888_7057254753393063070_o.jpg?w=748" alt="" class="abtus-image-div w-100 rounded-5">
                     </div>
@@ -317,8 +317,8 @@
     </section>
 
     <!-- contacts -->
-    <section>
-        <div class="row alg-bg-light pb-5 pt-3">
+    <section class="alg-bg-light">
+        <div class="container pb-5 pt-3">
             <div class="col-12">
                 <div class="row">
                     <div class="col-12 text-center mt-lg-4">
