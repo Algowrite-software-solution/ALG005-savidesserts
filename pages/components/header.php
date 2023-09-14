@@ -12,11 +12,10 @@ if ($sessionManager->isLoggedIn()) {
 <header class="alg-bg-dark">
     <div class="container-fluid">
         <nav>
-            <div class="row position-relative px-lg-5">
+            <div class="position-relative px-lg-5">
                 <div class="col-12 d-flex justify-content-between align-items-center m-0 px-5">
-
                     <div class="p-3">
-                        <img src="resources/images/logo.png" alt="some thing went wrong" class="alg-logo-img" />
+                        <img src="resources/images/logo.png" alt="some thing went wrong" class="header-logo-img" />
                     </div>
 
                     <div class="d-none d-md-block d-lg-block">
@@ -32,8 +31,8 @@ if ($sessionManager->isLoggedIn()) {
 
                     <div class="d-flex gap-3 align-items-center">
                         <div class="d-none d-md-block d-lg-block mx-2 ">
-                            <a href="#cart" class="alg-button-hover" onclick="toggleCartModel('open')"><i class="bi bi-cart-fill alg-text-gold fs-4 mx-3 alg-text-hover"></i></a>
-                            <!-- <a href="#watchlist" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"><i class="bi bi-heart-fill alg-text-gold fs-4 alg-text-hover"></i></a> -->
+                            <a href="#cart" class="alg-button-hover" onclick="openCartModel();"><i class="bi bi-cart-fill alg-text-gold fs-4 mx-3 alg-text-hover"></i></a>
+                            <a href="#watchlist" onclick="openWatchlistModel();"><i class="bi bi-heart-fill alg-text-gold fs-4 alg-text-hover"></i></a>
                         </div>
                         <div class="d-flex align-items-center gap-3">
                             <div class="d-flex align-items-center gap-3 alg-cursor">
@@ -42,11 +41,11 @@ if ($sessionManager->isLoggedIn()) {
                                     <?php
                                     if ($isLoggedIn) {
                                     ?>
-                                        <span class="d-flex justify-content-center align-items-center fw-semibold"><a href="profileViewCard.php" class="text-decoration-none text-black"><?php echo (substr($userData["first_name"], 1, 1)) ?></a></span>
+                                        <span class="d-flex justify-content-center align-items-center fw-semibold"><a href="profileViewCard.php" class="text-decoration-none text-black"><?php echo (substr($userData["full_name"], 0, 2)) ?></a></span>
                                     <?php
                                     } else {
                                     ?>
-                                        <button type="button" class="btn btn-primary" onclick="openSignInModel('open')">Click</button>
+                                        <button type="button" class="btn btn-primary" onclick="openSignInModel()">Click</button>
                                     <?php
                                     }
                                     ?>
@@ -63,8 +62,8 @@ if ($sessionManager->isLoggedIn()) {
                     <div class="d-flex flex-column d-block d-md-none pb-3">
                         <span class="mt-3 alg-div-hover"><a href="index.php" class="text-decoration-none fw-semibold">Home</a></span>
                         <span class="mt-3 alg-div-hover"><a href="cardItem.php" class="text-decoration-none fw-semibold">Products</a></span>
-                        <span class="mt-3 alg-div-hover" onclick="toggleCartModel('open')"><a href="#cart" class="text-decoration-none fw-semibold">Cart</a></span>
-                        <!-- <span class="mt-3 alg-div-hover" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"><a href="#watchlist" class="text-decoration-none fw-semibold">Watchlist</a></span> -->
+                        <span class="mt-3 alg-div-hover"><a href="#cart" class="text-decoration-none fw-semibold">Cart</a></span>
+                        <span class="mt-3 alg-div-hover" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"><a href="#watchlist" class="text-decoration-none fw-semibold">Watchlist</a></span>
                     </div>
                 </div>
             </div>
@@ -72,61 +71,49 @@ if ($sessionManager->isLoggedIn()) {
     </div>
 </header>
 
-<!-- models -->
 <!--SignIn Modal -->
-<div class="modal fade" id="ALG-SignIn-Modal" tabindex="-1" aria-labelledby="ALG-SignIn-Modal-Label" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
+<div class="modal fade" id="signInModel" tabindex="-1" aria-labelledby="ALG-SignIn-Modal-Label" aria-hidden="true">
+    <div class="modal-dialog p-0">
+        <div class="modal-content rounded-5">
+            <div class="modal-body p-0">
+                <div class="rounded-5">
+                    <div class="alg-model-head d-flex justify-content-between align-items-center p-3">
+                        <h3 class="text-white">SIGN IN</h3>
+                        <button class="alg-btn-circle alg-text-dark alg-bg-light fs-5 fw-bold" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x text-dark"></i></button>
+                    </div>
+                    <div class="alg-model-body p-3">
+                        <div class="d-flex justify-content-center align-items-center col-12 p-0">
+                            <div class="col-4 p-0">
+                                <img src="resources/images/icons/ori-02.png" class="img-fluid" alt="">
+                            </div>
+                        </div>
+                        <div>
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                                <input type="email" id="email" class="ALG-model-input form-control rounded-5" placeholder="Email address" />
+                            </div>
 
-                <button type="button" class="btn-close" onclick="openSignInModel('close')"></button>
-            </div>
-            <div class="modal-body ALG-main-model">
-                <div class=" d-flex justify-content-center align-items-center flex-column pb-3">
-                    <h3 class="text-white">SIGN IN</h3>
-                </div>
-                <div class="ALG-main-model2 p-3 rounded-5">
+                            <!-- Password input -->
+                            <div class="form-outline mb-4">
+                                <input type="password" id="password" class="form-control rounded-5" placeholder="Password" />
+                            </div>
 
-                    <div class="d-flex justify-content-center align-items-center col-12 p-0">
-                        <div class="col-4 p-0">
-                            <img src="resources/images/icons/ori-02.png" class="img-fluid" alt="">
+                            <!-- Submit button -->
+                            <div class="d-flex justify-content-center align-items-center ">
+                                <button class="p-2 mb-4 w-100 rounded-5 ALG-model-button text-white fw-bolder" onclick="signIn()">Sign In</button>
+                            </div>
+
+                            <!-- Register buttons -->
+                            <div class="text-center">
+                                <p>Forgot your password?</p>
+                            </div>
+
+                            <!-- Register buttons -->
+                            <div class="text-center">
+                                <p>Not a member? <button type="button" class="btn text-primary" onclick="openSignUpModel();">Register</button></p>
+                            </div>
                         </div>
                     </div>
-
-                    <form>
-                        <!-- Email input -->
-                        <div class="form-outline mb-4">
-                            <input type="email" id="form2Example1" class="ALG-model-input form-control rounded-5" placeholder="Email address" />
-
-                        </div>
-
-                        <!-- Password input -->
-                        <div class="form-outline mb-4">
-                            <input type="password" id="form2Example2" class="form-control rounded-5" placeholder="Password" />
-
-                        </div>
-
-                        <!-- Submit button -->
-                        <div class="d-flex justify-content-center align-items-center ">
-                            <button type="submit" class="p-2 mb-4 w-100 rounded-5 ALG-model-button text-white fw-bolder">Sign
-                                in</button>
-                        </div>
-
-                        <!-- Register buttons -->
-                        <div class="text-center">
-                            <button type="button" class="btn text-primary" data-bs-toggle="modal" data-bs-target="#ALG-forgotPassword-Modal">
-                                <p>Forgot your password?</p>
-                            </button>
-                        </div>
-
-                        <!-- Register buttons -->
-                        <div class="text-center">
-                            <p>Not a member? <button type="button" class="btn text-primary" data-bs-toggle="modal" data-bs-target="#ALG-SignUp-Modal">
-                                    Register
-                                </button></p>
-                        </div>
-                    </form>
-
                 </div>
             </div>
         </div>
@@ -134,7 +121,7 @@ if ($sessionManager->isLoggedIn()) {
 </div>
 
 <!-- SignUp modal -->
-<div class="modal fade" id="signInModel" tabindex="-1" aria-labelledby="ALG-SignUp-Modal-Label" aria-hidden="true">
+<div class="modal fade" id="signUpModel" tabindex="-1" aria-labelledby="ALG-SignUp-Modal-Label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -186,8 +173,208 @@ if ($sessionManager->isLoggedIn()) {
     </div>
 </div>
 
-<?php include_once("cart.php") ?>
+<!-- cart -->
+<div class="modal fade modal-xl" id="cartModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 
-<?php include_once("watchlist.php") ?>
 
-<?php include_once("signInModel.php") ?>
+        <div class="modal-content alg-bg-light pb-3">
+            <div class="modal-header alg-bg-dark">
+                <h1 class="modal-title fs-5 text-white" id="staticBackdropLabel">CART</h1>
+                <button type="button" class="" data-bs-dismiss="modal" aria-label="Close"> <i class="bx bx-x fs-5 fw-bold"></i></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row bg-black text-white fw-bold rounded-3 px-4">
+                    <div class="col-12">
+                        <div class="row d-flex justify-content-around alg-text-h2">
+                            <div class="col-8 col-md-8 m-0 p-0">
+                                <span>Product</span>
+                            </div>
+                            <div class="col-3 col-md-3 d-flex gap-3 gap-lg-5 m-0 p-0">
+                                <span>QTY</span>
+                                <span>Price</span>
+                                <!-- <span class="d-none d-md-block">Remove</span> -->
+                                <span class="d-block"><i class="bi bi-trash-fill"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- empty watchlist -->
+
+                <!-- <div class="text-center alg-header-text alg-text-h2 mt-4 fw-bold">
+                    <span>Select your favorite sweat .........</span>
+                 </div> -->
+
+                <!-- empty watchlsit -->
+
+                <div class="row mt-2">
+                    <div class="col-12 alg-bg-dark rounded-4">
+                        <div class="row d-flex justify-content-around align-items-center text-white p-2 px-4">
+                            <div class="col-8 col-md-8 d-flex gap-3 m-0 p-0">
+                                <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-2 mt-md-0">
+                                <div class="lh-1 m-0 p-0">
+                                    <span class="alg-text-h2 fw-semibold">Product Title Goes Here</span><br />
+                                    <span class="alg-text-h3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt </span>
+                                </div>
+                            </div>
+                            <div class="col-3 col-lg-3 d-flex gap-3 gap-lg-5 alg-text-h3 p-0 m-0">
+                                <span>300g</span>
+                                <span>LKR 2300</span>
+                                <span class="mx-2 mx-lg-0"><i class="bi bi-trash-fill"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-12 alg-bg-dark rounded-4">
+                        <div class="row d-flex justify-content-around align-items-center text-white p-2 px-4">
+                            <div class="col-8 col-md-8 d-flex gap-3 m-0 p-0">
+                                <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-2 mt-md-0">
+                                <div class="lh-1 m-0 p-0">
+                                    <span class="alg-text-h2 fw-semibold">Product Title Goes Here</span><br />
+                                    <span class="alg-text-h3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt </span>
+                                </div>
+                            </div>
+                            <div class="col-3 col-lg-3 d-flex gap-3 gap-lg-5 alg-text-h3 p-0 m-0">
+                                <span>300g</span>
+                                <span>LKR 2300</span>
+                                <span class="mx-2 mx-lg-0"><i class="bi bi-trash-fill"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-12 alg-bg-dark rounded-4">
+                        <div class="row d-flex justify-content-around align-items-center text-white p-2 px-4">
+                            <div class="col-8 col-md-8 d-flex gap-3 m-0 p-0">
+                                <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-2 mt-md-0">
+                                <div class="lh-1 m-0 p-0">
+                                    <span class="alg-text-h2 fw-semibold">Product Title Goes Here</span><br />
+                                    <span class="alg-text-h3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt </span>
+                                </div>
+                            </div>
+                            <div class="col-3 col-lg-3 d-flex gap-3 gap-lg-5 alg-text-h3 p-0 m-0">
+                                <span>300g</span>
+                                <span>LKR 2300</span>
+                                <span class="mx-2 mx-lg-0"><i class="bi bi-trash-fill"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-end mx-3">
+                <div class="col-5 col-md-3  text-white alg-bg-dark rounded-4">
+                    <div class="row">
+                        <div class="col-12 text-center bg-black rounded-top rounded-4">
+                            <span class="fw-semibold">Sub Total</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 p-3">
+                            <span class="alg-text-h3">Discount 0%</span><br />
+                            <span class="alg-text-h2 fw-bold">LKR 6000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- watchlist -->
+<div class="modal fade modal-xl" id="watchlist" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+
+        <div class="modal-content alg-bg-light">
+            <div class="modal-header alg-bg-dark">
+                <h1 class="modal-title fs-5 text-white" id="staticBackdropLabel">WATCHLIST</h1>
+                <button type="button" class="" data-bs-dismiss="modal" aria-label="Close"> <i class="bx bx-x fs-5 fw-bold"></i></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="w-100 bg-black text-white fw-bold rounded-3 p-0 m-0 px-3">
+                    <div class="col-12">
+                        <div class="row d-flex justify-content-around alg-text-h2 m-0 p-0">
+                            <div class="col-8 m-0 p-0">
+                                <span>Product</span>
+                            </div>
+                            <div class="col-3 d-flex gap-4 gap-lg-5 m-0 p-0">
+                                <span>Price</span>
+                                <span>Remove</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- empty watchlist -->
+
+                <!-- <div class="text-center alg-header-text alg-text-h2 mt-4 fw-bold">
+                    <span>Select your favorite sweat .........</span>
+                 </div> -->
+
+                <!-- empty watchlsit -->
+
+                <div class="w-100 mt-2">
+                    <div class="col-12 alg-bg-dark rounded-4">
+                        <div class="row d-flex justify-content-around align-items-center text-white m-0 p-2 px-3">
+                            <div class="col-8 d-flex gap-3 m-0 p-0">
+                                <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-3 mt-md-0">
+                                <div class="lh-1">
+                                    <span class="alg-text-h2 fw-semibold">Product Title Goes Here</span><br />
+                                    <span class="alg-text-h3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt </span>
+                                </div>
+                            </div>
+                            <div class="col-3 d-flex gap-5 alg-text-h3 m-0 p-0">
+                                <span>LKR 2300</span>
+                                <span><i class="bi bi-trash-fill"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-100 mt-2">
+                    <div class="col-12 alg-bg-dark rounded-4">
+                        <div class="row d-flex justify-content-around align-items-center text-white m-0 p-2 px-3">
+                            <div class="col-8 d-flex gap-3 m-0 p-0">
+                                <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-3 mt-md-0">
+                                <div class="lh-1">
+                                    <span class="alg-text-h2 fw-semibold">Product Title Goes Here</span><br />
+                                    <span class="alg-text-h3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt </span>
+                                </div>
+                            </div>
+                            <div class="col-3 d-flex gap-5 alg-text-h3 m-0 p-0">
+                                <span>LKR 2300</span>
+                                <span><i class="bi bi-trash-fill"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-100 mt-2">
+                    <div class="col-12 alg-bg-dark rounded-4">
+                        <div class="row d-flex justify-content-around align-items-center text-white m-0 p-2 px-3">
+                            <div class="col-8 d-flex gap-3 m-0 p-0">
+                                <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-3 mt-md-0">
+                                <div class="lh-1">
+                                    <span class="alg-text-h2 fw-semibold">Product Title Goes Here</span><br />
+                                    <span class="alg-text-h3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt </span>
+                                </div>
+                            </div>
+                            <div class="col-3 d-flex gap-5 alg-text-h3 m-0 p-0">
+                                <span>LKR 2300</span>
+                                <span><i class="bi bi-trash-fill"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

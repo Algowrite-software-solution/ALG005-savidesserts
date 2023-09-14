@@ -2,12 +2,13 @@
 require_once("../model/database_driver.php");
 require_once("../model/data_validator.php");
 require_once("../model/response_sender.php");
-require_once("../model/passwordEncryptor.php");
+require_once("../model/password_encryptor.php");
 require_once("../model/SessionManager.php");
 
 //response sending object
 $response = new stdClass();
 $response->status = 'failed';
+
 
 //handle the request
 if (!isset($_POST['email']) || !isset($_POST['password'])) {
@@ -40,19 +41,11 @@ $validationReady->password = array($passwordData);
 $dataValidator = new data_validator($validationReady);
 $validator = $dataValidator->validate();
 
-if ($validator->emailSignUp != null) {
-     //invalid email
-     $response->error = $validator;
-     // $response->error = "Invalid";
-     response_sender::sendJson($response);
-     exit();
-}
-
-if ($validator->passwordSignUp != null) {
-     // invalid password
-     $response->error = $validator;
-     response_sender::sendJson($response);
-     exit();
+foreach ($validator as $key => $value) {
+     if ($value) {
+          $response->error = "Invalid Input for : " . $key;
+          response_sender::sendJson($response);
+     }
 }
 
 //search for DB
@@ -87,8 +80,8 @@ if ($result->num_rows == 0) {
           $userAccess->login($row);
 
 
-          $response->statusCode = 200;
-          $response->statusMessage = 'login success';
+          $response->status = "success";
+          $response->result = 'login success';
           response_sender::sendJson($response);
      }
 }

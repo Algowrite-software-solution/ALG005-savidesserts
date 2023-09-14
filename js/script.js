@@ -326,22 +326,116 @@ function watchlistProductDelete() {
 
 // cart open
 let cartModel;
-function toggleCartModel(type) {
+function openCartModel() {
   cartModel = new bootstrap.Modal("#cartModel");
-  if (type == "open") {
-    cartModel.show();
-  } else if (type == "close") {
-    cartModel.hide();
-  }
+  cartModel.show();
+}
+
+// watchlist open
+let watchlistModel;
+function openWatchlistModel() {
+  watchlistModel = new bootstrap.Modal("#watchlist");
+  watchlistModel.show();
 }
 
 // signin open
 let signInModel;
-function openSignInModel(type) {
+function openSignInModel() {
   signInModel = new bootstrap.Modal("#signInModel");
-  if (type == "open") {
-    signInModel.show();
-  } else if (type == "close") {
-    signInModel.hide();
-  }
+  signInModel.show();
+}
+
+// signun open
+let signUnModel;
+function openSignUpModel() {
+  signInModel = new bootstrap.Modal("#signUpModel");
+  signInModel.show();
+}
+
+// sign in sign up section
+document.getElementById("signupBtn").addEventListener("click", () => {
+  // let email = document.getElementById('signUp-email').value;
+  // let full_name = document.getElementById('signUp-fullname').value;
+  // let password = document.getElementById('signUp-password').value;
+  // let rePassword = document.getElementById('signUp-retypepassword').value;
+  // // console.log("2");
+  // const form = new FormData();
+  // form.append('email',email);
+  // form.append('fullName',full_name);
+  // form.append('password',password);
+  // form.append('confPassword',rePassword);
+  // fetch(SERVER_URL + 'backend/api/signUpProcess.php', {
+  //     method: "POST",
+  //     headers: {
+  //         "Content-Type": "application/x-www-form-urlencoded",
+  //     },
+  //     body: form,
+  // })
+  //     .then(response => response.json())
+  //     .then(data =>{
+  //         alert(data);
+  //         console.log(data)
+  //     })
+  //     .catch(error=>{
+  //         console.error('Error:',error);
+  //     });
+});
+
+function signUp() {
+  let email = document.getElementById("signUp-email").value;
+  let full_name = document.getElementById("signUp-fullname").value;
+  let password = document.getElementById("signUp-password").value;
+  let rePassword = document.getElementById("signUp-retypepassword").value;
+
+  // console.log("2");
+
+  const form = new FormData();
+  form.append("email", email);
+  form.append("fullName", full_name);
+  form.append("password", password);
+  form.append("confPassword", rePassword);
+
+  fetch(SERVER_URL + "backend/api/signUpProcess.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: form,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      alert(data);
+      console.log(data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
+function signIn() {
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
+
+  const form = new FormData();
+  form.append("email", email);
+  form.append("password", password);
+
+  fetch(SERVER_URL + "backend/api/signInProcess.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      if (data.status == "success") {
+        alert(data.results);
+        window.location.reload();
+      } else if (data.status == "failed") {
+        console.log(data.results);
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 }
