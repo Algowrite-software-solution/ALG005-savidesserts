@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto"> 
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/style.css">
@@ -209,8 +210,8 @@
 
     <!-- about us -->
     <section>
-        <div class="row alg-bg-light pb-5">
-            <div class="col-12 text-center mt-3">
+        <div class="alg-bg-light pb-5">
+            <div class="col-12 text-center mt-0">
                 <span class="alg-text-h2 alg-text-dark fw-bold">ABOUT US</span>
                 <div class="row d-flex justify-content-center align-items-center gap-3 mt-5">
                     <div class="col-10 col-lg-4 abtus-image-div">
