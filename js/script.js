@@ -185,7 +185,7 @@ function cartProductView() {
 
           const itemPrice = element.qty * element.price;
           Total += itemPrice;
-
+          // cart main container
           cartMainContainer.innerHTML += `
                     <div class="col-12 p-3 alg-bg-dark rounded-4">
                         <div class="row d-flex justify-content-around align-items-center text-white p-2 px-4">
@@ -209,6 +209,7 @@ function cartProductView() {
 
 
         });
+        
         cartEmptyContainer.innerHTML = "";
         cartTotalContainer.innerHTML = "";
         cartTotalContainer.innerHTML += `
