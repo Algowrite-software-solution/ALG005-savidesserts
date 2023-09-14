@@ -50,6 +50,7 @@ let swiperCategory = new Swiper(".mySwiperCategory", {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
   },
+  slideShadows: false,
   // type: 'loop',
   // perPage: 3,
   slidesPerView: 3,
