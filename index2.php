@@ -25,12 +25,12 @@
     <?php include("pages/components/header.php") ?>
 
     <!-- home -->
-    <section class="alg-main-img">
+    <section class="ld-s1-hero">
         <div class="container">
             <div class="w-100 m-0 p-0">
-                <div class=" m-lg-5 pt-lg-5 mt-4 ">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-12 col-md-8">
+                <div class="pt-lg-5">
+                    <div class="d-flex justify-content-center flex-column flex-lg-row">
+                        <div class="col-12 col-lg-8">
                             <div class="row pb-lg-5">
                                 <div class="col-10 m-lg-4 mx-auto text-center text-md-start">
                                     <span class="alg-text-h1 text-white fw-semibold lh-1">Experience the Joy of Irresistible Desserts</span><br />
@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-7 col-md-3 bg-warnin m-0 pt-5">
+                        <div class="col-7 col-lg-4 m-0 pb-5">
                             <div class="mainSlider swiper mySwiperHome bg-dange m-0 p-0">
                                 <div class="swiper-wrapper bg-dar mt-2">
                                     <!-- <div class="mainSlider swiper-slide"><img src="resources/images/item1.png" class="rounded-5  img-fluid" alt="Some thing went wrong"></div> -->
