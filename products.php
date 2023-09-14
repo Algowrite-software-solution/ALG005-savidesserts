@@ -35,29 +35,26 @@
     <section class="alg-bg-dark">
         <div class="container">
             <div class="col-12 p-0 ">
-                <div class="row px-2 m-0 d-flex justify-content-around align-items-center py-2">
-                    <div class="col-6 col-md-2 order-2 order-md-1 alg-bg-gold p-0 p-md-2 px-4 fw-bold mt-3 mt-lg-0 rounded-5 text-center cursor">
+                <div class="row px-2 m-0 d-flex flex-column flex-md-row justify-content-around align-items-center py-3">
+                    <button class="col-6 col-md-3 order-2 order-md-1 alg-btn-pill">
                         Advanced
-                    </div>
-                    <div class="col-11 col-md-5 order-1 order-md-2 ">
-                        <div class="row d-flex m-0">
-                            <div class="col-10 p-0 m-0 alg-bg-light rounded-end rounded-5">
-                                <div class="m-0 m-lg-1 p-md-1"><input type="text" placeholder="Search products..." class="form-control border-0 alg-bg-light border-0"></div>
-                            </div>
-                            <div class="col-2 alg-bg-gold p-0 m-0 d-flex justify-content-center align-items-center rounded-start rounded-5">
+                    </button>
+                    <div class="col-12 col-md-6 order-1 order-md-2">
+                        <div class="row m-0">
+                            <input id="seachBar" type="text" placeholder="Search products..." class="alg-searchbar border-0 alg-bg-light py-1 px-3 border-0 col-10 p-0 alg-bg-light rounded-end rounded-5">
+                            <button class="pp-search-btn col-2  rounded-start rounded-5 py-1 px-3 border-0">
                                 <i class="bi bi-search text-white fs-4"></i>
-                            </div>
+                            </button>
                         </div>
                     </div>
-                    <div class="col-4 col-md-2 btn-group alg-bg-gold  order-3 order-md-3 mt-3 mt-lg-0 rounded-5 p-1 p-md-2 cursor">
-
-                        <button class="alg-bg-gold dropdown-toggle fw-bold border-0 mx-auto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="col-6 col-md-3  order-3 order-md-3 position-relative">
+                        <button class="alg-btn-pill dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Dropdown
                         </button>
-                        <ul class="dropdown-menu alg-bg-gold">
-                            <li><a class="dropdown-item" href="#">Menu item</a></li>
-                            <li><a class="dropdown-item" href="#">Menu item</a></li>
-                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        <ul class="dropdown-menu alg-bg-tan rounded-4 w-100">
+                            <li><a class="dropdown-item alg-text-light fw-bold" href="#">Menu item</a></li>
+                            <li><a class="dropdown-item alg-text-light fw-bold" href="#">Menu item</a></li>
+                            <li><a class="dropdown-item alg-text-light fw-bold" href="#">Menu item</a></li>
                         </ul>
 
                     </div>

@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family:"Roboto",sans-serif,;
+  font-family: "Roboto", sans-serif;
 }
 
 :root {
@@ -103,8 +103,8 @@
   cursor: pointer;
 }
 
-.alg-main-button{
-  border:none;
+.alg-main-button {
+  border: none;
 }
 
 .alg-text-p {
@@ -126,10 +126,24 @@
 }
 
 /* button */
+.alg-btn-pill {
+  padding: 10px 30px;
+  border: none;
+  font-weight: bold;
+  outline: 2px var(--gold) solid;
+  background-color: var(--gold);
+  border-radius: 500px;
+}
+
+.alg-btn-pill:hover {
+  background-color: var(--tan);
+}
+
 .alg-btn-circle {
   width: 40px;
   height: 40px;
   border-radius: 1000px;
+  font-weight: bold;
   border: none;
   color: var(--white);
   background-color: var(--light);
@@ -148,6 +162,11 @@
 .alg-model-body {
   border-radius: 0 0 var(--rounded-mid) var(--rounded-mid);
   background-color: var(--light);
+}
+
+.alg-searchbar {
+  outline: none;
+  border: none;
 }
 
 @media screen and (min-width: 1070px) {

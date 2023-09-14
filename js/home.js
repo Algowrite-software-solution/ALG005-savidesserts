@@ -118,7 +118,7 @@ function loadCategory() {
         categorySliderContainer.innerHTML = "";
         data.results.forEach((element) => {
           categorySliderContainer.innerHTML += `
-            <div class="promotionSwiper swiper-slide">
+            <div class="categorySwiper swiper-slide">
               <div>
                 <img src="resources/images/category2.png" class="img-fluid" alt="category_img">
                 <span class="alg-text-gold alg-bg-dark alg-text-h3 p-1 px-5 rounded-4 fw-bold position-relative">${element.category_type}</span>
