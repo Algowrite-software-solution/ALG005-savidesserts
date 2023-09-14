@@ -28,7 +28,7 @@
 </head>
 
 <body>
-    <div class="row" style="overflow-x:hidden;">
+    <div class="">
         <div class="col-12">
             <?php include("pages/components/header.php") ?>
 
@@ -93,9 +93,9 @@
                         <div
                             class="col-12 d-flex flex-column justify-content-center justify-content-lg-start align-items-center align-items-lg-start mb-5">
                             <div>
-                                <h2 class="fw-bolder">Watalappan Delight</h2>
+                                <h2 class="fw-bolder singleProduct-title">Watalappan Delight</h2>
                             </div>
-                            <div class="col-lg-2 my-3 singleProduct-tag text-white text-center rounded-5 fs-6 p-1">
+                            <div class="col-lg-2 my-3 singleProduct-tag text-white text-center rounded-5 p-1">
                                 Category
                             </div>
                             <p class="px-4 px-lg-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat,

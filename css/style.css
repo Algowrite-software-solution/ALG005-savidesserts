@@ -225,8 +225,13 @@
   background: #f4ebd0;
 }
 
+.singleProduct-title{
+  font-size: 30px;
+}
+
 .singleProduct-tag {
   background: #122620;
+  font-size: 14px;
 }
 
 .singleProduct-btn {
