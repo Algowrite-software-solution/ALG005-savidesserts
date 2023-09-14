@@ -103,6 +103,10 @@
   cursor: pointer;
 }
 
+.alg-main-button{
+  border:none;
+}
+
 .alg-text-p {
   font-size: var(--font-p-small);
   line-height: 10px;
