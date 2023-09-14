@@ -189,14 +189,14 @@ function cartProductView() {
           cartMainContainer.innerHTML += `
                     <div class="col-12 p-3 alg-bg-dark rounded-4">
                         <div class="row d-flex justify-content-around align-items-center text-white p-2 px-4">
-                            <div class="col-8 col-md-8 d-flex gap-3 m-0 p-0">
+                            <div class="col-8 col-md-8 col-lg-8 d-flex gap-3 m-0 p-0">
                                 <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-2 mt-md-0">
                                 <div class="lh-1 m-0 p-0">
                                     <span class="alg-text-h2 fw-semibold">${element.product_name}</span><br />
                                     <span class="alg-text-h3">${element.category_type}</span>
                                 </div>
                             </div>
-                            <div class="col-4 col-lg-3 d-flex gap-3 gap-lg-5 alg-text-h3 p-0 m-0">
+                            <div class="col-4 col-lg-4 d-flex gap-3 gap-lg-5 alg-text-h3 p-0 m-0">
                                 <span>${element.extra_fruit_name}</span>
                                 <span>${element.qty}</span>
                                 <span>${element.weight}</span>
