@@ -42,18 +42,16 @@
                             </div>
                             <div class="row mx-4 mx-0">
                                 <div class="col-12 col-md-4 mt-3 mt-lg-2 pb-2 m-lg-0 p-lg-0 d-flex justify-content-center justify-content-lg-start bg-dange">
-                                    <button class="alg-bg-gold alg-main-button alg-button-hover p-2 rounded-4 text-white fw-bold alg-text-h2">ORDER NOW</button>
+                                    <button class="alg-bg-gold alg-main-button alg-button-hover p-2 px-4 rounded-4 text-white fw-bold alg-text-h2">ORDER NOW</button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-7 col-lg-4 m-0 pb-5 d-flex align-self-center mt-5 mt-lg-0">
                             <div class="mainSlider swiper mySwiperHome bg-dange m-0 p-0">
                                 <div class="swiper-wrapper bg-dar mt-2">
-                                    <!-- <div class="mainSlider swiper-slide"><img src="resources/images/item1.png" class="rounded-5  img-fluid" alt="Some thing went wrong"></div> -->
                                     <div class="mainSlider swiper-slide"><img src="resources/images/mainSliderImg.png" class="rounded-5 img-fluid" alt="Some thing went wrong"></div>
                                     <div class="mainSlider swiper-slide"><img src="resources/images/mainSliderImg.png" class="rounded-5 img-fluid" alt="Some thing went wrong"></div>
                                     <div class="mainSlider swiper-slide"><img src="resources/images/mainSliderImg.png" class="rounded-5 img-fluid" alt="Some thing went wrong"></div>
-                                    <!-- <div class="mainSlider swiper-slide"><img src="resources/images/item1.png" class="rounded-5 img-fluid" alt="Some thing went wrong"></div> -->
                                     <div class="mainSlider swiper-slide"><img src="resources/images/mainSliderImg.png" class="rounded-5 img-fluid" alt="Some thing went wrong"></div>
                                 </div>
                             </div>
@@ -212,7 +210,7 @@
     <!-- about us -->
     <section class="alg-bg-light">
         <div class="container">
-            <div class="py-2">
+            <div class="py-2 pb-4">
                 <div class="col-12 text-center p-0">
                     <div class="pt-3">
                         <span class="alg-text-h2 alg-text-dark fw-bold">ABOUT US</span>
