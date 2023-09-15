@@ -161,24 +161,6 @@
   }
 }
 
-/* width */
-.scrollbar::-webkit-scrollbar {
-  width: 10px;
-  scroll-padding-right: 10px;
-}
-
-/* Track */
-.scrollbar::-webkit-scrollbar-track {
-  background: white;
-  border-radius: 10px;
-}
-
-/* Handle */
-.scrollbar::-webkit-scrollbar-thumb {
-  background: #b68b40;
-  border-radius: 10px;
-  padding-right: 10px;
-}
 
 .testm-main {
   /* background: #F4EBD0; */
@@ -224,7 +206,7 @@
 }
 
 .singleProductImg-box {
-  background: #122620;
+  background: var(--dark);
 }
 
 .singleProduct-main {
