@@ -34,43 +34,7 @@
 
                 <!-- empty watchlsit -->
 
-                <div class="row mt-2">
-                    <div class="col-12 alg-bg-dark rounded-4">
-                        <div class="row d-flex justify-content-around align-items-center text-white p-2 px-4">
-                            <div class="col-8 col-md-8 d-flex gap-3 m-0 p-0">
-                                <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-2 mt-md-0">
-                                <div class="lh-1 m-0 p-0">
-                                    <span class="alg-text-h2 fw-semibold">Product Title Goes Here</span><br />
-                                    <span class="alg-text-h3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt </span>
-                                </div>
-                            </div>
-                            <div class="col-3 col-lg-3 d-flex gap-3 gap-lg-5 alg-text-h3 p-0 m-0">
-                                <span>300g</span>
-                                <span>LKR 2300</span>
-                                <span class="mx-2 mx-lg-0"><i class="bi bi-trash-fill"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mt-2">
-                    <div class="col-12 alg-bg-dark rounded-4">
-                        <div class="row d-flex justify-content-around align-items-center text-white p-2 px-4">
-                            <div class="col-8 col-md-8 d-flex gap-3 m-0 p-0">
-                                <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-2 mt-md-0">
-                                <div class="lh-1 m-0 p-0">
-                                    <span class="alg-text-h2 fw-semibold">Product Title Goes Here</span><br />
-                                    <span class="alg-text-h3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt </span>
-                                </div>
-                            </div>
-                            <div class="col-3 col-lg-3 d-flex gap-3 gap-lg-5 alg-text-h3 p-0 m-0">
-                                <span>300g</span>
-                                <span>LKR 2300</span>
-                                <span class="mx-2 mx-lg-0"><i class="bi bi-trash-fill"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
 
 
                 <div class="row mt-2">
