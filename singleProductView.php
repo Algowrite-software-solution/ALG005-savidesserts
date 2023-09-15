@@ -36,8 +36,11 @@
     <section class="alg-bg-light">
         <div class="container">
             <div class="col-12 d-flex">
-                <div class="flex-column flex-lg-row col-12 d-flex justify-content-center align-items-center mt-5 mb-5">
-                    <div class="col-lg-5 col-12 order-1 d-flex flex-column py-1 mx-5   rounded-5 justify-content-center align-items-center singleProductImg-box">
+                <div class="flex-column flex-lg-row col-12 d-flex justify-content-center align-items-center mt-5 mb-5 gap-lg-4">
+                    <div class="d-lg-none mb-3">
+                        <h2 class="fw-bolder singleProduct-titl">Watalappan Delight</h2>
+                    </div>
+                    <div class="col-lg-6 col-12 order-1 d-flex flex-column py-1 mx-5 rounded-5 justify-content-center align-items-center singleProductImg-box">
                         <div class="w-100 position-relative px-3">
                             <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
                                 <div class="swiper-wrapper">
@@ -112,45 +115,63 @@
                         </div>
                     </div>
                     <div class="col-lg-5 col-12 d-flex flex-column order-2">
-                        <div class="col-12 d-flex flex-column justify-content-center justify-content-lg-start align-items-center align-items-lg-start mb-5">
-                            <div>
-                                <h2 class="fw-bolder singleProduct-title">Watalappan Delight</h2>
+                        <div class="col-12 d-flex flex-column justify-content-center justify-content-lg-start align-items-center align-items-lg-start mb-3 mb-lg-5">
+                            <div class="d-none d-lg-block">
+                                <h2 class="fw-bolder singleProduct-titl">Watalappan Delight</h2>
                             </div>
-                            <div class="col-lg-2 my-3 singleProduct-tag text-white text-center rounded-5 p-1">
+                            <div class="col-lg-3 my-3 alg-bg-dark text-white text-center rounded-5 p-1 px-4">
                                 Category
                             </div>
-                            <p class="px-4 px-lg-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat,
+                            <p class="px-4 px-lg-0 mx-auto text-cente alg-text-h3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat,
                                 molestias ipsa
-                                similique
-                                sed
-                                eaque commodi excepturi, nesciunt debitis enim, at est velit dicta nulla harum! Et natus
-                                totam
-                                nemo iste?</p>
-                            <div class="d-flex my-3 text-white p-2 px-2 singleProduct-tag justify-content-around align-items-center rounded-5">
-                                <div class="px-3 fs-6">RATING</div>
-                                <div class="bg-white d-flex rounded-end-5 p-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="yellow">
+                                similiqueipsum, dolor sit amet consectetur adipisicing elit. Repellat,
+                                molestias ipsa
+                            </p>
+                            <div class="d-flex my-1 text-white p-2 px-2 alg-bg-dark justify-content-around align-items-center rounded-5">
+                                <div class="px-3 alg-text-h3">RATING</div>
+                                <div class="bg-whit d-flex rounded-end-5 p-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="yellow">
                                         <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" />
                                     </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="yellow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="yellow">
                                         <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" />
                                     </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="yellow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="yellow">
                                         <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" />
                                     </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="yellow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="yellow">
                                         <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" />
                                     </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="yellow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="yellow">
                                         <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" />
                                     </svg>
                                 </div>
                             </div>
+
+                            <!-- Items seletor -->
+
+                            <div class="mt-4 col-6 col-lg-5">
+                                <select class="form-selec item-selector-outline w-100 p-2 rounded-2">
+                                    <option selected>Select item</option>
+                                    <option value="1">dry grapes</option>
+                                    <option value="2">cashew</option>
+                                    <option value="3">honey</option>
+                                </select>
+                            </div>
+                            <!-- QTY Changer -->
+
+                            <div class="qty-changer-main-div mt-3 col-12 col-lg-3 m-0 p-0">
+                                <div class="qty-changer-wrapper col-6 col-lg-5">
+                                    <span class="minus" id="minusid">-</span>
+                                    <span class="num alg-text-h3 fw-bold" id="numid">01</span>
+                                    <span class="plus" id="plusid">+</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-12 d-flex flex-column mt-5 justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
-                            <div class="col-12 d-flex justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
-                                <div class="col-5">
-                                    <select class="form-select" aria-label="Default select example">
+                        <div class="col-12 d-flex flex-column mt-0 justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
+                            <div class="col-12 d-flex flex-column flex-lg-row justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
+                                <div class="col-6 col-lg-5">
+                                    <select class="item-selector-outline w-100 p-2 rounded-2" aria-label="Default select example">
                                         <option value="1">250g</option>
                                         <option value="2">300g</option>
                                         <option value="3">500g</option>
@@ -158,11 +179,13 @@
                                         <option value="3">1Kg</option>
                                     </select>
                                 </div>
-                                <div class="col-5 d-flex mx-3 p-2 justify-content-center align-items-center rounded-5 singleProduct-tag text-white">
+                                <div class="col-6 col-lg-5 d-flex mx-3 p-2 mt-3 mt-lg-0 justify-content-center align-items-center rounded-5 alg-bg-dark text-white">
                                     LKR 2500
                                 </div>
                             </div>
-
+                            <div class="col-6 col-lg-10 d-grid mt-4">
+                                <button type="button" class="singleProduct-btn border-0 rounded-5 p-2 fw-bolder"> Buy Now </button>
+                            </div>
                         </div>
 
                     </div>
