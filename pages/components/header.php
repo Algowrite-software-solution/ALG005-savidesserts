@@ -238,11 +238,12 @@ if ($sessionManager->isLoggedIn()) {
             <div class="modal-body px-2 px-lg-3">
                 <div class="w-100 bg-black text-white fw-bold rounded-5 m-0 px-5">
                     <div class="col-12">
-                        <div class="row d-flex justify-content-around alg-text-h2 m-0 p-0">
+                        <div class="row d-flex  justify-content-around alg-text-h2 m-0 p-1">
                             <div class="col-8 m-0 p-0">
                                 <span>Product</span>
                             </div>
                             <div class="col-3 d-flex gap-3 gap-lg-5 m-0 px-lg-1">
+                                <span>weight</span>
                                 <span>Price</span>
                                 <span>Remove</span>
                             </div>
@@ -252,64 +253,14 @@ if ($sessionManager->isLoggedIn()) {
 
                 <!-- empty watchlist -->
 
-                <!-- <div class="text-center alg-header-text alg-text-h2 mt-4 fw-bold">
-                    <span>Select your favorite sweat .........</span>
-                 </div> -->
+                <div class="text-center alg-header-text alg-text-h2 mt-4 fw-bold" id="emptyWatchlistContainer">
+                   <!-- empty watchlist Goes Here -->
+                 </div>
 
                 <!-- empty watchlsit -->
 
-                <div class="w-100 mt-2">
-                    <div class="col-12 alg-bg-dark rounded-4">
-                        <div class="row d-flex justify-content-around align-items-center text-white m-0 p-2 px-3">
-                            <div class="col-8 d-flex gap-3 m-0 p-0">
-                                <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-3 mt-md-0">
-                                <div class="lh-1">
-                                    <span class="alg-text-h2 fw-semibold">Product Title Goes Here</span><br />
-                                    <span class="alg-text-h3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt </span>
-                                </div>
-                            </div>
-                            <div class="col-3 d-flex gap-5 alg-text-h3 m-0 p-0">
-                                <span>LKR 2300</span>
-                                <span><i class="bi bi-trash-fill"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="w-100 mt-2">
-                    <div class="col-12 alg-bg-dark rounded-4">
-                        <div class="row d-flex justify-content-around align-items-center text-white m-0 p-2 px-3">
-                            <div class="col-8 d-flex gap-3 m-0 p-0">
-                                <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-3 mt-md-0">
-                                <div class="lh-1">
-                                    <span class="alg-text-h2 fw-semibold">Product Title Goes Here</span><br />
-                                    <span class="alg-text-h3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt </span>
-                                </div>
-                            </div>
-                            <div class="col-3 d-flex gap-5 alg-text-h3 m-0 p-0">
-                                <span>LKR 2300</span>
-                                <span><i class="bi bi-trash-fill"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="w-100 mt-2">
-                    <div class="col-12 alg-bg-dark rounded-4">
-                        <div class="row d-flex justify-content-around align-items-center text-white m-0 p-2 px-3">
-                            <div class="col-8 d-flex gap-3 m-0 p-0">
-                                <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-3 mt-md-0">
-                                <div class="lh-1">
-                                    <span class="alg-text-h2 fw-semibold">Product Title Goes Here</span><br />
-                                    <span class="alg-text-h3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt </span>
-                                </div>
-                            </div>
-                            <div class="col-3 d-flex gap-5 alg-text-h3 m-0 p-0">
-                                <span>LKR 2300</span>
-                                <span><i class="bi bi-trash-fill"></i></span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="d-flex flex-column gap-3 pt-3" id="watchListMainContainer">
+                    <!-- watchlist goes here -->
                 </div>
             </div>
         </div>
