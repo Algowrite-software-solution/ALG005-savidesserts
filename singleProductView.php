@@ -19,12 +19,12 @@
 
 
     <!-- script -->
-    <script defer src="./js/bootstrap.bundle.js"></script>
-    <script defer src="./js/singleProduct.js"></script>
-    <script defer src="./js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
+    <script defer src="./js/bootstrap.bundle.js"></script>
+    <script defer src="./js/singleProduct.js"></script>
+    <script defer src="./js/script.js"></script>
 </head>
 
 <body>
@@ -163,99 +163,86 @@
                             <!-- Items seletor -->
 
                         </div>
-                        <div
+                        <<<<<<< HEAD <div
                             class="col-12 d-flex flex-column mt-1 justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
                             <div
                                 class="col-12 d-flex justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
-                                <div class="col-5">
-                                    <select class="form-select " aria-label="Default select example">
-                                        <option value="1">250g</option>
-                                        <option value="2">300g</option>
-                                        <option value="3">500g</option>
-                                        <option value="3">750g</option>
-                                        <option value="3">1Kg</option>
-                                    </select>
-                                </div>
+                                =======
                                 <div
-                                    class="col-5 d-flex mx-3 p-2 justify-content-center align-items-center rounded-5 singleProduct-tag text-white">
-                                    LKR 2500
+                                    class="col-12 d-flex flex-column mt-5 justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
+                                    <div
+                                        class="col-12 d-flex justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
+                                        >>>>>>> 297bd161e3f052b99dec19660145e966b512e626
+                                        <div class="col-5">
+                                            <select class="form-select " aria-label="Default select example">
+                                                <option value="1">250g</option>
+                                                <option value="2">300g</option>
+                                                <option value="3">500g</option>
+                                                <option value="3">750g</option>
+                                                <option value="3">1Kg</option>
+                                            </select>
+                                        </div>
+                                        <div
+                                            class="col-5 d-flex mx-3 p-2 justify-content-center align-items-center rounded-5 singleProduct-tag text-white">
+                                            LKR 2500
+                                        </div>
+                                    </div>
+                                    <div class="col-10 d-grid mt-4">
+                                        <button type="button"
+                                            class="singleProduct-btn border-0 rounded-5 p-2 fw-bolder">Add
+                                            to
+                                            cart</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-10 d-grid mt-4">
-                                <button type="button" class="singleProduct-btn border-0 rounded-5 p-2 fw-bolder">Add
-                                    to
-                                    cart</button>
-                            </div>
-                        </div>
+
                     </div>
 
                 </div>
 
-            </div>
-
-            <!-- End singleProduct -->
-            <section>
-                <div class="row">
-                    <div class="col-12 alg-bg-dark">
-                        <div class="row d-flex justify-content-center">
-                            <div class="col-10 col-md-8 pb-4 mt-3">
-                                <div class="row">
-                                    <?php
-                                    for ($x = 0; $x < 3; $x++) {
-                                        ?>
-                                        <div class="col-5 col-md-6 col-lg-4 d-flex justify-content-center mx-auto">
-                                            <div
-                                                class="col-12 col-md-2 col-lg-2 d-flex justify-content-end overflow-hidden flex-column ld-bs-card w-100">
-                                                <div class="ld-bs-card-content d-flex flex-column text-start">
-                                                    <div class="d-flex gap-1 fw-bold justify-content-between">
-                                                        <div class="text-white alg-text-h3">Product Title</div>
-                                                        <div class="alg-text-h3">LKR 3000</div>
-                                                    </div>
-                                                    <div class="alg-text-h3 text-white">this is some little descrioption for
-                                                        the product......</div>
-                                                    <div class="d-flex gap-2">
-                                                        <i class="bi bi-star-fill text-warning fs-6"></i>
-                                                        <i class="bi bi-star-fill text-warning fs-6"></i>
-                                                        <i class="bi bi-star-fill text-warning fs-6"></i>
-                                                        <i class="bi bi-star-fill text-warning fs-6"></i>
-                                                        <i class="bi bi-star-fill text-white fs-6"></i>
+                <!-- End singleProduct -->
+                <section>
+                    <div class="row">
+                        <div class="col-12 alg-bg-dark">
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-10 col-md-8 pb-4 mt-3">
+                                    <div class="row">
+                                        <?php
+                                        for ($x = 0; $x < 3; $x++) {
+                                            ?>
+                                            <div class="col-5 col-md-6 col-lg-4 d-flex justify-content-center mx-auto">
+                                                <div
+                                                    class="col-12 col-md-2 col-lg-2 d-flex justify-content-end overflow-hidden flex-column ld-bs-card w-100">
+                                                    <div class="ld-bs-card-content d-flex flex-column text-start">
+                                                        <div class="d-flex gap-1 fw-bold justify-content-between">
+                                                            <div class="text-white alg-text-h3">Product Title</div>
+                                                            <div class="alg-text-h3">LKR 3000</div>
+                                                        </div>
+                                                        <div class="alg-text-h3 text-white">this is some little descrioption
+                                                            for
+                                                            the product......</div>
+                                                        <div class="d-flex gap-2">
+                                                            <i class="bi bi-star-fill text-warning fs-6"></i>
+                                                            <i class="bi bi-star-fill text-warning fs-6"></i>
+                                                            <i class="bi bi-star-fill text-warning fs-6"></i>
+                                                            <i class="bi bi-star-fill text-warning fs-6"></i>
+                                                            <i class="bi bi-star-fill text-white fs-6"></i>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <?php
-                                    }
-                                    ?>
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-            <?php include("pages/components/footer.php") ?>
+                </section>
+                <?php include("pages/components/footer.php") ?>
+            </div>
         </div>
-    </div>
-    <!-- <script>
-        const plus = document.getElementById("plusid"),
-            minus = document.getElementById("minusid"),
-            num = document.getElementById("numid");
-
-        let a = 1;
-
-        plus.addEventListener("click", () => {
-            a++;
-            a = (a < 10) ? "0" + a : a;
-            num.innerText = a;
-        });
-
-        minus.addEventListener("click", () => {
-            if (a > 1) {
-                a--;
-                a = (a < 10) ? "0" + a : a;
-                num.innerText = a;
-            }
-        });
-    </script> -->
 </body>
 
 </html>

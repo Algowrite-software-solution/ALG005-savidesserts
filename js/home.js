@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadCategory();
 });
 
+
 //product promotion view section
 function loadProductPromotions() {
   // Fetch request

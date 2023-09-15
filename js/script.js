@@ -14,103 +14,6 @@ toggle.onclick = () => {
   toggleIcon.classList.toggle("bx-x");
 };
 
-//  home slider
-let swiperHome = new Swiper(".mySwiperHome", {
-  direction: "vertical",
-  spaceBetween: 30,
-  grabCursor: true,
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-  autoplay: {
-    delay: 2500,
-    disableOnInteraction: false,
-  },
-});
-
-// promotion slider
-let swiperPromotion = new Swiper(".mySwiperPromotion", {
-  type: "loop",
-  perPage: 6,
-  perMove: 1,
-  autoplay: true,
-  pauseOnHover: false,
-  arrows: false,
-});
-
-// category
-let swiperCategory = new Swiper(".mySwiperCategory", {
-  // pagination: {
-  //   el: ".swiper-pagination",
-  //   type: "fraction",
-  // },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  slideShadows: false,
-  // type: 'loop',
-  // perPage: 3,
-  slidesPerView: 3,
-  // spaceBetween:90,
-  // centeredSlides:true,
-  // perMove: 1,
-  // autoplay: true,
-  // navigation:{
-  //   nextE1:".swiper-button-next",
-  //   prevE1:".swiper-button-prev",
-  // },
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-  breakpoints: {
-    200: {
-      slidesPerView: 1,
-      // spaceBetween: 10,
-    },
-    468: {
-      slidesPerView: 2,
-      // spaceBetween: 40,
-    },
-    980: {
-      slidesPerView: 3,
-      // spaceBetween: 40,
-    },
-    1024: {
-      slidesPerView: 4,
-      // spaceBetween: 50,
-    },
-  },
-  // pauseOnHover:true,
-  // arrows: false,
-});
-
-// best selling slider
-let swiperBestSelling = new Swiper(".mySwiperBestSelling", {
-  effect: "coverflow",
-  grabCursor: true,
-  slidesPerView: "auto",
-  centeredSlides: true,
-  coverflowEffect: {
-    rotate: 20,
-    stretch: -400,
-    depth: 900,
-    modifier: 1,
-    slideShadows: false,
-  },
-
-  autoplay: {
-    delay: 3500,
-    disableOnInteraction: false,
-  },
-});
-
-// promotion section
-
-//cart and watch list data fetch
-//cart request data
 
 //product adding from cart
 function productAddingCart() {
@@ -185,18 +88,18 @@ function cartProductView() {
 
           const itemPrice = element.qty * element.price;
           Total += itemPrice;
-
+          // cart main container
           cartMainContainer.innerHTML += `
                     <div class="col-12 p-3 alg-bg-dark rounded-4">
                         <div class="row d-flex justify-content-around align-items-center text-white p-2 px-4">
-                            <div class="col-8 col-md-8 d-flex gap-3 m-0 p-0">
+                            <div class="col-8 col-md-8 col-lg-8 d-flex gap-3 m-0 p-0">
                                 <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-2 mt-md-0">
                                 <div class="lh-1 m-0 p-0">
                                     <span class="alg-text-h2 fw-semibold">${element.product_name}</span><br />
                                     <span class="alg-text-h3">${element.category_type}</span>
                                 </div>
                             </div>
-                            <div class="col-4 col-lg-3 d-flex gap-3 gap-lg-5 alg-text-h3 p-0 m-0">
+                            <div class="col-4 col-lg-4 d-flex gap-3 gap-lg-5 alg-text-h3 p-0 m-0">
                                 <span>${element.extra_fruit_name}</span>
                                 <span>${element.qty}</span>
                                 <span>${element.weight}</span>
@@ -209,6 +112,7 @@ function cartProductView() {
 
 
         });
+        
         cartEmptyContainer.innerHTML = "";
         cartTotalContainer.innerHTML = "";
         cartTotalContainer.innerHTML += `

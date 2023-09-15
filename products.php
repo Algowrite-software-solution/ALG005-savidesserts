@@ -19,6 +19,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script defer src="js/bootstrap.bundle.js"></script>
     <script defer src="js/products.js"></script>
+    <script defer src="js/productsSliders.js"></script>
     <script defer src="js/script.js"></script>
 
 </head>
@@ -41,8 +42,8 @@
                     </button>
                     <div class="col-12 col-md-6 order-1 order-md-2">
                         <div class="row m-0">
-                            <input id="seachBar" type="text" placeholder="Search products..." class="alg-searchbar border-0 alg-bg-light py-1 px-3 border-0 col-10 p-0 alg-bg-light rounded-end rounded-5">
-                            <button class="pp-search-btn col-2  rounded-start rounded-5 py-1 px-3 border-0">
+                            <input id="searchBar" type="text" placeholder="Search products..." class="alg-searchbar border-0 alg-bg-light py-1 px-3 border-0 col-10 p-0 alg-bg-light rounded-end rounded-5" oninput="searchProducts();">
+                            <button class="pp-search-btn col-2  rounded-start rounded-5 py-1 px-3 border-0" onclick="searchProducts();">
                                 <i class="bi bi-search text-white fs-4"></i>
                             </button>
                         </div>
