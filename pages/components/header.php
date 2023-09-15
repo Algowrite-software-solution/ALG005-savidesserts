@@ -10,12 +10,14 @@ if ($sessionManager->isLoggedIn()) {
 ?>
 
 <header class="alg-bg-dark">
-    <div class="container">
+    <div class="container-md">
         <nav>
-            <div class="position-relative px-lg-5">
+            <div class="position-relative p-0 m-0">
                 <div class="col-12 d-flex justify-content-between align-items-center m-0 px-0">
                     <div class="p-3">
-                        <img src="resources/images/logo.png" alt="some thing went wrong" class="header-logo-img" />
+                        <a href="index.php">
+                            <img src="resources/images/logo.png" alt="img_logo" class="header-logo-img" />
+                        </a>
                     </div>
 
                     <div class="d-none d-md-block d-lg-block">
@@ -58,12 +60,12 @@ if ($sessionManager->isLoggedIn()) {
                     </div>
 
                 </div>
-                <div class=" text-center nav-box alg-bg-gold bg-opacity-50 position-static">
+                <div class="text-center nav-box alg-bg-gold bg-opacity-50 position-static">
                     <div class="d-flex flex-column d-block d-md-none pb-3">
-                        <span class="mt-3 alg-div-hover"><a href="index.php" class="text-decoration-none fw-semibold">Home</a></span>
-                        <span class="mt-3 alg-div-hover"><a href="cardItem.php" class="text-decoration-none fw-semibold">Products</a></span>
-                        <span class="mt-3 alg-div-hover"><a href="#cart" class="text-decoration-none fw-semibold">Cart</a></span>
-                        <span class="mt-3 alg-div-hover" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"><a href="#watchlist" class="text-decoration-none fw-semibold">Watchlist</a></span>
+                        <span class="mt-3 alg-div-hover"><a href="index.php" class="text-decoration-none fw-semibold alg-text-light">Home</a></span>
+                        <span class="mt-3 alg-div-hover"><a href="products.php" class="text-decoration-none fw-semibold alg-text-light">Products</a></span>
+                        <span class="mt-3 alg-div-hover"><a href="#cart" onclick="openCartModel();" class="text-decoration-none fw-semibold alg-text-light">Cart</a></span>
+                        <span class="mt-3 alg-div-hover"><a href="#watchlist" onclick="openWatchlistModel();" class="text-decoration-none fw-semibold alg-text-light">Watchlist</a></span>
                     </div>
                 </div>
             </div>
