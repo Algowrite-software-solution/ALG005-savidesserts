@@ -214,19 +214,11 @@
   font-size: 30px;
 }
 
-/* .singleProduct-tag {
-  background: #122620;
-  font-size: 14px;
-} */
-
-.singleProduct-btn {
-  background: #b68b40;
-}
 
 .qty-changer-main-div{
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content:start;
 }
 
 .qty-changer-wrapper{
