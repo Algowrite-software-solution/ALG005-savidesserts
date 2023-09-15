@@ -21,7 +21,6 @@
     <script defer src="js/products.js"></script>
     <script defer src="js/productsSliders.js"></script>
     <script defer src="js/script.js"></script>
-
 </head>
 
 <body style="overflow-x:hidden;">
@@ -90,8 +89,6 @@
                             <div class="col-12 d-flex justify-content-end overflow-hidden flex-column bg-danger ld-bs-card w-100 p-0 placeholder-wave"></div>
                         </div>
                     </div>
-                    
-                    
                 </div>
             </div>
         </div>

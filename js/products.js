@@ -50,8 +50,10 @@ function loadCategory() {
 }
 
 // load open Signle Product View
-function openSignleProductView(id) {
-  window.location.href = "singleProductView.php?product_id=" + id;
+function openSignleProductView(id, weight) {
+  alert(weight);
+  window.location.href =
+    "singleProductView.php?product_id=" + id + "&weight=" + weight;
 }
 
 function loadProducts(
@@ -94,10 +96,11 @@ function loadProducts(
       // Handle the JSON data received from the API
       if (data.status == "success") {
         data.results.forEach((element) => {
+          console.log(element.weight);
           productListViewContainer.innerHTML += `
             <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mx-0 p-0">
               <div class="row m-0 w-100 p-2">
-                  <div class="col-12 d-flex justify-content-end overflow-hidden flex-column bg-danger ld-bs-card w-100 p-0" onclick="openSignleProductView(${element.product_id});">
+                  <div class="col-12 d-flex justify-content-end overflow-hidden flex-column bg-danger ld-bs-card w-100 p-0" onclick="openSignleProductView('${element.product_id}', '${element.weight}');">
                   <div class="ld-bs-card-content d-flex flex-column text-start">
                     <div class="d-flex gap-1 fw-bold justify-content-between">
                       <div class="text-white alg-text-h3">${element.product_name}</div>
