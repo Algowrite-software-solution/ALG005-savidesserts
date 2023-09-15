@@ -27,14 +27,14 @@
 }
 
 .swiper-slide {
-    background-color: transparent;
-    margin: 10px 0;
+  background-color: transparent;
+  margin: 10px 0;
   background-size: cover;
   background-position: center;
 }
 
 .mySwiper2 {
-  height: 300px;
+  min-height: 300px;
   width: 100%;
   border-radius: var(--rounded-small);
 }
@@ -51,7 +51,7 @@
 }
 
 .mySwiper .swiper-slide-thumb-active {
-    opacity: 1;
+  opacity: 1;
 }
 
 .swiper-slide img {
