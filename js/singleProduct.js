@@ -1,30 +1,3 @@
-// single product QTY changer
-
-const plus = document.getElementById("plusid"),
-minus = document.getElementById("minusid"),
-num = document.getElementById("numid");
-
-let a = 1;
-
-plus.addEventListener("click", ()=>{
-  if (a < 20) {
-    a++;
-}
-a = (a < 10) ? "0" + a : a;
-num.innerText = a;
-});
-
-minus.addEventListener("click", ()=>{
-    if (a > 1) {
-        a--;
-        a = (a < 10) ? "0" + a : a;
-        num.innerText = a;
-    }
-});
-
-
-// single product QTY changer
-
 let slideIndex = 1;
     showSlides(slideIndex);
     

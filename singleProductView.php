@@ -136,34 +136,8 @@
                                     </svg>
                                 </div>
                             </div>
-
-                            <!-- QTY Changer -->
-
-                            <div class="qty-changer-main-div mt-3">
-                                <div class="qty-changer-wrapper">
-                                    <span class="minus" id="minusid">-</span>
-                                    <span class="num" id="numid">01</span>
-                                    <span class="plus" id="plusid">+</span>
-                                </div>
-                            </div>
-
-                            <!-- QTY Changer -->
-
-                            <!-- Items seletor -->
-
-                            <div class="mt-4">
-                                <select class="form-select">
-                                    <option selected>select item</option>
-                                    <option value="1">dry grapes</option>
-                                    <option value="2">cashew</option>
-                                    <option value="3">honey</option>
-                                </select>
-                            </div>
-
-                            <!-- Items seletor -->
-
                         </div>
-                        <div class="col-12 d-flex flex-column mt-1 justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
+                        <div class="col-12 d-flex flex-column mt-5 justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
                             <div class="col-12 d-flex justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
                                 <div class="col-5">
                                     <select class="form-select" aria-label="Default select example">
@@ -187,36 +161,37 @@
 
             <!-- End singleProduct -->
             <section>
-
-                <div class="col-12 alg-bg-dark">
-                    <div class="d-flex justify-content-center">
-                        <div class="col-10 col-md-8 pb-4 mt-3">
-                            <div class="row">
-                                <?php
-                                for ($x = 0; $x < 3; $x++) {
-                                ?>
-                                    <div class="col-5 col-md-6 col-lg-4 d-flex justify-content-center mx-auto">
-                                        <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-end overflow-hidden flex-column ld-bs-card w-100">
-                                            <div class="ld-bs-card-content d-flex flex-column text-start">
-                                                <div class="d-flex gap-1 fw-bold justify-content-between">
-                                                    <div class="text-white alg-text-h3">Product Title</div>
-                                                    <div class="alg-text-h3">LKR 3000</div>
-                                                </div>
-                                                <div class="alg-text-h3 text-white">this is some little descrioption for
-                                                    the product......</div>
-                                                <div class="d-flex gap-2">
-                                                    <i class="bi bi-star-fill text-warning fs-6"></i>
-                                                    <i class="bi bi-star-fill text-warning fs-6"></i>
-                                                    <i class="bi bi-star-fill text-warning fs-6"></i>
-                                                    <i class="bi bi-star-fill text-warning fs-6"></i>
-                                                    <i class="bi bi-star-fill text-white fs-6"></i>
+                <div class="row">
+                    <div class="col-12 alg-bg-dark">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-10 col-md-8 pb-4 mt-3">
+                                <div class="row">
+                                    <?php
+                                    for ($x = 0; $x < 3; $x++) {
+                                    ?>
+                                        <div class="col-5 col-md-6 col-lg-4 d-flex justify-content-center mx-auto">
+                                            <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-end overflow-hidden flex-column ld-bs-card w-100">
+                                                <div class="ld-bs-card-content d-flex flex-column text-start">
+                                                    <div class="d-flex gap-1 fw-bold justify-content-between">
+                                                        <div class="text-white alg-text-h3">Product Title</div>
+                                                        <div class="alg-text-h3">LKR 3000</div>
+                                                    </div>
+                                                    <div class="alg-text-h3 text-white">this is some little descrioption for
+                                                        the product......</div>
+                                                    <div class="d-flex gap-2">
+                                                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                                                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                                                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                                                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                                                        <i class="bi bi-star-fill text-white fs-6"></i>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                <?php
-                                }
-                                ?>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </div>

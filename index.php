@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Savi dessert</title>
-    <link rel="icon" href="resources/images/logo.png"/>
+    <title>ALG005 - savi dessert</title>
 
     <!-- css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
@@ -24,7 +23,7 @@
     <script defer src="js/script.js"></script>
 </head>
 
-<body class="scrollbar w-100" >
+<body class="scrollbar w-100" style="overflow-x: hidden;">
     <?php include("pages/components/header.php") ?>
 
     <!-- home -->
@@ -37,7 +36,7 @@
                             <div class="row pb-lg-5">
                                 <div class="col-10 m-lg-4 mx-auto text-center text-md-start">
                                     <span class="alg-text-h1 text-white fw-semibold lh-1">Experience the Joy of Irresistible Desserts</span><br />
-                                    <p class="alg-text-h2 text-white pt-3 mt-3">Embark ona Flavorful journy of Irresistible Desserts discover the Delight of Authentic Sri Lankan Sweets, Crafted to Perfection
+                                    <p class="alg-text-h2 text-white pt-3 mt-3 shadow">Embark ona Flavorful journy of Irresistible Desserts discover the Delight of Authentic Sri Lankan Sweets, Crafted to Perfection
                                         Embark ona Flavorful journy of Irresistible Desserts discover the Delight of Authentic Sri Lankan Sweets, Crafted to Perfectio.</p>
                                 </div>
                             </div>
@@ -48,8 +47,8 @@
                             </div>
                         </div>
                         <div class="col-7 col-lg-4 m-0 pb-5 d-flex align-self-center mt-5 mt-lg-0">
-                            <div class="mainSlider swiper mySwiperHome m-0 p-0">
-                                <div class="swiper-wrapper mt-2">
+                            <div class="mainSlider swiper mySwiperHome bg-dange m-0 p-0">
+                                <div class="swiper-wrapper bg-dar mt-2">
                                     <div class="mainSlider swiper-slide"><img src="resources/images/mainSliderImg.png" class="rounded-5 img-fluid" alt="Some thing went wrong"></div>
                                     <div class="mainSlider swiper-slide"><img src="resources/images/mainSliderImg.png" class="rounded-5 img-fluid" alt="Some thing went wrong"></div>
                                     <div class="mainSlider swiper-slide"><img src="resources/images/mainSliderImg.png" class="rounded-5 img-fluid" alt="Some thing went wrong"></div>
@@ -66,9 +65,9 @@
     <!-- Banner -->
     <section class="alg-bg-light">
         <div class="container">
-            <div class="col-12 text-center pt-3 pb-4 px-2">
+            <div class="col-12 text-center pt-2 px-2">
                 <span class="alg-text-h2 alg-text-dark fw-bold m-0 p-0">PROMOTION</span>
-                <div class="promotionSwiper swiper mySwiperPromotion mt-3">
+                <div class="promotionSwiper swiper mySwiperPromotion mt-0">
                     <div class="swiper-wrapper" id="promotionSliderContainer">
                         <!-- banner goes here -->
                     </div>
@@ -80,18 +79,18 @@
     <!-- services -->
     <section class="alg-bg-dark">
         <div class="container">
-            <div class="row pb-4">
+            <div class="row pb-5">
                 <div class="col-12">
                     <div class="row">
                         <div class="col-12 text-center pt-3">
                             <span class="alg-text-h2 alg-text-gold fw-bold">SERVICES</span>
                         </div>
                     </div>
-                    <div class="row mt-3">
+                    <div class="row mt-4">
                         <div class="col-12 d-flex flex-column flex-lg-row justify-content-center align-items-center gap-4">
                             <div class="row mx-3">
-                                <div class="col-12 alg-bg-light rounded-5 d-flex justify-content-center align-items-center gap-4">
-                                    <div><img src="resources/images/service1.png" alt="service_icon" class="alg-service-img"></div>
+                                <div class="col-12 alg-bg-light rounded-5 d-flex justify-content-center align-items-center gap-5">
+                                    <div><img src="resources/images/service1.png" alt="" class="alg-service-img"></div>
                                     <div class="lh-1 mt-2 me-2">
                                         <span class="fw-bold alg-text-h3">24/7 Services for any inquriy</span>
                                         <p class="alg-text-h3">Our company provide 24/7 service on any service related</p>
@@ -100,8 +99,8 @@
                             </div>
 
                             <div class="row mx-3">
-                                <div class="col-12 alg-bg-light rounded-5 d-flex justify-content-center align-items-center gap-4">
-                                    <div><img src="resources/images/service1.png" alt="service_icon" class="alg-service-img"></div>
+                                <div class="col-12 alg-bg-light rounded-5 d-flex justify-content-center align-items-center gap-5">
+                                    <div><img src="resources/images/service1.png" alt="" class="alg-service-img"></div>
                                     <div class="lh-1 mt-2 me-2">
                                         <span class="fw-bold alg-text-h3">24/7 Services for any inquriy</span>
                                         <p class="alg-text-h3">Our company provide 24/7 service on any service related</p>
@@ -110,8 +109,8 @@
                             </div>
 
                             <div class="row mx-3">
-                                <div class="col-12 alg-bg-light rounded-5 d-flex justify-content-center align-items-center gap-4">
-                                    <div><img src="resources/images/service1.png" alt="service_icon" class="alg-service-img"></div>
+                                <div class="col-12 alg-bg-light rounded-5 d-flex justify-content-center align-items-center gap-5">
+                                    <div><img src="resources/images/service1.png" alt="" class="alg-service-img"></div>
                                     <div class="lh-1 mt-2 me-2">
                                         <span class="fw-bold alg-text-h3">24/7 Services for any inquriy</span>
                                         <p class="alg-text-h3">Our company provide 24/7 service on any service related</p>
