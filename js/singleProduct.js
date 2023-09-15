@@ -53,4 +53,8 @@ let slideIndex = 1;
       dots[slideIndex-1].className += " active";
       captionText.innerHTML = dots[slideIndex-1].alt;
     }
+
+
+
+    
     
