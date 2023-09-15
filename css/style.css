@@ -315,7 +315,7 @@
   align-items: center;
   width: 220px;
   height: 300px;
-  /* box-shadow: none; */
+  box-shadow: none;
 }
 
 .categorySwiper.swiper-slide img {

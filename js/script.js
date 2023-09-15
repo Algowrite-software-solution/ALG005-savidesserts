@@ -1,8 +1,6 @@
 const SERVER_URL = "http://localhost:9001/";
 
-document.addEventListener("DOMContentLoaded", () => {
-
-});
+document.addEventListener("DOMContentLoaded", () => {});
 
 // header
 const toggle = document.querySelector(".alg-toggle-button");
@@ -13,7 +11,6 @@ toggle.onclick = () => {
   navBox.classList.toggle("alg-nav-box");
   toggleIcon.classList.toggle("bx-x");
 };
-
 
 //product adding from cart
 function productAddingCart() {
@@ -72,20 +69,17 @@ function cartProductView() {
     .then((data) => {
       // Handle the JSON data received from the API
 
-      const cartMainContainer = document.getElementById('cartMainContainer');
-      const cartTotalContainer = document.getElementById('cartTotalContainer');
-      const cartEmptyContainer = document.getElementById('cartEmptyContainer');
-
-
+      const cartMainContainer = document.getElementById("cartMainContainer");
+      const cartTotalContainer = document.getElementById("cartTotalContainer");
+      const cartEmptyContainer = document.getElementById("cartEmptyContainer");
 
       let Total = 0;
 
-      if (data.status === 'success') {
+      if (data.status === "success") {
         cartEmptyContainer.innerHTML = "";
         cartMainContainer.innerHTML = "";
 
         data.response.forEach((element) => {
-
           const itemPrice = element.qty * element.price;
           Total += itemPrice;
           // cart main container
@@ -109,8 +103,6 @@ function cartProductView() {
                         </div>
                     </div>
           `;
-
-
         });
 
         cartEmptyContainer.innerHTML = "";
@@ -131,7 +123,6 @@ function cartProductView() {
                     </div>
                 </div>
         `;
-
       } else {
         cartMainContainer.innerHTML = "";
         cartTotalContainer.innerHTML = "";
@@ -145,7 +136,7 @@ function cartProductView() {
         `;
       }
 
-      if (data.error === 'Please login') {
+      if (data.error === "Please login") {
         cartMainContainer.innerHTML = "";
         cartTotalContainer.innerHTML = "";
         cartEmptyContainer.innerHTML = "";
@@ -165,7 +156,6 @@ function cartProductView() {
 
 //product Delete From a cart
 function deleteCartProduct(card_id) {
-
   const data = new FormData();
   data.append("card_id", card_id);
   // Fetch request
@@ -273,17 +263,19 @@ function watchlistDataView() {
       return response.json(); // Parse the response body as JSON
     })
     .then((data) => {
-
-      const watchListMainContainer = document.getElementById('watchListMainContainer');
-      const emptyWatchlistContainer = document.getElementById('emptyWatchlistContainer');
+      const watchListMainContainer = document.getElementById(
+        "watchListMainContainer"
+      );
+      const emptyWatchlistContainer = document.getElementById(
+        "emptyWatchlistContainer"
+      );
 
       // Handle the JSON data received from the API
-      if (data.status === 'success') {
+      if (data.status === "success") {
         emptyWatchlistContainer.innerHTML = "";
         watchListMainContainer.innerHTML = "";
 
         data.response.forEach((element) => {
-
           watchListMainContainer.innerHTML += `
           <div class="col-12 alg-bg-dark rounded-4 p-2">
                   <div class="row d-flex justify-content-around align-items-center text-white m-0 p-2 px-3">
@@ -301,7 +293,7 @@ function watchlistDataView() {
                           </div>
                    </div>
             </div>
-          `
+          `;
         });
 
         // console.log(data.response);
@@ -322,9 +314,6 @@ function watchlistDataView() {
         <span>Please Sign In.........</span>
         `;
       }
-
-
-
     })
     .catch((error) => {
       // Handle errors that occur during the Fetch request
@@ -334,7 +323,6 @@ function watchlistDataView() {
 
 //watchlist product delete
 function watchlistProductDelete(watchlist_id) {
-
   const data = new FormData();
   data.append("watchlist_id", watchlist_id);
   // Fetch request
@@ -476,4 +464,3 @@ function signIn() {
       console.error("Error:", error);
     });
 }
-
