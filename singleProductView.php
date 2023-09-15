@@ -136,13 +136,39 @@
                                     </svg>
                                 </div>
                             </div>
+
+                            <!-- QTY Changer -->
+
+                            <div class="qty-changer-main-div mt-3">
+                                <div class="qty-changer-wrapper">
+                                    <span class="minus" id="minusid">-</span>
+                                    <span class="num" id="numid">01</span>
+                                    <span class="plus" id="plusid">+</span>
+                                </div>
+                            </div>
+
+                            <!-- QTY Changer -->
+
+                            <!-- Items seletor -->
+
+                            <div class="mt-4">
+                                <select class="form-select">
+                                    <option selected>select item</option>
+                                    <option value="1">dry grapes</option>
+                                    <option value="2">cashew</option>
+                                    <option value="3">honey</option>
+                                </select>
+                            </div>
+
+                            <!-- Items seletor -->
+
                         </div>
                         <div
-                            class="col-12 d-flex flex-column mt-5 justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
+                            class="col-12 d-flex flex-column mt-1 justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
                             <div
                                 class="col-12 d-flex justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
                                 <div class="col-5">
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select class="form-select " aria-label="Default select example">
                                         <option value="1">250g</option>
                                         <option value="2">300g</option>
                                         <option value="3">500g</option>
@@ -209,6 +235,27 @@
             <?php include("pages/components/footer.php") ?>
         </div>
     </div>
+    <!-- <script>
+        const plus = document.getElementById("plusid"),
+            minus = document.getElementById("minusid"),
+            num = document.getElementById("numid");
+
+        let a = 1;
+
+        plus.addEventListener("click", () => {
+            a++;
+            a = (a < 10) ? "0" + a : a;
+            num.innerText = a;
+        });
+
+        minus.addEventListener("click", () => {
+            if (a > 1) {
+                a--;
+                a = (a < 10) ? "0" + a : a;
+                num.innerText = a;
+            }
+        });
+    </script> -->
 </body>
 
 </html>
