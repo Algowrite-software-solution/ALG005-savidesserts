@@ -112,7 +112,7 @@ function cartProductView() {
 
 
         });
-        
+
         cartEmptyContainer.innerHTML = "";
         cartTotalContainer.innerHTML = "";
         cartTotalContainer.innerHTML += `
@@ -273,8 +273,58 @@ function watchlistDataView() {
       return response.json(); // Parse the response body as JSON
     })
     .then((data) => {
+
+      const watchListMainContainer = document.getElementById('watchListMainContainer');
+      const emptyWatchlistContainer = document.getElementById('emptyWatchlistContainer');
+
       // Handle the JSON data received from the API
-      console.log("Data from the API:", data);
+      if (data.status === 'success') {
+        emptyWatchlistContainer.innerHTML = "";
+        watchListMainContainer.innerHTML = "";
+
+        data.response.forEach((element) => {
+
+          watchListMainContainer.innerHTML += `
+          <div class="col-12 alg-bg-dark rounded-4 p-2">
+                  <div class="row d-flex justify-content-around align-items-center text-white m-0 p-2 px-3">
+                      <div class="col-8 d-flex gap-3 m-0 p-0">
+                          <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-3 mt-md-0">
+                              <div class="lh-1">
+                                 <span class="alg-text-h2 fw-semibold">${element.product_name}</span><br />
+                                 <span class="alg-text-h3">${element.category_type}</span>
+                              </div>
+                            </div>
+                            <div class="col-3 d-flex gap-5 alg-text-h3 m-0 p-0">
+                                <span>${element.weight}</span>
+                                <span>LKR ${element.price}</span>
+                                <span class="mx-2 mx-lg-0"><i class="bi bi-trash-fill" onclick="watchlistProductDelete(${element.watchlist_id});"></i></span>
+                          </div>
+                   </div>
+            </div>
+          `
+        });
+
+        // console.log(data.response);
+      } else {
+        watchListMainContainer.innerHTML = "";
+        emptyWatchlistContainer.innerHTML = "";
+
+        emptyWatchlistContainer.innerHTML += `
+        <span>Select your favorite sweat .........</span>
+        `;
+      }
+
+      if (data.error === "Please login") {
+        watchListMainContainer.innerHTML = "";
+        emptyWatchlistContainer.innerHTML = "";
+
+        emptyWatchlistContainer.innerHTML += `
+        <span>Please Sign In.........</span>
+        `;
+      }
+
+
+
     })
     .catch((error) => {
       // Handle errors that occur during the Fetch request
@@ -283,17 +333,13 @@ function watchlistDataView() {
 }
 
 //watchlist product delete
-function watchlistProductDelete() {
-  const watchlist_id = document.getElementById("watchlist_id");
+function watchlistProductDelete(watchlist_id) {
 
   const data = new FormData();
   data.append("watchlist_id", watchlist_id);
   // Fetch request
-  fetch(SERVER_URL + "backend/api/cardItemDeleteProcess.php", {
+  fetch(SERVER_URL + "backend/api/watchListProductDelete.php", {
     method: "POST", // HTTP request method
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded", // Request headers
-    },
     body: data,
   })
     .then((response) => {
@@ -305,6 +351,7 @@ function watchlistProductDelete() {
     .then((data) => {
       // Handle the JSON data received from the API
       console.log("Data from the API:", data);
+      watchlistDataView();
     })
     .catch((error) => {
       // Handle errors that occur during the Fetch request
@@ -325,6 +372,7 @@ let watchlistModel;
 function openWatchlistModel() {
   watchlistModel = new bootstrap.Modal("#watchlist");
   watchlistModel.show();
+  watchlistDataView();
 }
 
 // signin open

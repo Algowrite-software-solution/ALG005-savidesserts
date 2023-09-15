@@ -14,7 +14,7 @@ $userCheckSession = new SessionManager();
 if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
      $responseObject->error = 'Please login';
      response_sender::sendJson($responseObject);
-     die();
+   
 }
 $userData = $userCheckSession->getUserId();
 $userId = $userData["user_id"];
@@ -23,7 +23,7 @@ $userId = $userData["user_id"];
 if (!isset($_POST['watchlist_id'])) {
      $responseObject->error = "Access denied";
      response_sender::sendJson($responseObject);
-     die();
+    
 }
 
 
