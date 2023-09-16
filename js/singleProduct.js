@@ -165,3 +165,18 @@ function laodRelatedProducts(keywords) {
       console.error("Fetch error:", error);
     });
 }
+
+//load extra item
+function loadExtraItem() {
+  fetch(SERVER_URL + "backend/api/signInProcess.php", {
+    method: "POST",
+    body: ;
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      console.log(data.status);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}

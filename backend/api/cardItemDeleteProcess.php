@@ -12,7 +12,7 @@ $responseObject->status = 'failed';
 if (!isset($_POST['card_id'])) {
      $responseObject->error = "Access denied";
      response_sender::sendJson($responseObject);
-     die();
+     
 }
 
 //check is login user
@@ -20,7 +20,7 @@ $userCheckSession = new SessionManager();
 if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
      $responseObject->error = 'Please login';
      response_sender::sendJson($responseObject);
-     die();
+    
 }
 
 //database object
