@@ -61,3 +61,7 @@
   object-fit: cover;
   border-radius: var(--rounded-small);
 }
+
+.singleProduct-title {
+  font-size: 30px;
+}
