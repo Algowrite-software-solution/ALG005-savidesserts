@@ -1,6 +1,8 @@
 // default loaders
 document.addEventListener("DOMContentLoaded", () => {
   loadProduct(document.body.dataset.productid);
+  loadExtraItem(document.body.dataset.productid);
+  loadWeight(document.body.dataset.productid)
 });
 
 // single product QTY changer
@@ -167,16 +169,120 @@ function laodRelatedProducts(keywords) {
 }
 
 //load extra item
-function loadExtraItem() {
-  fetch(SERVER_URL + "backend/api/signInProcess.php", {
-    method: "POST",
-    body: ;
+function loadExtraItem(productId) {
+
+  const extraItemContainer = document.getElementById('extraItemContainer');
+
+  const fdata = new FormData();
+  fdata.append('product_id', productId);
+  // Fetch request
+  fetch(SERVER_URL + "backend/api/extra_Item_LoadApi.php", {
+    method: "POST", // HTTP request method
+    body: fdata,
   })
-    .then((response) => response.text())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
     .then((data) => {
-      console.log(data.status);
+      // Handle the JSON data received from the API
+      // console.log("Data from the API:", data);
+      extraItemContainer.innerHTML = "";
+      if (data.status === 'success') {
+        data.response.forEach((element) => {
+          extraItemContainer.innerHTML += `
+          <option value="${element.extra_id}">LKR ${element.price}  ${element.extra_fruit}</option>
+          `
+        });
+      } else if (data.status === 'no row data') {
+        console.log(data.status);
+      } else {
+        console.log(data);
+      }
     })
     .catch((error) => {
-      console.error("Error:", error);
+      // Handle errors that occur during the Fetch request
+      console.error("Fetch error:", error);
+    });
+}
+
+// load weight
+function loadWeight(productId) {
+
+  const loadWeightContainer = document.getElementById('loadWeightContainer');
+
+  const fdata = new FormData();
+  fdata.append('product_id', productId);
+  // Fetch request
+  fetch(SERVER_URL + "backend/api/weight_load.php", {
+    method: "POST", // HTTP request method
+    body: fdata,
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      // console.log("Data from the API:", data);
+      loadWeightContainer.innerHTML = "";
+      if (data.status === 'success') {
+        data.response.forEach((element) => {
+          loadWeightContainer.innerHTML += `
+          <option value="${element.weight_id}">${element.weight}</option>
+          `
+        });
+      } else if (data.status === 'no row data') {
+        console.log(data.status);
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      // Handle errors that occur during the Fetch request
+      console.error("Fetch error:", error);
+    });
+}
+
+//add to cart
+function addToCartItem() {
+  const loadWeightContainer = document.getElementById('loadWeightContainer');
+
+  const fdata = new FormData();
+  fdata.append('product_id', productId);
+  // Fetch request
+  fetch(SERVER_URL + "backend/api/weight_load.php", {
+    method: "POST", // HTTP request method
+    body: fdata,
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      // console.log("Data from the API:", data);
+      loadWeightContainer.innerHTML = "";
+      if (data.status === 'success') {
+        data.response.forEach((element) => {
+          loadWeightContainer.innerHTML += `
+          <option value="${element.weight_id}">${element.weight}</option>
+          `
+        });
+      } else if (data.status === 'no row data') {
+        console.log(data.status);
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      // Handle errors that occur during the Fetch request
+      console.error("Fetch error:", error);
     });
 }
