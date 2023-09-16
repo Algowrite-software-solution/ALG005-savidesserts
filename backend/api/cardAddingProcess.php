@@ -13,7 +13,6 @@ $userCheckSession = new SessionManager();
 if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
      $responseObject->error = 'Please login';
      response_sender::sendJson($responseObject);
-     die();
 }
 
 $userData = $userCheckSession->getUserId();
@@ -23,12 +22,22 @@ $userId = $userData["user_id"];
 //user the POST method
 $cardAddingData = json_decode($_POST["cardAddingData"]);
 $incomingQty = $cardAddingData->qty;
-$productItemId = $cardAddingData->productItemId;
+$productId = $cardAddingData->productId;
 $weightId = $cardAddingData->weightId;
 $extraItemId = $cardAddingData->extraItemId;
 
-//check qty have our store
+
 $db = new database_driver();
+//search product Item Id
+$searchProductItemQuery = "SELECT id FROM `product_item` WHERE `product_product_id`=? AND `weight_id`=?";
+$resultSetProductItem = $db->execute_query($searchProductItemQuery, 'ss', array($productId, $weightId));
+
+//result and stmt
+$resultSetProductItem = $resultSetProductItem['result'];
+
+$productItemId = $resultSetProductItem->fetch_assoc();
+
+//check qty have our store
 $searchQuery = "SELECT qty FROM `product_item` WHERE `id`=? AND `weight_id`=?";
 $resultSet = $db->execute_query($searchQuery, 'ss', array($productItemId, $weightId));
 
