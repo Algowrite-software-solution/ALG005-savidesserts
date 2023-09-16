@@ -1,6 +1,6 @@
 const SERVER_URL = "http://localhost:9001/";
 
-document.addEventListener("DOMContentLoaded", () => {});
+document.addEventListener("DOMContentLoaded", () => { });
 
 // header
 const toggle = document.querySelector(".alg-toggle-button");
@@ -218,18 +218,17 @@ function cartQtyUpdate() {
 }
 //watchlist request
 //product adding a watchlist
-function productAddingWatchlist() {
-  const productItemId = document.getElementById("product_item_id");
+function productAddingWatchlist(productId, weightId) {
 
-  const data = new FormData();
-  data.append("product_item_id", productItemId);
+  const form = new FormData();
+  form.append("productId", productId);
+  form.append("weightId", weightId);
+
+
   // Fetch request
-  fetch(SERVER_URL + "backend/api/cardItemDeleteProcess.php", {
+  fetch(SERVER_URL + "backend/api/watchListAddingProcess.php", {
     method: "POST", // HTTP request method
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded", // Request headers
-    },
-    body: data,
+    body: form,
   })
     .then((response) => {
       if (!response.ok) {
@@ -239,7 +238,12 @@ function productAddingWatchlist() {
     })
     .then((data) => {
       // Handle the JSON data received from the API
-      console.log("Data from the API:", data);
+      if (data.status === 'success') {
+        console.log('success');
+      } else {
+        console.log(data.error);
+      }
+
     })
     .catch((error) => {
       // Handle errors that occur during the Fetch request
