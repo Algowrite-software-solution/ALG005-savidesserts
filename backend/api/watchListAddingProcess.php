@@ -20,26 +20,27 @@ $userId = $userData["user_id"];
 
 
 //item id validation
-if (!isset($_POST['watchlistData'])) {
+if (!isset($_POST['productId']) || !isset($_POST['weightId'])) {
      $responseObject->error = 'Access denied';
      response_sender::sendJson($responseObject);
 }
 
-$watchlistAddingData = json_decode($_POST["watchlistData"]);
-$productId = $watchlistAddingData->productId;
-$weightId = $watchlistAddingData->weightId;
+// set variable
+$productId = $_POST['productId'];
+$weightId = $_POST['weightId'];
 
+$db = new database_driver();
 
 //search product Item Id
 $searchProductItemQuery = "SELECT id FROM `product_item` WHERE `product_product_id`=? AND `weight_id`=?";
-$resultSetProductItem = $db->execute_query($$searchProductItemQuery, 'ss', array($productId, $weightId));
+$resultSetProductItem = $db->execute_query($searchProductItemQuery, 'ss', array($productId, $weightId));
 
 //result and stmt
-$resultSetProductItem = $resultSetProductItem['result'];
-$productItemId = $resultSetProductItem->fetch_assoc();
+$resultSetProductItemRow = $resultSetProductItem['result'];
+$productItemIdArray = $resultSetProductItemRow->fetch_assoc();
+$productItemId = intval($productItemIdArray['id']);
 
 //check item already have our watchlist 
-$db = new database_driver();
 $searchQuery = "SELECT * FROM `watchlist` WHERE `product_item_id`=? AND `user_user_id`=?";
 $resultSet = $db->execute_query($searchQuery, 'ss', array($productItemId, $userId));
 
@@ -52,6 +53,6 @@ if ($result->num_rows > 0) {
 
 //add product for database
 $insertQuery = "INSERT INTO `watchlist`(`product_item_id`,`user_user_id`) VALUES (?,?)";
-$db->execute_query($insertQuery, 'ss', array($_POST['product_item_id'], $userId));
+$db->execute_query($insertQuery, 'ss', array($productItemId, $userId));
 $responseObject->status = 'success';
 response_sender::sendJson($responseObject);

@@ -58,7 +58,7 @@ if ($sessionManager->isLoggedIn()) {
                     </div>
 
                 </div>
-                <div class=" text-center nav-box alg-bg-gold bg-opacity-50 position-static">
+                <div class="text-center nav-box alg-bg-gold bg-opacity-50 position-static">
                     <div class="d-flex flex-column d-block d-md-none pb-3">
                         <span class="mt-3 alg-div-hover"><a href="index.php" class="text-decoration-none fw-semibold">Home</a></span>
                         <span class="mt-3 alg-div-hover"><a href="cardItem.php" class="text-decoration-none fw-semibold">Products</a></span>
