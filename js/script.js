@@ -110,17 +110,20 @@ function cartProductView() {
         cartTotalContainer.innerHTML += `
 
                 <div class="col-5 col-md-3  text-white alg-bg-dark rounded-4">
-                    <div class="row">
+                    <div class="col-12">
                         <div class="col-12 text-center bg-black rounded-top rounded-4">
                             <span class="fw-semibold">Sub Total</span>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12 p-3">
-                            <span class="alg-text-h3">Discount 0%</span><br />
-                            <span class="alg-text-h2 fw-bold">LKR ${Total}</span>
+                        <div class="col-12 d-flex p-3 justify-content-center align-items-center gap-5">
+                            <div class="d-flex flex-column">
+                              <span class="alg-text-h3">Discount 0%</span>
+                              <span class="alg-text-h2 fw-bold">LKR ${Total}</span>
+                            </div>
+                            <div class="">
+                              <button type="button" class="alg-bg-tan border-0 rounded-5 p-2 fw-bolder"> Checkout </button>
+                            </div>
                         </div>
-                    </div>
                 </div>
         `;
       } else {
