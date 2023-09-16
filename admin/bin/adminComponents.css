@@ -1,0 +1,70 @@
+/* tables */
+.alg-table-container {
+  min-width: 1400px;
+  min-width: 900px;
+  overflow-x: auto;
+  padding: 30px 15px;
+}
+
+.alg-table-header-container {
+  width: 100%;
+  display: flex;
+}
+
+.alg-table-header-cell {
+  min-width: 50px;
+  max-width: 150px;
+  text-wrap: wrap;
+  padding: 5px 10px;
+  flex-grow: 1;
+  text-align: start;
+  font-weight: bold;
+  background-color: rgb(4, 85, 51);
+  color: white;
+}
+
+.alg-table-body-row {
+  display: flex;
+}
+
+.alg-table-body-cell {
+  min-width: 50px;
+  max-width: 150px;
+  text-wrap: wrap;
+  padding: 5px 10px;
+  flex-grow: 1;
+  text-align: start;
+  background-color: gray;
+  color: black;
+}
+
+@media (max-width: 1440px) {
+  /* tables */
+  .alg-table-container {
+    min-width: 900px;
+  }
+}
+
+@media (max-width: 998px) {
+  /* tables */
+  .alg-table-container {
+    min-width: 700px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* tables */
+  .alg-table-container {
+    min-width: 400px;
+    padding: 5px;
+  }
+}
+
+@media (max-width: 640px) {
+  /* tables */
+  .alg-table-container {
+    min-width: 280px;
+    padding: 0px;
+  }
+}
