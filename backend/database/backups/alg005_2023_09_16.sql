@@ -38,7 +38,7 @@ CREATE TABLE `card` (
   CONSTRAINT `fk_card_product_item1` FOREIGN KEY (`product_item_id`) REFERENCES `product_item` (`id`),
   CONSTRAINT `fk_card_user1` FOREIGN KEY (`user_user_id`) REFERENCES `user` (`user_id`),
   CONSTRAINT `fk_card_weight1` FOREIGN KEY (`weight_id`) REFERENCES `weight` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,6 +47,7 @@ CREATE TABLE `card` (
 
 LOCK TABLES `card` WRITE;
 /*!40000 ALTER TABLE `card` DISABLE KEYS */;
+INSERT INTO `card` VALUES (40,1,1,1,2,3);
 /*!40000 ALTER TABLE `card` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +62,7 @@ CREATE TABLE `category` (
   `id` int NOT NULL AUTO_INCREMENT,
   `category_type` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +71,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'Watalappan'),(2,'Jelly'),(3,'Pudin');
+INSERT INTO `category` VALUES (1,'Watalappan'),(2,'Jelly'),(3,'Pudin'),(4,'Yoget'),(5,'Custud');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,6 +140,7 @@ CREATE TABLE `extra` (
   `id` int NOT NULL AUTO_INCREMENT,
   `extra_status_id` int NOT NULL,
   `extra_fruit` varchar(50) NOT NULL,
+  `price` double NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_extra_extra_status1_idx` (`extra_status_id`),
   CONSTRAINT `fk_extra_extra_status1` FOREIGN KEY (`extra_status_id`) REFERENCES `extra_status` (`id`)
@@ -151,7 +153,7 @@ CREATE TABLE `extra` (
 
 LOCK TABLES `extra` WRITE;
 /*!40000 ALTER TABLE `extra` DISABLE KEYS */;
-INSERT INTO `extra` VALUES (1,1,'grapes'),(2,1,'Cashew Nuts'),(3,1,'Banana'),(4,1,'No Item');
+INSERT INTO `extra` VALUES (1,1,'grapes',500),(2,1,'Cashew Nuts',1000),(3,1,'Banana',1200),(4,1,'No Item',0);
 /*!40000 ALTER TABLE `extra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -180,7 +182,7 @@ CREATE TABLE `extra_item` (
 
 LOCK TABLES `extra_item` WRITE;
 /*!40000 ALTER TABLE `extra_item` DISABLE KEYS */;
-INSERT INTO `extra_item` VALUES (1,0,'987662514'),(2,0,'123456789');
+INSERT INTO `extra_item` VALUES (1,3,'987662514'),(2,2,'123456789');
 /*!40000 ALTER TABLE `extra_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,7 +269,7 @@ CREATE TABLE `product_item` (
 
 LOCK TABLES `product_item` WRITE;
 /*!40000 ALTER TABLE `product_item` DISABLE KEYS */;
-INSERT INTO `product_item` VALUES (1,10,1000,1,'122314522',0),(2,2,90,1,'122314522',0),(3,20,1500,1,'123456789',0),(4,12,3000,1,'987662514',0),(5,1,4000,1,'122314522',0);
+INSERT INTO `product_item` VALUES (1,10,1000,1,'122314522',1),(3,20,1500,1,'123456789',1),(4,12,3000,1,'987662514',3),(5,1,4000,1,'122314522',2);
 /*!40000 ALTER TABLE `product_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -291,7 +293,7 @@ CREATE TABLE `product_status` (
 
 LOCK TABLES `product_status` WRITE;
 /*!40000 ALTER TABLE `product_status` DISABLE KEYS */;
-INSERT INTO `product_status` VALUES (1,''),(2,'');
+INSERT INTO `product_status` VALUES (1,'active'),(2,'deactive');
 /*!40000 ALTER TABLE `product_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -313,7 +315,7 @@ CREATE TABLE `promotion` (
   KEY `fk_promotion_promotion_status1_idx` (`promotion_status_promotion_status_id`),
   CONSTRAINT `fk_promotion_product_item1` FOREIGN KEY (`product_item_id`) REFERENCES `product_item` (`id`),
   CONSTRAINT `fk_promotion_promotion_status1` FOREIGN KEY (`promotion_status_promotion_status_id`) REFERENCES `promotion_status` (`promotion_status_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -322,7 +324,7 @@ CREATE TABLE `promotion` (
 
 LOCK TABLES `promotion` WRITE;
 /*!40000 ALTER TABLE `promotion` DISABLE KEYS */;
-INSERT INTO `promotion` VALUES (1,'2023-08-28 09:35:18','2023-08-28 09:35:20',1,1);
+INSERT INTO `promotion` VALUES (1,'2023-08-28 09:35:18','2023-08-28 09:35:20',1,1),(2,'2023-09-12 22:05:59','2023-09-12 22:06:00',3,1);
 /*!40000 ALTER TABLE `promotion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -363,7 +365,7 @@ CREATE TABLE `user` (
   `full_name` varchar(50) NOT NULL,
   `password_salt` varchar(240) NOT NULL,
   `password_hash` varchar(240) NOT NULL,
-  `confomation_code` int NOT NULL,
+  `confomation_code` int NOT NULL DEFAULT '0',
   `status_id` int NOT NULL,
   `register_date` date NOT NULL,
   PRIMARY KEY (`user_id`),
@@ -378,7 +380,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'madusha@gmail.com','Madusha Pravinda','111112222','111112222',0,1,'2023-08-22'),(2,'armadushapravinda@gmail.com','maduwa','8e55a61497b791ff6e22392f79fb0386','7788caaba88ca399937589c8f2b060f0cbf6a7654ae3c659f27c03f01637bf5c4eb06da55acaaafefe362d3b81c8d0238b2b26b9fd13c44d5851391584dea55d',0,1,'2023-08-23'),(3,'kamalmadushapravinda@gmail.com','maduwa','aaeeb73c5fa27e8db8302cabb5854f84','1a000d41ece16bda6ac1000a5aa981f729e3be1151e65bfc19fb4876627a54962dbe5f5f380e5d3bb6552df3481d79900d24af98347fefb6145ba45899fdaa6d',0,1,'2023-08-23'),(4,'nimalmadushapravinda@gmail.com','maduwa','0d14670b47112767adbf180c93ac6bee','3a4347f65db6b934a0a04f4b8c933a88863685035c507a52cc82961ed4c7b1c53159d5b65a5a8e8570f702a3100ab244201b899fa8e74c2fb5a03997011e4637',0,1,'2023-08-23'),(5,'sirilmadushapravinda@gmail.com','maduwa','6898e6df9303e667b1ecaeb37c9b6ccf','46ae7aafdf5aa844113ffbbacc2187dd261921f5bb4ff56b8e06886f088ef9d9b514d289b2fb31535223ca97c8ea793960c3e7135c52dcf7f9a9247ce9d91651',0,1,'2023-08-23'),(6,'marusira@gmail.com','maduwa','11267714ab2c9cc2cc996e4c8aa26338','f7f4c947a808244921d0d9bd0a5c0616ceff6a08924f1b72b646fc40cf5cc6d39588d082774001f4ab572b382cd4f45f97d843f282067375b39bd2a1a76748ed',0,1,'2023-08-23'),(7,'saranadarmakirthi@gmail.com','maduwa','a74efe9739197e89dca052abd2886f54','af37d687b4c6446062e83aaa9d4732e1da8330d45b174f3fbfa84479e814ec7dd283c4974c346eb479aefe1d37a17f1afb4a03afcaf15cb9213ed6eb2a5063df',0,1,'2023-08-23'),(8,'supundarmakirthi@gmail.com','Supun Silva','7dc46b32d4dfe718079b11a845f35e68','6e1aeccbdd3795d4ae438ff1ce1b37cf089b8431f5b6b4450fffd52ee1643152621e985e3d72419e40ad2bc579e8f702a430db8dc99898172d7a11e9aaa42e90',0,1,'2023-08-23'),(9,'palakore@gmail.com','Supun Silva','cb91381c9a6170adace37079011db19d','387cae1230294438fe68b7880fde54159546539a72407aa94224a6f5a9dbe5f84aef939cda36b18deca02b6a2255762d4f2ba596bda95e8fed8381a77ddcbf30',0,1,'2023-08-23');
+INSERT INTO `user` VALUES (1,'madusha@gmail.com','Madusha Pravinda','111112222','111112222',0,1,'2023-08-22'),(2,'armadushapravinda@gmail.com','maduwa','8e55a61497b791ff6e22392f79fb0386','7788caaba88ca399937589c8f2b060f0cbf6a7654ae3c659f27c03f01637bf5c4eb06da55acaaafefe362d3b81c8d0238b2b26b9fd13c44d5851391584dea55d',116407,1,'2023-08-23'),(3,'kamalmadushapravinda@gmail.com','maduwa','aaeeb73c5fa27e8db8302cabb5854f84','1a000d41ece16bda6ac1000a5aa981f729e3be1151e65bfc19fb4876627a54962dbe5f5f380e5d3bb6552df3481d79900d24af98347fefb6145ba45899fdaa6d',0,1,'2023-08-23'),(4,'nimalmadushapravinda@gmail.com','maduwa','0d14670b47112767adbf180c93ac6bee','3a4347f65db6b934a0a04f4b8c933a88863685035c507a52cc82961ed4c7b1c53159d5b65a5a8e8570f702a3100ab244201b899fa8e74c2fb5a03997011e4637',0,1,'2023-08-23'),(5,'sirilmadushapravinda@gmail.com','maduwa','6898e6df9303e667b1ecaeb37c9b6ccf','46ae7aafdf5aa844113ffbbacc2187dd261921f5bb4ff56b8e06886f088ef9d9b514d289b2fb31535223ca97c8ea793960c3e7135c52dcf7f9a9247ce9d91651',0,1,'2023-08-23'),(6,'marusira@gmail.com','maduwa','11267714ab2c9cc2cc996e4c8aa26338','f7f4c947a808244921d0d9bd0a5c0616ceff6a08924f1b72b646fc40cf5cc6d39588d082774001f4ab572b382cd4f45f97d843f282067375b39bd2a1a76748ed',0,1,'2023-08-23'),(7,'saranadarmakirthi@gmail.com','maduwa','a74efe9739197e89dca052abd2886f54','af37d687b4c6446062e83aaa9d4732e1da8330d45b174f3fbfa84479e814ec7dd283c4974c346eb479aefe1d37a17f1afb4a03afcaf15cb9213ed6eb2a5063df',0,1,'2023-08-23'),(8,'supundarmakirthi@gmail.com','Supun Silva','7dc46b32d4dfe718079b11a845f35e68','6e1aeccbdd3795d4ae438ff1ce1b37cf089b8431f5b6b4450fffd52ee1643152621e985e3d72419e40ad2bc579e8f702a430db8dc99898172d7a11e9aaa42e90',0,1,'2023-08-23'),(9,'palakore@gmail.com','Supun Silva','cb91381c9a6170adace37079011db19d','387cae1230294438fe68b7880fde54159546539a72407aa94224a6f5a9dbe5f84aef939cda36b18deca02b6a2255762d4f2ba596bda95e8fed8381a77ddcbf30',0,1,'2023-08-23');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -422,7 +424,7 @@ CREATE TABLE `watchlist` (
   KEY `fk_watchlist_product_item1_idx` (`product_item_id`),
   CONSTRAINT `fk_watchlist_product_item1` FOREIGN KEY (`product_item_id`) REFERENCES `product_item` (`id`),
   CONSTRAINT `fk_watchlist_user1` FOREIGN KEY (`user_user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -431,6 +433,7 @@ CREATE TABLE `watchlist` (
 
 LOCK TABLES `watchlist` WRITE;
 /*!40000 ALTER TABLE `watchlist` DISABLE KEYS */;
+INSERT INTO `watchlist` VALUES (12,5,2),(14,3,2);
 /*!40000 ALTER TABLE `watchlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -467,4 +470,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-28 10:22:42
+-- Dump completed on 2023-09-16 15:32:57
