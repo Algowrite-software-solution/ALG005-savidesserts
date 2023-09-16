@@ -233,32 +233,13 @@ if (!isset($_GET["product_id"])) {
             <div class="w-100 my-3">
                 <h2 class="alg-text-h2 fw-bold alg-text-light ps-2">Related Items</h2>
             </div>
-            <div class="w-100 d-flex flex-wrap justify-content-center flex-column flex-md-row">
+            <div class="w-100 d-flex flex-wrap justify-content-center flex-column flex-md-row" id="relatedProductsContainer">
                 <?php
                 for ($x = 0; $x < 3; $x++) {
                 ?>
                     <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mx-0 p-0">
                         <div class="row m-0 w-100 p-2">
-                            <div class="col-12 d-flex justify-content-end overflow-hidden flex-column bg-danger ld-bs-card w-100 p-0" onclick="">
-                                <div class="ld-bs-card-content d-flex flex-column text-start">
-                                    <div class="d-flex gap-1 fw-bold justify-content-between">
-                                        <div class="text-white alg-text-h3">${element.product_name}</div>
-                                        <div class="alg-text-h3">LKR ${element.item_price}</div>
-                                    </div>
-                                    <div class="alg-text-h3 text-white">${element.product_description}</div>
-                                    <hr />
-                                    <div class="d-flex justify-content-between px-3">
-                                        <div class="d-flex gap-2">
-                                            <i class="bi bi-star-fill text-warning fs-6"></i>
-                                            <i class="bi bi-star-fill text-warning fs-6"></i>
-                                            <i class="bi bi-star-fill text-warning fs-6"></i>
-                                            <i class="bi bi-star-fill text-warning fs-6"></i>
-                                            <i class="bi bi-star-fill text-white fs-6"></i>
-                                        </div>
-                                        <div class="alg-text-h4 text-white fw-bold">${element.weight}</div>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="col-12 d-flex justify-content-end overflow-hidden flex-column bg-danger ld-bs-card w-100 p-0 placeholder-wave"></div>
                         </div>
                     </div>
                 <?php
