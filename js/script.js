@@ -85,20 +85,20 @@ function cartProductView() {
           // cart main container
           cartMainContainer.innerHTML += `
                     <div class="col-12 p-3 alg-bg-dark rounded-4">
-                        <div class="row d-flex justify-content-around align-items-center text-white p-2 px-4">
-                            <div class="col-8 col-md-8 col-lg-8 d-flex gap-3 m-0 p-0">
+                        <div class="d-flex justify-content-around align-items-center text-white p-2 px-2 px-lg-0">
+                            <div class="col-7 col-md-6 col-lg-7 d-flex gap-3 m-0 p-0">
                                 <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-2 mt-md-0">
                                 <div class="lh-1 m-0 p-0">
-                                    <span class="alg-text-h2 fw-semibold">${element.product_name}</span><br />
-                                    <span class="alg-text-h3">${element.category_type}</span>
+                                    <span class="alg-text-h3 fw-semibold">${element.product_name}</span><br />
+                                    <span class="alg-text-h3">${element.category_type}</span><br/>
+                                    (<span class="alg-text-h3">${element.extra_fruit_name}</span>)
                                 </div>
                             </div>
-                            <div class="col-4 col-lg-4 d-flex gap-3 gap-lg-5 alg-text-h3 p-0 m-0">
-                                <span>${element.extra_fruit_name}</span>
-                                <span>${element.qty}</span>
+                            <div class="col-5 col-md-5 col-lg-4 d-flex gap-4 gap-lg-5 alg-text-h3 p-0 m-0 px-1 px-md-5 px-lg-4">
                                 <span>${element.weight}</span>
+                                <span>${element.qty}</span>
                                 <span>LKR ${itemPrice}</span>
-                                <span class="mx-2 mx-lg-0"><i class="bi bi-trash-fill" onclick="deleteCartProduct(${element.card_id});"></i></span>
+                                <span class="mx-0 mx-lg-0"><i class="bi bi-trash-fill" onclick="deleteCartProduct(${element.card_id});"></i></span>
                             </div>
                         </div>
                     </div>
@@ -109,18 +109,21 @@ function cartProductView() {
         cartTotalContainer.innerHTML = "";
         cartTotalContainer.innerHTML += `
 
-                <div class="col-5 col-md-3  text-white alg-bg-dark rounded-4">
-                    <div class="row">
+                <div class="col-6 col-md-5 col-lg-3  text-white alg-bg-dark rounded-4">
+                    <div class="col-12">
                         <div class="col-12 text-center bg-black rounded-top rounded-4">
                             <span class="fw-semibold">Sub Total</span>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12 p-3">
-                            <span class="alg-text-h3">Discount 0%</span><br />
-                            <span class="alg-text-h2 fw-bold">LKR ${Total}</span>
+                        <div class="col-12 d-flex px-1 pt-3 pb-3 justify-content-between gap-3">
+                            <div class="col-6 d-flex flex-column">
+                              <span class="alg-text-h3">Discount 0%</span>
+                              <span class="alg-text-h3 fw-bold">LKR ${Total}</span>
+                            </div>
+                            <div class="col-6">
+                              <button type="button" class="alg-bg-tan alg-text-h3 border-0 rounded-3 p-1 fw-bolder"> Checkout </button>
+                            </div>
                         </div>
-                    </div>
                 </div>
         `;
       } else {

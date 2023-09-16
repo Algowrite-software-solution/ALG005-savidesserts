@@ -44,7 +44,7 @@ if (!isset($_GET["product_id"])) {
     <section class="alg-bg-light">
         <div class="container">
             <div class="col-12 d-flex">
-                <div class="flex-column flex-lg-row col-12 d-flex justify-content-center align-items-center mt-5 mb-5 gap-lg-4">
+                <div class="flex-column flex-lg-row col-12 d-flex justify-content-center align-items-center mt-4 mb-5 gap-lg-4">
                     <div class="d-flex w-100 justify-content-between">
                         <div class="d-lg-none mb-1 ">
                             <h2 class="fw-bolder singleProduct-titl" id="productTitle">...</h2>
@@ -140,7 +140,7 @@ if (!isset($_GET["product_id"])) {
                         </div>
                     </div>
                     <div class="col-lg-5 col-12 d-flex flex-column order-2">
-                        <div class="col-12 d-flex flex-column justify-content-center justify-content-lg-start align-items-center align-items-lg-start mb-3 mb-lg-5">
+                        <div class="col-12 d-flex flex-column justify-content-center justify-content-lg-start align-items-center align-items-lg-start mb-1 mb-lg-5">
                             <div class="d-none d-lg-block mb-1 order-lg-1">
                                 <h2 class="fw-bolder singleProduct-titl">Watalappan Delight</h2>
                             </div>
@@ -154,7 +154,7 @@ if (!isset($_GET["product_id"])) {
                                 </span>
                             </div>
 
-                            <p class="px-2 my-3 mx-auto text-start w-100 alg-text-h3 order-2 order-lg-3" id="productDescription">.......</p>
+                            <p class="px-2 my-2 my-lg-3 mx-auto text-start w-100 alg-text-h2 order-2 order-lg-3" id="productDescription">.......</p>
 
                             <div class="d-flex my-1 text-white p-2 px-2 alg-bg-dark justify-content-start justify-content-lg-around align-items-center rounded-5 order-1 order-lg-4 align-self-start">
                                 <div class="px-3 alg-text-h3">RATING</div>
@@ -180,8 +180,8 @@ if (!isset($_GET["product_id"])) {
                             <!-- Items seletor -->
 
                             <div class="order-3 order-lg-5 col-12 d-flex flex-lg-column gap-2">
-                                <div class="mt-4 col-6 col-lg-5 mb-3 mb-lg-1">
-                                    <select class="form-selec item-selector-outline w-100 p-2 rounded-2">
+                                <div class="mt-3 mt-lg-4 col-6 col-lg-5 mb-3 mb-lg-1">
+                                    <select class="item-selector-outline w-100 p-2 rounded-2">
                                         <option selected>Select extra item</option>
                                         <option value="1">dry grapes</option>
                                         <option value="2">cashew</option>
@@ -192,8 +192,8 @@ if (!isset($_GET["product_id"])) {
 
                                 <!-- QTY Changer -->
                                 <span class="mt-4 alg-text-h3 fw-semibold d-none d-lg-block">Quantity</span>
-                                <div class="qty-changer-main-div mt-lg-1 col-12 col-lg-3 m-0 p-0">
-                                    <div class="qty-changer-wrapper col-6 col-lg-5">
+                                <div class="qty-changer-main-div mt-lg-1 col-6 col-lg-3 m-0 p-0">
+                                    <div class="qty-changer-wrapper col-12 col-lg-5">
                                         <span class="minus" id="minusid">-</span>
                                         <span class="num alg-text-h3 fw-bold" id="numid">01</span>
                                         <span class="plus" id="plusid">+</span>
@@ -202,7 +202,7 @@ if (!isset($_GET["product_id"])) {
                             </div>
                         </div>
                         <!-- <div class="col-12 col-lg-10 d-flex flex-column mt-0 justify-content-center justify-content-lg-start align-items-center align-items-lg-start bg-danger"> -->
-                        <div class="col-12 col-lg-10 d-flex  justify-content-center justify-content-lg-start align-items-center align-items-lg-start gap-2">
+                        <div class="col-12 col-lg-10 d-flex justify-content-center justify-content-lg-start align-items-center align-items-lg-start gap-2">
                             <div class="col-6 col-lg-6">
                                 <select class="item-selector-outline w-100 p-2 rounded-5" aria-label="Default select example">
                                     <option value="0">Select weight</option>
@@ -219,7 +219,7 @@ if (!isset($_GET["product_id"])) {
                         </div>
 
                         <!-- </div> -->
-                        <div class=" col-12 col-lg-10 d-grid mt-4">
+                        <div class=" col-12 col-lg-10 d-grid mt-3 mt-lg-4">
                             <button type="button" class="alg-bg-tan border-0 rounded-5 p-2 fw-bolder"> Add to cart </button>
                         </div>
                     </div>
