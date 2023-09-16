@@ -184,7 +184,7 @@
                                 </div>
                             </div>
                             <div class="col-6 col-lg-10 d-grid mt-4">
-                                <button type="button" class="singleProduct-btn border-0 rounded-5 p-2 fw-bolder"> Buy Now </button>
+                                <button type="button" class="singleProduct-btn border-0 rounded-5 p-2 fw-bolder">Add To Cart</button>
                             </div>
                         </div>
 

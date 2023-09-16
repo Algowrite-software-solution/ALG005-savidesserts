@@ -13,7 +13,6 @@ $userCheckSession = new SessionManager();
 if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
      $responseObject->error = 'Please login';
      response_sender::sendJson($responseObject);
-     die();
 }
 
 $userData = $userCheckSession->getUserId();
@@ -21,23 +20,34 @@ $userId = $userData["user_id"];
 
 
 //item id validation
-if (!isset($_POST['product_item_id'])) {
+if (!isset($_POST['watchlistData'])) {
      $responseObject->error = 'Access denied';
      response_sender::sendJson($responseObject);
-     die();
 }
+
+$watchlistAddingData = json_decode($_POST["watchlistData"]);
+$productId = $watchlistAddingData->productId;
+$weightId = $watchlistAddingData->weightId;
+
+
+//search product Item Id
+$searchProductItemQuery = "SELECT id FROM `product_item` WHERE `product_product_id`=? AND `weight_id`=?";
+$resultSetProductItem = $db->execute_query($$searchProductItemQuery, 'ss', array($productId, $weightId));
+
+//result and stmt
+$resultSetProductItem = $resultSetProductItem['result'];
+$productItemId = $resultSetProductItem->fetch_assoc();
 
 //check item already have our watchlist 
 $db = new database_driver();
 $searchQuery = "SELECT * FROM `watchlist` WHERE `product_item_id`=? AND `user_user_id`=?";
-$resultSet = $db->execute_query($searchQuery, 'ss', array($_POST['product_item_id'], $userId));
+$resultSet = $db->execute_query($searchQuery, 'ss', array($productItemId, $userId));
 
 //result and stmt
 $result = $resultSet['result'];
 if ($result->num_rows > 0) {
      $responseObject->error = 'this product is already available';
      response_sender::sendJson($responseObject);
-     die();
 }
 
 //add product for database

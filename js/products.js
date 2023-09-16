@@ -51,7 +51,7 @@ function loadCategory() {
 
 // load open Signle Product View
 function openSignleProductView(id, weight) {
-  alert(weight);
+  // alert(weight);
   window.location.href =
     "singleProductView.php?product_id=" + id + "&weight=" + weight;
 }
@@ -69,15 +69,15 @@ function loadProducts(
 
   fetch(
     SERVER_URL +
-      "backend/api/load_product_list_api.php?search=" +
-      searchTerm +
-      "&options=" +
-      JSON.stringify({
-        category: category,
-        orderBy: orderBy,
-        orderDirection: orderDirection,
-        limit: limit,
-      }),
+    "backend/api/load_product_list_api.php?search=" +
+    searchTerm +
+    "&options=" +
+    JSON.stringify({
+      category: category,
+      orderBy: orderBy,
+      orderDirection: orderDirection,
+      limit: limit,
+    }),
     {
       method: "GET", // HTTP request method
       headers: {
