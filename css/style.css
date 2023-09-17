@@ -166,7 +166,6 @@
   }
 }
 
-
 .testm-main {
   /* background: #F4EBD0; */
   /* width: 1440px;
@@ -214,26 +213,25 @@
   background: var(--dark);
 }
 
-
-.qty-changer-main-div{
+.qty-changer-main-div {
   display: flex;
   align-items: center;
-  justify-content:start;
+  justify-content: start;
 }
 
-.qty-changer-wrapper{
+.qty-changer-wrapper {
   height: 40px;
   min-width: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color:  #b68b40;
+  background-color: #b68b40;
   color: #ffffff;
   border-radius: 12px;
   /* box-shadow: 0 5px 10px rgb(0,0,0,0.2); */
 }
 
-.qty-changer-wrapper span{
+.qty-changer-wrapper span {
   width: 100%;
   text-align: center;
   /* font-size: 20px; */
@@ -241,17 +239,16 @@
   cursor: pointer;
 }
 
-.qty-changer-wrapper span.num{
+.qty-changer-wrapper span.num {
   /* font-size: 20px; */
   border-right: 2px solid rgba(255, 255, 255, 0.2);
   border-left: 2px solid rgba(255, 255, 255, 0.2);
   pointer-events: none;
 }
 
-.item-selector-outline{
-  outline:none;
-  border:none;
- 
+.item-selector-outline {
+  outline: none;
+  border: none;
 }
 
 /* Hide the images by default */
@@ -319,7 +316,7 @@
   font-size: 18px;
   display: flex;
   justify-content: center;
-  align-items:start;
+  align-items: start;
   width: 100%;
   height: 250px;
 }
@@ -432,17 +429,17 @@
   transition: var(--transition1);
 }
 
-.paycheck-prof-img{
+.paycheck-prof-img {
   width: 120px;
   border-radius: 25px;
 }
 
-.paycheck-product-img{
+.paycheck-product-img {
   width: 150px;
   border-radius: 25px;
 }
 
-.paycheck-thanku-img{
+.paycheck-thanku-img {
   width: 180px;
   border-radius: 25px;
 }
