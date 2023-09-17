@@ -103,7 +103,7 @@ function cartProductView() {
         cartMainContainer.innerHTML = "";
 
         data.response.forEach((element) => {
-          const itemPrice = element.qty * element.price;
+          const itemPrice = element.qty * (element.price + element.extra_price);
           Total += itemPrice;
           // cart main container
           cartMainContainer.innerHTML += `
@@ -114,7 +114,7 @@ function cartProductView() {
                                 <div class="lh-1 m-0 p-0">
                                     <span class="alg-text-h3 fw-semibold">${element.product_name}</span><br />
                                     <span class="alg-text-h3">${element.category_type}</span><br/>
-                                    (<span class="alg-text-h3">${element.extra_fruit_name}</span>)
+                                    <span class="alg-text-h3">*Per Item = LKR ${element.extra_price} (${element.extra_fruit})</span>
                                 </div>
                             </div>
                             <div class="col-5 col-md-5 col-lg-5 d-flex justify-content-center gap-3 gap-md-4 gap-lg-5 alg-text-h3 p-0 m-0">

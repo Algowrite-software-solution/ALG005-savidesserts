@@ -29,10 +29,6 @@ function loadProductPromotions() {
           promotionSliderContainer.innerHTML += `
                 <div class="promotionSwiper swiper-slide">
                     <div>
-                       ${element.product_item_id}
-                       ${element.start_date_time}
-                       ${element.end_date_time}
-                       ${element.promotion_id}
                        <img src="resources/images/test.jpg" class="" alt="prommotion_img">
                     </div>
                 </div>

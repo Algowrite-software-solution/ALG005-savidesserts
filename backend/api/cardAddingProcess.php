@@ -20,42 +20,40 @@ $userId = $userData["user_id"];
 
 //JSON object decodes and get the productItemId & qty & weightId & extraItemId  & productTotalPrice
 //user the POST method
-$cardAddingData = json_decode($_POST["cardAddingData"]);
-$incomingQty = $cardAddingData->qty;
-$productId = $cardAddingData->productId;
-$weightId = $cardAddingData->weightId;
-$extraItemId = $cardAddingData->extraItemId;
-
+$incomingQty = $_POST['qty'];
+$productId = $_POST['product_id'];
+$weightId = $_POST['loadWeightContainer'];
+$extraItemId = $_POST['extraItemContainer'];
 
 $db = new database_driver();
 //search product Item Id
-$searchProductItemQuery = "SELECT id FROM `product_item` WHERE `product_product_id`=? AND `weight_id`=?";
+$searchProductItemQuery = "SELECT * FROM `product_item` WHERE `product_product_id`=? AND `weight_id`=?";
 $resultSetProductItem = $db->execute_query($searchProductItemQuery, 'ss', array($productId, $weightId));
 
 //result and stmt
 $resultSetProductItem = $resultSetProductItem['result'];
 
-$productItemId = $resultSetProductItem->fetch_assoc();
-
-//check qty have our store
-$searchQuery = "SELECT qty FROM `product_item` WHERE `id`=? AND `weight_id`=?";
-$resultSet = $db->execute_query($searchQuery, 'ss', array($productItemId, $weightId));
-
-//result and stmt
-$result = $resultSet['result'];
-
-//fetch related data
-$qty = $result->fetch_assoc();
+$productRow = $resultSetProductItem->fetch_assoc();
+$productItemId = $productRow['id'];
+$qty = $productRow['qty'];
 
 //qty checking
-if ($qty['qty'] < $incomingQty) {
+if ($qty < $incomingQty) {
      $responseObject->error = 'invalid qty';
      response_sender::sendJson($responseObject);
-     die();
 }
 
-//add this product to the cart
-$insertQuery = "INSERT INTO `card`(`qty`,`product_item_id`,`weight_id`,`extra_item_id`,`user_user_id`) VALUES (?,?,?,?,?) ";
-$db->execute_query($insertQuery, 'sssss', array($incomingQty, $productItemId, $weightId, $extraItemId, $userId));
-$responseObject->status = 'product added successfully';
-response_sender::sendJson($responseObject);
+// check Already have
+$searchQuery = "SELECT * FROM `card` WHERE `product_item_id`=? AND `weight_id`=? AND `extra_id`=?";
+$resultCard = $db->execute_query($searchQuery, 'sss', array($productItemId, $weightId, $extraItemId));
+
+if ($resultCard['result']->num_rows == 1 || $resultCard['result']->num_rows > 1) {
+     $responseObject->error = 'Already Added this Product';
+     response_sender::sendJson($responseObject);
+} else {
+     //add this product to the cart
+     $insertQuery = "INSERT INTO `card`(`qty`,`product_item_id`,`weight_id`,`extra_id`,`user_user_id`) VALUES (?,?,?,?,?) ";
+     $db->execute_query($insertQuery, 'sssss', array($incomingQty, $productItemId, $weightId, $extraItemId, $userId));
+     $responseObject->status = 'product added successfully';
+     response_sender::sendJson($responseObject);
+}

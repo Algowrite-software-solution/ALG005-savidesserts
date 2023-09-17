@@ -26,19 +26,19 @@ CREATE TABLE `card` (
   `id` int NOT NULL AUTO_INCREMENT,
   `qty` int NOT NULL,
   `product_item_id` int NOT NULL,
-  `extra_item_id` int NOT NULL,
   `user_user_id` int NOT NULL,
   `weight_id` int NOT NULL,
+  `extra_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_card_user1_idx` (`user_user_id`),
   KEY `fk_card_product_item1_idx` (`product_item_id`),
-  KEY `fk_card_extra_item1_idx` (`extra_item_id`),
   KEY `fk_card_weight1_idx` (`weight_id`),
-  CONSTRAINT `fk_card_extra_item1` FOREIGN KEY (`extra_item_id`) REFERENCES `extra_item` (`id`),
+  KEY `fk_card_extra1_idx` (`extra_id`),
+  CONSTRAINT `fk_card_extra1` FOREIGN KEY (`extra_id`) REFERENCES `extra` (`id`),
   CONSTRAINT `fk_card_product_item1` FOREIGN KEY (`product_item_id`) REFERENCES `product_item` (`id`),
   CONSTRAINT `fk_card_user1` FOREIGN KEY (`user_user_id`) REFERENCES `user` (`user_id`),
   CONSTRAINT `fk_card_weight1` FOREIGN KEY (`weight_id`) REFERENCES `weight` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +47,7 @@ CREATE TABLE `card` (
 
 LOCK TABLES `card` WRITE;
 /*!40000 ALTER TABLE `card` DISABLE KEYS */;
-INSERT INTO `card` VALUES (40,1,1,1,2,3);
+INSERT INTO `card` VALUES (47,3,4,2,3,3),(49,1,4,2,3,4);
 /*!40000 ALTER TABLE `card` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,7 +139,7 @@ DROP TABLE IF EXISTS `extra`;
 CREATE TABLE `extra` (
   `id` int NOT NULL AUTO_INCREMENT,
   `extra_status_id` int NOT NULL,
-  `extra_fruit` varchar(50) NOT NULL,
+  `fruit` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `price` double NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_extra_extra_status1_idx` (`extra_status_id`),
@@ -173,7 +173,7 @@ CREATE TABLE `extra_item` (
   KEY `fk_extra_item_extra1_idx` (`extra_id`),
   CONSTRAINT `fk_extra_item_extra1` FOREIGN KEY (`extra_id`) REFERENCES `extra` (`id`),
   CONSTRAINT `fk_extra_item_product1` FOREIGN KEY (`product_product_id`) REFERENCES `product` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,7 +182,7 @@ CREATE TABLE `extra_item` (
 
 LOCK TABLES `extra_item` WRITE;
 /*!40000 ALTER TABLE `extra_item` DISABLE KEYS */;
-INSERT INTO `extra_item` VALUES (1,3,'987662514'),(2,2,'123456789');
+INSERT INTO `extra_item` VALUES (1,3,'987662514'),(2,2,'123456789'),(3,1,'123456789');
 /*!40000 ALTER TABLE `extra_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -260,7 +260,7 @@ CREATE TABLE `product_item` (
   CONSTRAINT `fk_product_item_product1` FOREIGN KEY (`product_product_id`) REFERENCES `product` (`product_id`),
   CONSTRAINT `fk_product_item_product_status1` FOREIGN KEY (`product_status_id`) REFERENCES `product_status` (`id`),
   CONSTRAINT `fk_product_item_weight1` FOREIGN KEY (`weight_id`) REFERENCES `weight` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -269,7 +269,7 @@ CREATE TABLE `product_item` (
 
 LOCK TABLES `product_item` WRITE;
 /*!40000 ALTER TABLE `product_item` DISABLE KEYS */;
-INSERT INTO `product_item` VALUES (1,10,1000,1,'122314522',1),(3,20,1500,1,'123456789',1),(4,12,3000,1,'987662514',3),(5,1,4000,1,'122314522',2);
+INSERT INTO `product_item` VALUES (1,10,1000,1,'122314522',1),(3,20,1500,1,'123456789',2),(4,12,3000,1,'987662514',3),(5,1,4000,1,'122314522',2),(6,4,300,1,'122314522',3);
 /*!40000 ALTER TABLE `product_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -433,7 +433,7 @@ CREATE TABLE `watchlist` (
 
 LOCK TABLES `watchlist` WRITE;
 /*!40000 ALTER TABLE `watchlist` DISABLE KEYS */;
-INSERT INTO `watchlist` VALUES (12,5,2),(14,3,2);
+INSERT INTO `watchlist` VALUES (12,5,2);
 /*!40000 ALTER TABLE `watchlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -470,4 +470,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-16 15:32:57
+-- Dump completed on 2023-09-17 22:28:08

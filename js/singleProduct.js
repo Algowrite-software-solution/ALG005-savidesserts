@@ -1,8 +1,11 @@
 // default loaders
 document.addEventListener("DOMContentLoaded", () => {
-  loadProduct(document.body.dataset.productid);
-  loadExtraItem(document.body.dataset.productid);
-  loadWeight(document.body.dataset.productid)
+  const productid = document.body.dataset.productid;
+  const weight = document.body.dataset.weight;
+
+  loadProduct(productid);
+  loadExtraItem(productid);
+  loadWeight(productid, weight)
 });
 
 // single product QTY changer
@@ -16,14 +19,14 @@ plus.addEventListener("click", () => {
   if (a < 20) {
     a++;
   }
-  a = a < 10 ? "0" + a : a;
+  a = a < 10 ?  + a : a;
   num.innerText = a;
 });
 
 minus.addEventListener("click", () => {
   if (a > 1) {
     a--;
-    a = a < 10 ? "0" + a : a;
+    a = a < 10 ?  + a : a;
     num.innerText = a;
   }
 });
@@ -75,7 +78,7 @@ function loadProduct(productId) {
         const details = data.results;
         title.innerText = details.product_name;
         productDescription.innerText = details.product_description;
-        productPrice.innerText = details.product_price;
+        productPrice.innerText = details.item_price;
 
         // load related items
         let keywords =
@@ -189,7 +192,7 @@ function loadExtraItem(productId) {
     .then((data) => {
       // Handle the JSON data received from the API
       // console.log("Data from the API:", data);
-      extraItemContainer.innerHTML = "";
+      extraItemContainer.innerHTML = `<option value="4">Select Extra Item</option>`;
       if (data.status === 'success') {
         data.response.forEach((element) => {
           extraItemContainer.innerHTML += `
@@ -197,7 +200,7 @@ function loadExtraItem(productId) {
           `
         });
       } else if (data.status === 'no row data') {
-        console.log(data.status);
+        extraItemContainer.innerHTML = `<option disabled value="4">Select Extra Item</option>`;
       } else {
         console.log(data);
       }
@@ -209,8 +212,8 @@ function loadExtraItem(productId) {
 }
 
 // load weight
-function loadWeight(productId) {
-
+function loadWeight(productId, weightId) {
+  //weight container
   const loadWeightContainer = document.getElementById('loadWeightContainer');
 
   const fdata = new FormData();
@@ -232,10 +235,18 @@ function loadWeight(productId) {
       loadWeightContainer.innerHTML = "";
       if (data.status === 'success') {
         data.response.forEach((element) => {
-          loadWeightContainer.innerHTML += `
-          <option value="${element.weight_id}">${element.weight}</option>
-          `
+          const option = document.createElement('option');
+          option.value = element.weight_id;
+          option.textContent = element.weight;
+          loadWeightContainer.appendChild(option);
         });
+
+        // Select the option with the specified weightId
+        const selectedOption = loadWeightContainer.querySelector(`option[value="${weightId}"]`);
+        if (selectedOption) {
+          selectedOption.selected = true;
+        }
+
       } else if (data.status === 'no row data') {
         console.log(data.status);
       } else {
@@ -249,13 +260,20 @@ function loadWeight(productId) {
 }
 
 //add to cart
-function addToCartItem() {
-  const loadWeightContainer = document.getElementById('loadWeightContainer');
+function addToCartItem(product_id, weight_id) {
+
+  const loadWeightContainer = document.getElementById('loadWeightContainer').value || weight_id;
+  const extraItemContainer = document.getElementById('extraItemContainer').value || 4;
+  const qty = document.getElementById('numid').textContent;
 
   const fdata = new FormData();
-  fdata.append('product_id', productId);
+  fdata.append('product_id', product_id);
+  fdata.append('qty', qty);
+  fdata.append('loadWeightContainer', loadWeightContainer);
+  fdata.append('extraItemContainer', extraItemContainer);
+
   // Fetch request
-  fetch(SERVER_URL + "backend/api/weight_load.php", {
+  fetch(SERVER_URL + "backend/api/cardAddingProcess.php", {
     method: "POST", // HTTP request method
     body: fdata,
   })
@@ -270,11 +288,7 @@ function addToCartItem() {
       // console.log("Data from the API:", data);
       loadWeightContainer.innerHTML = "";
       if (data.status === 'success') {
-        data.response.forEach((element) => {
-          loadWeightContainer.innerHTML += `
-          <option value="${element.weight_id}">${element.weight}</option>
-          `
-        });
+        console.log('success');
       } else if (data.status === 'no row data') {
         console.log(data.status);
       } else {
