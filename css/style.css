@@ -431,3 +431,18 @@
   background-color: var(--tan);
   transition: var(--transition1);
 }
+
+.paycheck-prof-img{
+  width: 120px;
+  border-radius: 25px;
+}
+
+.paycheck-product-img{
+  width: 150px;
+  border-radius: 25px;
+}
+
+.paycheck-thanku-img{
+  width: 180px;
+  border-radius: 25px;
+}
