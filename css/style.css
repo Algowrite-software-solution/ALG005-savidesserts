@@ -3,6 +3,10 @@
   height: 60px;
 }
 
+/* .page {
+  transition: opacity 0.5s ease;
+} */
+
 .hd-marginLeft {
   margin-left: 110px;
 }
@@ -36,10 +40,11 @@
 
 .ld-s1-hero {
   width: 100%;
-  min-height: 90vh;
+  min-height: 100vh;
   background-image: url("../resources/images/mainImg.png");
   background-size: cover;
   background-position: center;
+  padding-bottom: 8%;
 }
 
 /* home slider */
@@ -305,24 +310,25 @@
 
 .promotionSwiper.swiper {
   width: 100%;
+  /* max-height:30vh; */
+  /* background: red; */
 }
 
 .promotionSwiper.swiper-slide {
   text-align: center;
   font-size: 18px;
-  /* background: #fff; */
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 220px;
-  height: 300px;
-  /* box-shadow: none; */
+  align-items:start;
+  width: 100%;
+  height: 250px;
 }
 
 .promotionSwiper.swiper-slide img {
   display: block;
   width: 100%;
   /* object-fit: cover; */
+  height: 50vh;
   border-radius: 20px;
 }
 
@@ -335,7 +341,6 @@
 .categorySwiper.swiper-slide {
   text-align: center;
   font-size: 18px;
-  /* background: #fff; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -345,6 +350,31 @@
 }
 
 .categorySwiper.swiper-slide img {
+  display: block;
+  width: 100%;
+  /* object-fit: cover; */
+  border-radius: 20px;
+}
+
+/* best selling section */
+
+.bestSellingSwiper.swiper {
+  width: 100%;
+}
+
+.bestSellingSwiper.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  /* background: #fff; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 220px;
+  height: 300px;
+  /* box-shadow: none; */
+}
+
+.bestSellingSwiper.swiper-slide img {
   display: block;
   width: 100%;
   /* object-fit: cover; */

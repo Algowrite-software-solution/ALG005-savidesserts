@@ -33,7 +33,7 @@ function loadProductPromotions() {
                        ${element.start_date_time}
                        ${element.end_date_time}
                        ${element.promotion_id}
-                       <img src="resources/images/banner.png" class="" alt="">
+                       <img src="resources/images/test.jpg" class="" alt="prommotion_img">
                     </div>
                 </div>
             `;

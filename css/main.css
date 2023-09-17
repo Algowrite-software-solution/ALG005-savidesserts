@@ -97,9 +97,20 @@
   color: var(--dark);
 }
 
+  /* CSS for page transition */
+  .page-transition {
+    opacity: 0;
+    transform: translateY(200px);
+    transition: opacity 8.9s ease, transform 9.9s ease;
+  }
+  
+
 /* hover */
+.alg-button-hover{
+  transition: 0.3s ease;
+}
 .alg-button-hover:hover {
-  scale: 1.1;
+  transform: scale(1.09);
 }
 
 .alg-text-hover:hover {

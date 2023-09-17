@@ -14,17 +14,19 @@ if ($sessionManager->isLoggedIn()) {
         <nav>
             <div class="position-relative px-lg-5">
                 <div class="col-12 d-flex justify-content-between align-items-center m-0 px-0">
-                    <div class="p-3">
-                        <img src="resources/images/logo.png" alt="some thing went wrong" class="header-logo-img" />
-                    </div>
+                    <a href="index.php" class="page-transition-button" data-target-page="index.php">
+                        <div class="p-3">
+                            <img src="resources/images/logo.png" alt="some thing went wrong" class="header-logo-img" />
+                        </div>
+                    </a>
 
                     <div class="d-none d-md-block d-lg-block">
                         <div class="d-flex gap-4 alg-cursor">
                             <div class="alg-bg-tan  px-5 py-1 rounded-4 position-absolute fw-bold alg-button-hover">
-                                <span><a href="index.php" class="text-decoration-none text-black">Home</a></span>
+                                <span><a href="index.php" class="text-decoration-none text-black page-transition-button" data-target-page="index.php">Home</a></span>
                             </div>
                             <div class="alg-bg-light px-5 py-1 rounded-4 hd-marginLeft fw-bold alg-button-hover">
-                                <span><a href="products.php" class="text-decoration-none text-black">Products</a></span>
+                                <span><a href="products.php" class="text-decoration-none text-black page-transition-button" data-target-page="products.php">Products</a></span>
                             </div>
                         </div>
                     </div>
@@ -41,7 +43,7 @@ if ($sessionManager->isLoggedIn()) {
                                     <?php
                                     if ($isLoggedIn) {
                                     ?>
-                                        <span class="d-flex justify-content-center align-items-center fw-semibold"><a href="profileViewCard.php" class="text-decoration-none text-black"><?php echo (substr($userData["full_name"], 0, 2)) ?></a></span>
+                                        <span class="d-flex justify-content-center align-items-center fw-semibold"><a href="profileViewCard.php" class="text-decoration-none text-black page-transition-button" data-target-page="profileViewCard.php"><?php echo (substr($userData["full_name"], 0, 2)) ?></a></span>
                                     <?php
                                     } else {
                                     ?>
@@ -60,10 +62,10 @@ if ($sessionManager->isLoggedIn()) {
                 </div>
                 <div class=" text-center nav-box alg-bg-gold bg-opacity-50 position-static">
                     <div class="d-flex flex-column d-block d-md-none pb-3">
-                        <span class="mt-3 alg-div-hover"><a href="index.php" class="text-decoration-none fw-semibold">Home</a></span>
-                        <span class="mt-3 alg-div-hover"><a href="cardItem.php" class="text-decoration-none fw-semibold">Products</a></span>
-                        <span class="mt-3 alg-div-hover"><a href="#cart" class="text-decoration-none fw-semibold">Cart</a></span>
-                        <span class="mt-3 alg-div-hover" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"><a href="#watchlist" class="text-decoration-none fw-semibold">Watchlist</a></span>
+                        <span class="mt-3 alg-div-hover"><a href="index.php" class="text-decoration-none fw-semibold page-transition-button" data-target-page="index.php">Home</a></span>
+                        <span class="mt-3 alg-div-hover"><a href="products.php" class="text-decoration-none fw-semibold page-transition-button" data-target-page="products.php">Products</a></span>
+                        <span class="mt-3 alg-div-hover"><a href="#cart" class="text-decoration-none fw-semibold" onclick="openCartModel();">Cart</a></span>
+                        <span class="mt-3 alg-div-hover" onclick="openWatchlistModel();"><a href="#watchlist" class="text-decoration-none fw-semibold">Watchlist</a></span>
                     </div>
                 </div>
             </div>
@@ -187,7 +189,7 @@ if ($sessionManager->isLoggedIn()) {
             <div class="modal-body px-4">
                 <div class="row bg-black text-white fw-bold rounded-5 px-4">
                     <div class="col-12 p-1">
-                        <div class="d-flex justify-content-around alg-text-h2">
+                        <div class="d-flex justify-content-between alg-text-h2">
                             <div class="col-7 col-md-8 col-lg-7 m-0 p-0">
                                 <span class="alg-text-h3">Product</span>
                             </div>
@@ -239,11 +241,11 @@ if ($sessionManager->isLoggedIn()) {
             <div class="modal-body px-2 px-lg-3">
                 <div class="w-100 bg-black text-white fw-bold rounded-5 m-0 px-5">
                     <div class="col-12">
-                        <div class="row d-flex  justify-content-around alg-text-h2 m-0 p-1">
-                            <div class="col-8 m-0 p-0">
+                        <div class="d-flex justify-content-between alg-text-h2">
+                            <div class="col-7 col-md-8 col-lg-7 m-0 p-0">
                                 <span>Product</span>
                             </div>
-                            <div class="col-3 d-flex gap-3 gap-lg-5 m-0 px-lg-1">
+                            <div class="col-5 col-lg-5 col-md-5 d-flex justify-content-center gap-3 gap-md-4 gap-lg-5 m-0 p-0">
                                 <span>weight</span>
                                 <span>Price</span>
                                 <span>Remove</span>
@@ -255,8 +257,8 @@ if ($sessionManager->isLoggedIn()) {
                 <!-- empty watchlist -->
 
                 <div class="text-center alg-header-text alg-text-h2 mt-4 fw-bold" id="emptyWatchlistContainer">
-                   <!-- empty watchlist Goes Here -->
-                 </div>
+                    <!-- empty watchlist Goes Here -->
+                </div>
 
                 <!-- empty watchlsit -->
 
@@ -267,3 +269,6 @@ if ($sessionManager->isLoggedIn()) {
         </div>
     </div>
 </div>
+
+
+

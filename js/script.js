@@ -1,5 +1,28 @@
 const SERVER_URL = "http://localhost:9001/";
 
+// JavaScript for smooth page transition
+document.addEventListener('DOMContentLoaded', function () {
+  const buttons = document.querySelectorAll('.page-transition-button');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+
+      // Add the transition class to trigger the animation
+      document.body.classList.add('page-transition');
+
+      // Get the target page URL from the button's data attribute
+      const targetPage = this.getAttribute('data-target-page');
+
+      // After a short delay, navigate to the target page
+      setTimeout(function () {
+        window.location.href = targetPage;
+      }, 1000); // Adjust the delay as needed
+    });
+  });
+});
+
+
 document.addEventListener("DOMContentLoaded", () => { });
 
 // header
@@ -85,8 +108,8 @@ function cartProductView() {
           // cart main container
           cartMainContainer.innerHTML += `
                     <div class="col-12 p-3 alg-bg-dark rounded-4">
-                        <div class="d-flex justify-content-around align-items-center text-white p-2 px-2 px-lg-0">
-                            <div class="col-7 col-md-6 col-lg-7 d-flex gap-3 m-0 p-0">
+                        <div class="d-flex justify-content-around align-items-center text-white p-2 px-0 px-lg-0">
+                            <div class="col-7 col-md-6 col-lg-7 d-flex gap-2 gap-lg-3 m-0 p-0">
                                 <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-2 mt-md-0">
                                 <div class="lh-1 m-0 p-0">
                                     <span class="alg-text-h3 fw-semibold">${element.product_name}</span><br />
@@ -94,9 +117,9 @@ function cartProductView() {
                                     (<span class="alg-text-h3">${element.extra_fruit_name}</span>)
                                 </div>
                             </div>
-                            <div class="col-5 col-md-5 col-lg-4 d-flex gap-4 gap-lg-5 alg-text-h3 p-0 m-0 px-1 px-md-5 px-lg-4">
+                            <div class="col-5 col-md-5 col-lg-5 d-flex justify-content-center gap-3 gap-md-4 gap-lg-5 alg-text-h3 p-0 m-0">
                                 <span>${element.weight}</span>
-                                <span>${element.qty}</span>
+                                <span>(${element.qty})</span>
                                 <span>LKR ${itemPrice}</span>
                                 <span class="mx-0 mx-lg-0"><i class="bi bi-trash-fill" onclick="deleteCartProduct(${element.card_id});"></i></span>
                             </div>
@@ -285,21 +308,21 @@ function watchlistDataView() {
         data.response.forEach((element) => {
           watchListMainContainer.innerHTML += `
           <div class="col-12 alg-bg-dark rounded-4 p-2">
-                  <div class="row d-flex justify-content-around align-items-center text-white m-0 p-2 px-3">
-                      <div class="col-8 d-flex gap-3 m-0 p-0">
-                          <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-3 mt-md-0">
-                              <div class="lh-1">
-                                 <span class="alg-text-h2 fw-semibold">${element.product_name}</span><br />
-                                 <span class="alg-text-h3">${element.category_type}</span>
-                              </div>
-                            </div>
-                            <div class="col-3 d-flex gap-5 alg-text-h3 m-0 p-0">
-                                <span>${element.weight}</span>
-                                <span>LKR ${element.price}</span>
-                                <span class="mx-2 mx-lg-0"><i class="bi bi-trash-fill" onclick="watchlistProductDelete(${element.watchlist_id});"></i></span>
-                          </div>
-                   </div>
-            </div>
+          <div class="d-flex justify-content-around align-items-center text-white m-0 p-2 px-3">
+              <div class="col-7 col-md-6 col-lg-6 d-flex align-items-center gap-2 gap-lg-3 m-0 p-0">
+                  <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-3 mt-md-0">
+                  <div class="lh-1">
+                      <span class="alg-text-h2 fw-semibold">${element.product_name}</span><br />
+                      <span class="alg-text-h3">${element.category_type}</span>
+                  </div>
+              </div>
+              <div class="col-5 col-lg-6 col-md-5 d-flex justify-content-center gap-3 gap-md-4 gap-lg-5 m-0 p-0 alg-text-h3">
+                  <span>${element.weight}</span>
+                  <span>LKR ${element.price}</span>
+                  <span class="mx-2 mx-lg-0"><i class="bi bi-trash-fill" onclick="watchlistProductDelete(${element.watchlist_id});"></i></span>
+              </div>
+          </div>
+      </div>
           `;
         });
 
