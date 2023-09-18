@@ -442,6 +442,11 @@ function signUp() {
   let password = document.getElementById("signUp-password").value;
   let rePassword = document.getElementById("signUp-retypepassword").value;
 
+  // console.log(email);
+  // console.log(full_name);
+  // console.log(password);
+  // console.log(rePassword);
+
   // console.log("2");
 
   const form = new FormData();
@@ -482,11 +487,11 @@ function signIn() {
     method: "POST",
     body: form,
   })
-    .then((response) => response.text())
+    .then((response) => response.json())
     .then((data) => {
       if (data.status == "success") {
-        alert(data.results);
         window.location.reload();
+
       } else if (data.status == "failed") {
         console.log(data.results);
       } else {
