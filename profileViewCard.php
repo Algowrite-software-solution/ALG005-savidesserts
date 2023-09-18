@@ -34,7 +34,7 @@
             <div class="col-12  d-flex justify-content-center">
                 <div class="">
                     <div class="col-12 d-flex flex-column justify-content-center align-items-center alg-bg-dark p-4 px-5 rounded-4" id="userCardContainer">
-                        
+                        <!-- profile data goes here -->
                     </div>
 
                 </div>
