@@ -25,7 +25,7 @@
 
 <body>
 
-    <section class="alg-bg-light">
+    <section class="alg-bg-light profile-pg">
 
         <?php include("pages/components/header.php") ?>
         <?php include("pages/components/profileNavigation.php") ?>
