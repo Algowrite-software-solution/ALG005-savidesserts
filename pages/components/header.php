@@ -9,7 +9,7 @@ if ($sessionManager->isLoggedIn()) {
 }
 ?>
 
-<header class="alg-bg-dark">
+<header class="alg-bg-dark sticky-top ">
     <div class="container">
         <nav>
             <div class="position-relative px-lg-5">
@@ -43,11 +43,14 @@ if ($sessionManager->isLoggedIn()) {
                                     <?php
                                     if ($isLoggedIn) {
                                     ?>
-                                        <span class="d-flex justify-content-center align-items-center fw-semibold"><a href="profileViewCard.php" class="text-decoration-none text-black page-transition-button" data-target-page="profileViewCard.php"><?php echo (substr($userData["full_name"], 0, 2)) ?></a></span>
+                                        <span class="d-flex justify-content-center align-items-center fw-semibold"><a href="profileViewCard.php" class="text-decoration-none text-black page-transition-button" data-target-page="profileViewCard.php"><?php echo (substr($userData["full_name"], 0, 1)) ?></a></span>
                                     <?php
                                     } else {
                                     ?>
-                                        <button type="button" class="btn btn-primary" onclick="openSignInModel()">Click</button>
+
+                                        <button type="button" class="btn btn-primary" onclick="openSignInModel()">CLICK</button>
+
+
                                     <?php
                                     }
                                     ?>
@@ -269,6 +272,3 @@ if ($sessionManager->isLoggedIn()) {
         </div>
     </div>
 </div>
-
-
-

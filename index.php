@@ -27,7 +27,7 @@
     <?php include("pages/components/header.php") ?>
 
     <!-- home -->
-    <section class="ld-s1-hero pt-3">
+    <section class="ld-s1-hero pt-3 ">
         <div class="container">
             <div class="w-100 m-0 p-0">
                 <div class="pt-lg-5">
