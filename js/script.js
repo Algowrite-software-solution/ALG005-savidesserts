@@ -395,16 +395,18 @@ function openWatchlistModel() {
 
 // signin open
 let signInModel;
+let signUpModel;
+signInModel = new bootstrap.Modal("#signInModel");
+signUpModel = new bootstrap.Modal("#signUpModel");
+
 function openSignInModel() {
-  signInModel = new bootstrap.Modal("#signInModel");
   signInModel.show();
 }
 
 // signun open
-let signUnModel;
 function openSignUpModel() {
-  signInModel = new bootstrap.Modal("#signUpModel");
-  signInModel.show();
+  signInModel.hide();
+  signUpModel.show();
 }
 
 // sign in sign up section
