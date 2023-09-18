@@ -129,15 +129,15 @@
 }
 
 /* hover */
-.alg-button-hover {
-  transition: 0.3s ease;
+.alg-button-hover{
+  transition: 1.2s ease;
 }
 .alg-button-hover:hover {
   transform: scale(1.09);
 }
 
 .alg-text-hover:hover {
-  color: var(--light);
+  color: var(--gold);
 }
 
 .alg-contct-info-box {
