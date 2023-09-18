@@ -429,6 +429,10 @@
   transition: var(--transition1);
 }
 
+.paycheck-main{
+  height: 100vh;
+}
+
 .paycheck-prof-img {
   width: 120px;
   border-radius: 25px;
@@ -437,6 +441,13 @@
 .paycheck-product-img {
   width: 150px;
   border-radius: 25px;
+}
+
+@media (max-width: 380px) {
+  .paycheck-prof-img {
+    width: 80px;
+    height: 100px;
+  }
 }
 
 .paycheck-thanku-img {
