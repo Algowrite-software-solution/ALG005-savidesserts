@@ -9,7 +9,7 @@ if ($sessionManager->isLoggedIn()) {
 }
 ?>
 
-<header class="alg-bg-dark sticky-top ">
+<header class="alg-bg-dark sticky-top">
     <div class="container">
         <nav>
             <div class="position-relative px-lg-5">
@@ -47,10 +47,7 @@ if ($sessionManager->isLoggedIn()) {
                                     <?php
                                     } else {
                                     ?>
-
-                                        <button type="button" class="btn btn-primary" onclick="openSignInModel()">CLICK</button>
-
-
+                                        <span class="d-flex justify-content-center align-items-center" onclick="openSignInModel()"><i class="bi bi-person-fill fs-5 alg-text-light alg-text-hove"></i></span>
                                     <?php
                                     }
                                     ?>

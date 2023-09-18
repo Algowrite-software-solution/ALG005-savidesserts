@@ -40,7 +40,7 @@
                             <span>nimal@gmail.com</span>
                             <span>+9421543678</span>
                         </div>
-                        <button type="button" onclick="signOut();" class="text-decoration-none text-black page-transition-button alg-bg-tan fw-bold alg-button-hover px-4 py-1 rounded-4">SIGN OUT</button>
+                        <button type="button" onclick="signOut();" class="text-decoration-none mt-2 text-black page-transition-button alg-bg-tan fw-bold alg-button-hover px-4 py-1 rounded-4">SIGN OUT</button>
                     </div>
                 </div>
             </div>
