@@ -4,6 +4,10 @@ require_once("../model/data_validator.php");
 require_once("../model/response_sender.php");
 require_once("../model/password_encryptor.php");
 
+
+// headers
+// header("Content-Type: application/json; charset=UTF-8");
+
 $email = $_POST['email'];
 $password = $_POST['password'];
 $fullName = $_POST['fullName'];
