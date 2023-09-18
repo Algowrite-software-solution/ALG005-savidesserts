@@ -1,3 +1,14 @@
+<?php
+
+require_once("backend/model/SessionManager.php");
+
+$session_manager = new SessionManager();
+if (!$session_manager->isLoggedIn()) {
+    header("Location: index.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +36,7 @@
 
 <body>
 
-    <section class="alg-bg-light">
+    <section class="alg-bg-light profile-pg">
 
         <?php include("pages/components/header.php") ?>
         <?php include("pages/components/profileNavigation.php") ?>
