@@ -15,6 +15,7 @@
     <!-- js -->
     <script defer src="../js/bootstrap.bundle.js"></script>
     <script defer src="adminComponent.js"></script>
+    <script defer src="../js/main.js"></script>
 </head>
 
 <body class="w-100 bg-dark" style="height: 100vh;">
@@ -34,7 +35,7 @@
                     <button type="button" class="alg-rounded-large alg-bg-dark" data-bs-dismiss="modal" aria-label="Close">X</button>
                 </div>
                 <div class="modal-body" id="modelBody">
-                    <p>Modal body goes here.</p>
+
                 </div>
                 <div class="modal-footer" id="modelFooter">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

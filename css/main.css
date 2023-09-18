@@ -8,10 +8,11 @@
 :root {
   /* color */
   --dark: #122620;
+  --darker: #0a1411;
   --tan: #b68b40;
   --gold: #d6ad60;
   --light: #f4ebd0;
-  --white: #ffffff;
+  --white: #f6f6f6;
 
   /* transistion */
   --transition1: 200ms;
@@ -31,9 +32,10 @@
   --font-h3-md: 13px;
   --font-h3: 11px;
 
-  --font-p-lg: 12px;
-  --font-p-md: 10px;
-  --font-p: 8px;
+  --font-p-lg: 16px;
+  --font-p-mid: 14px;
+  --font-p-sm: 13px;
+  --font-p-xsm: 12px;
 
   /* radius */
   --rounded-large: 50px;
@@ -67,13 +69,16 @@
   background-color: var(--dark);
 }
 
+.alg-bg-darker {
+  background-color: var(--darker);
+}
+
 .alg-bg-tan {
   background-color: var(--tan);
 }
 
 .alg-bg-gold {
   background-color: var(--gold);
-  border-radius: var(--rounded-mid);
 }
 
 .alg-bg-light {
@@ -89,6 +94,10 @@
   color: var(--light);
 }
 
+.alg-text-white {
+  color: var(--white);
+}
+
 .alg-text-tan {
   color: var(--tan);
 }
@@ -97,24 +106,38 @@
   color: var(--dark);
 }
 
-  /* CSS for page transition */
-  .page-transition {
-    opacity: 0;
-    transform: translateY(200px);
-    transition: opacity 8.9s ease, transform 9.9s ease;
-  }
-  
+.alg-text-darker {
+  color: var(--darker);
+}
+
+/* CSS for page transition */
+.page-transition {
+  opacity: 0;
+  transform: translateY(200px);
+  transition: opacity 8.9s ease, transform 9.9s ease;
+}
+
+/* utility */
+/* height */
+.alg-h-100vh {
+  height: 100vh;
+}
+
+/* shadow */
+.alg-shadow {
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 30px;
+}
 
 /* hover */
 .alg-button-hover{
-  transition: 0.3s ease;
+  transition: 1.2s ease;
 }
 .alg-button-hover:hover {
   transform: scale(1.09);
 }
 
 .alg-text-hover:hover {
-  color: var(--light);
+  color: var(--gold);
 }
 
 .alg-contct-info-box {
@@ -159,7 +182,7 @@
 
 /* button */
 .alg-btn-pill {
-  /* padding: 10px 30px; */
+  padding: 5px 20px;
   border: none;
   font-weight: bold;
   outline: 2px var(--gold) solid;
@@ -201,7 +224,17 @@
   border: none;
 }
 
+/* font size */
+.alg-text-p {
+  font-size: var(--font-p-lg);
+}
+
 @media screen and (min-width: 1070px) {
+  /* font size */
+  .alg-text-p {
+    font-size: var(--font-p-mid);
+  }
+
   .alg-text-h1 {
     font-size: var(--font-h1-lg);
   }
@@ -221,6 +254,11 @@
 }
 
 @media screen and (max-width: 1070px) and (min-width: 575px) {
+  /* font size */
+  .alg-text-p {
+    font-size: var(--font-p-sm);
+  }
+
   .alg-text-h1 {
     font-size: var(--font-h1-md);
   }
@@ -240,6 +278,11 @@
 }
 
 @media screen and (max-width: 575px) {
+  /* font size */
+  .alg-text-p {
+    font-size: var(--font-p-xsm);
+  }
+
   .alg-text-h1 {
     font-size: var(--font-h1);
   }
