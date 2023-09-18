@@ -1,28 +1,5 @@
 const SERVER_URL = "http://localhost:9001/";
 
-// JavaScript for smooth page transition
-document.addEventListener('DOMContentLoaded', function () {
-  const buttons = document.querySelectorAll('.page-transition-button');
-
-  buttons.forEach(button => {
-    button.addEventListener('click', function (event) {
-      event.preventDefault();
-
-      // Add the transition class to trigger the animation
-      document.body.classList.add('page-transition');
-
-      // Get the target page URL from the button's data attribute
-      const targetPage = this.getAttribute('data-target-page');
-
-      // After a short delay, navigate to the target page
-      setTimeout(function () {
-        window.location.href = targetPage;
-      }, 1000); // Adjust the delay as needed
-    });
-  });
-});
-
-
 document.addEventListener("DOMContentLoaded", () => { });
 
 // header

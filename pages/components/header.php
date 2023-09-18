@@ -14,7 +14,7 @@ if ($sessionManager->isLoggedIn()) {
         <nav>
             <div class="position-relative px-lg-5">
                 <div class="col-12 d-flex justify-content-between align-items-center m-0 px-0">
-                    <a href="index.php" class="page-transition-button" data-target-page="index.php">
+                    <a href="index.php">
                         <div class="p-3">
                             <img src="resources/images/logo.png" alt="some thing went wrong" class="header-logo-img" />
                         </div>
@@ -23,13 +23,13 @@ if ($sessionManager->isLoggedIn()) {
                     <div class="d-none d-md-block d-lg-block">
                         <div class="d-flex gap-4 alg-cursor">
                             <div class="alg-bg-tan  px-5 py-1 rounded-4 position-absolute fw-bold alg-button-hover">
-                                <span><a href="index.php" class="text-decoration-none text-black page-transition-button"
-                                        data-target-page="index.php">Home</a></span>
+                                <span><a href="index.php" class="text-decoration-none text-black"
+                                        >Home</a></span>
                             </div>
                             <div class="alg-bg-light px-5 py-1 rounded-4 hd-marginLeft fw-bold alg-button-hover">
                                 <span><a href="products.php"
-                                        class="text-decoration-none text-black page-transition-button"
-                                        data-target-page="products.php">Products</a></span>
+                                        class="text-decoration-none text-black"
+                                        >Products</a></span>
                             </div>
                         </div>
                     </div>
@@ -50,8 +50,8 @@ if ($sessionManager->isLoggedIn()) {
                                         ?>
                                         <span class="d-flex justify-content-center align-items-center fw-semibold"><a
                                                 href="profileViewCard.php"
-                                                class="text-decoration-none text-black page-transition-button"
-                                                data-target-page="profileViewCard.php">
+                                                class="text-decoration-none text-black"
+                                                >
                                                 <?php echo (substr($userData["full_name"], 0, 1)) ?>
                                             </a></span>
                                         <?php
@@ -75,11 +75,11 @@ if ($sessionManager->isLoggedIn()) {
                 <div class=" text-center nav-box alg-bg-gold bg-opacity-50 position-static">
                     <div class="d-flex flex-column d-block d-md-none pb-3">
                         <span class="mt-3 alg-div-hover"><a href="index.php"
-                                class="text-decoration-none fw-semibold page-transition-button"
-                                data-target-page="index.php">Home</a></span>
+                                class="text-decoration-none fw-semibold"
+                                >Home</a></span>
                         <span class="mt-3 alg-div-hover"><a href="products.php"
-                                class="text-decoration-none fw-semibold page-transition-button"
-                                data-target-page="products.php">Products</a></span>
+                                class="text-decoration-none fw-semibold"
+                                >Products</a></span>
                         <span class="mt-3 alg-div-hover"><a href="#cart" class="text-decoration-none fw-semibold"
                                 onclick="openCartModel();">Cart</a></span>
                         <span class="mt-3 alg-div-hover" onclick="openWatchlistModel();"><a href="#watchlist"
