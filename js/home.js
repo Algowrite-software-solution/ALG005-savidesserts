@@ -29,7 +29,7 @@ function loadProductPromotions() {
           promotionSliderContainer.innerHTML += `
                 <div class="promotionSwiper swiper-slide">
                     <div>
-                       <img src="resources/images/test.jpg" class="" alt="prommotion_img">
+                       <img src="resources/images/banner3.jpg" class="" alt="prommotion_img">
                     </div>
                 </div>
             `;
