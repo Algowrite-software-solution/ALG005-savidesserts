@@ -14,7 +14,7 @@
 
     <!-- js -->
     <script defer src="js/bootstrap.bundle.js"></script>
-    <script defer src="bin/adminComponent.js"></script>
+    <script defer src="js/adminComponent.js"></script>
     <script defer src="js/main.js"></script>
 </head>
 
@@ -83,6 +83,41 @@
                         </div>
                     </section>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- utility -->
+    <!-- model -->
+    <div class="modal" tabindex="-1" id="dashBoardModel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modelTitle">Modal title</h5>
+                    <button type="button" class="alg-rounded-large alg-bg-dark px-2 text-white fs-3" data-bs-dismiss="modal" aria-label="Close">X</button>
+                </div>
+                <div class="modal-body" id="modelBody">
+                
+                </div>
+                <div class="modal-footer" id="modelFooter">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- message toast -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="dashBoardToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <i id="toastIcon" class=""></i>
+                <strong class="me-auto" id="toastTitle">Bootstrap</strong>
+                <small id="toastTime">11 mins ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="toastBody">
+                Hello, world! This is a toast message.
             </div>
         </div>
     </div>

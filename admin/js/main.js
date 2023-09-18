@@ -1,5 +1,9 @@
 // initiator
+const ALG = new DashboardComponents();
+
 document.addEventListener("DOMContentLoaded", () => {
+  test();
+
   const icon = document.getElementById("navigationIcon");
   if (icon) {
     icon.addEventListener("click", () => {
@@ -43,4 +47,16 @@ function toggleNavigation() {
     contentSection.classList.remove("col-xl-10");
   }
   isNavigationPanelOpned = !isNavigationPanelOpned;
+}
+
+function test() {
+  setTimeout(() => {
+    const notificationSection = document.createElement("div");
+    notificationSection.innerHTML = "You have got an order....!";
+    notificationSection.style.backgroundColor = "green";
+    notificationSection.style.padding = "20px";
+    notificationSection.style.color = "white";
+
+    ALG.openModel("Alert", notificationSection);
+  }, 2000);
 }
