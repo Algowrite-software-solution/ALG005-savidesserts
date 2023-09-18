@@ -459,8 +459,11 @@ function signUp() {
   })
     .then((response) => response.json())
     .then((data) => {
-      alert(data);
-      console.log(data);
+      if (data.status === 'success') {
+        console.log('sign up success');
+      } else {
+        console.log(data);
+      }
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -493,4 +496,22 @@ function signIn() {
     .catch((error) => {
       console.error("Error:", error);
     });
+}
+
+// sign Out 
+function signOut() {
+  const request = new XMLHttpRequest();
+  request.onreadystatechange = () => {
+    if (request.readyState == 4 && request.status == 200) {
+      responseObject = JSON.parse(request.responseText);
+      if (responseObject.status === "success") {
+        window.location = "index.php";
+      } else {
+        console.log(responseObject);
+      }
+    }
+  };
+
+  request.open("POST", SERVER_URL + "backend/api/signOut.php", true);
+  request.send();
 }
