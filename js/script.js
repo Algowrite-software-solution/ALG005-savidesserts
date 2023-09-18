@@ -341,7 +341,7 @@ function watchlistDataView() {
         emptyWatchlistContainer.innerHTML = "";
 
         emptyWatchlistContainer.innerHTML += `
-        <span>Please Sign In.........</span>
+        <span>Please Login.........</span>
         `;
       }
     })
@@ -520,3 +520,4 @@ function signOut() {
   request.open("POST", SERVER_URL + "backend/api/signOut.php", true);
   request.send();
 }
+

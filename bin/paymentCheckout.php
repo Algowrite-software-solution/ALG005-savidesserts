@@ -39,8 +39,8 @@
             </div>
             <div class="col-12 d-flex flex-column justify-content-center p-1 p-lg-3">
                 <h4 class="alg-text-dark py-4">Billing Address</h4>
-                <div class="col-12 d-flex justify-content-between alg-bg-dark rounded-5 p-3 px-3 gap-3">
-                    <div class="d-flex gap-3 justify-content-center flex-row ">
+                <div class="col-12 d-flex justify-content-between alg-bg-dark rounded-5 p-3 px-3 gap-3 shadow">
+                    <div class="d-flex gap-3 justify-content-center flex-row">
                         <img src="https://www.javainstitute.edu.lk/img/faculty/mr-thilina.jpg"
                             class="img-fluid paycheck-prof-img" alt="">
                         <div class="d-flex alg-text-light lh-1 justify-content-center flex-column">
@@ -57,7 +57,7 @@
             </div>
             <div class="col-12 d-flex flex-column justify-content-center p-1 p-lg-3">
                 <h4 class="alg-text-dark py-4">Payment Method</h4>
-                <div class="col-12 d-flex justify-content-between alg-bg-dark rounded-5 p-3 px-3 gap-3">
+                <div class="col-12 d-flex justify-content-between alg-bg-dark rounded-5 p-3 px-3 gap-3 shadow">
                     <div class="d-flex gap-3 justify-content-center flex-row ">
                         <img src="https://www.clearhaus.com/img/figurehead/assets/card-schemes.jpg"
                             class="img-fluid paycheck-prof-img" alt="">
@@ -70,7 +70,7 @@
             </div>
         </div>
         <div class="col-12 col-lg-6 alg-bg-light">
-            <div class="d-flex alg-bg-tan flex-column justify-content-center m-2 p-4 p-lg-5 rounded-5">
+            <div class="d-flex alg-bg-tan flex-column justify-content-center m-2 p-4 p-lg-5 rounded-5 shadow-lg">
                 <div class="d-flex alg-text-light justify-content-between">
                     <h4>Your order</h4>
                     <button type="button" class="alg-bg-gold alg-text-h3 border-0 rounded-3 p-2 fw-bolder"> Edit
