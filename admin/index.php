@@ -97,7 +97,7 @@
                     <button type="button" class="alg-rounded-large alg-bg-dark px-2 text-white fs-3" data-bs-dismiss="modal" aria-label="Close">X</button>
                 </div>
                 <div class="modal-body" id="modelBody">
-                
+
                 </div>
                 <div class="modal-footer" id="modelFooter">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
