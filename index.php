@@ -358,7 +358,7 @@
                                     <div class="col-10 col-md-11 col-lg-8">
                                         <div class="bg-white p-2 d-flex align-items-center gap-5 px-3 alg-div-hover rounded-4">
                                             <span><i class="bi bi-geo-alt-fill fs-5 fw-bold"></i></span>
-                                            <span class="fw-bold alg-text-h3">+9421436564</span>
+                                            <span class="fw-bold alg-text-h3">No : 244 balummahara,imbulgoda</span>
                                         </div>
                                     </div>
                                 </div>

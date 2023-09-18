@@ -29,10 +29,10 @@ function loadCategory() {
         categorySliderContainer.innerHTML = "";
         data.results.forEach((element) => {
           categorySliderContainer.innerHTML += `
-            <div class="categorySwiper swiper-slide">
-              <div onclick="setCategory('${element.category_type}');">
+            <div class="categorySwiper swiper-slide category-slide" data-category="${element.category_type}">
+              <div class="category-hover" onclick="setCategory('${element.category_type}');">
                 <img src="resources/images/category2.png" class="img-fluid" alt="category_img">
-                <span class="alg-text-gold alg-bg-dark p-1 px-5 rounded-4 fw-bold position-relative alg-text-h3">${element.category_type}</span>
+                <span class="alg-text-gold  alg-bg-dark p-1 px-5 rounded-4 fw-bold position-relative alg-text-h3">${element.category_type}</span>
               </div>
             </div>
           `;
@@ -96,7 +96,6 @@ function loadProducts(
       // Handle the JSON data received from the API
       if (data.status == "success") {
         data.results.forEach((element) => {
-          console.log(element);
           productListViewContainer.innerHTML += `
             <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mx-0 p-0">
               <div class="row m-0 w-100 p-2">
@@ -143,7 +142,31 @@ function searchProducts() {
 }
 
 function setCategory(category) {
-  selectedCategory = category;
+  selectedCategory === category
+    ? ((selectedCategory = ""), categorySelectEffect(""))
+    : ((selectedCategory = category), categorySelectEffect(category));
+
+  function categorySelectEffect(category) {
+    // selected effect
+    const categories = document.querySelectorAll(".category-slide");
+    categories.forEach((element) => {
+      const span = element.getElementsByTagName("span");
+      span[0].classList.add("alg-text-gold");
+      span[0].classList.add("alg-bg-dark");
+      span[0].classList.remove("alg-text-dark");
+      span[0].classList.remove("alg-bg-gold");
+
+      if (element.dataset.category === category) {
+        span[0].classList.remove("alg-text-gold");
+        span[0].classList.remove("alg-bg-dark");
+        span[0].classList.add("alg-text-dark");
+        span[0].classList.add("alg-bg-gold");
+      }
+    });
+  }
+
+  console.log(selectedCategory);
+
   loadProducts(
     document.getElementById("searchBar").value,
     selectedCategory,

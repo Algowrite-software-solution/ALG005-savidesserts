@@ -67,7 +67,7 @@
     <section class="alg-bg-light">
         <div class="container">
             <div class="col-12 p-0">
-                <div class="row d-flex justify-content-center align-items-center m-0 py-2" id="productListViewContainer">
+                <div class="row d-flex justify-content-center align-items-center m-0 py-2 pd-s3-container" id="productListViewContainer">
                     <!-- product list goes here -->
                     <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mx-0 p-0">
                         <div class="row m-0 w-100 p-2">
