@@ -5,7 +5,7 @@
             <div class="col-10 text-center pb-4 pt-3 px-3">
                 <span class="alg-text-h2 alg-text-dark fw-bold">CATEGORY</span>
                 <div class="categorySwiper swiper mySwiperCategory mt-1 px-4">
-                    <div class="swiper-wrapper" id="categorySliderContainer">
+                    <div class="swiper-wrapper  ps-2" id="categorySliderContainer">
                         <!-- category data goes here -->
                     </div>
                     <div class="swiper-button-next alg-text-gold"></div>

@@ -206,7 +206,7 @@ if (!isset($_GET["product_id"])) {
                                 </select>
                             </div>
                             <div class="col-6 col-lg-6 d-flex mx-0 p-2 mt-lg-0 justify-content-center align-items-center rounded-5 alg-bg-dark text-white" id="productPrice">
-                                ...
+                                
                             </div>
                         </div>
 

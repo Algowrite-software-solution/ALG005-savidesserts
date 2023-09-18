@@ -35,20 +35,20 @@
     <section class="alg-bg-dark">
         <div class="container">
             <div class="col-12 p-0 ">
-                <div class="row px-2 m-0 d-flex flex-column flex-md-row justify-content-around align-items-center py-3">
-                    <button class="col-6 col-md-3 order-2 order-md-1 alg-btn-pill">
+                <div class="row px-2 m-0 p-0 d-flex flex-row flex-md-row justify-content-around align-items-center py-3">
+                    <button class="col-6 col-md-2 order-2 order-md-1 alg-btn-pill p-1 p-lg-2 mt-3 mt-md-0">
                         Advanced
                     </button>
-                    <div class="col-12 col-md-6 order-1 order-md-2">
-                        <div class="row m-0">
+                    <div class="col-12 col-md-6 order-1 order-md-2 m-0 p-0">
+                        <div class="row m-0 p-0">
                             <input id="searchBar" type="text" placeholder="Search products..." class="alg-searchbar border-0 alg-bg-light py-1 px-3 border-0 col-10 p-0 alg-bg-light rounded-end rounded-5" oninput="searchProducts();">
                             <button class="pp-search-btn col-2  rounded-start rounded-5 py-1 px-3 border-0" onclick="searchProducts();">
                                 <i class="bi bi-search text-white fs-4"></i>
                             </button>
                         </div>
                     </div>
-                    <div class="col-6 col-md-3  order-3 order-md-3 position-relative">
-                        <button class="alg-btn-pill dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="col-6 col-md-2  order-3 order-md-3 position-relative mt-3 mt-md-0">
+                        <button class="alg-btn-pill p-1 p-lg-2 dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Dropdown
                         </button>
                         <ul class="dropdown-menu alg-bg-tan rounded-4 w-100">
