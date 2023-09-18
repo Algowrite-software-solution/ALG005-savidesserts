@@ -89,6 +89,10 @@
   height: 280px;
 }
 
+.category-container {
+  min-height: 240px;
+}
+
 .category-hover {
   cursor: pointer;
   transform: scale(100%);
