@@ -90,3 +90,53 @@ let swiperCategory = new Swiper(".mySwiperCategory", {
   // pauseOnHover:true,
   // arrows: false,
 });
+
+
+// checkout section slider
+
+let swiperCheckout = new Swiper(".mySwiperCheckOut", {
+  // pagination: {
+  //   el: ".swiper-pagination",
+  //   type: "fraction",
+  // },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  slideShadows: false,
+  // type: 'loop',
+  // perPage: 3,
+  // slidesPerView: 30,
+  // spaceBetween:48,
+  // centeredSlides:true,
+  // perMove: 1,
+  // autoplay: true,
+  // navigation:{
+  //   nextE1:".swiper-button-next",
+  //   prevE1:".swiper-button-prev",
+  // },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  breakpoints: {
+    200: {
+      slidesPerView: 1,
+      spaceBetween: 50,
+    },
+    468: {
+      slidesPerView: 2,
+      spaceBetween: 60,
+    },
+    980: {
+      slidesPerView: 2,
+      spaceBetween: 60,
+    },
+    1024: {
+      slidesPerView: 3,
+      spaceBetween: 50,
+    }
+  },
+  // pauseOnHover:true,
+  // arrows: false,
+});
