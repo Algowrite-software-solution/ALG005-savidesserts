@@ -1,6 +1,6 @@
-const SERVER_URL = "http://localhost:9001/";
+const SERVER_URL = "";
 
-document.addEventListener("DOMContentLoaded", () => { });
+document.addEventListener("DOMContentLoaded", () => {});
 
 // header
 const toggle = document.querySelector(".alg-toggle-button");
@@ -222,11 +222,9 @@ function cartQtyUpdate() {
 //watchlist request
 //product adding a watchlist
 function productAddingWatchlist(productId, weightId) {
-
   const form = new FormData();
   form.append("productId", productId);
   form.append("weightId", weightId);
-
 
   // Fetch request
   fetch(SERVER_URL + "backend/api/watchListAddingProcess.php", {
@@ -241,12 +239,11 @@ function productAddingWatchlist(productId, weightId) {
     })
     .then((data) => {
       // Handle the JSON data received from the API
-      if (data.status === 'success') {
-        console.log('success');
+      if (data.status === "success") {
+        console.log("success");
       } else {
         console.log(data.error);
       }
-
     })
     .catch((error) => {
       // Handle errors that occur during the Fetch request
@@ -404,11 +401,9 @@ function signUp() {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data.status === 'success') {
-        
+      if (data.status === "success") {
         signInModel.show();
         signUpModel.hide();
-
       } else {
         console.log(data);
       }
@@ -434,7 +429,6 @@ function signIn() {
     .then((data) => {
       if (data.status == "success") {
         window.location.reload();
-
       } else if (data.status == "failed") {
         console.log(data.results);
       } else {
@@ -446,7 +440,7 @@ function signIn() {
     });
 }
 
-// sign Out 
+// sign Out
 function signOut() {
   const request = new XMLHttpRequest();
   request.onreadystatechange = () => {
@@ -463,4 +457,3 @@ function signOut() {
   request.open("POST", SERVER_URL + "backend/api/signOut.php", true);
   request.send();
 }
-
