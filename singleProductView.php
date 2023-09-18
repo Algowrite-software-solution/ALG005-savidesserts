@@ -56,8 +56,8 @@ if (!isset($_GET["product_id"])) {
                         </div>
                     </div>
                     <div class="d-flex justify-content-start gap-5 mb-2 m-0 p-0 w-100">
-                        <div class="d-lg-none col-lg-3 alg-bg-dark text-white text-center rounded-5 p-1 px-4">
-                            Category
+                        <div class="d-lg-none col-lg-3 alg-bg-dark text-white text-center rounded-5 p-1 px-4" id="productCategory">
+                            ....
                         </div>
                         <!-- <span class="position-relative">
                             <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" width="24" height="24" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -142,10 +142,10 @@ if (!isset($_GET["product_id"])) {
                     <div class="col-lg-5 col-12 d-flex flex-column order-2">
                         <div class="col-12 d-flex flex-column justify-content-center justify-content-lg-start align-items-center align-items-lg-start mb-1 mb-lg-5">
                             <div class="d-none d-lg-block mb-1 order-lg-1">
-                                <h2 class="fw-bolder singleProduct-titl">Watalappan Delight</h2>
+                                <h2 class="fw-bolder singleProduct-titl" id="productTitleLargeScreen">....</h2>
                             </div>
                             <div class="d-flex justify-content-start align-item-center gap-5 mb-2 m-0 p-0 order-lg-2">
-                                <div class="col-lg-7 alg-bg-dark d-none d-lg-block text-white text-center rounded-5 p-1 px-4">Watalappan</div>
+                                <div class="col-lg-7 alg-bg-dark d-none d-lg-block text-white text-center rounded-5 p-1 px-4" id="productCategoryLargeScreen">.....</div>
                                 <!-- wishlist adding item -->
                                 <span class="d-none d-lg-block " onclick="productAddingWatchlist(<?php echo $_GET['product_id'] ?>,<?php echo $_GET['weightId'] ?>);">
                                     <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" width="24" height="24" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
