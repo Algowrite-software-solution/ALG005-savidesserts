@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   loadCategory();
 });
 
-
 //product promotion view section
 function loadProductPromotions() {
   // Fetch request
@@ -20,8 +19,9 @@ function loadProductPromotions() {
       return response.json(); // Parse the response body as JSON
     })
     .then((data) => {
-
-      const promotionSliderContainer = document.getElementById("promotionSliderContainer");
+      const promotionSliderContainer = document.getElementById(
+        "promotionSliderContainer"
+      );
 
       if (data.status == "success") {
         promotionSliderContainer.innerHTML = "";
@@ -34,11 +34,9 @@ function loadProductPromotions() {
                 </div>
             `;
         });
-
       } else {
         console.log("no promotion results");
       }
-
     })
     .catch((error) => {
       // Handle errors that occur during the Fetch request
@@ -90,7 +88,6 @@ function loadCategory() {
     });
 }
 
-
 // load category
 function loadCategory() {
   fetch(SERVER_URL + "backend/api/load_category_api.php", {
@@ -116,10 +113,10 @@ function loadCategory() {
         data.results.forEach((element) => {
           categorySliderContainer.innerHTML += `
             <div class="categorySwiper swiper-slide">
-              <div>
+              <a href="products.php?category=${element.category_type}">
                 <img src="resources/images/category2.png" class="img-fluid" alt="category_img">
                 <span class="alg-text-gold alg-bg-dark alg-text-h3 p-1 px-5 rounded-4 fw-bold position-relative">${element.category_type}</span>
-              </div>
+              </a>
             </div>
           `;
         });
@@ -134,4 +131,3 @@ function loadCategory() {
       console.error("Fetch error:", error);
     });
 }
-

@@ -30,7 +30,7 @@ function loadCategory() {
         data.results.forEach((element) => {
           categorySliderContainer.innerHTML += `
             <div class="categorySwiper swiper-slide">
-              <div>
+              <div onclick="setCategory('${element.category_type}');">
                 <img src="resources/images/category2.png" class="img-fluid" alt="category_img">
                 <span class="alg-text-gold alg-bg-dark p-1 px-5 rounded-4 fw-bold position-relative alg-text-h3">${element.category_type}</span>
               </div>
@@ -140,4 +140,15 @@ function searchProducts() {
   const searchTerm = document.getElementById("searchBar").value;
 
   loadProducts(searchTerm, selectedCategory);
+}
+
+function setCategory(category) {
+  selectedCategory = category;
+  loadProducts(
+    document.getElementById("searchBar").value,
+    selectedCategory,
+    "price",
+    "high to low",
+    10
+  );
 }
