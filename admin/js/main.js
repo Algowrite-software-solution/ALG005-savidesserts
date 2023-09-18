@@ -73,17 +73,13 @@ function test() {
       })
       .then((data) => {
         // Handle the JSON data received from the API
-
         if (data.status == "success") {
-          console.log("2");
           const table = ALG.createTable(data.results);
-          ALG.openToast('kavindu buruwa', table, "00:23:23", "bi-x");
+          ALG.openToast("kavindu buruwa", table, "00:23:23", "bi-x");
         } else if (data.status == "failed") {
           console.log(data.error);
-          console.log("3");
         } else {
           console.log(data);
-          console.log("4");
         }
       })
       .catch((error) => {
