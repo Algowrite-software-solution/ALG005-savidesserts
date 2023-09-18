@@ -25,7 +25,7 @@
 
 <body>
 
-    <section class="container-fluid m-0 alg-bg-light">
+    <section class="alg-bg-light">
 
         <?php include("pages/components/header.php") ?>
         <?php include("pages/components/profileNavigation.php") ?>
