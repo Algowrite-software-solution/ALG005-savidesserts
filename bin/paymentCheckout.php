@@ -31,7 +31,7 @@
 <body>
 
     <div class="container-fluid flex-column flex-lg-row m-0 p-0 d-flex paycheck-main">
-        <div class="col-12 col-lg-6 d-flex flex-column alg-bg-light py-3">
+        <div class="col-12 col-lg-6 d-flex flex-column alg-bg-light">
             <div class="d-flex justify-content-center justify-content-lg-start p-3">
                 <h2 class="alg-text-dark fw-bolder">Checkout Details</h2>
             </div>

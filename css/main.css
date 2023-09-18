@@ -113,7 +113,7 @@
 /* CSS for page transition */
 .page-transition {
   opacity: 0;
-  transform: translateY(200px);
+  /* transform: translateY(200px); */
   transition: opacity 8.9s ease, transform 9.9s ease;
 }
 
