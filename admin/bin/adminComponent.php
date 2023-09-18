@@ -15,6 +15,7 @@
     <!-- js -->
     <script defer src="../js/bootstrap.bundle.js"></script>
     <script defer src="adminComponent.js"></script>
+    <script defer src="../js/main.js"></script>
 </head>
 
 <body class="w-100 bg-dark" style="height: 100vh;">

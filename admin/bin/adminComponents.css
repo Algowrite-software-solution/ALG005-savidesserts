@@ -1,5 +1,3 @@
-
-
 /* commen */
 * {
   box-sizing: border-box;
@@ -178,6 +176,18 @@
   color: black;
 }
 
+.alg-sm-position-ablsolute {
+  position: relative;
+}
+
+.navigation-sidebar {
+  z-index: 500px;
+}
+
+.content-divider {
+  z-index: 0;
+}
+
 @media (max-width: 1440px) {
   /* tables */
   .alg-table-container {
@@ -217,6 +227,11 @@
   .alg-list-container {
     min-width: 400px;
     padding: 10px;
+  }
+
+  /* panel layout */
+  .alg-sm-position-ablsolute {
+    position: absolute;
   }
 }
 
