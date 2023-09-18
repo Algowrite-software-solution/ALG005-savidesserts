@@ -4,10 +4,6 @@ require_once("../model/data_validator.php");
 require_once("../model/response_sender.php");
 require_once("../model/password_encryptor.php");
 
-header("Content-Type: application/json; charset=UTF-8");
-
-// $requestData = json_decode($_POST["signUpdata"]);
-
 $email = $_POST['email'];
 $password = $_POST['password'];
 $fullName = $_POST['fullName'];
