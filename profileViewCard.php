@@ -1,3 +1,14 @@
+<?php
+
+require_once("backend/model/SessionManager.php");
+
+$session_manager = new SessionManager();
+if (!$session_manager->isLoggedIn()) {
+    header("Location: index.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
