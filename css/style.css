@@ -1,0 +1,435 @@
+/* header */
+.header-logo-img {
+  height: 60px;
+}
+
+.hd-marginLeft {
+  margin-left: 110px;
+}
+
+.nav-box {
+  opacity: 0;
+  position: absolute;
+  top: 60px;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 1s ease, max-height 2s ease;
+}
+
+.nav-box.alg-nav-box {
+  opacity: 1;
+  max-height: 1000px;
+  box-shadow: 0rem 0.4rem rgba(145, 88, 88, 0.1);
+}
+
+.alg-user-Word {
+  width: 26px;
+  height: 26px;
+  border-radius: 100%;
+}
+
+.img {
+  margin-left: -10px;
+}
+
+/* home */
+.ld-s1-hero {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url("../resources/images/mainImg.png");
+  background-size: cover;
+  background-position: center;
+  padding-bottom: 8%;
+}
+
+/* home slider */
+.mainSlider.swiper {
+  width: 100%;
+  height: 478px;
+}
+
+@media (max-width: 768px) {
+  .mainSlider.swiper {
+    height: 439px;
+  }
+}
+
+@media (max-width: 440px) {
+  .mainSlider.swiper {
+    height: 239px;
+  }
+}
+
+.mainSlider.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+/* category */
+.category-swiper.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.category-swiper.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 280px;
+  height: 280px;
+}
+
+.category-container {
+  min-height: 240px;
+}
+
+.category-hover {
+  cursor: pointer;
+  transform: scale(100%);
+  transition: var(--transition2);
+}
+
+.category-hover:hover {
+  transform: scale(105%);
+  transition: var(--transition2);
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
+.about-us-main {
+  background: #f4ebd0;
+  width: 1440px;
+  height: 614px;
+  flex-shrink: 0;
+}
+
+.img-box {
+  width: 316px;
+  height: 350px;
+  flex-shrink: 0;
+  border-radius: 27px;
+  background: url("https://s3-alpha-sig.figma.com/img/38b5/be5b/aa1a8d78fd3fad7cdc6809e9444cbaad?Expires=1693785600&Signature=iljwz5wgR72sppk1tLjtQRmdSH4~s0essXz18~WI1Nsvq3mqqIIACCzxldjY-oT-F7eXnFetTEIBIL9bzO7Rjov3vuh~WjSOZWspxIAH21VeRi8TJu4iXb6lbdqrSK7~HYfIfOGmE8Hysv69ltguQDKScnAqTgbm7pPZr2YJF~ew3RfDnGm0~UYA4EfoqKNzsSADhcUm-1l48O8d5HpC6edFVt3krtFQLD9N5yMam-sBpTWVvVq6vzhX7ySrBtRtQeEg5JduPrTL3FNHSOU8p2mZAWGyTZeQviKiBWUz49BXYzmfUARAnwC3JnwRjGkvceRRS0PgDhYS2mfKDTgsQQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"),
+    lightgray 50% / cover no-repeat;
+  background-size: 316px 350px;
+  /* shadow */
+  box-shadow: 0px 0px 22px 15px rgba(0, 0, 0, 0.2);
+}
+
+.about-us-title {
+  color: #122620;
+  font-size: 34px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.desc-box {
+  background: #122620;
+  max-height: 330px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: justify;
+  padding: 0 22px 22px 22px;
+  border-radius: 15px;
+
+  /* shadow */
+  box-shadow: 0px 0px 22px 15px rgba(0, 0, 0, 0.2);
+}
+
+.abtus-image-div {
+  height: 350px;
+  width: 100%;
+  object-fit: contain;
+}
+
+.abtus-image-backdrop {
+  background-image: url("../resources/images/aboutUsPersonBackDrop.jpg");
+  background-size: cover;
+  backdrop-filter: blur(200px);
+}
+
+.testm-main {
+  flex-shrink: 0;
+}
+
+.testm-card {
+  border-radius: 25px;
+  width: 300px;
+
+  /* shadow */
+  box-shadow: 0px 0px 22px 15px rgba(0, 0, 0, 0.2);
+}
+
+.testm-card-img {
+  /* width: 104px;
+  height: 104px;
+  flex-shrink: 0;
+  background: url("https://javainstitute.edu.lk/img/faculty/dr-ishantha.jpg"),
+    lightgray 50% / cover no-repeat;
+  background-size: 104px 104px; */
+  border-radius: 15px;
+  width: 100%;
+}
+
+.ld-tes-card-paragraph {
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.singleProductImg-box {
+  background: var(--dark);
+}
+
+.qty-changer-main-div {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.qty-changer-wrapper {
+  height: 40px;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #b68b40;
+  color: #ffffff;
+  border-radius: 12px;
+}
+
+.qty-changer-wrapper span {
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.qty-changer-wrapper span.num {
+  border-right: 2px solid rgba(255, 255, 255, 0.2);
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+}
+
+.item-selector-outline {
+  outline: none;
+  border: none;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+
+.ALG-model-button {
+  background-color: #d6ad60;
+  border: none;
+}
+
+/* section2 */
+
+/* service */
+.alg-service-img {
+  width: 50px;
+  height: 50px;
+}
+
+/* profile page */
+.alg-profile-round {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+/* main slider */
+
+/* promotion slider */
+.banner-main {
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.2) 100%
+    ),
+    #122620;
+  /* height: 433px; */
+  flex-shrink: 0;
+  color: #f4ebd0;
+  font-size: 24px;
+}
+
+.promotionSwiper.swiper {
+  width: 100%;
+}
+
+.promotionSwiper.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  width: 100%;
+  height: 260px;
+}
+
+.promotionSwiper.swiper-slide img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+/* category slider */
+.categorySwiper.swiper {
+  width: 100%;
+}
+
+.categorySwiper.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 300px;
+}
+
+.categorySwiper.swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
+/* best selling section */
+.bestSellingSwiper.swiper {
+  width: 100%;
+}
+
+.bestSellingSwiper.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 220px;
+  height: 300px;
+}
+
+.bestSellingSwiper.swiper-slide img {
+  display: block;
+  width: 100%;
+  border-radius: 20px;
+}
+
+/* checkout section */
+.checkoutSwiper.swiper {
+  width: 100%;
+}
+
+.checkoutSwiper.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 200px;
+}
+
+.alg-shadow {
+  box-shadow: 0px 0px 14px 15px rgba(142, 196, 140, 0.8);
+}
+
+/* landing page */
+/* best selling section */
+.ld-bs-card {
+  height: 300px;
+  border-radius: var(--rounded-mid);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: var(--gold);
+  cursor: pointer;
+  transition: var(--transition2);
+}
+
+.ld-bs-card:hover {
+  transform: scale(103%);
+  transition: var(--transition2);
+}
+
+.ld-bs-card-content {
+  min-height: 100px;
+  background-color: var(--tan);
+  padding: 10px;
+}
+
+@media (min-width: 1440px) {
+  .ld-s1-hero {
+    min-height: max-content;
+  }
+}
+
+.profile-pg {
+  min-height: 100vh;
+}
+
+/* products page */
+/* search bar section */
+.pp-search-btn {
+  background-color: var(--gold);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 100px 0 0;
+  transition: var(--transition1);
+  cursor: pointer;
+}
+
+.pp-search-btn:hover {
+  background-color: var(--tan);
+  transition: var(--transition1);
+}
+
+.paycheck-main {
+  height: 100vh;
+}
+
+.paycheck-prof-img {
+  width: 120px;
+  border-radius: 25px;
+}
+
+.paycheck-product-img {
+  width: 150px;
+  border-radius: 25px;
+}
+
+@media (max-width: 380px) {
+  .paycheck-prof-img {
+    width: 80px;
+    height: 100px;
+  }
+}
+
+.paycheck-thanku-img {
+  width: 180px;
+  border-radius: 25px;
+}
+
+/* product view container section */
+.pd-s3-container {
+  min-height: 500px;
+}
