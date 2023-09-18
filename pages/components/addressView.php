@@ -1,5 +1,5 @@
 <section>
-    <div class="row mt-1 d-flex justify-content-center pt-4 pb-4">
+    <div class="mt-1 d-flex justify-content-center pt-4 pb-4">
         <div class="col-10 alg-bg-dark rounded-4 pb-3">
 
             <div class=" text-center mt-3">

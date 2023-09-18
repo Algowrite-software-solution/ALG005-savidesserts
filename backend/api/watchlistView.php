@@ -37,13 +37,31 @@ if ($result->num_rows > 0) {
           $resRowDetailObject->product_item_id = $row['watchlist_product_item_id'];
           $resRowDetailObject->product_id = $row['product_product_id'];
 
+          $searchProductNamesQuery = "SELECT * FROM `product` INNER JOIN `category` ON `product`.`category_id`=`category`.`id` WHERE `product_id`=? ";
+          $productAndCategoryresult = $db->execute_query($searchProductNamesQuery, 's', array($row['product_product_id']));
+
+          $productAndCategory = $productAndCategoryresult['result'];
+          $pcRow = $productAndCategory->fetch_assoc();
+          $resRowDetailObject->product_name = $pcRow['product_name'];
+          $resRowDetailObject->category_type = $pcRow['category_type'];
+
+          $searchProductItemAndPrice = "SELECT * FROM `product_item` AS `pi` INNER JOIN `weight` AS `w` ON `pi`.`weight_id`=`w`.`id` WHERE `pi`.`id`=?";
+          $searchProductItemAndPriceresult = $db->execute_query($searchProductItemAndPrice, 's', array($row['watchlist_product_item_id']));
+
+          $productItemAndPrice = $searchProductItemAndPriceresult['result'];
+          $ppRow = $productItemAndPrice->fetch_assoc();
+          $resRowDetailObject->price = $ppRow['price'];
+          $resRowDetailObject->weight = $ppRow['weight'];
+
           array_push($responseArray, $resRowDetailObject);
      }
+
      $responseObject->status = 'success';
      $responseObject->response = $responseArray;
      response_sender::sendJson($responseObject);
 } else {
 
      $responseObject->status = 'no row data';
+     $responseObject->response = null;
      response_sender::sendJson($responseObject);
 }

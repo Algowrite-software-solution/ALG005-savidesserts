@@ -1,5 +1,5 @@
 /* header */
-.alg-logo-img {
+.header-logo-img {
   height: 60px;
 }
 
@@ -32,22 +32,32 @@
   margin-left: -10px;
 }
 
-
 /* home */
-
-.alg-main-img {
+.ld-s1-hero {
   width: 100%;
-  height: 90vh;
+  min-height: 100vh;
   background-image: url("../resources/images/mainImg.png");
   background-size: cover;
-  background-position: center; 
+  background-position: center;
+  padding-bottom: 8%;
 }
 
 /* home slider */
-
 .mainSlider.swiper {
   width: 100%;
-  height: 46vh;
+  height: 478px;
+}
+
+@media (max-width: 768px) {
+  .mainSlider.swiper {
+    height: 439px;
+  }
+}
+
+@media (max-width: 440px) {
+  .mainSlider.swiper {
+    height: 239px;
+  }
 }
 
 .mainSlider.swiper-slide {
@@ -55,13 +65,10 @@
   font-size: 18px;
   display: flex;
   justify-content: center;
-  align-items:start;
-  
+  align-items: start;
 }
 
-
 /* category */
-
 .category-swiper.swiper {
   width: 100%;
   padding-top: 50px;
@@ -75,12 +82,25 @@
   height: 280px;
 }
 
+.category-container {
+  min-height: 240px;
+}
+
+.category-hover {
+  cursor: pointer;
+  transform: scale(100%);
+  transition: var(--transition2);
+}
+
+.category-hover:hover {
+  transform: scale(105%);
+  transition: var(--transition2);
+}
+
 .swiper-slide img {
   display: block;
   width: 100%;
 }
-
-
 
 .about-us-main {
   background: #f4ebd0;
@@ -110,82 +130,40 @@
 
 .desc-box {
   background: #122620;
-  height: 370px;
+  max-height: 330px;
   overflow-x: hidden;
   overflow-y: auto;
   text-align: justify;
-  padding: 22px;
+  padding: 0 22px 22px 22px;
+  border-radius: 15px;
 
   /* shadow */
   box-shadow: 0px 0px 22px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* .desc-box {
-    @media (max-width:1550px) {
-        height: 400px;
-    }
-
-    @media (max-width:1400px) {
-        height: 380px;
-    }
-
-    @media (max-width:1300px) {
-        height: 320px;
-    }
-
-    @media (max-width:1000px) {
-        height: 290px;
-    }
-
-    @media (max-width:750px) {
-        height: 250px;
-    }
-} */
-
-/* width */
-.scrollbar::-webkit-scrollbar {
-  width: 20px;
-  scroll-padding-right: 20px;
+.abtus-image-div {
+  height: 350px;
+  width: 100%;
+  object-fit: contain;
 }
 
-/* Track */
-.scrollbar::-webkit-scrollbar-track {
-  background: white;
-  border-radius: 10px;
-}
-
-/* Handle */
-.scrollbar::-webkit-scrollbar-thumb {
-  background: #b68b40;
-  border-radius: 10px;
-  padding-right: 20px;
+.abtus-image-backdrop {
+  background-image: url("../resources/images/aboutUsPersonBackDrop.jpg");
+  background-size: cover;
+  backdrop-filter: blur(200px);
 }
 
 .testm-main {
-  /* background: #F4EBD0; */
-  /* width: 1440px;
-    height: 382px; */
   flex-shrink: 0;
 }
 
 .testm-card {
-  border-radius: 32px;
-  /* background: #122620; */
-  width: 350px;
-  height: 179px;
-  flex-shrink: 0;
+  border-radius: 25px;
+  width: 300px;
 
   /* shadow */
   box-shadow: 0px 0px 22px 15px rgba(0, 0, 0, 0.2);
 }
-
-.testm-card {
-  @media (max-width:320px) {
-      width: 300px;
-  }
-}
-
-
 
 .testm-card-img {
   /* width: 104px;
@@ -194,38 +172,54 @@
   background: url("https://javainstitute.edu.lk/img/faculty/dr-ishantha.jpg"),
     lightgray 50% / cover no-repeat;
   background-size: 104px 104px; */
-  border-radius: 50%;
+  border-radius: 15px;
+  width: 100%;
 }
 
-.card-para {
-  /* color: #FFF; */
+.ld-tes-card-paragraph {
   font-size: 11px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
 
-.footer-main {
-  /* width: 1440px; */
-  /* height: 148px;
-    flex-shrink: 0;
-    background: #060D0B; */
+.singleProductImg-box {
+  background: var(--dark);
 }
 
-.ALG-singleProductImg-box {
-  background: #122620;
+.qty-changer-main-div {
+  display: flex;
+  align-items: center;
+  justify-content: start;
 }
 
-.ALG-singleProduct-main {
-  background: #f4ebd0;
+.qty-changer-wrapper {
+  height: 40px;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #b68b40;
+  color: #ffffff;
+  border-radius: 12px;
 }
 
-.ALG-singleProduct-tag {
-  background: #122620;
+.qty-changer-wrapper span {
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+  cursor: pointer;
 }
 
-.ALG-singleProduct-btn {
-  background: #b68b40;
+.qty-changer-wrapper span.num {
+  border-right: 2px solid rgba(255, 255, 255, 0.2);
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+}
+
+.item-selector-outline {
+  outline: none;
+  border: none;
 }
 
 /* Hide the images by default */
@@ -243,14 +237,6 @@
   opacity: 1;
 }
 
-.ALG-main-model {
-  background: #122620;
-}
-
-.ALG-main-model2 {
-  background: #f4ebd0;
-}
-
 .ALG-model-button {
   background-color: #d6ad60;
   border: none;
@@ -259,14 +245,12 @@
 /* section2 */
 
 /* service */
-
 .alg-service-img {
   width: 50px;
   height: 50px;
 }
 
 /* profile page */
-
 .alg-profile-round {
   width: 70px;
   height: 70px;
@@ -276,7 +260,6 @@
 /* main slider */
 
 /* promotion slider */
-
 .banner-main {
   background: linear-gradient(
       0deg,
@@ -292,27 +275,77 @@
 
 .promotionSwiper.swiper {
   width: 100%;
-  height: 100%;
 }
 
 .promotionSwiper.swiper-slide {
   text-align: center;
   font-size: 18px;
-  /* background: #fff; */
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  width: 100%;
+  height: 260px;
+}
+
+.promotionSwiper.swiper-slide img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+/* category slider */
+.categorySwiper.swiper {
+  width: 100%;
+}
+
+.categorySwiper.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 300px;
+}
+
+.categorySwiper.swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
+/* best selling section */
+.bestSellingSwiper.swiper {
+  width: 100%;
+}
+
+.bestSellingSwiper.swiper-slide {
+  text-align: center;
+  font-size: 18px;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 220px;
   height: 300px;
-  /* box-shadow: none; */
 }
 
-.promotionSwiper.swiper-slide img {
+.bestSellingSwiper.swiper-slide img {
   display: block;
   width: 100%;
-  height: 30vh;
-  /* object-fit: cover; */
   border-radius: 20px;
+}
+
+/* checkout section */
+.checkoutSwiper.swiper {
+  width: 100%;
+}
+
+.checkoutSwiper.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 200px;
 }
 
 .alg-shadow {
@@ -322,16 +355,81 @@
 /* landing page */
 /* best selling section */
 .ld-bs-card {
-  height: 100%;
+  height: 300px;
   border-radius: var(--rounded-mid);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url("../resources/images/item1.png");
+  background-color: var(--gold);
+  cursor: pointer;
+  transition: var(--transition2);
+}
+
+.ld-bs-card:hover {
+  transform: scale(103%);
+  transition: var(--transition2);
 }
 
 .ld-bs-card-content {
   min-height: 100px;
   background-color: var(--tan);
   padding: 10px;
+}
+
+@media (min-width: 1440px) {
+  .ld-s1-hero {
+    min-height: max-content;
+  }
+}
+
+.profile-pg {
+  min-height: 100vh;
+}
+
+/* products page */
+/* search bar section */
+.pp-search-btn {
+  background-color: var(--gold);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 100px 0 0;
+  transition: var(--transition1);
+  cursor: pointer;
+}
+
+.pp-search-btn:hover {
+  background-color: var(--tan);
+  transition: var(--transition1);
+}
+
+.paycheck-main {
+  height: 100vh;
+}
+
+.paycheck-prof-img {
+  width: 120px;
+  border-radius: 25px;
+}
+
+.paycheck-product-img {
+  width: 150px;
+  border-radius: 25px;
+}
+
+@media (max-width: 380px) {
+  .paycheck-prof-img {
+    width: 80px;
+    height: 100px;
+  }
+}
+
+.paycheck-thanku-img {
+  width: 180px;
+  border-radius: 25px;
+}
+
+/* product view container section */
+.pd-s3-container {
+  min-height: 500px;
 }

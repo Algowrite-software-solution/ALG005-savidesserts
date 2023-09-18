@@ -1,0 +1,250 @@
+/* commen */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+:root {
+  /* color */
+  --dark: #122620;
+  --tan: #b68b40;
+  --gold: #d6ad60;
+  --light: #f4ebd0;
+  --white: #ffffff;
+
+  /* transistion */
+  --transition1: 200ms;
+  --transition2: 400ms;
+  --transition3: 600ms;
+
+  /* font */
+  --font-h1-lg: 46px;
+  --font-h1-md: 30px;
+  --font-h1: 20px;
+
+  --font-h2-lg: 20px;
+  --font-h2-md: 16px;
+  --font-h2: 13px;
+
+  --font-h3-lg: 14px;
+  --font-h3-md: 13px;
+  --font-h3: 11px;
+
+  --font-p-lg: 12px;
+  --font-p-md: 10px;
+  --font-p: 8px;
+
+  /* radius */
+  --rounded-large: 50px;
+  --rounded-mid: 25px;
+  --rounded-small: 15px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--white);
+  border-radius: 20px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--tan);
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(white);
+}
+
+/* tables */
+.alg-table-container {
+  min-width: 1400px;
+  min-width: 900px;
+  overflow-x: auto;
+  padding: 20px;
+  margin: 30px 0;
+  background-color: rgb(53, 53, 53);
+}
+
+.alg-table {
+  min-width: max-content;
+  min-width: max-content;
+  max-width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.alg-table-header-container {
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
+.alg-table-header-cell {
+  width: 150px;
+  text-wrap: wrap;
+  padding: 7px 15px;
+  flex-grow: 1;
+  text-align: start;
+  font-weight: bold;
+  border-bottom: black 1px solid;
+  border-right: black 1px solid;
+  background-color: rgb(4, 85, 51);
+  color: white;
+}
+
+.alg-table-body-row {
+  display: flex;
+}
+
+.alg-table-body-cell {
+  width: 150px;
+  text-wrap: wrap;
+  padding: 5px 10px;
+  flex-grow: 1;
+  text-align: start;
+  overflow: hidden;
+  text-wrap: wrap;
+  border-bottom: black 1px solid;
+  border-right: black 1px solid;
+  background-color: gray;
+  color: black;
+}
+
+/* lists */
+.alg-list-container {
+  min-width: 1400px;
+  min-width: 900px;
+  overflow-x: auto;
+  padding: 20px;
+  margin: 30px 0;
+  background-color: rgb(53, 53, 53);
+}
+
+.alg-list {
+  min-width: max-content;
+  min-width: max-content;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.alg-list-header-container {
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  border-radius: 30px;
+  margin: 20px 0;
+}
+
+.alg-list-header-block {
+  width: 150px;
+  text-wrap: wrap;
+  padding: 7px 15px;
+  flex-grow: 1;
+  text-align: start;
+  font-weight: bold;
+  border-right: black 1px solid;
+  background-color: rgb(4, 85, 51);
+  color: white;
+}
+
+.alg-list-body-row {
+  display: flex;
+  margin: 10px 0;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.alg-list-body-block {
+  width: 150px;
+  text-wrap: wrap;
+  padding: 5px 10px;
+  flex-grow: 1;
+  text-align: start;
+  overflow: hidden;
+  text-wrap: wrap;
+  border-right: black 1px solid;
+  background-color: gray;
+  color: black;
+}
+
+.alg-sm-position-ablsolute {
+  position: relative;
+}
+
+.navigation-sidebar {
+  z-index: 500px;
+}
+
+.content-divider {
+  z-index: 0;
+}
+
+@media (max-width: 1440px) {
+  /* tables */
+  .alg-table-container {
+    min-width: 900px;
+    padding: 20px;
+  }
+
+  /* list */
+  .alg-list-container {
+    min-width: 900px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 998px) {
+  /* tables */
+  .alg-table-container {
+    min-width: 700px;
+    padding: 15px;
+  }
+
+  /* list */
+  .alg-list-container {
+    min-width: 700px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* tables */
+  .alg-table-container {
+    min-width: 400px;
+    padding: 10px;
+  }
+
+  /* list */
+  .alg-list-container {
+    min-width: 400px;
+    padding: 10px;
+  }
+
+  /* panel layout */
+  .alg-sm-position-ablsolute {
+    position: absolute;
+  }
+}
+
+@media (max-width: 640px) {
+  /* tables */
+  .alg-table-container {
+    min-width: 280px;
+    padding: 5px;
+  }
+
+  /* list */
+  .alg-list-container {
+    min-width: 280px;
+    padding: 5px;
+  }
+}
