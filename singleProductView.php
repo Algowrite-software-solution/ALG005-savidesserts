@@ -181,7 +181,7 @@ if (!isset($_GET["product_id"])) {
 
                             <div class="order-3 order-lg-5 col-12 d-flex flex-lg-column gap-2">
                                 <div class="mt-3 mt-lg-4 col-6 col-lg-5 mb-3 mb-lg-1">
-                                    <select class="item-selector-outline w-100 p-2 rounded-2" id="extraItemContainer">
+                                    <select  class="item-selector-outline w-100 p-2 rounded-2" id="extraItemContainer">
                                         <!-- option goes here -->
                                     </select>
                                 </div>
@@ -192,7 +192,7 @@ if (!isset($_GET["product_id"])) {
                                 <div class="qty-changer-main-div mt-lg-1 col-6 col-lg-3 m-0 p-0">
                                     <div class="qty-changer-wrapper col-12 col-lg-5">
                                         <span class="minus" id="minusid">-</span>
-                                        <span class="num alg-text-h3 fw-bold" id="numid">01</span>
+                                        <span class="num alg-text-h3 fw-bold" id="numid">1</span>
                                         <span class="plus" id="plusid">+</span>
                                     </div>
                                 </div>
@@ -202,12 +202,7 @@ if (!isset($_GET["product_id"])) {
                         <div class="col-12 col-lg-10 d-flex justify-content-center justify-content-lg-start align-items-center align-items-lg-start gap-2">
                             <div class="col-6 col-lg-6">
                                 <select class="item-selector-outline w-100 p-2 rounded-5" id="loadWeightContainer" aria-label="Default select example">
-                                    <option value="0">Select weight</option>
-                                    <option value="1">250g</option>
-                                    <option value="2">300g</option>
-                                    <option value="3">500g</option>
-                                    <option value="3">750g</option>
-                                    <option value="3">1Kg</option>
+                                    <!-- weight goes here -->
                                 </select>
                             </div>
                             <div class="col-6 col-lg-6 d-flex mx-0 p-2 mt-lg-0 justify-content-center align-items-center rounded-5 alg-bg-dark text-white" id="productPrice">
@@ -217,7 +212,7 @@ if (!isset($_GET["product_id"])) {
 
                         <!-- </div> -->
                         <div class=" col-12 col-lg-10 d-grid mt-3 mt-lg-4">
-                            <button type="button" class="alg-bg-tan border-0 rounded-5 p-2 fw-bolder"> Add to cart </button>
+                            <button type="button" class="alg-bg-tan border-0 rounded-5 p-2 fw-bolder" onclick="addToCartItem(<?php echo $_GET['product_id'] ?>,<?php echo $_GET['weightId'] ?>);"> Add to cart </button>
                         </div>
                     </div>
                 </div>

@@ -30,7 +30,7 @@ if ($result->num_rows > 0) {
      while ($row = $result->fetch_assoc()) {
           $resRowDetailObject = new stdClass();
           $resRowDetailObject->extra_id = $row['id'];
-          $resRowDetailObject->extra_fruit = $row['extra_fruit'];
+          $resRowDetailObject->extra_fruit = $row['fruit'];
           $resRowDetailObject->price = $row['price'];
 
           array_push($responseArray, $resRowDetailObject);

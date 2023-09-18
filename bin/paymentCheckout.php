@@ -32,21 +32,21 @@
 
 <body>
 
-    <div class="container-fluid m-0 p-0 d-flex">
-        <div class="col-6 d-flex flex-column alg-bg-light py-3">
-            <div class=" p-3">
+    <div class="container-fluid flex-column flex-lg-row m-0 p-0 d-flex paycheck-main">
+        <div class="col-12 col-lg-6 d-flex flex-column alg-bg-light py-3">
+            <div class="d-flex justify-content-center justify-content-lg-start p-3">
                 <h2 class="alg-text-dark fw-bolder">Checkout Details</h2>
             </div>
-            <div class="col-12 d-flex flex-column justify-content-center p-3">
+            <div class="col-12 d-flex flex-column justify-content-center p-1 p-lg-3">
                 <h4 class="alg-text-dark py-4">Billing Address</h4>
                 <div class="col-12 d-flex justify-content-between alg-bg-dark rounded-5 p-3 px-3 gap-3">
                     <div class="d-flex gap-3 justify-content-center flex-row ">
                         <img src="https://www.javainstitute.edu.lk/img/faculty/mr-thilina.jpg"
                             class="img-fluid paycheck-prof-img" alt="">
                         <div class="d-flex alg-text-light lh-1 justify-content-center flex-column">
-                            <h4>Thilina Fonseka</h4>
-                            <p>+94 72 2345553</p>
-                            <p>thilina@gmail.com</p>
+                            <h4 class="fs-6 fs-">Thilina Fonseka</h4>
+                            <p class="fs-6">+94 72 2345553</p>
+                            <p class="fs-6">thilina@gmail.com</p>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center flex-column">
@@ -55,22 +55,22 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 d-flex flex-column justify-content-center p-3">
+            <div class="col-12 d-flex flex-column justify-content-center p-1 p-lg-3">
                 <h4 class="alg-text-dark py-4">Payment Method</h4>
                 <div class="col-12 d-flex justify-content-between alg-bg-dark rounded-5 p-3 px-3 gap-3">
                     <div class="d-flex gap-3 justify-content-center flex-row ">
                         <img src="https://www.clearhaus.com/img/figurehead/assets/card-schemes.jpg"
                             class="img-fluid paycheck-prof-img" alt="">
                         <div class="d-flex alg-text-light justify-content-center flex-column">
-                            <h5>Visa / Master Card</h5>
+                            <h5 class="fs-5">Visa / Master Card</h5>
                         </div>
                     </div>
 
                 </div>
             </div>
         </div>
-        <div class="col-6 alg-bg-light">
-            <div class="d-flex alg-bg-tan flex-column justify-content-center m-2 p-5 rounded-5">
+        <div class="col-12 col-lg-6 alg-bg-light">
+            <div class="d-flex alg-bg-tan flex-column justify-content-center m-2 p-4 p-lg-5 rounded-5">
                 <div class="d-flex alg-text-light justify-content-between">
                     <h4>Your order</h4>
                     <button type="button" class="alg-bg-gold alg-text-h3 border-0 rounded-3 p-2 fw-bolder"> Edit
@@ -103,11 +103,12 @@
 
                     <!--purchased product slider -->
                 </div>
-                <div class="d-flex py-4 justify-content-around border-bottom">
+                <div
+                    class="d-flex py-4 flex-column flex-lg-row justify-content-center align-items-center justify-content-lg-around border-bottom">
                     <img class="img-fluid paycheck-thanku-img "
                         src="https://img.freepik.com/free-vector/thank-you-placard-concept-illustration_114360-13436.jpg?w=996&t=st=1694928554~exp=1694929154~hmac=b5cf8b7b5d163da7bc470ecf12e411fb11ba50a1fe07d773b469898eda55e21d"
                         alt="">
-                    <div class="col-6 text-white">
+                    <div class="col-12 pt-3 pt-lg-0 col-lg-6 text-white">
                         <div class="d-flex justify-content-around ">
                             <span>SubTotal :</span>
                             <p>Rs. 1200</p>
@@ -126,8 +127,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex justify-content-end pt-4">
-                    <button type="button" class="alg-bg-gold w-50 alg-text-h2 border-0 rounded-3 p-2 fw-bolder"> Place
+                <div class="d-flex justify-content-center justify-content-lg-end pt-4">
+                    <button type="button" class="alg-bg-gold w-100 alg-text-h2 border-0 rounded-3 p-2 fw-bolder"> Place
                         Order
                     </button>
                 </div>
