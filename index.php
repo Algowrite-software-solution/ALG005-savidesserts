@@ -79,7 +79,7 @@
     <!-- services -->
     <section class="alg-bg-dark">
         <div class="container">
-            <div class="row pb-4">
+            <div class="row pb-5">
                 <div class="col-12">
                     <div class="row">
                         <div class="col-12 text-center pt-3">
@@ -262,7 +262,7 @@
     <!-- testamonials -->
     <section class="alg-bg-dark">
         <div class="container py-3">
-            <div class="col-12 d-flex flex-column justify-content-center align-items-center testm-main w-100 pt-3  px-5">
+            <div class="col-12 d-flex flex-column justify-content-center align-items-center testm-main w-100 pt-2  px-5">
                 <div class="py-2">
                     <span class="alg-text-h2 text-white fw-bold">TESTAMONIALS</span>
                 </div>
@@ -319,7 +319,7 @@
 
     <!-- contacts -->
     <section class="alg-bg-light">
-        <div class="container pb-5 pt-3">
+        <div class="container pb-5 pt-1">
             <div class="col-12">
                 <div class="row">
                     <div class="col-12 text-center mt-lg-4">
@@ -336,29 +336,29 @@
                                 </div>
                             </div>
                             <div class="col-12 col-md-5 d-flex flex-column gap-4">
-                                <div class="row d-flex justify-content-center cursor">
-                                    <div class="col-10">
+                                <div class="row d-flex justify-content-center alg-button-hover cursor">
+                                    <div class="col-10 col-md-11 col-lg-8">
                                         <div class="bg-white p-2 d-flex align-items-center gap-5 px-3 alg-div-hover rounded-4">
                                             <span><i class='bx bx-mobile fs-5 fw-bold'></i></span>
-                                            <span class="fw-bold">+9421436564</span>
+                                            <span class="fw-bold alg-text-h3">+9421436564</span>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="row d-flex justify-content-center cursor">
-                                    <div class="col-10">
+                                <div class="row d-flex justify-content-center alg-button-hover cursor">
+                                    <div class="col-10 col-md-11 col-lg-8">
                                         <div class="bg-white p-2 d-flex align-items-center gap-5 px-3 alg-div-hover rounded-4">
                                             <span><i class='bx bxs-envelope fs-5 fw-bold'></i></span>
-                                            <span class="fw-bold">saviproudcts@gmail.com</span>
+                                            <span class="fw-bold alg-text-h3">saviproudcts@gmail.com</span>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="row d-flex justify-content-center cursor">
-                                    <div class="col-10">
+                                <div class="row d-flex justify-content-center alg-button-hover cursor">
+                                    <div class="col-10 col-md-11 col-lg-8">
                                         <div class="bg-white p-2 d-flex align-items-center gap-5 px-3 alg-div-hover rounded-4">
                                             <span><i class="bi bi-geo-alt-fill fs-5 fw-bold"></i></span>
-                                            <span class="fw-bold">+9421436564</span>
+                                            <span class="fw-bold alg-text-h3">+9421436564</span>
                                         </div>
                                     </div>
                                 </div>
