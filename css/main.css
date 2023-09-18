@@ -159,7 +159,7 @@
 
 /* button */
 .alg-btn-pill {
-  padding: 10px 30px;
+  /* padding: 10px 30px; */
   border: none;
   font-weight: bold;
   outline: 2px var(--gold) solid;
