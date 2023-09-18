@@ -9,7 +9,7 @@ if ($sessionManager->isLoggedIn()) {
 }
 ?>
 
-<header class="alg-bg-dark">
+<header class="alg-bg-dark sticky-top ">
     <div class="container">
         <nav>
             <div class="position-relative px-lg-5">
