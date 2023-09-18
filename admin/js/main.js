@@ -51,12 +51,44 @@ function toggleNavigation() {
 
 function test() {
   setTimeout(() => {
-    const notificationSection = document.createElement("div");
-    notificationSection.innerHTML = "You have got an order....!";
-    notificationSection.style.backgroundColor = "green";
-    notificationSection.style.padding = "20px";
-    notificationSection.style.color = "white";
+    // const notificationSection = document.createElement("div");
+    // notificationSection.innerHTML = "You have got an order....!";
+    // notificationSection.style.backgroundColor = "green";
+    // notificationSection.style.padding = "20px";
+    // notificationSection.style.color = "white";
 
-    ALG.openModel("Alert", notificationSection);
+    // ALG.openModel("Alert", notificationSection);
+
+    fetch("http://localhost:9001/" + "backend/api/load_category_api.php", {
+      method: "GET", // HTTP request method
+      headers: {
+        "Content-Type": "application/json", // Request headers
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json(); // Parse the response body as JSON
+      })
+      .then((data) => {
+        // Handle the JSON data received from the API
+
+        if (data.status == "success") {
+          console.log("2");
+          const table = ALG.createTable(data.results);
+          ALG.openToast('kavindu buruwa', table, "00:23:23", "bi-x");
+        } else if (data.status == "failed") {
+          console.log(data.error);
+          console.log("3");
+        } else {
+          console.log(data);
+          console.log("4");
+        }
+      })
+      .catch((error) => {
+        // Handle errors that occur during the Fetch request
+        console.error("Fetch error:", error);
+      });
   }, 2000);
 }
