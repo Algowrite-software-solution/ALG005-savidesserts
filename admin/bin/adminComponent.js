@@ -270,3 +270,4 @@ class DashboardComponents {
 //     "bi-emoji-wink-fill"
 //   );
 // }, 2333);
+new DashboardComponents().createTable(data.results, "adminContainer1");

@@ -62,7 +62,7 @@
                 <div class="flex-grow-1 rounded-3 d-flex flex-column gap-2">
                     <section class="w-100 d-flex flex-wrap">
                         <div class="col-12 col-lg-6 p-2">
-                            <div class="w-100 rounded-4 alg-bg-tan p-3">1 <br> <br> <br> <br> <br> </div>
+                            <div class="w-100 rounded-4 alg-bg-tan p-3" id="adminContainer1">1 <br> <br> <br> <br> <br> </div>
                         </div>
                         <div class="col-12 col-lg-6 p-2">
                             <div class="w-100 rounded-4 alg-bg-tan p-3">1 <br> <br> <br> <br> <br> </div>
