@@ -5,10 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // load user data for profile
 function userProfileDataload() {
 
-
-     let text = "Hello world!";
-
-
      fetch(SERVER_URL + "backend/api/loadUserData.php", {
           method: "GET", // HTTP request method
           headers: {

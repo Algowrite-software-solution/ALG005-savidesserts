@@ -149,13 +149,14 @@ if ($sessionManager->isLoggedIn()) {
 <div class="modal fade" id="signUpModel" tabindex="-1" aria-labelledby="ALG-SignUp-Modal-Label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header alg-bg-dark">
 
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close alg-btn-circle alg-text-dark" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
-            <div class="modal-body ALG-main-model">
+            <div class="modal-body ALG-main-model alg-model-body">
                 <div class=" d-flex justify-content-center align-items-center flex-column pb-3">
-                    <h3 class="text-white">SIGN UP</h3>
+                    <h3 class="alg-text-darker">SIGN UP</h3>
                 </div>
                 <div class="ALG-main-model2 p-3 rounded-5">
 
@@ -165,38 +166,37 @@ if ($sessionManager->isLoggedIn()) {
                         </div>
                     </div>
 
-                    <form>
-                        <!-- Email input -->
-                        <div class="form-outline mb-4">
-                            <input type="email" id="signUp-email" class="ALG-model-input form-control rounded-5"
-                                placeholder="Email address" />
-                        </div>
 
-                        <!-- Full name -->
-                        <div class="form-outline mb-4">
-                            <input type="text" id="signUp-fullname" class="form-control rounded-5"
-                                placeholder="Full Name" />
-                        </div>
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="email" id="signUp-email" class="ALG-model-input form-control rounded-5"
+                            placeholder="Email address" />
+                    </div>
 
-                        <!-- Password input -->
-                        <div class="form-outline mb-4">
-                            <input type="password" id="signUp-password" class="form-control rounded-5"
-                                placeholder="Password" />
-                        </div>
+                    <!-- Full name -->
+                    <div class="form-outline mb-4">
+                        <input type="text" id="signUp-fullname" class="form-control rounded-5"
+                            placeholder="Full Name" />
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <input type="password" id="signUp-password" class="form-control rounded-5"
+                            placeholder="Password" />
+                    </div>
 
 
-                        <div class="form-outline mb-4">
-                            <input type="password" id="signUp-retypepassword" class="form-control rounded-5"
-                                placeholder="Retype the Password" />
-                        </div>
+                    <div class="form-outline mb-4">
+                        <input type="password" id="signUp-retypepassword" class="form-control rounded-5"
+                            placeholder="Retype the Password" />
+                    </div>
 
-                        <!-- Submit button -->
-                        <div class="d-flex justify-content-center align-items-center ">
-                            <button class="p-2 mb-4 w-100 rounded-5 ALG-model-button text-white fw-bolder"
-                                id="signupBtn" onclick="signUp();">Sign
-                                up</button>
-                        </div>
-                    </form>
+                    <!-- Submit button -->
+                    <div class="d-flex justify-content-center align-items-center ">
+                        <button class="p-2 mb-4 w-100 rounded-5 ALG-model-button text-white fw-bolder"
+                            onclick="signUp();">Sign up</button>
+                    </div>
+
                 </div>
             </div>
         </div>

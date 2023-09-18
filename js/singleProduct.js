@@ -19,14 +19,14 @@ plus.addEventListener("click", () => {
   if (a < 20) {
     a++;
   }
-  a = a < 10 ?  + a : a;
+  a = a < 10 ? + a : a;
   num.innerText = a;
 });
 
 minus.addEventListener("click", () => {
   if (a > 1) {
     a--;
-    a = a < 10 ?  + a : a;
+    a = a < 10 ? + a : a;
     num.innerText = a;
   }
 });
@@ -73,12 +73,20 @@ function loadProduct(productId) {
       const title = document.getElementById("productTitle");
       const productDescription = document.getElementById("productDescription");
       const productPrice = document.getElementById("productPrice");
+      const productCategory = document.getElementById("productCategory");
+      const productTitleLargeScreen = document.getElementById("productTitleLargeScreen");
+      const productCategoryLargeScreen = document.getElementById("productCategoryLargeScreen");
 
       if (data.status == "success") {
         const details = data.results;
         title.innerText = details.product_name;
+        productTitleLargeScreen.innerText = details.product_name;
         productDescription.innerText = details.product_description;
         productPrice.innerText = details.item_price;
+        productCategory.innerHTML = details.category_type;
+        productCategoryLargeScreen.innerHTML = details.category_type;
+
+        console.log(details.product_name);
 
         // load related items
         let keywords =
