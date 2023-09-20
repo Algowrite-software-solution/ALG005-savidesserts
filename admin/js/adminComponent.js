@@ -190,83 +190,83 @@ class DashboardComponents {
   }
 }
 
-// // test
-// //
-// //
-// //
-// //
-// //
-// //
+// test
+//
+//
+//
+//
+//
+//
 // const ALG = new DashboardComponents();
-// // test
-// //
-// //
-// //
-// //
-// //
-// loadProducts();
-// function loadProducts(
-//   searchTerm = "",
-//   category = "",
-//   orderBy = "price",
-//   orderDirection = "high to low",
-//   limit = 10
-// ) {
-//   fetch("http://localhost:9001/" + "backend/api/load_category_api.php", {
-//     method: "GET", // HTTP request method
-//     headers: {
-//       "Content-Type": "application/json", // Request headers
-//     },
-//   })
-//     .then((response) => {
-//       if (!response.ok) {
-//         throw new Error(`HTTP error! Status: ${response.status}`);
-//       }
-//       return response.json(); // Parse the response body as JSON
-//     })
-//     .then((data) => {
-//       // Handle the JSON data received from the API
-//       if (data.status == "success") {
-//         const table = ALG.createTable(data.results);
-//         ALG.renderComponent("tableContainer", table);
+// test
+//
+//
+//
+//
+//
+loadProducts();
+function loadProducts(
+  searchTerm = "",
+  category = "",
+  orderBy = "price",
+  orderDirection = "high to low",
+  limit = 10
+) {
+  fetch("http://localhost:9001/" + "backend/api/load_category_api.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        const table = ALG.createTable(data.results);
+        ALG.renderComponent("tableContainer", table);
 
-//         setTimeout(() => {
-//           ALG.openModel("Hellow World", ALG.createList(data.results));
-//         }, 2000);
+        setTimeout(() => {
+          ALG.openModel("Hellow World", ALG.createList(data.results));
+        }, 2000);
 
-//         setTimeout(() => {
-//           ALG.closeModel();
-//         }, 5000);
+        setTimeout(() => {
+          ALG.closeModel();
+        }, 5000);
 
-//         setTimeout(() => {
-//           ALG.openToast(
-//             "something",
-//             "<h1>Who AM I</h1>",
-//             "01:20:37",
-//             "bi-emoji-wink-fill"
-//           );
-//         }, 7000);
-//       } else if (data.status == "failed") {
-//         console.log(data.error);
-//       } else {
-//         console.log(data);
-//       }
-//     })
-//     .catch((error) => {
-//       // Handle errors that occur during the Fetch request
-//       console.error("Fetch error:", error);
-//     });
-// }
+        setTimeout(() => {
+          ALG.openToast(
+            "something",
+            "<h1>Who AM I</h1>",
+            "01:20:37",
+            "bi-emoji-wink-fill"
+          );
+        }, 7000);
+      } else if (data.status == "failed") {
+        console.log(data.error);
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      // Handle errors that occur during the Fetch request
+      console.error("Fetch error:", error);
+    });
+}
 
-// const testButon = document.createElement("button");
-// testButon.innerHTML = "somethign";
-// ALG.openToast("Who is this toast", testButon, "01:20:37", "bi-emoji-wink-fill");
-// setTimeout(() => {
-//   testButon.innerHTML = "betterword";
-//   ALG.openToast(
-//     "Who is this toast",
-//     testButon,
-//     "01:20:37",
-//     "bi-emoji-wink-fill"
-//   );
-// }, 2333);
+const testButon = document.createElement("button");
+testButon.innerHTML = "somethign";
+ALG.openToast("Who is this toast", testButon, "01:20:37", "bi-emoji-wink-fill");
+setTimeout(() => {
+  testButon.innerHTML = "betterword";
+  ALG.openToast(
+    "Who is this toast",
+    testButon,
+    "01:20:37",
+    "bi-emoji-wink-fill"
+  );
+}, 2333);
