@@ -28,29 +28,6 @@ function toastMessage(message, className) {
   toastBootstrap.show();
 }
 
-// single product QTY changer
-const plus = document.getElementById("plusid"),
-  minus = document.getElementById("minusid"),
-  num = document.getElementById("numid");
-
-let a = 1;
-
-plus.addEventListener("click", () => {
-  if (a < 20) {
-    a++;
-  }
-  a = a < 10 ? +a : a;
-  num.innerText = a;
-});
-
-minus.addEventListener("click", () => {
-  if (a > 1) {
-    a--;
-    a = a < 10 ? +a : a;
-    num.innerText = a;
-  }
-});
-
 var swiper = new Swiper(".mySwiper", {
   loop: true,
   spaceBetween: 10,
@@ -69,6 +46,9 @@ var swiper2 = new Swiper(".mySwiper2", {
     swiper: swiper,
   },
 });
+
+//Product Item Price
+let productItemPrice;
 
 // load product details
 function loadProduct(productId) {
@@ -103,10 +83,11 @@ function loadProduct(productId) {
 
       if (data.status == "success") {
         const details = data.results;
+        productItemPrice = details.item_price;
         title.innerText = details.product_name;
         productTitleLargeScreen.innerText = details.product_name;
         productDescription.innerText = details.product_description;
-        productPrice.innerText = details.item_price;
+        productPrice.innerText = "LKR. " + " " + details.item_price;
         productCategory.innerHTML = details.category_type;
         productCategoryLargeScreen.innerHTML = details.category_type;
 
@@ -166,7 +147,7 @@ function laodRelatedProducts(keywords) {
                     <div class="ld-bs-card-content d-flex flex-column text-start">
                       <div class="d-flex gap-1 fw-bold justify-content-between">
                         <div class="text-white alg-text-h3">${element.product_name}</div>
-                        <div class="alg-text-h3">LKR ${element.item_price}</div>
+                        <div class="alg-text-h3 text-white">LKR ${element.item_price}</div>
                       </div>
                       <div class="alg-text-h3 text-white">${element.product_description}</div>
                       <hr/>
@@ -207,6 +188,13 @@ function openSignleProductView(id, weightId) {
   window.location.href =
     "singleProductView.php?product_id=" + id + "&weightId=" + weightId;
 }
+// Define a global object to store the extra items and their prices
+const extraItemData = {
+  4: {
+    value: 4,
+    price: 0,
+  },
+};
 
 //load extra item
 function loadExtraItem(productId) {
@@ -231,6 +219,10 @@ function loadExtraItem(productId) {
       extraItemContainer.innerHTML = `<option value="4">Select Extra Item</option>`;
       if (data.status === "success") {
         data.response.forEach((element) => {
+          extraItemData[element.extra_id] = {
+            value: element.extra_id,
+            price: element.price,
+          };
           extraItemContainer.innerHTML += `
           <option value="${element.extra_id}">LKR ${element.price}  ${element.extra_fruit}</option>
           `;
@@ -296,6 +288,19 @@ function loadWeight(productId, weightId) {
     });
 }
 
+function changeProductItemForWeight(productId) {
+  const loadWeightContainer = document.getElementById(
+    "loadWeightContainer"
+  ).value;
+
+  // alert(weight);
+  window.location.href =
+    "singleProductView.php?product_id=" +
+    productId +
+    "&weightId=" +
+    loadWeightContainer;
+}
+
 //add to cart
 function addToCartItem(product_id, weight_id) {
   const loadWeightContainer =
@@ -336,3 +341,43 @@ function addToCartItem(product_id, weight_id) {
       console.error("Fetch error:", error);
     });
 }
+
+let TotalPrice = 0;
+let qty = 1;
+
+function singleProductPriceCalculation() {
+  //extra Item Container
+  const extraItemContainer =
+    document.getElementById("extraItemContainer").value || 4;
+  //price container
+  const productPrice = document.getElementById("productPrice");
+
+  //get extraItem Releted price
+  const selectedExtraItemPrice = extraItemData[extraItemContainer].price;
+
+  //price Total Cal
+  TotalPrice = (productItemPrice + selectedExtraItemPrice) * qty;
+
+  productPrice.innerText = "LKR. " + " " + TotalPrice;
+}
+
+// single product QTY changer
+const plus = document.getElementById("plusid");
+const minus = document.getElementById("minusid");
+const num = document.getElementById("numid");
+//increase
+plus.addEventListener("click", () => {
+  qty++;
+  qty = qty < 10 ? +qty : qty;
+  num.innerText = qty;
+  singleProductPriceCalculation();
+});
+// minimize
+minus.addEventListener("click", () => {
+  if (qty > 1) {
+    qty--;
+    qty = qty < 10 ? +qty : qty;
+    num.innerText = qty;
+    singleProductPriceCalculation();
+  }
+});
