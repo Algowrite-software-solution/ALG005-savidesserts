@@ -137,14 +137,14 @@ CREATE TABLE `delivery_details` (
   `user_user_id` int NOT NULL,
   `mobile` varchar(12) NOT NULL,
   `city_id` int NOT NULL,
-  `province_province_id` int NOT NULL,
+  `province_province_id1` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_address_user_idx` (`user_user_id`),
   KEY `fk_delivery_details_city1_idx` (`city_id`),
-  KEY `fk_delivery_details_province1_idx` (`province_province_id`) USING BTREE,
+  KEY `fk_delivery_details_province1_idx` (`province_province_id1`),
   CONSTRAINT `fk_address_user` FOREIGN KEY (`user_user_id`) REFERENCES `user` (`user_id`),
   CONSTRAINT `fk_delivery_details_city1` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`),
-  CONSTRAINT `fk_delivery_details_province1` FOREIGN KEY (`province_province_id`) REFERENCES `province` (`province_id`)
+  CONSTRAINT `fk_delivery_details_province1` FOREIGN KEY (`province_province_id1`) REFERENCES `province` (`province_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -182,7 +182,7 @@ CREATE TABLE `extra` (
 
 LOCK TABLES `extra` WRITE;
 /*!40000 ALTER TABLE `extra` DISABLE KEYS */;
-INSERT INTO `extra` VALUES (1,1,'',50),(2,1,'',150),(3,1,'',70),(4,1,'',0);
+INSERT INTO `extra` VALUES (1,1,'Cashu Nutes',50),(2,1,'Chips',150),(3,1,'Dry Graps',70),(4,1,'No frut',0);
 /*!40000 ALTER TABLE `extra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -504,10 +504,10 @@ DROP TABLE IF EXISTS `shipping_price`;
 CREATE TABLE `shipping_price` (
   `shipping_price_id` int NOT NULL AUTO_INCREMENT,
   `price` double NOT NULL,
-  `city_id` int NOT NULL,
+  `weight_id` int NOT NULL,
   PRIMARY KEY (`shipping_price_id`),
-  KEY `fk_shipping_price_city_idx` (`city_id`),
-  CONSTRAINT `fk_shipping_price_city` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`)
+  KEY `fk_shipping_price_weight1_idx` (`weight_id`),
+  CONSTRAINT `fk_shipping_price_weight1` FOREIGN KEY (`weight_id`) REFERENCES `weight` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -638,4 +638,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-20  0:32:04
+-- Dump completed on 2023-09-21 10:13:03
