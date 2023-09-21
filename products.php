@@ -1,3 +1,7 @@
+<?php
+$category = (isset($_GET["category"]) ? $_GET["category"] : "");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +27,7 @@
     <script defer src="js/script.js"></script>
 </head>
 
-<body style="overflow-x:hidden;">
+<body style="overflow-x:hidden;" data-category="<?php echo $category ?>">
 
     <!-- header -->
     <?php include("pages/components/header.php") ?>
