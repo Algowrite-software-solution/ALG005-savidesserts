@@ -32,9 +32,9 @@
   --font-h3-md: 13px;
   --font-h3: 11px;
 
-  --font-p-lg: 16px;
-  --font-p-mid: 14px;
-  --font-p-sm: 13px;
+  --font-p-lg: 18px;
+  --font-p-mid: 16px;
+  --font-p-sm: 14px;
   --font-p-xsm: 12px;
 
   /* radius */
@@ -129,7 +129,7 @@
 }
 
 /* hover */
-.alg-button-hover{
+.alg-button-hover {
   transition: 1.2s ease;
 }
 .alg-button-hover:hover {
@@ -163,8 +163,8 @@
 }
 
 .alg-text-p {
-  font-size: var(--font-p-small);
-  line-height: 10px;
+  font-size: var(--font-p-lg);
+  line-height: calc(var(--font-p-lg) + (var(--font-p-lg) / 100) * 40);
 }
 
 /* border radius */
@@ -224,15 +224,11 @@
   border: none;
 }
 
-/* font size */
-.alg-text-p {
-  font-size: var(--font-p-lg);
-}
-
 @media screen and (min-width: 1070px) {
   /* font size */
   .alg-text-p {
     font-size: var(--font-p-mid);
+    line-height: calc(var(--font-p-mid) + (var(--font-p-mid) / 100) * 40);
   }
 
   .alg-text-h1 {
@@ -257,6 +253,7 @@
   /* font size */
   .alg-text-p {
     font-size: var(--font-p-sm);
+    line-height: calc(var(--font-p-sm) + (var(--font-p-sm) / 100) * 40);
   }
 
   .alg-text-h1 {
@@ -281,6 +278,7 @@
   /* font size */
   .alg-text-p {
     font-size: var(--font-p-xsm);
+    line-height: calc(var(--font-p-xsm) + (var(--font-p-xsm) / 100) * 40);
   }
 
   .alg-text-h1 {

@@ -154,7 +154,7 @@ if (!isset($_GET["product_id"])) {
                                 </span>
                             </div>
 
-                            <p class="px-2 my-2 my-lg-3 mx-auto text-start w-100 alg-text-h2 order-2 order-lg-3" id="productDescription">.......</p>
+                            <p class="px-2 my-2 my-lg-3 mx-auto text-start w-100 alg-text-p order-2 order-lg-3" id="productDescription">.......</p>
 
                             <div class="d-flex my-1 text-white p-2 px-2 alg-bg-dark justify-content-start justify-content-lg-around align-items-center rounded-5 order-1 order-lg-4 align-self-start">
                                 <div class="px-3 alg-text-h3">RATING</div>

@@ -68,26 +68,17 @@
             <div class="col-12 p-0">
                 <div class="row d-flex justify-content-center align-items-center m-0 py-2 pd-s3-container" id="productListViewContainer">
                     <!-- product list goes here -->
-                    <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mx-0 p-0">
-                        <div class="row m-0 w-100 p-2">
-                            <div class="col-12 d-flex justify-content-end overflow-hidden flex-column bg-danger ld-bs-card w-100 p-0 placeholder-wave"></div>
+                    <?php
+                    for ($i = 0; $i < 6; $i++) {
+                    ?>
+                        <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mx-0 p-0">
+                            <div class="row m-0 w-100 p-2">
+                                <div class="col-12 d-flex justify-content-end overflow-hidden flex-column alg-bg-tan ld-bs-card w-100 p-0 placeholder-wave"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mx-0 p-0">
-                        <div class="row m-0 w-100 p-2">
-                            <div class="col-12 d-flex justify-content-end overflow-hidden flex-column bg-danger ld-bs-card w-100 p-0 placeholder-wave"></div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mx-0 p-0">
-                        <div class="row m-0 w-100 p-2">
-                            <div class="col-12 d-flex justify-content-end overflow-hidden flex-column bg-danger ld-bs-card w-100 p-0 placeholder-wave"></div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mx-0 p-0">
-                        <div class="row m-0 w-100 p-2">
-                            <div class="col-12 d-flex justify-content-end overflow-hidden flex-column bg-danger ld-bs-card w-100 p-0 placeholder-wave"></div>
-                        </div>
-                    </div>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>

@@ -36,7 +36,7 @@ class SuggestionLoader
     }
 
     // get keywords
-    public function getSuggestions($searchTerms,  $count = 2)
+    public function getSuggestions($searchTerms,  $count = 3)
     {
         $this->prepareWords($searchTerms);
 

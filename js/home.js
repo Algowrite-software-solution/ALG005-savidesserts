@@ -3,21 +3,21 @@ document.addEventListener("DOMContentLoaded", () => {
   loadCategory();
 });
 
-//toast Message 
+//toast Message
 function toastMessage(message, className) {
-  const toastMessageContainer = document.getElementById('toastMessageContainer');
-  const toastLiveExample = document.getElementById('liveToast')
-
+  const toastMessageContainer = document.getElementById(
+    "toastMessageContainer"
+  );
+  const toastLiveExample = document.getElementById("liveToast");
 
   toastMessageContainer.innerHTML = "";
   const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
   toastMessageContainer.innerHTML += `<span>${message}</span>`;
 
   if (className !== undefined) {
-    toastLiveExample.classList.add(className)
+    toastLiveExample.classList.add(className);
   }
   toastBootstrap.show();
-
 }
 
 //product promotion view section
