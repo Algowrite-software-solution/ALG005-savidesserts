@@ -16,7 +16,7 @@ if ($sessionManager->isLoggedIn()) {
                 <div class="col-12 d-flex justify-content-between align-items-center m-0 px-0">
                     <a href="index.php">
                         <div class="p-3">
-                            <img src="resources/images/logo.png" alt="some thing went wrong" class="header-logo-img" />
+                            <img src="resources/images/logo3.png" alt="some thing went wrong" class="header-logo-img" />
                         </div>
                     </a>
 

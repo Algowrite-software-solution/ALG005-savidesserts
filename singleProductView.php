@@ -181,7 +181,7 @@ if (!isset($_GET["product_id"])) {
 
                             <div class="order-3 order-lg-5 col-12 d-flex flex-lg-column gap-2">
                                 <div class="mt-3 mt-lg-4 col-6 col-lg-5 mb-3 mb-lg-1">
-                                    <select class="item-selector-outline w-100 p-2 rounded-2" id="extraItemContainer">
+                                    <select class="item-selector-outline w-100 p-2 rounded-2" id="extraItemContainer" onchange="singleProductPriceCalculation();">
                                         <!-- option goes here -->
                                     </select>
                                 </div>
@@ -201,7 +201,7 @@ if (!isset($_GET["product_id"])) {
                         <!-- <div class="col-12 col-lg-10 d-flex flex-column mt-0 justify-content-center justify-content-lg-start align-items-center align-items-lg-start bg-danger"> -->
                         <div class="col-12 col-lg-10 d-flex justify-content-center justify-content-lg-start align-items-center align-items-lg-start gap-2">
                             <div class="col-6 col-lg-6">
-                                <select class="item-selector-outline w-100 p-2 rounded-5" id="loadWeightContainer" aria-label="Default select example">
+                                <select class="item-selector-outline w-100 p-2 rounded-5" id="loadWeightContainer" aria-label="Default select example" onchange="changeProductItemForWeight(<?php echo $_GET['product_id'] ?>);">
                                     <!-- weight goes here -->
                                 </select>
                             </div>
