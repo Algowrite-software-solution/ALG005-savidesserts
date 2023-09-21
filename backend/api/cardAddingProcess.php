@@ -11,7 +11,7 @@ $responseObject->status = 'failed';
 //check is login user
 $userCheckSession = new SessionManager();
 if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
-     $responseObject->error = 'Please login';
+     $responseObject->error = 'Please Sign In';
      response_sender::sendJson($responseObject);
 }
 
@@ -39,7 +39,7 @@ $qty = $productRow['qty'];
 
 //qty checking
 if ($qty < $incomingQty) {
-     $responseObject->error = 'invalid qty';
+     $responseObject->error = 'stock limited';
      response_sender::sendJson($responseObject);
 }
 

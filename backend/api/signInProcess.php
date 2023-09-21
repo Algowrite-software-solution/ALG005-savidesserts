@@ -25,12 +25,12 @@ $password = $_POST['password'];
 $validationReady = new stdClass();
 //email validation object
 $emailData = new stdClass();
-$emailData->datakey = 'emailSignIn';
+$emailData->datakey = 'Email';
 $emailData->value = $email;
 
 //password validation
 $passwordData = new stdClass();
-$passwordData->datakey = "passwordSignIn";
+$passwordData->datakey = "Password";
 $passwordData->value = $password;
 
 $validationReady->email = array($emailData);
@@ -43,7 +43,7 @@ $validator = $dataValidator->validate();
 
 foreach ($validator as $key => $value) {
      if ($value) {
-          $response->error = "Invalid Input for : " . $key;
+          $response->error = "Invalid " . $key;
           response_sender::sendJson($response);
      }
 }
@@ -81,7 +81,7 @@ if ($result->num_rows == 0) {
 
 
           $response->status = "success";
-          $response->result = 'login success';
+          $response->result = 'Sign In success';
           response_sender::sendJson($response);
      }
 }

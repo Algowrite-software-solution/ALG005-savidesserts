@@ -12,6 +12,28 @@ toggle.onclick = () => {
   toggleIcon.classList.toggle("bx-x");
 };
 
+//toast Message 
+function toastMessage(message, className) {
+  const toastMessageContainer = document.getElementById('toastMessageContainer');
+  const toastLiveExample = document.getElementById('liveToast')
+
+
+  toastMessageContainer.innerHTML = "";
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+  toastMessageContainer.innerHTML += `<span>${message}</span>`;
+
+  toastLiveExample.classList.remove("text-bg-success");
+  toastLiveExample.classList.remove("text-bg-danger");
+
+  if (className !== undefined) {
+    toastLiveExample.classList.add(className)
+  }
+  toastBootstrap.show();
+
+
+}
+
+
 //product adding from cart
 function productAddingCart() {
   const qty = document.getElementById("qty").value;
@@ -242,9 +264,9 @@ function productAddingWatchlist(productId, weightId) {
     .then((data) => {
       // Handle the JSON data received from the API
       if (data.status === 'success') {
-        console.log('success');
+        toastMessage("Product Added", "text-bg-success");
       } else {
-        console.log(data.error);
+        toastMessage(data.error, "text-bg-danger");
       }
 
     })
@@ -405,12 +427,14 @@ function signUp() {
     .then((response) => response.json())
     .then((data) => {
       if (data.status === 'success') {
-        
-        signInModel.show();
-        signUpModel.hide();
+        toastMessage("Sign Up Success", "text-bg-success");
+        setTimeout(() => {
+          signInModel.show();
+          signUpModel.hide();
+        }, 2000);
 
       } else {
-        console.log(data);
+        toastMessage(data.error, "text-bg-danger");
       }
     })
     .catch((error) => {
@@ -433,10 +457,13 @@ function signIn() {
     .then((response) => response.json())
     .then((data) => {
       if (data.status == "success") {
-        window.location.reload();
+        toastMessage(data.result, "text-bg-success");
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
 
       } else if (data.status == "failed") {
-        console.log(data.results);
+        toastMessage(data.error, "text-bg-danger");
       } else {
         console.log(data);
       }
@@ -453,7 +480,12 @@ function signOut() {
     if (request.readyState == 4 && request.status == 200) {
       responseObject = JSON.parse(request.responseText);
       if (responseObject.status === "success") {
-        window.location = "index.php";
+        toastMessage("Sign Out Success", "text-bg-success");
+
+        setTimeout(() => {
+          window.location = "index.php";
+        }, 2000);
+
       } else {
         console.log(responseObject);
       }

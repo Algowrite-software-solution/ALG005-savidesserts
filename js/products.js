@@ -5,6 +5,23 @@ document.addEventListener("DOMContentLoaded", () => {
   loadProducts("");
 });
 
+//toast Message 
+function toastMessage(message, className) {
+  const toastMessageContainer = document.getElementById('toastMessageContainer');
+  const toastLiveExample = document.getElementById('liveToast')
+
+
+  toastMessageContainer.innerHTML = "";
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+  toastMessageContainer.innerHTML += `<span>${message}</span>`;
+
+  if (className !== undefined) {
+    toastLiveExample.classList.add(className)
+  }
+  toastBootstrap.show();
+
+}
+
 // load category
 function loadCategory() {
   fetch(SERVER_URL + "backend/api/load_category_api.php", {
@@ -69,15 +86,15 @@ function loadProducts(
 
   fetch(
     SERVER_URL +
-      "backend/api/load_product_list_api.php?search=" +
-      searchTerm +
-      "&options=" +
-      JSON.stringify({
-        category: category,
-        orderBy: orderBy,
-        orderDirection: orderDirection,
-        limit: limit,
-      }),
+    "backend/api/load_product_list_api.php?search=" +
+    searchTerm +
+    "&options=" +
+    JSON.stringify({
+      category: category,
+      orderBy: orderBy,
+      orderDirection: orderDirection,
+      limit: limit,
+    }),
     {
       method: "GET", // HTTP request method
       headers: {

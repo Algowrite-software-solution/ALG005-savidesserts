@@ -8,6 +8,27 @@ document.addEventListener("DOMContentLoaded", () => {
   loadWeight(productid, weight)
 });
 
+//toast Message 
+function toastMessage(message, className) {
+  const toastMessageContainer = document.getElementById('toastMessageContainer');
+  const toastLiveExample = document.getElementById('liveToast')
+
+
+  toastMessageContainer.innerHTML = "";
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+  toastMessageContainer.innerHTML += `<span>${message}</span>`;
+
+  toastLiveExample.classList.remove("text-bg-success");
+  toastLiveExample.classList.remove("text-bg-danger");
+
+  if (className !== undefined) {
+    toastLiveExample.classList.add(className)
+  }
+  toastBootstrap.show();
+
+
+}
+
 // single product QTY changer
 const plus = document.getElementById("plusid"),
   minus = document.getElementById("minusid"),
@@ -86,7 +107,6 @@ function loadProduct(productId) {
         productCategory.innerHTML = details.category_type;
         productCategoryLargeScreen.innerHTML = details.category_type;
 
-        console.log(details.product_name);
 
         // load related items
         let keywords =
@@ -295,12 +315,10 @@ function addToCartItem(product_id, weight_id) {
       // Handle the JSON data received from the API
       // console.log("Data from the API:", data);
       loadWeightContainer.innerHTML = "";
-      if (data.status === 'success') {
-        console.log('success');
-      } else if (data.status === 'no row data') {
-        console.log(data.status);
+      if (data.status === 'product added successfully') {
+        toastMessage("Product Added", "text-bg-success");
       } else {
-        console.log(data);
+        toastMessage(data.error, "text-bg-danger");
       }
     })
     .catch((error) => {
