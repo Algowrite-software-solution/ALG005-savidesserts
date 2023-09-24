@@ -87,6 +87,8 @@ function loadProducts(
     "productListViewContainer"
   );
 
+  searchLoaderSpinner(true);
+
   fetch(
     SERVER_URL +
       "backend/api/load_product_list_api.php?search=" +
@@ -151,10 +153,16 @@ function loadProducts(
       } else {
         console.log(data);
       }
+
+      // loading effect close
+      searchLoaderSpinner(false);
     })
     .catch((error) => {
       // Handle errors that occur during the Fetch request
       console.error("Fetch error:", error);
+
+      // loading effect close
+      searchLoaderSpinner(false);
     });
 }
 
@@ -205,4 +213,25 @@ function setCategory(category) {
     "high to low",
     10
   );
+}
+
+function searchLoaderSpinner(loading) {
+  const searchIcon = document.getElementById("searchIcon");
+  const loadingIcon = document.getElementById("loadingIcon");
+
+  if (loading) {
+    searchIcon.classList.remove("d-block");
+    loadingIcon.classList.remove("d-none");
+
+    searchIcon.classList.add("d-none");
+    loadingIcon.classList.add("d-block");
+  } else {
+    setTimeout(() => {
+      searchIcon.classList.remove("d-none");
+      loadingIcon.classList.remove("d-block");
+
+      searchIcon.classList.add("d-block");
+      loadingIcon.classList.add("d-none");
+    }, 400);
+  }
 }

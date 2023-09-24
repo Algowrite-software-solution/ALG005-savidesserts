@@ -47,7 +47,12 @@ $category = (isset($_GET["category"]) ? $_GET["category"] : "");
                         <div class="row m-0 p-0">
                             <input id="searchBar" type="text" placeholder="Search products..." class="alg-searchbar border-0 alg-bg-light py-1 px-3 border-0 col-10 p-0 alg-bg-light rounded-end rounded-5" oninput="searchProducts();">
                             <button class="pp-search-btn col-2  rounded-start rounded-5 py-1 px-3 border-0" onclick="searchProducts();">
-                                <i class="bi bi-search text-white fs-4"></i>
+                                <div id="searchIcon" class="d-block">
+                                    <i class="bi bi-search  text-white fs-4"></i>
+                                </div>
+                                <div id="loadingIcon" class="alg-text-white spinner-border d-none" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
                             </button>
                         </div>
                     </div>
