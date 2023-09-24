@@ -154,7 +154,7 @@ if (!isset($_GET["product_id"])) {
                                 </span>
                             </div>
 
-                            <p class="px-2 my-2 my-lg-3 mx-auto text-start w-100 alg-text-h2 order-2 order-lg-3" id="productDescription">.......</p>
+                            <p class="px-2 my-2 my-lg-3 mx-auto text-start w-100 alg-text-p order-2 order-lg-3" id="productDescription">.......</p>
 
                             <div class="d-flex my-1 text-white p-2 px-2 alg-bg-dark justify-content-start justify-content-lg-around align-items-center rounded-5 order-1 order-lg-4 align-self-start">
                                 <div class="px-3 alg-text-h3">RATING</div>
@@ -181,7 +181,7 @@ if (!isset($_GET["product_id"])) {
 
                             <div class="order-3 order-lg-5 col-12 d-flex flex-lg-column gap-2">
                                 <div class="mt-3 mt-lg-4 col-6 col-lg-5 mb-3 mb-lg-1">
-                                    <select class="item-selector-outline w-100 p-2 rounded-2" id="extraItemContainer">
+                                    <select class="item-selector-outline w-100 p-2 rounded-2" id="extraItemContainer" onchange="singleProductPriceCalculation();">
                                         <!-- option goes here -->
                                     </select>
                                 </div>
@@ -201,7 +201,7 @@ if (!isset($_GET["product_id"])) {
                         <!-- <div class="col-12 col-lg-10 d-flex flex-column mt-0 justify-content-center justify-content-lg-start align-items-center align-items-lg-start bg-danger"> -->
                         <div class="col-12 col-lg-10 d-flex justify-content-center justify-content-lg-start align-items-center align-items-lg-start gap-2">
                             <div class="col-6 col-lg-6">
-                                <select class="item-selector-outline w-100 p-2 rounded-5" id="loadWeightContainer" aria-label="Default select example">
+                                <select class="item-selector-outline w-100 p-2 rounded-5" id="loadWeightContainer" aria-label="Default select example" onchange="changeProductItemForWeight(<?php echo $_GET['product_id'] ?>);">
                                     <!-- weight goes here -->
                                 </select>
                             </div>

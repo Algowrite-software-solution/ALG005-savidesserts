@@ -5,31 +5,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadProduct(productid);
   loadExtraItem(productid);
-  loadWeight(productid, weight)
+  loadWeight(productid, weight);
 });
 
-// single product QTY changer
-const plus = document.getElementById("plusid"),
-  minus = document.getElementById("minusid"),
-  num = document.getElementById("numid");
+//toast Message
+function toastMessage(message, className) {
+  const toastMessageContainer = document.getElementById(
+    "toastMessageContainer"
+  );
+  const toastLiveExample = document.getElementById("liveToast");
 
-let a = 1;
+  toastMessageContainer.innerHTML = "";
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+  toastMessageContainer.innerHTML += `<span>${message}</span>`;
 
-plus.addEventListener("click", () => {
-  if (a < 20) {
-    a++;
+  toastLiveExample.classList.remove("text-bg-success");
+  toastLiveExample.classList.remove("text-bg-danger");
+
+  if (className !== undefined) {
+    toastLiveExample.classList.add(className);
   }
-  a = a < 10 ? + a : a;
-  num.innerText = a;
-});
-
-minus.addEventListener("click", () => {
-  if (a > 1) {
-    a--;
-    a = a < 10 ? + a : a;
-    num.innerText = a;
-  }
-});
+  toastBootstrap.show();
+}
 
 var swiper = new Swiper(".mySwiper", {
   loop: true,
@@ -49,6 +46,9 @@ var swiper2 = new Swiper(".mySwiper2", {
     swiper: swiper,
   },
 });
+
+//Product Item Price
+let productItemPrice;
 
 // load product details
 function loadProduct(productId) {
@@ -74,19 +74,22 @@ function loadProduct(productId) {
       const productDescription = document.getElementById("productDescription");
       const productPrice = document.getElementById("productPrice");
       const productCategory = document.getElementById("productCategory");
-      const productTitleLargeScreen = document.getElementById("productTitleLargeScreen");
-      const productCategoryLargeScreen = document.getElementById("productCategoryLargeScreen");
+      const productTitleLargeScreen = document.getElementById(
+        "productTitleLargeScreen"
+      );
+      const productCategoryLargeScreen = document.getElementById(
+        "productCategoryLargeScreen"
+      );
 
       if (data.status == "success") {
         const details = data.results;
+        productItemPrice = details.item_price;
         title.innerText = details.product_name;
         productTitleLargeScreen.innerText = details.product_name;
         productDescription.innerText = details.product_description;
-        productPrice.innerText = details.item_price;
+        productPrice.innerText = "LKR. " + " " + details.item_price;
         productCategory.innerHTML = details.category_type;
         productCategoryLargeScreen.innerHTML = details.category_type;
-
-        console.log(details.product_name);
 
         // load related items
         let keywords =
@@ -137,6 +140,9 @@ function laodRelatedProducts(keywords) {
       if (data.status == "success") {
         if (data.results.length !== 0) {
           data.results.forEach((element) => {
+            let miniDescription =
+              getFirst20Words(element.product_description) + "...";
+
             productListViewContainer.innerHTML += `
               <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mx-0 p-0">
                 <div class="row m-0 w-100 p-2">
@@ -144,9 +150,9 @@ function laodRelatedProducts(keywords) {
                     <div class="ld-bs-card-content d-flex flex-column text-start">
                       <div class="d-flex gap-1 fw-bold justify-content-between">
                         <div class="text-white alg-text-h3">${element.product_name}</div>
-                        <div class="alg-text-h3">LKR ${element.item_price}</div>
+                        <div class="alg-text-h3 text-white">LKR ${element.item_price}</div>
                       </div>
-                      <div class="alg-text-h3 text-white">${element.product_description}</div>
+                      <div class="alg-text-h3 text-white">${miniDescription}</div>
                       <hr/>
                       <div class="d-flex justify-content-between px-3">
                           <div class="d-flex gap-2">
@@ -179,13 +185,37 @@ function laodRelatedProducts(keywords) {
     });
 }
 
+function getFirst20Words(inputString) {
+  // Split the input string into an array of words using whitespace as the delimiter
+  const wordsArray = inputString.split(/\s+/);
+  // Take the first 20 elements from the array using the slice method
+  const first20WordsArray = wordsArray.slice(0, 15);
+  // Join the first 20 words back together into a new string using whitespace as a separator
+  const resultString = first20WordsArray.join(" ");
+  return resultString;
+}
+
+
+// load open Signle Product View
+function openSignleProductView(id, weightId) {
+  // alert(weight);
+  window.location.href =
+    "singleProductView.php?product_id=" + id + "&weightId=" + weightId;
+}
+// Define a global object to store the extra items and their prices
+const extraItemData = {
+  4: {
+    value: 4,
+    price: 0,
+  },
+};
+
 //load extra item
 function loadExtraItem(productId) {
-
-  const extraItemContainer = document.getElementById('extraItemContainer');
+  const extraItemContainer = document.getElementById("extraItemContainer");
 
   const fdata = new FormData();
-  fdata.append('product_id', productId);
+  fdata.append("product_id", productId);
   // Fetch request
   fetch(SERVER_URL + "backend/api/extra_Item_LoadApi.php", {
     method: "POST", // HTTP request method
@@ -201,13 +231,17 @@ function loadExtraItem(productId) {
       // Handle the JSON data received from the API
       // console.log("Data from the API:", data);
       extraItemContainer.innerHTML = `<option value="4">Select Extra Item</option>`;
-      if (data.status === 'success') {
+      if (data.status === "success") {
         data.response.forEach((element) => {
+          extraItemData[element.extra_id] = {
+            value: element.extra_id,
+            price: element.price,
+          };
           extraItemContainer.innerHTML += `
           <option value="${element.extra_id}">LKR ${element.price}  ${element.extra_fruit}</option>
-          `
+          `;
         });
-      } else if (data.status === 'no row data') {
+      } else if (data.status === "no row data") {
         extraItemContainer.innerHTML = `<option disabled value="4">Select Extra Item</option>`;
       } else {
         console.log(data);
@@ -222,10 +256,10 @@ function loadExtraItem(productId) {
 // load weight
 function loadWeight(productId, weightId) {
   //weight container
-  const loadWeightContainer = document.getElementById('loadWeightContainer');
+  const loadWeightContainer = document.getElementById("loadWeightContainer");
 
   const fdata = new FormData();
-  fdata.append('product_id', productId);
+  fdata.append("product_id", productId);
   // Fetch request
   fetch(SERVER_URL + "backend/api/weight_load.php", {
     method: "POST", // HTTP request method
@@ -241,21 +275,22 @@ function loadWeight(productId, weightId) {
       // Handle the JSON data received from the API
       // console.log("Data from the API:", data);
       loadWeightContainer.innerHTML = "";
-      if (data.status === 'success') {
+      if (data.status === "success") {
         data.response.forEach((element) => {
-          const option = document.createElement('option');
+          const option = document.createElement("option");
           option.value = element.weight_id;
           option.textContent = element.weight;
           loadWeightContainer.appendChild(option);
         });
 
         // Select the option with the specified weightId
-        const selectedOption = loadWeightContainer.querySelector(`option[value="${weightId}"]`);
+        const selectedOption = loadWeightContainer.querySelector(
+          `option[value="${weightId}"]`
+        );
         if (selectedOption) {
           selectedOption.selected = true;
         }
-
-      } else if (data.status === 'no row data') {
+      } else if (data.status === "no row data") {
         console.log(data.status);
       } else {
         console.log(data);
@@ -267,18 +302,32 @@ function loadWeight(productId, weightId) {
     });
 }
 
+function changeProductItemForWeight(productId) {
+  const loadWeightContainer = document.getElementById(
+    "loadWeightContainer"
+  ).value;
+
+  // alert(weight);
+  window.location.href =
+    "singleProductView.php?product_id=" +
+    productId +
+    "&weightId=" +
+    loadWeightContainer;
+}
+
 //add to cart
 function addToCartItem(product_id, weight_id) {
-
-  const loadWeightContainer = document.getElementById('loadWeightContainer').value || weight_id;
-  const extraItemContainer = document.getElementById('extraItemContainer').value || 4;
-  const qty = document.getElementById('numid').textContent;
+  const loadWeightContainer =
+    document.getElementById("loadWeightContainer").value || weight_id;
+  const extraItemContainer =
+    document.getElementById("extraItemContainer").value || 4;
+  const qty = document.getElementById("numid").textContent;
 
   const fdata = new FormData();
-  fdata.append('product_id', product_id);
-  fdata.append('qty', qty);
-  fdata.append('loadWeightContainer', loadWeightContainer);
-  fdata.append('extraItemContainer', extraItemContainer);
+  fdata.append("product_id", product_id);
+  fdata.append("qty", qty);
+  fdata.append("loadWeightContainer", loadWeightContainer);
+  fdata.append("extraItemContainer", extraItemContainer);
 
   // Fetch request
   fetch(SERVER_URL + "backend/api/cardAddingProcess.php", {
@@ -295,12 +344,10 @@ function addToCartItem(product_id, weight_id) {
       // Handle the JSON data received from the API
       // console.log("Data from the API:", data);
       loadWeightContainer.innerHTML = "";
-      if (data.status === 'success') {
-        console.log('success');
-      } else if (data.status === 'no row data') {
-        console.log(data.status);
+      if (data.status === "product added successfully") {
+        toastMessage("Product Added", "text-bg-success");
       } else {
-        console.log(data);
+        toastMessage(data.error, "text-bg-danger");
       }
     })
     .catch((error) => {
@@ -308,3 +355,43 @@ function addToCartItem(product_id, weight_id) {
       console.error("Fetch error:", error);
     });
 }
+
+let TotalPrice = 0;
+let qty = 1;
+
+function singleProductPriceCalculation() {
+  //extra Item Container
+  const extraItemContainer =
+    document.getElementById("extraItemContainer").value || 4;
+  //price container
+  const productPrice = document.getElementById("productPrice");
+
+  //get extraItem Releted price
+  const selectedExtraItemPrice = extraItemData[extraItemContainer].price;
+
+  //price Total Cal
+  TotalPrice = (productItemPrice + selectedExtraItemPrice) * qty;
+
+  productPrice.innerText = "LKR. " + " " + TotalPrice;
+}
+
+// single product QTY changer
+const plus = document.getElementById("plusid");
+const minus = document.getElementById("minusid");
+const num = document.getElementById("numid");
+//increase
+plus.addEventListener("click", () => {
+  qty++;
+  qty = qty < 10 ? +qty : qty;
+  num.innerText = qty;
+  singleProductPriceCalculation();
+});
+// minimize
+minus.addEventListener("click", () => {
+  if (qty > 1) {
+    qty--;
+    qty = qty < 10 ? +qty : qty;
+    num.innerText = qty;
+    singleProductPriceCalculation();
+  }
+});

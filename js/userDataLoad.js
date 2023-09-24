@@ -2,6 +2,23 @@ document.addEventListener("DOMContentLoaded", () => {
      userProfileDataload();
 });
 
+//toast Message 
+function toastMessage(message, className) {
+     const toastMessageContainer = document.getElementById('toastMessageContainer');
+     const toastLiveExample = document.getElementById('liveToast')
+
+
+     toastMessageContainer.innerHTML = "";
+     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+     toastMessageContainer.innerHTML += `<span>${message}</span>`;
+
+     if (className !== undefined) {
+          toastLiveExample.classList.add(className)
+     }
+     toastBootstrap.show();
+
+}
+
 // load user data for profile
 function userProfileDataload() {
 
