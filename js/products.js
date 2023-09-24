@@ -53,7 +53,7 @@ function loadCategory() {
             </div>
           `;
         });
-        
+
         // load products
         let category = document.body.dataset.category;
         setCategory(category);
