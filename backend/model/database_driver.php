@@ -8,9 +8,9 @@ class database_driver
     public function __construct()
     {
         $host = 'localhost';
-        $user = 'root';
-        $password = 'JanithNirmal12#$'; // janith
-        $database = 'alg005_db';
+        $user = 'algowrit_savidessert';
+        $password = 'CytsTeeY%fw-'; // janith
+        $database = 'algowrit_savidessert';
 
         // Connect to the database using mysqli
         $this->connection = new mysqli($host, $user, $password, $database);
