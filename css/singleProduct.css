@@ -40,7 +40,7 @@
 }
 
 .mySwiper {
-  height: 20%;
+  height: max-content;
   box-sizing: border-box;
 }
 

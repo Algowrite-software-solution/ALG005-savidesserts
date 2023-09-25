@@ -26,11 +26,11 @@ if ($email == null) {
      response_sender::sendJson($response);
 }
 if ($password == null) {
-     $response->error = "password is empty";
+     $response->error = "Password is empty";
      response_sender::sendJson($response);
 }
 if ($fullName == null) {
-     $response->error = "full Name is empty";
+     $response->error = "Full Name is empty";
      response_sender::sendJson($response);
 }
 
@@ -74,7 +74,7 @@ if (!empty((array)$errors)) {
 } else {
      //password and confirmationPassword check
      if ($password != $confPassword) {
-          $response->error = 'Passwords do not match';
+          $response->error = 'Retype Passwords does not match';
           response_sender::sendJson($response);
      }
 
