@@ -1,6 +1,6 @@
 const SERVER_URL = "";
 
-document.addEventListener("DOMContentLoaded", () => {});
+document.addEventListener("DOMContentLoaded", () => { });
 
 // header
 const toggle = document.querySelector(".alg-toggle-button");
@@ -73,6 +73,12 @@ function productAddingCart() {
     });
 }
 
+// cart data global object
+let cartData = {
+  items: [],
+  total: 0,
+};
+
 // //cart product View
 function cartProductView() {
   // Fetch request
@@ -97,13 +103,16 @@ function cartProductView() {
 
       let Total = 0;
 
+
       if (data.status === "success") {
+
         cartEmptyContainer.innerHTML = "";
         cartMainContainer.innerHTML = "";
 
         data.response.forEach((element) => {
           const itemPrice = element.qty * (element.price + element.extra_price);
           Total += itemPrice;
+
           // cart main container
           cartMainContainer.innerHTML += `
                     <div class="col-12 p-3 alg-bg-dark rounded-4">
@@ -125,6 +134,26 @@ function cartProductView() {
                         </div>
                     </div>
           `;
+
+          // Check if the item already exists in the cart
+          const existingItem = cartData.items.find((item) => item.id === element.card_id);
+          // If the item doesn't exist, add it to the cart
+          if (!existingItem) {
+            cartData.items.push({
+              id: element.card_id,
+              product_name: element.product_name,
+              category_type: element.category_type,
+              extra_price: element.extra_price,
+              extra_fruit: element.extra_fruit,
+              qty: element.qty,
+              itemPrice: itemPrice,
+              weight_id: element.weight_id,
+              weight: element.weight,
+            });
+          }
+
+          // Update the cart total
+          cartData.total = Total;
         });
 
         cartEmptyContainer.innerHTML = "";
@@ -139,11 +168,10 @@ function cartProductView() {
                     </div>
                         <div class="col-12 d-flex px-1 pt-3 pb-3 justify-content-between gap-3">
                             <div class="col-6 d-flex flex-column">
-                              <span class="alg-text-h3">Discount 0%</span>
                               <span class="alg-text-h3 fw-bold">LKR ${Total}</span>
                             </div>
                             <div class="col-6">
-                              <button type="button" class="alg-bg-tan alg-text-h3 border-0 rounded-3 p-1 fw-bolder"> Checkout </button>
+                              <button type="button" class="alg-bg-tan alg-text-h3 border-0 rounded-3 p-1 fw-bolder" onclick="paymentCheckout();"> Checkout </button>
                             </div>
                         </div>
                 </div>
@@ -489,4 +517,14 @@ function signOut() {
 
   request.open("POST", SERVER_URL + "backend/api/signOut.php", true);
   request.send();
+}
+
+
+function paymentCheckout() {
+
+  console.log(cartData.total);
+  console.log(cartData.items);
+
+
+  // window.location.assign("paymentCheckout.php");
 }

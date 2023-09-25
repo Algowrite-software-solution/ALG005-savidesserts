@@ -1,3 +1,16 @@
+<?php
+
+require_once("backend/model/SessionManager.php");
+
+$session_manager = new SessionManager();
+if (!$session_manager->isLoggedIn()) {
+    header("Location: index.php");
+}
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,28 +39,39 @@
     <script defer src="../js/singleProduct.js"></script>
     <script defer src="../js/script.js"></script>
     <script defer src="../js/homeSliders.js"></script>
+    <script defer src="./js/paymentCheckout.js"></script>
 </head>
 
 <body>
-
-    <div class="container-fluid flex-column flex-lg-row m-0 p-0 d-flex paycheck-main">
+    <div class="container-fluid flex-column flex-lg-row m-0 p-0 d-flex paycheck-main ">
         <div class="col-12 col-lg-6 d-flex flex-column alg-bg-light">
             <div class="d-flex justify-content-center justify-content-lg-start p-3">
                 <h2 class="alg-text-dark fw-bolder">Checkout Details</h2>
             </div>
             <div class="col-12 d-flex flex-column justify-content-center p-1 p-lg-3">
                 <h4 class="alg-text-dark py-4">Shipping Details</h4>
-                <div class="col-12 d-flex flex-column flex-grow-2  justify-content-between alg-bg-dark rounded-5 p-3 px-3 gap-3 shadow">
-                    <input placeholder="email" />
-                    <input placeholder="mobile" />
-                    <input placeholder="Address Line 1" />
-                    <input placeholder="Address Line 2" />
-                    <select>
-                        <option>Select City</option>
-                    </select>
-                    <select>
-                        <option>Select Province</option>
-                    </select>
+                <div class="d-flex flex-column justify-content-between alg-bg-dark rounded-5 p-4 px-3 gap-3 shadow">
+                    <div class="d-flex flex-column flex-md-row flex-lg-row justify-content-between gap-2">
+                        <input id="fullName" placeholder="Full Name" type="text" class="form-control" disabled />
+                        <input id="mobile" placeholder="Mobile" type="tel" class="form-control" disabled />
+                    </div>
+                    <div class="d-flex flex-column  flex-md-row flex-lg-row justify-content-between gap-2">
+                        <input id="addressLine1" placeholder="Address Line 1" type="text" class="form-control" disabled />
+                        <input id="addressLine2" placeholder="Address Line 2 (Optional)" type="text" class="form-control" disabled />
+                    </div>
+                    <div class="d-flex flex-column flex-md-row flex-lg-row justify-content-between gap-2">
+                        <input id="city" placeholder="City" type="text" class="form-control" disabled />
+                        <select id="district" class="form-select" disabled>
+                            <!-- district option goes here -->
+                        </select>
+                        <select id="province" class="form-select" disabled>
+                            <!-- province option goes here -->
+                        </select>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row flex-lg-row justify-content-end gap-2">
+                        <button class="fw-bolder btn btn-danger" onclick="EditBtnWorker();">Edit</button>
+                        <button id="saveBtn" class="fw-bolder  btn btn-primary" disabled>Save</button>
+                    </div>
                 </div>
             </div>
             <div class="col-12 d-flex flex-column justify-content-center p-1 p-lg-3">
@@ -105,14 +129,6 @@
                         <div class="d-flex justify-content-around ">
                             <span>SubTotal :</span>
                             <p>Rs. 1200</p>
-                        </div>
-                        <div class="d-flex justify-content-around ">
-                            <span>Tax :</span>
-                            <p>Free</p>
-                        </div>
-                        <div class="d-flex justify-content-around ">
-                            <span>Discount :</span>
-                            <p>-10%</p>
                         </div>
                         <div class="d-flex justify-content-around ">
                             <span class="fw-bolder">Total price :</span>
