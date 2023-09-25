@@ -140,6 +140,9 @@ function laodRelatedProducts(keywords) {
       if (data.status == "success") {
         if (data.results.length !== 0) {
           data.results.forEach((element) => {
+            let miniDescription =
+              getFirst20Words(element.product_description) + "...";
+
             productListViewContainer.innerHTML += `
               <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mx-0 p-0">
                 <div class="row m-0 w-100 p-2">
@@ -149,7 +152,7 @@ function laodRelatedProducts(keywords) {
                         <div class="text-white alg-text-h3">${element.product_name}</div>
                         <div class="alg-text-h3 text-white">LKR ${element.item_price}</div>
                       </div>
-                      <div class="alg-text-h3 text-white">${element.product_description}</div>
+                      <div class="alg-text-h3 text-white">${miniDescription}</div>
                       <hr/>
                       <div class="d-flex justify-content-between px-3">
                           <div class="d-flex gap-2">
@@ -181,6 +184,17 @@ function laodRelatedProducts(keywords) {
       console.error("Fetch error:", error);
     });
 }
+
+function getFirst20Words(inputString) {
+  // Split the input string into an array of words using whitespace as the delimiter
+  const wordsArray = inputString.split(/\s+/);
+  // Take the first 20 elements from the array using the slice method
+  const first20WordsArray = wordsArray.slice(0, 15);
+  // Join the first 20 words back together into a new string using whitespace as a separator
+  const resultString = first20WordsArray.join(" ");
+  return resultString;
+}
+
 
 // load open Signle Product View
 function openSignleProductView(id, weightId) {

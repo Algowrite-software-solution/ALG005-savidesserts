@@ -1,6 +1,6 @@
-const SERVER_URL = "http://localhost:9001/";
+const SERVER_URL = "";
 
-document.addEventListener("DOMContentLoaded", () => { });
+document.addEventListener("DOMContentLoaded", () => {});
 
 // header
 const toggle = document.querySelector(".alg-toggle-button");
@@ -244,11 +244,9 @@ function cartQtyUpdate() {
 //watchlist request
 //product adding a watchlist
 function productAddingWatchlist(productId, weightId) {
-
   const form = new FormData();
   form.append("productId", productId);
   form.append("weightId", weightId);
-
 
   // Fetch request
   fetch(SERVER_URL + "backend/api/watchListAddingProcess.php", {
@@ -268,7 +266,6 @@ function productAddingWatchlist(productId, weightId) {
       } else {
         toastMessage(data.error, "text-bg-danger");
       }
-
     })
     .catch((error) => {
       // Handle errors that occur during the Fetch request
@@ -432,7 +429,6 @@ function signUp() {
           signInModel.show();
           signUpModel.hide();
         }, 2000);
-
       } else {
         toastMessage(data.error, "text-bg-danger");
       }
@@ -461,7 +457,6 @@ function signIn() {
         setTimeout(() => {
           window.location.reload();
         }, 2000);
-
       } else if (data.status == "failed") {
         toastMessage(data.error, "text-bg-danger");
       } else {
@@ -473,7 +468,7 @@ function signIn() {
     });
 }
 
-// sign Out 
+// sign Out
 function signOut() {
   const request = new XMLHttpRequest();
   request.onreadystatechange = () => {
@@ -495,4 +490,3 @@ function signOut() {
   request.open("POST", SERVER_URL + "backend/api/signOut.php", true);
   request.send();
 }
-

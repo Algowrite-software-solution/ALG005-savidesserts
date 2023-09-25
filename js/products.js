@@ -2,24 +2,23 @@ let selectedCategory = "";
 
 document.addEventListener("DOMContentLoaded", () => {
   loadCategory();
-  loadProducts("");
 });
 
-//toast Message 
+//toast Message
 function toastMessage(message, className) {
-  const toastMessageContainer = document.getElementById('toastMessageContainer');
-  const toastLiveExample = document.getElementById('liveToast')
-
+  const toastMessageContainer = document.getElementById(
+    "toastMessageContainer"
+  );
+  const toastLiveExample = document.getElementById("liveToast");
 
   toastMessageContainer.innerHTML = "";
   const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
   toastMessageContainer.innerHTML += `<span>${message}</span>`;
 
   if (className !== undefined) {
-    toastLiveExample.classList.add(className)
+    toastLiveExample.classList.add(className);
   }
   toastBootstrap.show();
-
 }
 
 // load category
@@ -54,6 +53,10 @@ function loadCategory() {
             </div>
           `;
         });
+
+        // load products
+        let category = document.body.dataset.category;
+        setCategory(category);
       } else if (data.status == "failed") {
         console.log(data.error);
       } else {
@@ -86,15 +89,15 @@ function loadProducts(
 
   fetch(
     SERVER_URL +
-    "backend/api/load_product_list_api.php?search=" +
-    searchTerm +
-    "&options=" +
-    JSON.stringify({
-      category: category,
-      orderBy: orderBy,
-      orderDirection: orderDirection,
-      limit: limit,
-    }),
+      "backend/api/load_product_list_api.php?search=" +
+      searchTerm +
+      "&options=" +
+      JSON.stringify({
+        category: category,
+        orderBy: orderBy,
+        orderDirection: orderDirection,
+        limit: limit,
+      }),
     {
       method: "GET", // HTTP request method
       headers: {
@@ -113,7 +116,8 @@ function loadProducts(
       // Handle the JSON data received from the API
       if (data.status == "success") {
         data.results.forEach((element) => {
-          let miniDescription = getFirst20Words(element.product_description) + "...";
+          let miniDescription =
+            getFirst20Words(element.product_description) + "...";
 
           productListViewContainer.innerHTML += `
             <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mx-0 p-0">
@@ -193,8 +197,6 @@ function setCategory(category) {
       }
     });
   }
-
-  console.log(selectedCategory);
 
   loadProducts(
     document.getElementById("searchBar").value,
