@@ -21,9 +21,8 @@ $responseObject->status = 'failed';
 // db connection
 $db = new database_driver();
 
-$search_quary = "SELECT * FROM `user`";
-
-$db_response = $db->execute_query($update_query,'',array(''));
+$search_quary = "SELECT * FROM `user` INNER JOIN `delivery_details` ON `user`.`status_id` = `delivery_details`.`id` INNER JOIN `city` ON `delivery_details`.`city_id`=`city`.`id`";
+$db_response = $db->execute_query($search_quary, null, array());
 
 $resultSet = $db_response["result"];
 
