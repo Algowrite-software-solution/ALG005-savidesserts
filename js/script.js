@@ -1,6 +1,7 @@
 const SERVER_URL = "";
 
-document.addEventListener("DOMContentLoaded", () => { });
+document.addEventListener("DOMContentLoaded", () => {
+});
 
 // header
 const toggle = document.querySelector(".alg-toggle-button");
@@ -74,10 +75,11 @@ function productAddingCart() {
 }
 
 // cart data global object
-let cartData = {
+var cartData = {
   items: [],
   total: 0,
 };
+
 
 // //cart product View
 function cartProductView() {
@@ -521,10 +523,8 @@ function signOut() {
 
 
 function paymentCheckout() {
-
-  console.log(cartData.total);
-  console.log(cartData.items);
-
-
-  // window.location.assign("paymentCheckout.php");
+  window.location.assign("paymentCheckout.php");
 }
+
+
+

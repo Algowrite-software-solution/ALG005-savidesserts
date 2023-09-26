@@ -36,10 +36,7 @@ if (!$session_manager->isLoggedIn()) {
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script defer src="../js/bootstrap.bundle.js"></script>
-    <script defer src="../js/singleProduct.js"></script>
-    <script defer src="../js/script.js"></script>
     <script defer src="../js/homeSliders.js"></script>
-    <script defer src="./js/paymentCheckout.js"></script>
 </head>
 
 <body>
@@ -137,14 +134,15 @@ if (!$session_manager->isLoggedIn()) {
                     </div>
                 </div>
                 <div class="d-flex justify-content-center justify-content-lg-end pt-4">
-                    <button type="button" class="alg-bg-gold w-100 alg-text-h2 border-0 rounded-3 p-2 fw-bolder"> Place
+                    <button onclick="add();" type="button" class="alg-bg-gold w-100 alg-text-h2 border-0 rounded-3 p-2 fw-bolder"> Place
                         Order
                     </button>
                 </div>
             </div>
         </div>
     </div>
-
+    <script src="../js/script.js"></script>
+    <script src="../js/paymentCheckout.js"></script>
 </body>
 
 </html>

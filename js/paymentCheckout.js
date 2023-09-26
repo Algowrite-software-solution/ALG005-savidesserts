@@ -1,13 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
      districtLoader();
      provinceLoader();
+
+
+
 });
+
+console.log(cartData.items);
 
 
 function shippingDetailsChecker() {
 
 }
-
 
 const saveBtn = document.getElementById("saveBtn");
 const inputFields = document.querySelectorAll(".form-control");
