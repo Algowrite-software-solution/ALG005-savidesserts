@@ -7,6 +7,7 @@
 ## --  text_255
 ## --  name
 ## --  password
+## --  price - dev(madusha pravinda)
 
 final class data_validator
 {
@@ -77,6 +78,12 @@ final class data_validator
             if ($key == "password") {
                 foreach ($valueArray as $valueObject) {
                     $this->password_validator($valueObject);
+                }
+            }
+            // validate as a price
+            if ($key == "price") {
+                foreach ($valueArray as $valueObject) {
+                    $this->price_validator($valueObject);
                 }
             }
         }
@@ -252,6 +259,33 @@ final class data_validator
 
         if ($textLength < $minLength || $textLength > $maxLength) {
             $this->errorObject->$key =  "Invalid text length for " . $key; // Text is empty
+        }
+    }
+
+    // price validator
+    private function price_validator($dataToValidate)
+    {
+        $key = $dataToValidate->datakey;
+        $value = $dataToValidate->value;
+
+        // Remove leading/trailing white spaces
+        $price = trim($value);
+
+        // Check if the price is empty
+        if (empty($price)) {
+            $this->errorObject->$key = "Empty price for " . $key;
+            return;
+        }
+
+        // Remove commas and convert the price to a float
+        $price = str_replace(',', '', $price);
+
+        // Check if the price is a valid floating-point number (double)
+        if (!is_numeric($price)) {
+            $this->errorObject->$key = "Invalid price for " . $key;
+        } else {
+            $price = (float)$price; // Cast to double
+            // You can add additional validation logic here if needed.
         }
     }
 }
