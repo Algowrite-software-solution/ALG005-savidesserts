@@ -33,7 +33,7 @@ if (!isset($_GET['id'])) {
 $extraFruitId = $_GET['id'];
 $extraFruitName = $_GET['fruit'];
 $extraFruitPrice = $_GET['price'];
-$extraFruitStatus = $_GET['price'];
+$extraFruitStatus = $_GET['extra_status_id'];
 
 //database object
 $db = new database_driver();

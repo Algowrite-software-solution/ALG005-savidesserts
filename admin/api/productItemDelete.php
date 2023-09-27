@@ -23,13 +23,13 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
      response_sender::sendJson($responseObject);
 }
 
-if (!isset($_POST['id'])) {
+if (!isset($_GET['id'])) {
      $responseObject->error = 'Access denied';
      response_sender::sendJson($responseObject);
 }
 
 // input data
-$productItemId = $_POST['id'];
+$productItemId = $_GET['id'];
 
 //database object
 $db = new database_driver();
