@@ -2,7 +2,7 @@
 
 // all user data load
 // by kavindu sasanka
-// version - 1.0.0
+// version - 1.0.1
 // 25-09-2023
 
 
@@ -22,9 +22,7 @@ $responseObject->status = 'failed';
 $db = new database_driver();
 
 $search_quary = "SELECT * FROM `user` INNER JOIN `delivery_details` ON `user`.`status_id` = `delivery_details`.`id` INNER JOIN `city` ON `delivery_details`.`city_id`=`city`.`id`";
-$db_response = $db->execute_query($search_quary, null, array());
-
-$resultSet = $db_response["result"];
+$resultSet = $db->query($search_quary);
 
 $responseResultArray = [];
 for ($i = 0; $i < $resultSet->num_rows; $i++) {
@@ -35,3 +33,5 @@ for ($i = 0; $i < $resultSet->num_rows; $i++) {
 $responseObject->status = "success";
 $responseObject->results = $responseResultArray;
 response_sender::sendJson($responseObject);
+
+
