@@ -45,7 +45,7 @@
     <div class="alg-bg-dark d-flex flex-grow-1 position-relative alg-text-light">
         <div class="alg-sm-position-ablsolute col-8 h-100 col-md-4 col-lg-3 col-xl-2 p-3" id="navigationSection">
             <div class="rounded-3 alg-bg-darker px-3 py-4 h-100 alg-shadow navigation-sidebar">
-                <button data-algMainNavigationPanel="productManagementPanel" data-algMainNavigationPanelTitle="Product Management" class="alg-btn-pill my-2 w-100 main-navigation-panel-btn">Navigation 1</button>
+                <button data-algMainNavigationPanel="productManagementPanel" data-algMainNavigationPanelTitle="Product Management" class="alg-btn-pill my-2 w-100 main-navigation-panel-btn">Product Management</button>
                 <button data-algMainNavigationPanel="panel2" data-algMainNavigationPanelTitle="panel2" class="alg-btn-pill my-2 w-100 main-navigation-panel-btn">Navigation 2</button>
                 <button data-algMainNavigationPanel="panel3" data-algMainNavigationPanelTitle="panel3" class="alg-btn-pill my-2 w-100 main-navigation-panel-btn">Navigation 3</button>
             </div>

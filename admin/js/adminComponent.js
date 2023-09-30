@@ -12,7 +12,12 @@ class DashboardComponents {
   }
 
   // main navigation panel content arranger
-  mainNavigationController(navigationPanelId, mainContainerId) {
+  mainNavigationController(
+    navigationPanelId,
+    mainContainerId,
+    callback = () => {},
+    passdownCallback = () => {}
+  ) {
     this.mainNavigationBtns = document
       .getElementById(navigationPanelId)
       .querySelectorAll(".main-navigation-panel-btn");
@@ -25,13 +30,17 @@ class DashboardComponents {
         this.loadMainPanel(
           requestedPanel,
           mainContainerId,
-          requestedPaneltitle
+          requestedPaneltitle,
+          passdownCallback
         );
       });
     });
+
+    // callback
+    callback();
   }
 
-  loadMainPanel(requestedPanel, mainContainerId, title) {
+  loadMainPanel(requestedPanel, mainContainerId, title, callback = () => {}) {
     const mainContainer = document.getElementById(mainContainerId);
     const mainContainerTitle = document.getElementById(
       "mainContentContainerTitle"
@@ -47,6 +56,13 @@ class DashboardComponents {
         mainContainer.innerHTML = "";
         mainContainer.innerHTML = data;
       });
+
+    // callback
+    try {
+      callback();
+    } catch (error) {
+      console.log("error");
+    }
   }
 
   // modal creator
@@ -225,7 +241,14 @@ class DashboardComponents {
   }
 
   // render an element to the document
-  renderComponent(parentElementId, component) {
+  clearElementInnerHtml(parentElementId) {
+    document.getElementById(parentElementId).innerHTML = "";
+  }
+
+  renderComponent(parentElementId, component, replace = false) {
+    if (replace) {
+      this.clearElementInnerHtml(parentElementId);
+    }
     document.getElementById(parentElementId).appendChild(component);
   }
 }

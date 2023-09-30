@@ -2,7 +2,14 @@
 const ALG = new DashboardComponents();
 
 document.addEventListener("DOMContentLoaded", () => {
-  ALG.mainNavigationController("navigationSection", "mainContentContainer");
+  ALG.mainNavigationController(
+    "navigationSection",
+    "mainContentContainer",
+    () => {},
+    () => {
+      toggleProductSection("productView");
+    }
+  );
 
   // sidebar controls
   const icon = document.getElementById("navigationIcon");
@@ -16,7 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
   ALG.loadMainPanel(
     "productManagementPanel",
     "mainContentContainer",
-    "Product Management"
+    "Product Management",
+    loadProductsData
   );
 });
 
@@ -75,8 +83,10 @@ function toggleProductSection(section) {
   selectedSection.classList.remove("d-none");
 
   // load data accordingly
-  if (section === "view") {
+  if (section === "productView") {
     loadProductsData();
+  } else if (section === "categoryView") {
+    loadCategories();
   }
 }
 
@@ -108,7 +118,36 @@ function loadProductsData() {
       // Handle the JSON data received from the API
       if (data.status == "success") {
         const userTable = ALG.createTable(data.results);
-        ALG.renderComponent("viewProductSection", userTable);
+        ALG.renderComponent("productViewProductSection", userTable, true);
+      } else if (data.status == "failed") {
+        console.log(data.error);
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+    });
+}
+
+function loadCategories() {
+  fetch("../backend/api/load_category_api.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        const userTable = ALG.createList(data.results);
+        ALG.renderComponent("categoryViewProductSection", userTable, true);
       } else if (data.status == "failed") {
         console.log(data.error);
       } else {
