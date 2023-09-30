@@ -7,6 +7,9 @@ if ($sessionManager->isLoggedIn()) {
     $isLoggedIn = true;
     $userData = $sessionManager->getUserId();
 }
+
+$currentPage = substr($_SERVER["SCRIPT_NAME"], 1, -4);
+$currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
 ?>
 
 <header class="alg-bg-dark sticky-top">
@@ -15,19 +18,28 @@ if ($sessionManager->isLoggedIn()) {
             <div class="position-relative px-lg-5">
                 <div class="col-12 d-flex justify-content-between align-items-center m-0 px-0">
                     <a href="index.php">
-                        <div class="p-3">
+                        <div class="px-3 py-2">
                             <img src="resources/images/logo3.png" alt="some thing went wrong" class="header-logo-img" />
                         </div>
                     </a>
 
                     <div class="d-none d-md-block d-lg-block">
-                        <div class="d-flex gap-4 alg-cursor">
-                            <div class="alg-bg-tan  px-5 py-1 rounded-4 position-absolute fw-bold alg-button-hover">
-                                <span><a href="index.php" class="text-decoration-none text-black">Home</a></span>
-                            </div>
-                            <div class="alg-bg-light px-5 py-1 rounded-4 hd-marginLeft fw-bold alg-button-hover">
-                                <span><a href="products.php" class="text-decoration-none text-black">Products</a></span>
-                            </div>
+                        <div class="d-flex alg-bg-light rounded-pill fs-5">
+                            <a href="index.php" class="text-decoration-none text-black">
+                                <div class="alg-bg-tan px-5 py-1 rounded-pill header-btn fw-bold <?php echo ($currentPage === "index") ? "header-btn-selected" : "" ?> ">
+                                    <span class="d-none d-lg-block fs-6">Home</span><i class="d-block d-lg-none bi bi-house"></i>
+                                </div>
+                            </a>
+                            <a href="products.php" class="text-decoration-none text-black">
+                                <div class="alg-bg-light px-5 py-1 rounded-pill header-btn fw-bold <?php echo ($currentPage === "products" && $currentCategory !== "Jelly") ? "header-btn-selected" : "" ?> ">
+                                    <span class="d-none d-lg-block fs-6">Shop</span><i class="d-block d-lg-none bi bi-shop"></i>
+                                </div>
+                            </a>
+                            <a href="products.php?category=Jelly" class="text-decoration-none text-black">
+                                <div class="alg-bg-light px-5 py-1 rounded-pill header-btn fw-bold <?php echo ($currentPage === "products" && $currentCategory === "Jelly") ? "header-btn-selected" : "" ?> ">
+                                    <span class="d-none d-lg-block fs-6">Ingrediants</span><i class="d-block d-lg-none bi bi-heart"></i>
+                                </div>
+                            </a>
                         </div>
                     </div>
 
@@ -60,18 +72,17 @@ if ($sessionManager->isLoggedIn()) {
                             </div>
                         </div>
                     </div>
-
-                </div>
-                <div class=" text-center nav-box alg-bg-gold bg-opacity-50 position-static">
-                    <div class="d-flex flex-column d-block d-md-none pb-3">
-                        <span class="mt-3 alg-div-hover"><a href="index.php" class="text-decoration-none fw-semibold">Home</a></span>
-                        <span class="mt-3 alg-div-hover"><a href="products.php" class="text-decoration-none fw-semibold">Products</a></span>
-                        <span class="mt-3 alg-div-hover"><a href="#cart" class="text-decoration-none fw-semibold" onclick="openCartModel();">Cart</a></span>
-                        <span class="mt-3 alg-div-hover" onclick="openWatchlistModel();"><a href="#watchlist" class="text-decoration-none fw-semibold">Watchlist</a></span>
-                    </div>
                 </div>
             </div>
         </nav>
+    </div>
+    <div class="d-flex d-md-none text-center nav-box alg-bg-gold bg-opacity-50 position-static">
+        <div class="flex-column text-center w-100 d-flex">
+            <span class="py-2"><a href="index.php" class="alg-text-dark text-decoration-none fw-semibold">Home</a></span>
+            <span class="py-2"><a href="products.php" class="alg-text-dark text-decoration-none fw-semibold">Products</a></span>
+            <span class="py-2"><a href="#cart" class="alg-text-dark text-decoration-none fw-semibold" onclick="openCartModel();">Cart</a></span>
+            <span class="py-2" onclick="openWatchlistModel();"><a href="#watchlist" class="alg-text-dark text-decoration-none fw-semibold">Watchlist</a></span>
+        </div>
     </div>
 </header>
 
