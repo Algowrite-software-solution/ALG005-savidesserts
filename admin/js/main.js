@@ -57,6 +57,69 @@ function toggleNavigation() {
   isNavigationPanelOpned = !isNavigationPanelOpned;
 }
 
+// product section
+function toggleProductSection(section) {
+  const sections = document.getElementById(
+    "productSectionsContainer"
+  ).childNodes;
+
+  for (var i = 0; i < sections.length; i++) {
+    if (sections[i].nodeType === Node.ELEMENT_NODE) {
+      sections[i].classList.remove("d-block");
+      sections[i].classList.add("d-none");
+    }
+  }
+
+  const selectedSection = document.getElementById(section + "ProductSection");
+  selectedSection.classList.add("d-block");
+  selectedSection.classList.remove("d-none");
+
+  // load data accordingly
+  if (section === "view") {
+    loadProductsData();
+  }
+}
+
+// data loaders
+function loadProductsData() {
+  fetch(
+    "../backend/api/load_product_list_api.php?search=" +
+      "&options=" +
+      JSON.stringify({
+        category: "",
+        orderBy: "",
+        orderDirection: "",
+        limit: "",
+      }),
+    {
+      method: "GET", // HTTP request method
+      headers: {
+        "Content-Type": "application/json", // Request headers
+      },
+    }
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        const userTable = ALG.createTable(data.results);
+        ALG.renderComponent("viewProductSection", userTable);
+      } else if (data.status == "failed") {
+        console.log(data.error);
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+    });
+}
+
 function test() {
   console.log("test run");
   //
