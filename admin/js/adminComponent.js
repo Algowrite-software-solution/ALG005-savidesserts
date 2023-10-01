@@ -90,16 +90,37 @@ class DashboardComponents {
     toastTitle = null,
     toastBody = null,
     toastTime = "00:00:00",
-    toastIcon = "bi-heart"
+    toastIcon = "bi-heart",
+    type = "Info"
   ) {
     this.toastBootstrap.show();
+
+    // set type
+    switch (type) {
+      case "Success":
+        document.getElementById("toastTitle").style.color = "green";
+        break;
+      case "Info":
+        document.getElementById("toastTitle").style.color = "blue";
+        break;
+      case "Error":
+        document.getElementById("toastTitle").style.color = "red";
+        break;
+      case "Alert":
+        document.getElementById("toastTitle").style.color = "yellow";
+        break;
+
+      default:
+        break;
+    }
+
     toastTitle
       ? (document.getElementById("toastTitle").innerText = toastTitle)
       : null;
 
     toastBody
       ? ((document.getElementById("toastBody").innerHTML = ""),
-        document.getElementById("toastBody").appendChild(toastBody))
+        (document.getElementById("toastBody").innerHTML = toastBody))
       : null;
 
     toastTime
@@ -250,6 +271,22 @@ class DashboardComponents {
       this.clearElementInnerHtml(parentElementId);
     }
     document.getElementById(parentElementId).appendChild(component);
+  }
+
+  // utility
+  getCurrentTime() {
+    const now = new Date();
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let ampm = hours >= 12 ? "PM" : "AM";
+
+    // Convert to 12-hour time format
+    hours = hours % 12;
+    hours = hours ? hours : 12; // Handle midnight (0)
+
+    const timeString = `${hours}:${String(minutes).padStart(2, "0")} ${ampm}`;
+
+    return timeString;
   }
 }
 

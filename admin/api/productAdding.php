@@ -15,7 +15,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 //response
 $responseObject = new stdClass();
-$responseObject->status = 'false';
+$responseObject->status = 'failed';
 
 // chekcing is user logging
 $userCheckSession = new SessionManager();
@@ -88,5 +88,5 @@ $currentDate = date('Y-m-d');
 //data insert
 $productInsert = "INSERT INTO `product` (`product_id`,`product_name`,`product_description`,`category_id`,`add_date`) VALUES (?,?,?,?,?) ";
 $db->execute_query($productInsert, 'sssss', array($six_digit_random_number_productId, $productName, $description, $categoryId, $currentDate));
-$responseObject->status = 'Product Adding Success';
+$responseObject->status = 'success';
 response_sender::sendJson($responseObject);
