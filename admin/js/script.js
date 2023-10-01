@@ -1,15 +1,13 @@
 // add a product
 function addProduct() {
-  const name = document.getElementById("productNameInputField").value;
-  const description = document.getElementById(
-    "productDescriptionInputField"
-  ).value;
-  const category = document.getElementById("productCategoryInputField").value;
+  const name = document.getElementById("productNameInputField");
+  const description = document.getElementById("productDescriptionInputField");
+  const category = document.getElementById("productCategoryInputField");
 
   const form = new FormData();
-  form.append("product_name", name);
-  form.append("description", description);
-  form.append("category_id", category);
+  form.append("product_name", name.value);
+  form.append("description", description.value);
+  form.append("category_id", category.value);
 
   fetch("api/productAdding.php", {
     method: "POST",
@@ -25,6 +23,10 @@ function addProduct() {
           "bi-heart",
           "Success"
         );
+
+        name.value = "";
+        description.value = "";
+        category.value = 0;
       } else if (data.status == "failed") {
         ALG.openToast(
           "Alert",
