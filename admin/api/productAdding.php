@@ -15,7 +15,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 //response
 $responseObject = new stdClass();
-$responseObject->status = 'false';
+$responseObject->status = 'failed';
 
 // chekcing is user logging
 $userCheckSession = new SessionManager();
@@ -25,7 +25,7 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
 }
 
 if (!isset($_POST['category_id']) && !isset($_POST['product_name']) && !isset($_POST['description'])) {
-     $responseObject->error = 'Access denied';
+     $responseObject->error = 'Invalid Inputs';
      response_sender::sendJson($responseObject);
 }
 
@@ -38,13 +38,12 @@ $description = $_POST['description'];
 
 //data validation sending object
 $dataToValidate = [
-     'productName' => [
+     'text_255' => [
           (object)['datakey' => 'name', 'value' => $productName],
-          // Add more email data objects if needed
+          (object)['datakey' => 'description', 'value' => $description],
      ],
-     'description' => [
-          (object)['datakey' => 'text_255', 'value' => $description],
-          // Add more password data objects if needed
+     'id_int' => [
+          (object)['datakey' => 'category', 'value' => $categoryId],
      ],
 ];
 
@@ -88,5 +87,5 @@ $currentDate = date('Y-m-d');
 //data insert
 $productInsert = "INSERT INTO `product` (`product_id`,`product_name`,`product_description`,`category_id`,`add_date`) VALUES (?,?,?,?,?) ";
 $db->execute_query($productInsert, 'sssss', array($six_digit_random_number_productId, $productName, $description, $categoryId, $currentDate));
-$responseObject->status = 'Product Adding Success';
+$responseObject->status = 'success';
 response_sender::sendJson($responseObject);

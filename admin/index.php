@@ -16,6 +16,7 @@
     <script defer src="js/bootstrap.bundle.js"></script>
     <script defer src="js/adminComponent.js"></script>
     <script defer src="js/main.js"></script>
+    <script defer src="js/script.js"></script>
 </head>
 
 <body class="alg-bg-dark alg-h-100vh d-flex flex-column justify-content-between">

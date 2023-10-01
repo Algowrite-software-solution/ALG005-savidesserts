@@ -16,6 +16,20 @@
                 <label class="form-label" for="productNameInputField">Product Name</label>
                 <input type="text" id="productNameInputField" class="form-control">
             </div>
+            <div class="w-100">
+                <label class="form-label" for="productDescriptionInputField">Product Description</label>
+                <textarea type="text" id="productDescriptionInputField" class="form-control" rows="5"></textarea>
+            </div>
+            <div class="w-100">
+                <label class="form-label" for="productCategoryInputField">Product Description</label>
+                <select id="productCategoryInputField" class="form-select">
+                    Something Went Wrong..!!
+                </select>
+            </div>
+            <div class="w-100">
+                <button onclick="addProduct()" class="my-4 w-100 alg-btn-pill">Add Product</button>
+            </div>
+
         </div>
         <div class="p-2 h-100 d-none alg-bg-light alg-rounded-small" id="categoryViewProductSection">
             <div class="w-100">

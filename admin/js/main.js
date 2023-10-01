@@ -66,7 +66,7 @@ function toggleNavigation() {
 }
 
 // product section
-function toggleProductSection(section) {
+async function toggleProductSection(section) {
   const sections = document.getElementById(
     "productSectionsContainer"
   ).childNodes;
@@ -84,30 +84,47 @@ function toggleProductSection(section) {
 
   // load data accordingly
   if (section === "productView") {
-    loadProductsData();
+    await loadProductsData();
   } else if (section === "categoryView") {
-    loadCategories();
+    loadCategoriesList();
+  } else if (section === "productAdd") {
+    await addCategoriesToSelect();
   }
 }
 
+// ui data updators
+async function loadCategoriesList() {
+  const tableData = await loadCategories();
+  const userTable = ALG.createList(tableData);
+  ALG.renderComponent("categoryViewProductSection", userTable, true);
+}
+
+async function addCategoriesToSelect() {
+  const select = document.getElementById("productCategoryInputField");
+  const categories = await loadCategories();
+
+  select.innerHTML = "";
+  const defaultOption = document.createElement("option");
+  defaultOption.value = 0;
+  defaultOption.innerText = "Select a category";
+  select.appendChild(defaultOption);
+
+  categories.forEach((element) => {
+    const option = document.createElement("option");
+    option.value = element.id;
+    option.innerText = element.category_type;
+    select.appendChild(option);
+  });
+}
+
 // data loaders
-function loadProductsData() {
-  fetch(
-    "../backend/api/load_product_list_api.php?search=" +
-      "&options=" +
-      JSON.stringify({
-        category: "",
-        orderBy: "",
-        orderDirection: "",
-        limit: "",
-      }),
-    {
-      method: "GET", // HTTP request method
-      headers: {
-        "Content-Type": "application/json", // Request headers
-      },
-    }
-  )
+async function loadProductsData() {
+  return fetch("api/productView.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
     .then((response) => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -130,8 +147,8 @@ function loadProductsData() {
     });
 }
 
-function loadCategories() {
-  fetch("../backend/api/load_category_api.php", {
+async function loadCategories() {
+  return fetch("../backend/api/load_category_api.php", {
     method: "GET", // HTTP request method
     headers: {
       "Content-Type": "application/json", // Request headers
@@ -146,16 +163,18 @@ function loadCategories() {
     .then((data) => {
       // Handle the JSON data received from the API
       if (data.status == "success") {
-        const userTable = ALG.createList(data.results);
-        ALG.renderComponent("categoryViewProductSection", userTable, true);
+        return data.results;
       } else if (data.status == "failed") {
         console.log(data.error);
+        return null;
       } else {
         console.log(data);
+        return null;
       }
     })
     .catch((error) => {
       console.error("Fetch error:", error);
+      return null;
     });
 }
 
