@@ -119,22 +119,12 @@ async function addCategoriesToSelect() {
 
 // data loaders
 async function loadProductsData() {
-  return fetch(
-    "../backend/api/load_product_list_api.php?search=" +
-      "&options=" +
-      JSON.stringify({
-        category: "",
-        orderBy: "",
-        orderDirection: "",
-        limit: "",
-      }),
-    {
-      method: "GET", // HTTP request method
-      headers: {
-        "Content-Type": "application/json", // Request headers
-      },
-    }
-  )
+  return fetch("api/productView.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
     .then((response) => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);

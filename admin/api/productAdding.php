@@ -25,7 +25,7 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
 }
 
 if (!isset($_POST['category_id']) && !isset($_POST['product_name']) && !isset($_POST['description'])) {
-     $responseObject->error = 'Access denied';
+     $responseObject->error = 'Invalid Inputs';
      response_sender::sendJson($responseObject);
 }
 
@@ -38,13 +38,12 @@ $description = $_POST['description'];
 
 //data validation sending object
 $dataToValidate = [
-     'productName' => [
+     'text_255' => [
           (object)['datakey' => 'name', 'value' => $productName],
-          // Add more email data objects if needed
+          (object)['datakey' => 'description', 'value' => $description],
      ],
-     'description' => [
-          (object)['datakey' => 'text_255', 'value' => $description],
-          // Add more password data objects if needed
+     'id_int' => [
+          (object)['datakey' => 'category', 'value' => $categoryId],
      ],
 ];
 

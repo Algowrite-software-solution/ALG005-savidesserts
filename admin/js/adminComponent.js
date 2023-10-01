@@ -93,8 +93,6 @@ class DashboardComponents {
     toastIcon = "bi-heart",
     type = "Info"
   ) {
-    this.toastBootstrap.show();
-
     // set type
     switch (type) {
       case "Success":
@@ -118,10 +116,22 @@ class DashboardComponents {
       ? (document.getElementById("toastTitle").innerText = toastTitle)
       : null;
 
-    toastBody
-      ? ((document.getElementById("toastBody").innerHTML = ""),
-        (document.getElementById("toastBody").innerHTML = toastBody))
-      : null;
+    if (toastBody) {
+      document.getElementById("toastBody").innerHTML = "";
+      if (typeof toastBody === "object" && toastBody !== null) {
+        let textToType = "";
+        for (let key in toastBody) {
+          if (toastBody.hasOwnProperty(key)) {
+            textToType += key + ": " + toastBody[key] + "<br>";
+          }
+        }
+        document.getElementById("toastBody").innerHTML = textToType;
+      } else {
+        document.getElementById("toastBody").innerHTML = toastBody;
+      }
+    } else {
+      null;
+    }
 
     toastTime
       ? (document.getElementById("toastTime").innerHTML = toastTime)
@@ -135,6 +145,8 @@ class DashboardComponents {
           "mx-1",
         ])
       : null;
+
+    this.toastBootstrap.show();
   }
 
   // create a table
