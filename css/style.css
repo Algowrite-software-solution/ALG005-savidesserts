@@ -1,6 +1,22 @@
 /* header */
+
+.header-btn {
+  cursor: pointer;
+  background-color: var(--light);
+  transition: var(--transition2);
+}
+
+.header-btn:hover {
+  background-color: var(--gold);
+  transition: var(--transition2);
+}
+
+.header-btn-selected {
+  background-color: var(--tan);
+}
+
 .header-logo-img {
-  height: 60px;
+  height: 75px;
 }
 
 .hd-marginLeft {

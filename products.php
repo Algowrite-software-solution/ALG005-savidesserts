@@ -1,4 +1,5 @@
 <?php
+
 $category = (isset($_GET["category"]) ? $_GET["category"] : "");
 ?>
 
@@ -8,7 +9,7 @@ $category = (isset($_GET["category"]) ? $_GET["category"] : "");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALG005 - savi dessert</title>
+    <title>ALG005 - sawee dessert | shop</title>
 
     <!-- css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
