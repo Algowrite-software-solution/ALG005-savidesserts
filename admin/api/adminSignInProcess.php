@@ -6,9 +6,9 @@
 // 26-09-2023
 
 //include models
-require_once("../model/database_driver.php");
-require_once("../model/response_sender.php");
-require_once("../model/SessionManager.php");
+require_once("../../backend/model/database_driver.php");
+require_once("../../backend/model/response_sender.php");
+require_once("../../backend/model/SessionManager.php");
 
 // headers
 header("Content-Type: application/json; charset=UTF-8");
@@ -19,7 +19,7 @@ $responseObject->status = 'failed';
 
 //handle the request
 if (!isset($_POST['username']) || !isset($_POST['mobile'])) {
-    $responseObject->error = "invalid request";
+    $responseObject->status = "invalid request";
     response_sender::sendJson($responseObject);
 }
 
@@ -41,10 +41,9 @@ if($resultSet->num_rows == 1){
     $userAccess->login($row);
 
     $responseObject->status = "success";
-    $responseObject->result = 'login success';
     response_sender::sendJson($responseObject);
 }else{
     
-    $responseObject->result = 'Invalid Details';
+    $responseObject->status = 'Invalid Details';
     response_sender::sendJson($responseObject);
 }

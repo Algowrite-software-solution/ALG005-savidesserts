@@ -7,8 +7,8 @@
 
 
 //include models
-require_once("../model/database_driver.php");
-require_once("../model/response_sender.php");
+require_once("../../backend/model/database_driver.php");
+require_once("../../backend/model/response_sender.php");
 
 // headers
 header("Content-Type: application/json; charset=UTF-8");
