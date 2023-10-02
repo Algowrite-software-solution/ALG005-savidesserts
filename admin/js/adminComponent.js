@@ -285,6 +285,12 @@ class DashboardComponents {
     document.getElementById(parentElementId).appendChild(component);
   }
 
+  async addListToContainer(id, callback = async () => {}) {
+    const listData = await callback();
+    const list = ALG.createList(listData);
+    ALG.renderComponent(id, list, true);
+  }
+
   // utility
   getCurrentTime() {
     const now = new Date();
