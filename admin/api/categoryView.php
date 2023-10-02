@@ -9,6 +9,7 @@
 require_once("../../backend/model/database_driver.php");
 require_once("../../backend/model/response_sender.php");
 require_once("../../backend/model/SessionManager.php");
+require_once("../../backend/model/fileSearch.php");
 
 // headers
 header("Content-Type: application/json; charset=UTF-8");
@@ -18,11 +19,11 @@ $responseObject = new stdClass();
 $responseObject->status = 'false';
 
 //chekcing is user logging
-$userCheckSession = new SessionManager();
-if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
-     $responseObject->status = 'Please LogIn';
-     response_sender::sendJson($responseObject);
-}
+// $userCheckSession = new SessionManager();
+// if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
+//      $responseObject->status = 'Please LogIn';
+//      response_sender::sendJson($responseObject);
+// }
 //database object
 $db = new database_driver();
 
@@ -32,11 +33,25 @@ $resultSet = $db->query($searchQuery);
 
 $responseArray = array();
 
+// image manager
+$directory = '../../resources/images/categoryImages';
+$fileExtensions = ['png', 'jpeg', 'jpg'];
+
+
 if ($resultSet->num_rows > 0) {
      while ($rowData = $resultSet->fetch_assoc()) {
           $resRowDetailObject = new stdClass();
           $resRowDetailObject->category_id = $rowData['id'];
           $resRowDetailObject->category_type = $rowData['category_type'];
+
+          $fileSearch = new FileSearch($directory, $rowData['category_type'], $fileExtensions);
+          $searchResults = $fileSearch->search();
+
+          if (is_array($searchResults)) {
+               foreach ($searchResults as $searchResult) {
+                    $resRowDetailObject->category_image = $searchResult;
+               }
+          }
 
           array_push($responseArray, $resRowDetailObject);
      }
