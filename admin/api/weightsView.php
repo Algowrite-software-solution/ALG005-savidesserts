@@ -15,7 +15,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 //response
 $responseObject = new stdClass();
-$responseObject->status = 'false';
+$responseObject->status = 'failed';
 
 //chekcing is user logging
 $userCheckSession = new SessionManager();
@@ -41,10 +41,9 @@ if ($resultSet->num_rows > 0) {
           array_push($responseArray, $resRowDetailObject);
      }
      $responseObject->status = 'success';
-     $responseObject->result = $responseArray;
+     $responseObject->results = $responseArray;
      response_sender::sendJson($responseObject);
 } else {
-     $responseObject->status = 'no row data';
-     $responseObject->result = null;
+     $responseObject->error = "No weights to show";
      response_sender::sendJson($responseObject);
 }

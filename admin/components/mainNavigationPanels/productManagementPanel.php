@@ -4,6 +4,7 @@
         <div class="px-2 algbg alg-rounded-small">
             <button onclick="toggleProductSection('productView')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Products</span><i class="bi bi-box d-block d-lg-none"></i></button>
             <button onclick="toggleProductSection('productAdd')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Add Products</span><i class="bi bi-box d-block d-lg-none"></i></button>
+            <button onclick="toggleProductSection('weight')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Weight</span><i class="bi bi-box d-block d-lg-none"></i></button>
             <button onclick="toggleProductSection('categoryView')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Categories</span><i class="bi bi-box d-block d-lg-none"></i></button>
         </div>
     </div>
@@ -34,6 +35,16 @@
         <div class="p-2 h-100 d-none alg-bg-light alg-rounded-small" id="categoryViewProductSection">
             <div class="w-100">
                 something is here...
+            </div>
+        </div>
+        <div class="p-2 h-100 d-none alg-bg-light alg-rounded-small" id="weightProductSection">
+            <div class="w-100 d-flex flex-column gap-2 alg-text-white">
+                <div class="w-100 alg-rounded-mid alg-bg-dark p-2 d-flex gap-3">
+                    <input class="alg-rounded-mid form-control w-75" placeholder="add a new weight" type="text" id="addWeightBtn"><button class="w-25 alg-btn-pill">Add Weight</button>
+                </div>
+                <div class="w-100 alg-bg-dark p-2 alg-rounded-mid" id="weightViewContainer">
+                    Loading....
+                </div>
             </div>
         </div>
     </div>

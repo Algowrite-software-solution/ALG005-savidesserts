@@ -86,19 +86,15 @@ async function toggleProductSection(section) {
   if (section === "productView") {
     await loadProductsData();
   } else if (section === "categoryView") {
-    loadCategoriesList();
+    await ALG.addListToContainer("weightViewContainer", loadCategoriesData);
   } else if (section === "productAdd") {
     await addCategoriesToSelect();
+  } else if (section === "weight") {
+    await ALG.addListToContainer("weightViewContainer", loadWeightData);
   }
 }
 
 // ui data updators
-async function loadCategoriesList() {
-  const tableData = await loadCategories();
-  const userTable = ALG.createList(tableData);
-  ALG.renderComponent("categoryViewProductSection", userTable, true);
-}
-
 async function addCategoriesToSelect() {
   const select = document.getElementById("productCategoryInputField");
   const categories = await loadCategories();
@@ -118,6 +114,38 @@ async function addCategoriesToSelect() {
 }
 
 // data loaders
+async function loadWeightData() {
+  return fetch("api/weightsView.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
+// data loaders
 async function loadProductsData() {
   return fetch("api/productView.php", {
     method: "GET", // HTTP request method
@@ -134,8 +162,8 @@ async function loadProductsData() {
     .then((data) => {
       // Handle the JSON data received from the API
       if (data.status == "success") {
-        const userTable = ALG.createTable(data.results);
-        ALG.renderComponent("productViewProductSection", userTable, true);
+        const userData = ALG.createTable(data.results);
+        ALG.renderComponent("productViewProductSection", userData, true);
       } else if (data.status == "failed") {
         console.log(data.error);
       } else {
