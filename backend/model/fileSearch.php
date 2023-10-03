@@ -23,9 +23,11 @@ class FileSearch
           if (!empty($results)) {
                return $results;
           } else {
-               return "No files found with the name '{$this->fileName}' and extension '{$this->fileExtension}' in the directory '{$this->directory}'";
+               $extensions = implode(', ', $this->fileExtension);
+               return "No files found with the name '{$this->fileName}' and extensions [{$extensions}] in the directory '{$this->directory}'";
           }
      }
+
 
      private function searchFiles($directory, $fileName, $fileExtensions)
      {

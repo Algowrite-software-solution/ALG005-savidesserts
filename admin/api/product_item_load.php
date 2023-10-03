@@ -39,57 +39,56 @@ $fileExtensions = ['png', 'jpeg', 'jpg'];
 
 // ...
 if ($resultSet->num_rows > 0) {
-     $groupedResults = []; // Create an array to group results
- 
-     while ($rowData = $resultSet->fetch_assoc()) {
-         $productId = $rowData['product_product_id'];
-         $weightId = $rowData['weight_id'];
- 
-         $fileSearch = new ImageSearch($directory, $productId, $weightId, $fileExtensions);
-         $searchResults = $fileSearch->search();
- 
-         // Create a new object for each product item
-         $resRowDetailObject = new stdClass();
-         $resRowDetailObject->product_item_id = $rowData['id'];
-         $resRowDetailObject->qty = $rowData['qty'];
-         $resRowDetailObject->price = $rowData['price'];
-         $resRowDetailObject->product_status_id = $rowData['product_status_id'];
-         $resRowDetailObject->product_id = $productId;
-         $resRowDetailObject->weight_id = $weightId;
- 
-         // Add images to the new object if available
-         if (is_array($searchResults)) {
-             foreach ($searchResults as $index => $searchResult) {
-                 $resRowDetailObject->{"images[$index]"} = $searchResult;
-             }
-         }
- 
-         // Check if there's an existing object with the same productId and weightId
-         $key = "{$productId}_{$weightId}";
-         if (!isset($groupedResults[$key])) {
-             $groupedResults[$key] = $resRowDetailObject;
-         } else {
-             // Merge images into the existing object
-             $existingObject = $groupedResults[$key];
-             foreach ($resRowDetailObject as $property => $value) {
-                 // Skip merging productId and weightId properties
-                 if ($property !== 'product_id' && $property !== 'weight_id') {
-                     $existingObject->$property = $value;
-                 }
-             }
-         }
-     }
- 
-     // Convert groupedResults associative array to a numeric array
-     $responseArray = array_values($groupedResults);
- 
-     $responseObject->status = 'success';
-     $responseObject->result = $responseArray;
-     response_sender::sendJson($responseObject);
- } else {
-     $responseObject->error = 'no row data';
-     $responseObject->result = []; // Ensure result is an empty array
-     response_sender::sendJson($responseObject);
- }
+    $groupedResults = []; // Create an array to group results
+
+    while ($rowData = $resultSet->fetch_assoc()) {
+        $productId = $rowData['product_product_id'];
+        $weightId = $rowData['weight_id'];
+
+        $fileSearch = new ImageSearch($directory, $productId, $weightId, $fileExtensions);
+        $searchResults = $fileSearch->search();
+
+        // Create a new object for each product item
+        $resRowDetailObject = new stdClass();
+        $resRowDetailObject->product_item_id = $rowData['id'];
+        $resRowDetailObject->qty = $rowData['qty'];
+        $resRowDetailObject->price = $rowData['price'];
+        $resRowDetailObject->product_status_id = $rowData['product_status_id'];
+        $resRowDetailObject->product_id = $productId;
+        $resRowDetailObject->weight_id = $weightId;
+
+        // Add images to the new object if available
+        if (is_array($searchResults)) {
+            foreach ($searchResults as $index => $searchResult) {
+                $resRowDetailObject->{"images[$index]"} = $searchResult;
+            }
+        }
+
+        // Check if there's an existing object with the same productId and weightId
+        $key = "{$productId}_{$weightId}";
+        if (!isset($groupedResults[$key])) {
+            $groupedResults[$key] = $resRowDetailObject;
+        } else {
+            // Merge images into the existing object
+            $existingObject = $groupedResults[$key];
+            foreach ($resRowDetailObject as $property => $value) {
+                // Skip merging productId and weightId properties
+                if ($property !== 'product_id' && $property !== 'weight_id') {
+                    $existingObject->$property = $value;
+                }
+            }
+        }
+    }
+
+    // Convert groupedResults associative array to a numeric array
+    $responseArray = array_values($groupedResults);
+
+    $responseObject->status = 'success';
+    $responseObject->result = $responseArray;
+    response_sender::sendJson($responseObject);
+} else {
+    $responseObject->error = 'no row data';
+    $responseObject->result = []; // Ensure result is an empty array
+    response_sender::sendJson($responseObject);
+}
  // ...
- 

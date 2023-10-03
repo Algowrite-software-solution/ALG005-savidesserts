@@ -55,7 +55,7 @@ if ($_FILES['category_image']['error'] === 0) {
 
           // Define the destination directory
           $savePath = "../../resources/images/categoryImages/";
-          $newImageName = "id=" . $imageId . "&&" . "categoryName=" . $category_type .  "." . $fileExtension;
+          $newImageName = $category_type .  "." . $fileExtension;
 
 
           if (move_uploaded_file($_FILES['category_image']['tmp_name'], $savePath . $newImageName)) {
