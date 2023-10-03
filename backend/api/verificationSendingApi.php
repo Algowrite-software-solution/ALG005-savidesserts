@@ -6,7 +6,7 @@ require_once("../model/mail/MailSender.php");
 
 //response sending object
 $response = new stdClass();
-$response->status = "error";
+$response->status = "failed";
 
 //is checking email
 if (!isset($_POST['email'])) {
