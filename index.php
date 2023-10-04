@@ -46,8 +46,7 @@
                             </div>
                             <div class="row mx-4 mx-0">
                                 <div class="col-12 col-md-4 mt-3 mt-lg-2 pb-2 m-lg-0 p-lg-0 d-flex justify-content-center justify-content-lg-start bg-dange">
-                                    <button class="alg-bg-gold alg-main-button alg-button-hover p-2 px-4 rounded-4 text-white fw-bold alg-text-h2">ORDER
-                                        NOW</button>
+                                    <button class="alg-bg-gold alg-main-button alg-button-hover p-2 px-4 rounded-4 text-white fw-bold alg-text-h2">SHOP NOW</button>
                                 </div>
                             </div>
                         </div>
@@ -360,7 +359,7 @@
                                     <div class="col-10 col-md-11 col-lg-8">
                                         <div class="bg-white p-2 d-flex align-items-center gap-5 px-3 alg-div-hover rounded-4">
                                             <span><i class='bx bx-mobile fs-5 fw-bold'></i></span>
-                                            <span class="fw-bold alg-text-h3">+9421436564</span>
+                                            <span class="fw-bold alg-text-h3">+94771378492</span>
                                         </div>
                                     </div>
                                 </div>
@@ -369,7 +368,7 @@
                                     <div class="col-10 col-md-11 col-lg-8">
                                         <div class="bg-white p-2 d-flex align-items-center gap-5 px-3 alg-div-hover rounded-4">
                                             <span><i class='bx bxs-envelope fs-5 fw-bold'></i></span>
-                                            <span class="fw-bold alg-text-h3">saviproudcts@gmail.com</span>
+                                            <span class="fw-bold alg-text-h3">saweedessert@gmail.com</span>
                                         </div>
                                     </div>
                                 </div>
@@ -386,9 +385,8 @@
                                 <div class="row">
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-6 bg-lg-white p-2 d-flex gap-4 rounded-4 px-3 justify-content-center">
-                                            <span><i class="bi bi-facebook alg-header-text fs-5 alg-text-hover cursor"></i></span>
+                                            <span><a class="text-decoration-none" href="https://www.facebook.com/profile.php?id=61551535876271&mibextid=ZbWKwL"><i class="bi bi-facebook alg-header-text fs-5 alg-text-hover cursor"></i></a></span>
                                             <span><i class="bi bi-instagram alg-header-text fs-5 alg-text-hover cursor"></i></span>
-                                            <span><i class="bi bi-linkedin alg-header-text fs-5 alg-text-hover cursor"></i></span>
                                         </div>
                                     </div>
                                 </div>

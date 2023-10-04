@@ -2,7 +2,7 @@
     <div class="col-12 d-lg-flex text-sm-center align-items-lg-center justify-content-around bg-black pt-4 pb-4">
         <div class="d-flex flex-column justify-content-center align-items-center text-white">
             <h6>Designed & Developed</h6>
-            <h5>by <a href="http://www.algowrite.com" style="text-decoration: none;">Algowrite</a></h5>
+            <h6>by <a href="http://www.algowrite.com" style="text-decoration: none;">Algowrite</a></h6>
         </div>
         <div class="d-flex flex-column justify-content-center align-items-center text-white">
             <h6>All right reserved 2023</h6>
@@ -10,9 +10,11 @@
         </div>
         <div class="col-lg-1 d-flex justify-content-md-around justify-content-center align-items-center gap-2">
             <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
-                    <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z" />
-                </svg>
+                <a href="https://www.facebook.com/profile.php?id=61551535876271&mibextid=ZbWKwL">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+                        <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z" />
+                    </svg>
+                </a>
             </div>
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
