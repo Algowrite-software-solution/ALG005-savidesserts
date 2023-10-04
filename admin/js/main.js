@@ -175,7 +175,7 @@ async function loadProductsData() {
     });
 }
 
-async function loadCategories() {
+async function loadCategoriesData() {
   return fetch("../backend/api/load_category_api.php", {
     method: "GET", // HTTP request method
     headers: {
