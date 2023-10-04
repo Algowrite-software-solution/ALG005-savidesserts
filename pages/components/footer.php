@@ -6,7 +6,7 @@
         </div>
         <div class="d-flex flex-column justify-content-center align-items-center text-white">
             <h6>All right reserved 2023</h6>
-            <h6>Privacy Policy . Terms & Condition</h6>
+            <h6><a href="privacyPolicy.php">Privacy Policy</a> . Terms & Condition</h6>
         </div>
         <div class="col-lg-1 d-flex justify-content-md-around justify-content-center align-items-center gap-2">
             <div>
