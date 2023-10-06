@@ -2,8 +2,8 @@
 
 //weights Adding API
 //by madusha pravinda
-//version - 1.0.1
-//26-09-2023
+//version - 1.0.2
+//06-10-2023
 
 //include models
 require_once("../../backend/model/database_driver.php");
@@ -15,7 +15,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 //response
 $responseObject = new stdClass();
-$responseObject->status = 'false';
+$responseObject->status = 'failed';
 
 //chekcing is user logging
 $userCheckSession = new SessionManager();
@@ -24,13 +24,13 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
      response_sender::sendJson($responseObject);
 }
 
-if (!isset($_GET['weight'])) {
+if (!isset($_POST['weight'])) {
      $responseObject->error = 'Access denied';
      response_sender::sendJson($responseObject);
 }
 
 // input data
-$weight = $_GET['weight'];
+$weight = $_POST['weight'];
 
 //database object
 $db = new database_driver();
@@ -38,5 +38,6 @@ $db = new database_driver();
 // data insert
 $insertWeight = "INSERT INTO `weight` (`weight`) VALUES (?)";
 $db->execute_query($insertWeight, 's', array($weight));
-$responseObject->status= 'Added Success';
+
+$responseObject->status = 'success';
 response_sender::sendJson($responseObject);
