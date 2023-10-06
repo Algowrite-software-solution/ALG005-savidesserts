@@ -26,6 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
     "Product Management",
     loadProductsData
   );
+
+  ALG.addTooltipDitectors("tooltip-holder");
+
+  //test
 });
 
 // navigation
@@ -97,7 +101,7 @@ async function toggleProductSection(section) {
 // ui data updators
 async function addCategoriesToSelect() {
   const select = document.getElementById("productCategoryInputField");
-  const categories = await loadCategories();
+  const categories = await loadCategoriesData();
 
   select.innerHTML = "";
   const defaultOption = document.createElement("option");
