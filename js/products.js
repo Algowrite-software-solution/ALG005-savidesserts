@@ -2,7 +2,7 @@ let selectedCategory = "";
 
 document.addEventListener("DOMContentLoaded", () => {
   loadCategory();
-  loadProducts();
+  // loadProducts("");
 });
 
 //toast Message
