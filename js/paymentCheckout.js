@@ -6,12 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-console.log(cartData.items);
 
-
-function shippingDetailsChecker() {
-
-}
 
 const saveBtn = document.getElementById("saveBtn");
 const inputFields = document.querySelectorAll(".form-control");

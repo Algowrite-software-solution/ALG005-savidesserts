@@ -2,6 +2,7 @@ let selectedCategory = "";
 
 document.addEventListener("DOMContentLoaded", () => {
   loadCategory();
+  // loadProducts("");
 });
 
 //toast Message
@@ -89,15 +90,12 @@ function loadProducts(
 
   fetch(
     SERVER_URL +
-      "backend/api/load_product_list_api.php?search=" +
-      searchTerm +
-      "&options=" +
-      JSON.stringify({
-        category: category,
-        orderBy: orderBy,
-        orderDirection: orderDirection,
-        limit: limit,
-      }),
+    "backend/api/load_product_list_api.php?search=" + searchTerm + "&options=" + JSON.stringify({
+      category: category,
+      orderBy: orderBy,
+      orderDirection: orderDirection,
+      limit: limit,
+    }),
     {
       method: "GET", // HTTP request method
       headers: {
