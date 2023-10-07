@@ -1,10 +1,12 @@
 <?php
 
 require_once("backend/model/SessionManager.php");
-
-$session_manager = new SessionManager();
-if (!$session_manager->isLoggedIn()) {
-    header("Location: index.php");
+$sessionManager = new SessionManager();
+$isLoggedIn = false;
+$userData = null;
+if ($sessionManager->isLoggedIn()) {
+    $isLoggedIn = true;
+    $userData = $sessionManager->getUserId();
 }
 
 ?>
@@ -48,15 +50,15 @@ if (!$session_manager->isLoggedIn()) {
             <div class="col-12 d-flex flex-column justify-content-center p-1 p-lg-3">
                 <h4 class="alg-text-dark py-4">Shipping Details</h4>
                 <div class="d-flex flex-column justify-content-between alg-bg-dark rounded-5 p-4 px-3 gap-3 shadow">
-                    <div class="d-flex flex-column flex-md-row flex-lg-row justify-content-between gap-2">
+                    <div class="d-flex flex-column flex-md-row flex-lg-row justify-content-between gap-2" id="container1">
                         <input id="fullName" placeholder="Full Name" type="text" class="form-control" disabled />
                         <input id="mobile" placeholder="Mobile" type="tel" class="form-control" disabled />
                     </div>
-                    <div class="d-flex flex-column  flex-md-row flex-lg-row justify-content-between gap-2">
+                    <div class="d-flex flex-column  flex-md-row flex-lg-row justify-content-between gap-2" id="container2">
                         <input id="addressLine1" placeholder="Address Line 1" type="text" class="form-control" disabled />
                         <input id="addressLine2" placeholder="Address Line 2 (Optional)" type="text" class="form-control" disabled />
                     </div>
-                    <div class="d-flex flex-column flex-md-row flex-lg-row justify-content-between gap-2">
+                    <div class="d-flex flex-column flex-md-row flex-lg-row justify-content-between gap-2" id="container3">
                         <input id="city" placeholder="City" type="text" class="form-control" disabled />
                         <select id="district" class="form-select" disabled>
                             <!-- district option goes here -->
@@ -67,7 +69,7 @@ if (!$session_manager->isLoggedIn()) {
                     </div>
                     <div class="d-flex flex-column flex-md-row flex-lg-row justify-content-end gap-2">
                         <button class="fw-bolder btn btn-danger" onclick="EditBtnWorker();">Edit</button>
-                        <button id="saveBtn" class="fw-bolder  btn btn-primary" disabled>Save</button>
+                        <button id="saveBtn" class="fw-bolder  btn btn-primary" onclick="updateShippingData();" disabled>Save</button>
                     </div>
                 </div>
             </div>
@@ -95,23 +97,8 @@ if (!$session_manager->isLoggedIn()) {
                 <!--purchased product slider -->
 
                 <div class="checkoutSwiper swiper mySwiperCheckOut pt-4 px-5 border-bottom">
-                    <div class="swiper-wrapper pt-4">
-
-                        <?php
-
-                        for ($x = 0; $x < 6; $x++) {
-                        ?>
-                            <div class="checkoutSwiper swiper-slide col-3 alg-text-light d-flex flex-column justify-content-center align-items-center">
-
-                                <img class="img-fluid paycheck-product-im" src="https://media.istockphoto.com/id/1179207306/photo/pudding-caramel-custard-with-caramel-sauce-and-mint-leaf-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=QOgo1aIuavOspqKTbKz7Qk2O5wJJOZZPg4fiPg0p2xM=" alt="">
-                                <span class="pt-1 alg-text-h3">Pudin With Honey</span>
-                                <span class=" fw-bolder alg-text-h3">RS.1200</span>
-                                <span class=" fw-bolder alg-text-h3">extra item</span>
-
-                            </div>
-                        <?php
-                        }
-                        ?>
+                    <div class="swiper-wrapper pt-4 d-flex gap-4" id="swiperDetailContainer">
+                           
                     </div>
                     <div class="swiper-button-next alg-text-gold"></div>
                     <div class="swiper-button-prev alg-text-gold"></div>
@@ -122,13 +109,21 @@ if (!$session_manager->isLoggedIn()) {
                 <!-- </div> -->
                 <div class="d-flex py-4 flex-column flex-lg-row justify-content-center align-items-center justify-content-lg-around border-bottom">
                     <img class="img-fluid paycheck-thanku-img " src="https://img.freepik.com/free-vector/thank-you-placard-concept-illustration_114360-13436.jpg?w=996&t=st=1694928554~exp=1694929154~hmac=b5cf8b7b5d163da7bc470ecf12e411fb11ba50a1fe07d773b469898eda55e21d" alt="">
-                    <div class="col-12 pt-3 pt-lg-0 col-lg-6 text-white">
+                    <div class="col-12 pt-3 pt-lg-0 col-lg-6 text-white" id="priceContainer">
                         <div class="d-flex justify-content-around ">
-                            <span>SubTotal :</span>
+                            <span>Product Total Price:</span>
                             <p>Rs. 1200</p>
                         </div>
                         <div class="d-flex justify-content-around ">
-                            <span class="fw-bolder">Total price :</span>
+                            <span class="fw-bolder">Extra Item Total price :</span>
+                            <p class="fw-bolder">Rs. 1080</p>
+                        </div>
+                        <div class="d-flex justify-content-around ">
+                            <span class="fw-bolder">Shipping price :</span>
+                            <p class="fw-bolder">Rs. 1080</p>
+                        </div>
+                        <div class="d-flex justify-content-around ">
+                            <span class="fw-bolder">Total Price :</span>
                             <p class="fw-bolder">Rs. 1080</p>
                         </div>
                     </div>
@@ -141,6 +136,8 @@ if (!$session_manager->isLoggedIn()) {
             </div>
         </div>
     </div>
+    <!-- toast mode -->
+    <?php include("pages/components/toastMessage.php") ?>
     <script src="../js/script.js"></script>
     <script src="../js/paymentCheckout.js"></script>
 </body>
