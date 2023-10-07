@@ -1,0 +1,147 @@
+{
+  "version": "0.0.0 - last updated on 04-10-2023",
+  "title": "Terms & Condition",
+  "description": "Welcome to saweedessert.com. Here we have listed the terms and conditions that govern the use of our website for your particular needs and the curtain conditions that you have to follow within this website and related processes.By accessing and using this website in any matter you agree to comply with these terms. Please be sure to read this carefully before you proceed with any transactions.",
+  "sections": [
+    {
+      "sectionTitle": "Use of this website",
+      "sectionDescription": "",
+      "list": [
+        {
+          "content": "You must be at least 18 years old to use our website or make purchases.",
+          "sublist": []
+        },
+        {
+          "content": "You have to maintain the confidentiality of your account email and password. It is on you to protect your login information and we would not take the responsibility of such cases.",
+          "sublist": []
+        },
+        {
+          "content":"You agree to provide only the correct and accurate information when we ask you for the information. Payment details, contact details and personal details have to be accurate and correct. ",
+          "sublist":[]
+        },
+        {
+          "content": "You may not use our website for any unlawful or unauthorized purposes.",
+          "sublist": []
+        }
+      ]
+    },
+    {
+      "sectionTitle": "Product Information and Pricing",
+      "sectionDescription": "",
+      "list": [
+        {
+          "content": "We make sure to provide you with accurate information about product description, images and pricing details. You have to make sure that you are purchasing the right product and amount before you place the order.",
+          "sublist": []
+        },
+        {
+          "content": "Prices are subjects to be changed at any time without any notice beforehands. Make sure to check the prices before you place an order. Discounts, offers and promotions are only valid within the time period that they are mentioned in the product descriptions and promotion sections. You have to act upon the present details when you make a purchase and you can refer to your purchase history in the purchase history section.",
+          "sublist": []
+        },
+        {
+          "content":"Any promotions or discounts are valid for a limited time and may be subject to additional terms and conditions.",
+          "sublist":[]
+        }
+      ]
+    },
+    {
+      "sectionTitle": "Orders and Payments",
+      "sectionDescription": "",
+      "list": [
+        {
+          "content": "By placing an order on our website, you are making an offer to purchase the selected products.",
+          "sublist": []
+        },
+        {
+          "content": "We reserve all the rights to cancel or refuse any payment under any reason including but not limited to product availability, errors in pricing or product information, or suspected fraudulent activity.",
+          "sublist": []
+        },
+        {
+          "content":"We only accept the orders that have more than 1kg of weight and (this refers to only the desserts) items that are less weighted can be bought in physical location as mentioned in the contact section of the website.",
+          "sublist":[]
+        },
+        {
+          "content": "You agree to provide valid and up-to-date payment information and authorize us to charge the total order amount, including applicable taxes and shipping fees, to your chosen payment method.",
+          "sublist": []
+        },
+        {
+          "content": "We use trusted third-party payment processors to handle your payment information securely. We do not store or have access to your full payment details.",
+          "sublist": []
+        },
+        {
+          "content": "Placed orders will not be refunded under any circumstance and you have to be very clear about the payment before you place the order.",
+          "sublist": []
+        }
+      ]
+    },
+    {
+      "sectionTitle": "Shipping and Delivery",
+      "sectionDescription": "",
+      "list": [
+        {
+          "content": "We will make reasonable efforts to ensure timely shipping and delivery of your orders. We use trusted third party delivery services to provide you a fast delivery service.",
+          "sublist": []
+        },
+        {
+          "content": "Shipping and delivery times provided are estimates and may vary based on your location and other factors. Each order will be delivered within a maximum of 48 hours. ",
+          "sublist": []
+        }  
+      ]
+    },
+    {
+      "sectionTitle": "Returns and Refunds",
+      "sectionDescription": "",
+      "list": [
+        {
+          "content": "Our Returns and Refund Policy governs the process and conditions for returning products and seeking refunds. Please refer to the policy provided on our website for more information.",
+          "sublist": []
+        },
+        {
+          "content": "Any order that will be delayed more than the mentioned time period will be replaced with a new product and it will be delivered within another 48 hours. Late delivery orders are rare to occur and it is important to notice that these payments will not be refunded. However the replacement order for the late deliveries will be free of charge.",
+          "sublist": []
+        }
+      ]
+    },
+    {
+      "sectionTitle": "Intellectual Property",
+      "sectionDescription": "",
+      "list": [
+        {
+          "content": "Every content and materials on our website including text, image, branding, graphics and application processes are protected by intellectual property rights and are the property of saweedessert.com or its licensors.  You are not allowed to use any of the above materials without prior written consent.",
+          "sublist": []
+        },
+        {
+          "content": "All software related assets and design rights belong to the algowrite software solutions and relevant library owners and you are not allowed to use any of the intellectual property in any condition.",
+          "sublist": []
+        },
+        {
+          "content":"You may not use, reproduce, distribute, or modify any content from our website without our prior written consent.",
+          "sublist":[]
+        }
+      ]
+    },
+    {
+      "sectionTitle": "Limitation of Liability",
+      "sectionDescription": "",
+      "list": [
+        {
+          "content": "In no event shall saweedessert.com, its directors, employees, or affiliates be liable for any direct, indirect, incidental, special, or consequential damages arising out of or in connection with your use of our website or the purchase and use of our products.",
+          "sublist": []
+        },
+        {
+          "content": "We make no warranties or representations, express or implied, regarding the quality, accuracy, or suitability of the products offered on our website.",
+          "sublist": []
+        }
+      ]
+    },
+    {
+      "sectionTitle": "Amendments and Termination",
+      "sectionDescription": "",
+      "list": [
+        {
+          "content": "We reserve the right to modify, update, or terminate these Terms and Conditions at any time without prior notice. It is your responsibility to review these terms periodically for any changes.",
+          "sublist": []
+        }
+      ]
+    }
+  ]
+}

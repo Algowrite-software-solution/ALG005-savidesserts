@@ -46,7 +46,7 @@
                             </div>
                             <div class="row mx-4 mx-0">
                                 <div class="col-12 col-md-4 mt-3 mt-lg-2 pb-2 m-lg-0 p-lg-0 d-flex justify-content-center justify-content-lg-start bg-dange">
-                                    <button class="alg-bg-gold alg-main-button alg-button-hover p-2 px-4 rounded-4 text-white fw-bold alg-text-h2">ORDER
+                                    <button class="alg-bg-gold alg-main-button alg-button-hover p-2 px-4 rounded-4 text-white fw-bold alg-text-h2">SHOP
                                         NOW</button>
                                 </div>
                             </div>
@@ -232,7 +232,7 @@
                         </div>
                         <div class="col-12 col-lg-6 desc-box scrollbar rounded-4">
                             <div>
-                                <h4 class="pb-2 alg-text-tan">This is how Savi dessert started.....</h4>
+                                <h4 class="mt-3 alg-text-tan">This is how Savi dessert started.....</h4>
                                 <p class="alg-text-light">Contrary to popular belief, Lorem Ipsum is not simply random
                                     text. It
                                     has roots in a piece of
@@ -289,10 +289,10 @@
                 <div class="col-12 d-flex flex-lg-row flex-column justify-content-between align-items-center gap-3 m-2 p-0">
                     <div class="testm-card d-flex justify-content-center align-items-center  alg-bg-light p-2">
                         <div class="col-4 p-0">
-                            <img src="https://javainstitute.edu.lk/img/faculty/dr-ishantha.jpg" class="img-fluid testm-card-img ">
+                            <img src="https://discover.javainstitute.edu.lk/img/faculty/mr-tharaka.jpg" class="img-fluid testm-card-img">
                         </div>
                         <div class="col-8 px-2">
-                            <p class="ld-tes-card-paragraph alg-text-dark fw-bold">"Pure nostalgia in every bite!
+                            <p class="ld-tes-card-paragraph  alg-text-dark fw-bold">"Pure nostalgia in every bite!
                                 [Your Dessert Brand Name] captures
                                 the essence of Sri Lankan sweets
                                 perfectly!
@@ -303,11 +303,11 @@
                         </div>
                     </div>
                     <div class="testm-card d-flex justify-content-center align-items-center  alg-bg-light p-2">
-                        <div class="col-4">
-                            <img src="https://javainstitute.edu.lk/img/faculty/dr-ishantha.jpg" class="img-fluid testm-card-img ">
+                        <div class="col-4 p-0">
+                            <img src="https://discover.javainstitute.edu.lk/img/faculty/mr-tharaka.jpg" class="img-fluid testm-card-img">
                         </div>
                         <div class="col-8 px-2">
-                            <p class="ld-tes-card-paragraph alg-text-dark fw-bold">"Pure nostalgia in every bite!
+                            <p class="ld-tes-card-paragraph  alg-text-dark fw-bold">"Pure nostalgia in every bite!
                                 [Your Dessert Brand Name] captures
                                 the essence of Sri Lankan sweets
                                 perfectly!
@@ -318,11 +318,11 @@
                         </div>
                     </div>
                     <div class="testm-card d-flex justify-content-center align-items-center  alg-bg-light p-2">
-                        <div class="col-4">
-                            <img src="https://javainstitute.edu.lk/img/faculty/dr-ishantha.jpg" class="img-fluid testm-card-img ">
+                        <div class="col-4 p-0">
+                            <img src="https://discover.javainstitute.edu.lk/img/faculty/mr-tharaka.jpg" class="img-fluid testm-card-img">
                         </div>
                         <div class="col-8 px-2">
-                            <p class="ld-tes-card-paragraph alg-text-dark fw-bold">"Pure nostalgia in every bite!
+                            <p class="ld-tes-card-paragraph  alg-text-dark fw-bold">"Pure nostalgia in every bite!
                                 [Your Dessert Brand Name] captures
                                 the essence of Sri Lankan sweets
                                 perfectly!
@@ -360,7 +360,7 @@
                                     <div class="col-10 col-md-11 col-lg-8">
                                         <div class="bg-white p-2 d-flex align-items-center gap-5 px-3 alg-div-hover rounded-4">
                                             <span><i class='bx bx-mobile fs-5 fw-bold'></i></span>
-                                            <span class="fw-bold alg-text-h3">+9421436564</span>
+                                            <span class="fw-bold alg-text-h3">+94771378492</span>
                                         </div>
                                     </div>
                                 </div>
@@ -369,7 +369,7 @@
                                     <div class="col-10 col-md-11 col-lg-8">
                                         <div class="bg-white p-2 d-flex align-items-center gap-5 px-3 alg-div-hover rounded-4">
                                             <span><i class='bx bxs-envelope fs-5 fw-bold'></i></span>
-                                            <span class="fw-bold alg-text-h3">saviproudcts@gmail.com</span>
+                                            <span class="fw-bold alg-text-h3">saweedessert@gmail.com</span>
                                         </div>
                                     </div>
                                 </div>
@@ -386,9 +386,8 @@
                                 <div class="row">
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-6 bg-lg-white p-2 d-flex gap-4 rounded-4 px-3 justify-content-center">
-                                            <span><i class="bi bi-facebook alg-header-text fs-5 alg-text-hover cursor"></i></span>
+                                            <span><a class="text-decoration-none" href="https://www.facebook.com/profile.php?id=61551535876271&mibextid=ZbWKwL"><i class="bi bi-facebook alg-header-text fs-5 alg-text-hover cursor"></i></a></span>
                                             <span><i class="bi bi-instagram alg-header-text fs-5 alg-text-hover cursor"></i></span>
-                                            <span><i class="bi bi-linkedin alg-header-text fs-5 alg-text-hover cursor"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -399,6 +398,8 @@
             </div>
         </div>
     </section>
+
+    
 
     <?php include("pages/components/footer.php") ?>
 </body>

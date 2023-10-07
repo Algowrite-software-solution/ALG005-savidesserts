@@ -27,7 +27,7 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
 //load invoice details
 $db = new database_driver();
 
-$query = "SELECT * FROM `invoice` INNER JOIN `invoice_item` INNER JOIN `invoice_status`";
+$query = "SELECT * FROM `invoice` INNER JOIN `invoice_item` ON invoice.order_id=invoice.order_id INNER JOIN `invoice_status` ON invoice.invoice_status_invoice_status_id=invoice_status.invoice_status_id";
 $resultSet = $db->query($query);
 
 $responseResultArray = [];

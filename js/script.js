@@ -435,6 +435,11 @@ function openSignUpModel() {
   signUpModel.show();
 }
 
+function goBackToSignIn() {
+  signUpModel.hide();
+  signInModel.show();
+}
+
 function signUp() {
   const email = document.getElementById("signUp-email").value;
   const full_name = document.getElementById("signUp-fullname").value;

@@ -35,6 +35,7 @@ $qty = $_POST['qty'];
 $price = $_POST['price'];
 $weightId = $_POST['weight_id'];
 $productId = $_POST['product_id'];
+$imageId = $_POST['image_id'];
 
 
 
@@ -113,7 +114,7 @@ if (is_array($_FILES['product_image']['error'])) {
 
                //file save path and file name create
                $savePath = "../../resources/images/singleProductImg/";
-               $newImageName = "productId=" . $productId . "&&" . "weightId=" . $weightId . "." . $fileExtension;
+               $newImageName = "productId=" . $productId . "&&" . "weightId=" . $weightId . "&&" . "image=" . $imageId . "." . $fileExtension;
 
                if (move_uploaded_file($_FILES['product_image']['tmp_name'], $savePath . $newImageName)) {
                     $currentURL = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";

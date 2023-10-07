@@ -86,7 +86,7 @@ CREATE TABLE `category` (
   `id` int NOT NULL AUTO_INCREMENT,
   `category_type` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +95,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'Watalappan'),(2,'Jelly'),(3,'Pudin'),(4,'Yoget'),(5,'Custud');
+INSERT INTO `category` VALUES (1,'Watalappan'),(2,'Jelly'),(3,'Pudin'),(4,'Yoget'),(5,'Custud'),(10,'milk');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,7 +174,7 @@ CREATE TABLE `extra` (
   PRIMARY KEY (`id`),
   KEY `fk_extra_extra_status1_idx` (`extra_status_id`),
   CONSTRAINT `fk_extra_extra_status1` FOREIGN KEY (`extra_status_id`) REFERENCES `extra_status` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -183,7 +183,7 @@ CREATE TABLE `extra` (
 
 LOCK TABLES `extra` WRITE;
 /*!40000 ALTER TABLE `extra` DISABLE KEYS */;
-INSERT INTO `extra` VALUES (1,1,'Cashu Nutes',50),(2,1,'Chips',150),(3,1,'Dry Graps',70),(4,1,'No fruit',0);
+INSERT INTO `extra` VALUES (1,1,'corn',90),(2,1,'Chips',150),(3,1,'Dry Graps',70),(4,1,'No fruit',0),(5,1,'katarolu',40);
 /*!40000 ALTER TABLE `extra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -260,7 +260,7 @@ CREATE TABLE `invoice` (
   KEY `fk_invoice_invoice_status1_idx` (`invoice_status_invoice_status_id`),
   CONSTRAINT `fk_invoice_invoice_status1` FOREIGN KEY (`invoice_status_invoice_status_id`) REFERENCES `invoice_status` (`invoice_status_id`),
   CONSTRAINT `fk_invoice_user1` FOREIGN KEY (`user_user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -269,6 +269,7 @@ CREATE TABLE `invoice` (
 
 LOCK TABLES `invoice` WRITE;
 /*!40000 ALTER TABLE `invoice` DISABLE KEYS */;
+INSERT INTO `invoice` VALUES (1,'2023-10-03',2000,200,'#123456',2,1);
 /*!40000 ALTER TABLE `invoice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -295,7 +296,7 @@ CREATE TABLE `invoice_item` (
   CONSTRAINT `fk_invoice_item_extra1` FOREIGN KEY (`extra_id`) REFERENCES `extra` (`id`),
   CONSTRAINT `fk_invoice_item_product_item1` FOREIGN KEY (`product_item_id`) REFERENCES `product_item` (`id`),
   CONSTRAINT `fk_invoice_item_weight1` FOREIGN KEY (`weight_id`) REFERENCES `weight` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -304,6 +305,7 @@ CREATE TABLE `invoice_item` (
 
 LOCK TABLES `invoice_item` WRITE;
 /*!40000 ALTER TABLE `invoice_item` DISABLE KEYS */;
+INSERT INTO `invoice_item` VALUES (1,1,2,3,1,1000,'#123456',20),(2,9,3,4,1,800,'#123456',50);
 /*!40000 ALTER TABLE `invoice_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -318,7 +320,7 @@ CREATE TABLE `invoice_status` (
   `invoice_status_id` int NOT NULL AUTO_INCREMENT,
   `status` varchar(20) NOT NULL,
   PRIMARY KEY (`invoice_status_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -327,6 +329,7 @@ CREATE TABLE `invoice_status` (
 
 LOCK TABLES `invoice_status` WRITE;
 /*!40000 ALTER TABLE `invoice_status` DISABLE KEYS */;
+INSERT INTO `invoice_status` VALUES (1,'Accept'),(2,'Packaging'),(3,'Delivered'),(4,'Cancel');
 /*!40000 ALTER TABLE `invoice_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -355,7 +358,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES ('122314522','Bread and butter pudding','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',3,'2023-08-22'),('123456789','Ultimate sticky toffee pudding','Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia',3,'2023-08-22'),('534565732','Whole milk Custard','But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes',5,'2023-09-19'),('543467213','Fresh raspberry jelly','The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form',2,'2023-09-19'),('635887327','Summer berry & lime jellies','Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores ',2,'2023-09-19'),('645645114','Black Watalappan ','At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga',1,'2023-09-19'),('748237463','Vanilla extract Custard','On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty',5,'2023-09-19'),('753489932','Easy chocolate jelly','But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself',2,'2023-09-19'),('987662514','Easy chocolate pudding','There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.',3,'2023-08-22');
+INSERT INTO `product` VALUES ('122314522','Bread and butter pudding','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',3,'2023-08-22'),('123456789','Ultimate sticky toffee pudding','Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia',3,'2023-08-22'),('534565732','Whole milk Custard','But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes',5,'2023-09-19'),('543467213','Fresh raspberry jelly','The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form',2,'2023-09-19'),('635887327','Summer berry & lime jellies','Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores ',2,'2023-09-19'),('645645114','Black Watalappan ','At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga',1,'2023-09-19'),('748237463','Vanilla extract Custard','On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty',5,'2023-09-19'),('753489932','Easy chocolate jelly','But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself',2,'2023-09-19'),('853804','Mango Yogurt','Yogurt powder is heat-treated, and heat kills the beneficial bacteria. Yogurt coatings are made of sugar, oil, whey, and yogurt powder.',4,'2023-09-27'),('987662514','Easy chocolate pudding','There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.',3,'2023-08-22');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -380,7 +383,7 @@ CREATE TABLE `product_item` (
   CONSTRAINT `fk_product_item_product1` FOREIGN KEY (`product_product_id`) REFERENCES `product` (`product_id`),
   CONSTRAINT `fk_product_item_product_status1` FOREIGN KEY (`product_status_id`) REFERENCES `product_status` (`id`),
   CONSTRAINT `fk_product_item_weight1` FOREIGN KEY (`weight_id`) REFERENCES `weight` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -389,7 +392,7 @@ CREATE TABLE `product_item` (
 
 LOCK TABLES `product_item` WRITE;
 /*!40000 ALTER TABLE `product_item` DISABLE KEYS */;
-INSERT INTO `product_item` VALUES (1,10,1000,1,'122314522',1),(3,20,1500,1,'123456789',2),(7,100,2000,1,'753489932',3),(8,12,1000,1,'645645114',3),(9,30,2500,1,'122314522',3),(10,23,5000,1,'534565732',1),(11,33,7000,1,'635887327',3),(12,45,4577,1,'543467213',1),(13,60,3000,1,'543467213',3),(14,23,2700,1,'635887327',2),(15,23,3000,1,'748237463',1),(16,55,7500,1,'534565732',2),(17,40,5000,1,'534565732',1);
+INSERT INTO `product_item` VALUES (1,10,1000,1,'122314522',1),(3,20,1500,1,'123456789',2),(7,100,2000,1,'753489932',3),(8,12,1000,1,'645645114',3),(9,30,2500,1,'122314522',3),(10,23,5000,1,'534565732',4),(11,33,7000,1,'635887327',3),(12,45,4577,1,'543467213',3),(13,60,3000,1,'543467213',1),(14,23,2700,1,'635887327',2),(15,23,3000,1,'748237463',1),(16,55,7500,1,'534565732',2),(17,40,5000,1,'534565732',1);
 /*!40000 ALTER TABLE `product_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -413,7 +416,7 @@ CREATE TABLE `product_status` (
 
 LOCK TABLES `product_status` WRITE;
 /*!40000 ALTER TABLE `product_status` DISABLE KEYS */;
-INSERT INTO `product_status` VALUES (1,'active'),(2,'deactive');
+INSERT INTO `product_status` VALUES (1,'In a Stock'),(2,'Out of Stock');
 /*!40000 ALTER TABLE `product_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -618,7 +621,7 @@ CREATE TABLE `weight` (
   `id` int NOT NULL AUTO_INCREMENT,
   `weight` varchar(15) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -627,7 +630,7 @@ CREATE TABLE `weight` (
 
 LOCK TABLES `weight` WRITE;
 /*!40000 ALTER TABLE `weight` DISABLE KEYS */;
-INSERT INTO `weight` VALUES (1,'1kg'),(2,'90g'),(3,'3kg');
+INSERT INTO `weight` VALUES (1,'1kg'),(2,'90g'),(3,'3kg'),(4,'500g');
 /*!40000 ALTER TABLE `weight` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -640,4 +643,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-25 22:51:01
+-- Dump completed on 2023-10-06 18:53:37

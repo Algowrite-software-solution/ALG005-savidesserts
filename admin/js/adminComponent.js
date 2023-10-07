@@ -1,6 +1,7 @@
 class DashboardComponents {
   constructor() {
     // properties
+    this.activeDropdown = null;
     this.mainNavigationBtns;
     // model
     this.model = new bootstrap.Modal("#dashBoardModel");
@@ -9,6 +10,31 @@ class DashboardComponents {
     this.toastBootstrap = bootstrap.Toast.getOrCreateInstance(
       document.getElementById("dashBoardToast")
     );
+  }
+
+  
+
+  // dispose opened effect
+  disposeOpnedPanel() {
+    this.activeDropdown.dispose();
+  }
+
+  // dropdown controller
+  openDropdown(event, content) {
+    const dropdownElement = document.getElementById("dropdown");
+    const dropdownVisibleContent = dropdownElement.childNodes[1];
+    dropdownVisibleContent.style.translate = "-45% 0";
+    dropdownVisibleContent.innerHTML = "";
+
+    content instanceof Element
+      ? dropdownVisibleContent.appendChild(content)
+      : (dropdownVisibleContent.innerHTML = content);
+
+    event.target.appendChild(dropdownElement);
+
+    const dropdown = new bootstrap.Dropdown(dropdownElement);
+    this.activeDropdown = dropdown;
+    dropdown.show();
   }
 
   // main navigation panel content arranger
@@ -55,14 +81,63 @@ class DashboardComponents {
 
         mainContainer.innerHTML = "";
         mainContainer.innerHTML = data;
-      });
 
-    // callback
-    try {
-      callback();
-    } catch (error) {
-      console.log("error");
+        // callback
+        try {
+          callback();
+        } catch (error) {
+          console.log("error");
+        }
+      });
+  }
+
+  // listners
+  addTooltipDitectors(elementType) {
+    const elements = document.querySelectorAll("[data-" + elementType + "]");
+    elements.forEach((element) => {
+      element.addEventListener("mouseover", (event) => {
+        const contentText = element.getAttribute("data-" + elementType);
+        ALG.openTooltip(event, contentText);
+      });
+    });
+  }
+
+  // tooltipcreator
+
+  openTooltip(event, innerContent) {
+    if (!innerContent) {
+      return;
     }
+
+    const tooltip = document.querySelector("#tooltip");
+    const element = event.target;
+
+    // set popper content
+    tooltip.childNodes[1].innerHTML = innerContent;
+
+    const popperInstance = Popper.createPopper(element, tooltip, {
+      placement: "bottom",
+    });
+
+    function show() {
+      tooltip.setAttribute("data-show", "");
+      popperInstance.update();
+    }
+
+    function hide() {
+      tooltip.removeAttribute("data-show");
+    }
+
+    const showEvents = ["mouseenter", "focus"];
+    const hideEvents = ["mouseleave", "blur"];
+
+    showEvents.forEach((event) => {
+      element.addEventListener(event, show);
+    });
+
+    hideEvents.forEach((event) => {
+      element.addEventListener(event, hide);
+    });
   }
 
   // modal creator
@@ -73,11 +148,15 @@ class DashboardComponents {
       : null;
 
     modelBody
-      ? document.getElementById("modelBody").appendChild(modelBody)
+      ? modelBody instanceof Element
+        ? document.getElementById("modelBody").appendChild(modelBody)
+        : (document.getElementById("modelBody").innerHTML = modelBody)
       : null;
 
     modelFooter
-      ? (document.getElementById("modelFooter").innerHTML = modelFooter)
+      ? modelBody instanceof Element
+        ? document.getElementById("modelFooter").appendChild(modelFooter)
+        : (document.getElementById("modelFooter").innerHTML = modelFooter)
       : null;
   }
 
@@ -257,7 +336,7 @@ class DashboardComponents {
       element.forEach((element) => {
         const bodyBlock = document.createElement("div");
         bodyBlock.classList.add("alg-list-body-block");
-        bodyBlock.innerText = element;
+        bodyBlock.innerHTML = element;
         bodyRow.appendChild(bodyBlock);
       });
       bodyDesign.appendChild(bodyRow);
@@ -283,6 +362,12 @@ class DashboardComponents {
       this.clearElementInnerHtml(parentElementId);
     }
     document.getElementById(parentElementId).appendChild(component);
+  }
+
+  async addListToContainer(id, callback = async () => {}) {
+    const listData = await callback();
+    const list = ALG.createList(listData);
+    ALG.renderComponent(id, list, true);
   }
 
   // utility

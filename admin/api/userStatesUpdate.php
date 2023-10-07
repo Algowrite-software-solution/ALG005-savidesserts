@@ -7,8 +7,8 @@
 
 
 //include models
-require_once("./backend/model/database_driver.php");
-require_once("./backend/model/response_sender.php");
+require_once("../../backend/model/database_driver.php");
+require_once("../../backend/model/response_sender.php");
 
 // headers
 header("Content-Type: application/json; charset=UTF-8");
@@ -37,7 +37,7 @@ $update_query = "UPDATE `user` SET `status_id`= ?  WHERE `user_id`=?";
 $db->execute_query($update_query,'ii',array($status_id,$user_id));
 
 
-$responseObject->status = "Updated";
+$responseObject->status = "updated";
 response_sender::sendJson($responseObject);
 
 

@@ -10,10 +10,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="bin/adminComponents.css">
+    <link rel="stylesheet" href="css/adminComponents.css">
 
     <!-- js -->
     <script defer src="js/bootstrap.bundle.js"></script>
+    <script defer src="https://unpkg.com/@popperjs/core@2"></script>
     <script defer src="js/adminComponent.js"></script>
     <script defer src="js/main.js"></script>
     <script defer src="js/script.js"></script>
@@ -28,7 +29,7 @@
                 <div class="w-100">
                     <i class=" bi bi-x" id="navigationIcon"></i>
                 </div>
-                <div class="logo fw-bold fs-3">SAVI</div>
+                <div data-tooltip-holder="Home" class="logo fw-bold fs-3">SAVI</div>
             </div>
             <div class="d-none d-md-flex align-items-center justify-content-center w-100">
                 <button class="btn alg-btn-pill mx-3">something1</button>
@@ -120,6 +121,18 @@
         </div>
     </div>
 
+    <!-- tooltip -->
+    <div class="tooltip py-1 px-2 opacity-50 alg-rounded-small alg-bg-light alg-text-dark" id="tooltip" role="tooltip">
+        <div data-popperbody="">I'm a tooltip</div>
+        <div id="arrow" data-popper-arrow></div>
+    </div>
+
+    <!-- dropdowns -->
+    <div class="dropdown-center" id="dropdown">
+        <ul class="dropdown-menu alg-bg-light alg-rounded-small p-2">
+
+        </ul>
+    </div>
     <!-- footer -->
 
     <footer class="alg-bg-darker">

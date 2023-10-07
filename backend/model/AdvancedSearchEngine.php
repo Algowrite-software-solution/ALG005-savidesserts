@@ -28,7 +28,7 @@ class AdvancedSearchEngine
         INNER JOIN `category` ON `product`.`category_id`=`category`.`id` 
         INNER JOIN `weight` ON `product_item`.`weight_id`=`weight`.`id` 
         INNER JOIN `product_status` ON `product_item`.`product_status_id` = `product_status`.`id`  
-        WHERE `product_status`.`type` = 'active' ";
+        WHERE `product_status`.`type` = 'In a Stock' ";
 
 
         // chech for search term
@@ -122,7 +122,7 @@ class AdvancedSearchEngine
         INNER JOIN `category` ON `product`.`category_id`=`category`.`id` 
         INNER JOIN `weight` ON `product_item`.`weight_id`=`weight`.`id` 
         INNER JOIN `product_status` ON `product_item`.`product_status_id` = `product_status`.`id`  
-        WHERE `product_status`.`type` = 'active' AND `product`.`product_id` = ?";
+        WHERE `product_status`.`type` = 'In a Stock' AND `product`.`product_id` = ?";
         $resultResponse = $this->database->execute_query($query, "i", [$id]);
         $resultSet = $resultResponse["result"];
 
