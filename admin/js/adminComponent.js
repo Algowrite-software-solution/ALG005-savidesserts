@@ -336,7 +336,7 @@ class DashboardComponents {
       element.forEach((element) => {
         const bodyBlock = document.createElement("div");
         bodyBlock.classList.add("alg-list-body-block");
-        bodyBlock.innerText = element;
+        bodyBlock.innerHTML = element;
         bodyRow.appendChild(bodyBlock);
       });
       bodyDesign.appendChild(bodyRow);
