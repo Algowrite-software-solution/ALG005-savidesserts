@@ -95,6 +95,8 @@ async function toggleProductSection(section) {
     await addCategoriesToSelect();
   } else if (section === "weight") {
     await ALG.addListToContainer("weightViewContainer", loadWeightData);
+  } else if (section === "categoryAdd") {
+    await ALG.addListToContainer("categoryViewContainer", loadCategoryData);
   }
 }
 
@@ -118,6 +120,51 @@ async function addCategoriesToSelect() {
 }
 
 // data loaders
+async function loadCategoryData() {
+  return fetch("api/categoryView.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        const results = data.results;
+        const listArray = [];
+
+        results.forEach((element) => {
+          const newData = {
+            id: element.category_id,
+            category: element.category_type,
+            image: `<img src="${element.category_image}" class="alg-list-cell-image"  />`,
+            delete: `<i class="bi bi-x-circle fs-4" onclick="openCategoryEditModel();"></i>`,
+          };
+
+          listArray.push(newData);
+        });
+
+        return listArray;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
 async function loadWeightData() {
   return fetch("api/weightsView.php", {
     method: "GET", // HTTP request method

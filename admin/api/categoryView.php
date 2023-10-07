@@ -16,12 +16,12 @@ header("Content-Type: application/json; charset=UTF-8");
 
 //response
 $responseObject = new stdClass();
-$responseObject->status = 'false';
+$responseObject->status = 'failed';
 
 //chekcing is user logging
 $userCheckSession = new SessionManager();
 if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
-     $responseObject->status = 'Please LogIn';
+     $responseObject->error = 'Please LogIn';
      response_sender::sendJson($responseObject);
 }
 
@@ -48,9 +48,9 @@ if ($resultSet->num_rows > 0) {
           $categoryType = $rowData['category_type']; // Use categoryName instead of category_type
 
           $fileSearch = new FileSearch($directory, $categoryType, $fileExtensions); // Use categoryName as the search parameter
-          
+
           $searchResults = $fileSearch->search();
-          
+
           $resRowDetailObject = new stdClass();
 
           $resRowDetailObject->category_id = $rowData['id'];
@@ -68,11 +68,10 @@ if ($resultSet->num_rows > 0) {
           array_push($responseArray, $resRowDetailObject);
      }
      $responseObject->status = 'success';
-     $responseObject->result = $responseArray;
+     $responseObject->results = $responseArray;
      response_sender::sendJson($responseObject);
 } else {
-     $responseObject->status = 'no row data';
-     $responseObject->result = null;
+     $responseObject->error = 'no row data';
      response_sender::sendJson($responseObject);
 }
  // ...

@@ -170,3 +170,11 @@ async function addWeight() {
       console.error("Fetch error:", error);
     });
 }
+
+function openCategoryEditModel() {
+  ALG.openModel(
+    "Category Delete",
+    "delete things go here",
+    `<button class="btn btn-secondary">Cancel</button><button class="btn btn-danger">Delete</button>`
+  );
+}
