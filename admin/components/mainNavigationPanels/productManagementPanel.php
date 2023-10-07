@@ -60,7 +60,7 @@
                         <div class="alg-text-dark d-flex justify-content-center align-items-center align-self-center p-3 alg-bg-light my-2 alg-rounded-small" style="width: 200px; height: 200px;">image preview</div>
                     </div>
                 </div>
-                <div class="w-100 alg-bg-dark p-2 alg-rounded-mid" id="categoryViewContainer">
+                <div class="w-100 alg-bg-dark p-2 alg-rounded-mid overflow-auto" id="categoryViewContainer">
                     Loading....
                 </div>
             </div>
