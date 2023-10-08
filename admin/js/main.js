@@ -104,15 +104,43 @@ async function toggleProductSection(section) {
   } else if (section === "productItem") {
     await ALG.addListToContainer("productItemViewContainer", loadProductItems);
     await loadProductsOnProductItemSelector();
+    await loadWeightToProductItemSelector();
   }
 }
 
 // ui data updators
+async function loadWeightToProductItemSelector() {
+  const products = await loadWeightData();
+  const select = document.getElementById("productItemWeightSelectInput");
+  select.innerHTML = "";
+
+  const defaultOption = document.createElement("option");
+  defaultOption.selected = true;
+  defaultOption.disabled = true;
+  defaultOption.value = 0;
+  defaultOption.innerText = "Select a weight";
+  select.appendChild(defaultOption);
+
+  products.forEach((element) => {
+    const option = document.createElement("option");
+    option.value = element.weight_id;
+    option.innerText = element.weight;
+
+    select.appendChild(option);
+  });
+}
+
 async function loadProductsOnProductItemSelector() {
   const products = await loadProductData();
   const select = document.getElementById("productItemProductSelectInput");
   select.innerHTML = "";
-  console.log(products);
+
+  const defaultOption = document.createElement("option");
+  defaultOption.selected = true;
+  defaultOption.disabled = true;
+  defaultOption.value = 0;
+  defaultOption.innerText = "Select a product";
+  select.appendChild(defaultOption);
 
   products.forEach((element) => {
     const option = document.createElement("option");
@@ -195,7 +223,7 @@ async function loadProductItems() {
 
         results.forEach((element) => {
           const newData = {
-            "id": element.product_item_id,
+            id: element.product_item_id,
             "product id": element.product_id,
             "product status id": element.product_status_id,
             quantity: element.qty,
