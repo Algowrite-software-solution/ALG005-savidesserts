@@ -71,20 +71,20 @@
                 <div class="w-100 alg-rounded-small alg-bg-dark p-2 d-flex flex-column gap-3">
                     <div class="w-100 m-0 d-flex flex-column py-2">
                         <label class="fw-bold" for="productItemProductSelectInput">Product</label>
-                        <select class="form-select" name="productItemProductSelectInput" id="productItemProductSelectInput">
-
+                        <select class="form-select" id="productItemProductSelectInput">
                         </select>
                     </div>
                     <div class="w-100 m-0 d-flex flex-column py-2">
-                        <label class="fw-bold" for="productItemProductSelectInput">Product</label>
-                        <select class="form-select" name="productItemProductSelectInput" id="productItemProductSelectInput">
-
-                        </select>
+                        <label class="fw-bold" for="productItemQuantitySelectInput">Quantity</label>
+                        <input class="form-control" type="number" min="0" id="productItemQuantitySelectInput">
                     </div>
                     <div class="w-100 m-0 d-flex flex-column py-2">
-                        <label class="fw-bold" for="productItemProductSelectInput">Product</label>
-                        <select class="form-select" name="productItemProductSelectInput" id="productItemProductSelectInput">
-
+                        <label class="fw-bold" for="productItemProductPriceInput">Price</label>
+                        <input class="form-control" type="number" min="0" id="productItemProductPriceInput">
+                    </div>
+                    <div class="w-100 m-0 d-flex flex-column py-2">
+                        <label class="fw-bold" for="productItemWeightPriceInput">Weight</label>
+                        <select class="form-select" id="productItemWeightPriceInput">
                         </select>
                     </div>
                 </div>
