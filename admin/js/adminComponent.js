@@ -12,8 +12,6 @@ class DashboardComponents {
     );
   }
 
-  
-
   // dispose opened effect
   disposeOpnedPanel() {
     this.activeDropdown.dispose();
@@ -229,7 +227,7 @@ class DashboardComponents {
   }
 
   // create a table
-  createTable(dataSet) {
+  createTable(dataSet, collumnLengths = null) {
     let tableHeader = [];
     let tableRows = [];
 
@@ -258,11 +256,19 @@ class DashboardComponents {
     // create header
     let headerDesign = document.createElement("div");
     headerDesign.classList.add("alg-table-header-container");
+    let headerCount = 0;
     tableHeader.forEach((element) => {
-      const headerCell = document.createElement("div");
-      headerCell.classList.add("alg-table-header-cell");
-      headerCell.innerText = element;
-      headerDesign.appendChild(headerCell);
+      const headerBlock = document.createElement("div");
+      headerBlock.classList.add("alg-table-header-cell");
+      if (collumnLengths) {
+        headerBlock.style.width = collumnLengths[headerCount] + "px";
+        headerCount++;
+      } else {
+        headerBlock.style.flexGrow = "1";
+        headerBlock.style.width = "150px";
+      }
+      headerBlock.innerText = element;
+      headerDesign.appendChild(headerBlock);
     });
 
     // create body
@@ -271,9 +277,17 @@ class DashboardComponents {
     tableRows.forEach((element) => {
       let bodyRow = document.createElement("div");
       bodyRow.classList.add("alg-table-body-row");
+      let bodyCount = 0;
       element.forEach((element) => {
         const bodyCell = document.createElement("div");
         bodyCell.classList.add("alg-table-body-cell");
+        if (collumnLengths) {
+          bodyCell.style.width = collumnLengths[bodyCount] + "px";
+          bodyCount++;
+        } else {
+          bodyCell.style.flexGrow = "1";
+          bodyCell.style.width = "150px";
+        }
         bodyCell.innerText = element;
         bodyRow.appendChild(bodyCell);
       });
@@ -291,7 +305,7 @@ class DashboardComponents {
   }
 
   // create a list
-  createList(dataSet) {
+  createList(dataSet, collumnLengths = null) {
     let listHeader = [];
     let listRows = [];
 
@@ -320,9 +334,18 @@ class DashboardComponents {
     // create header
     let headerDesign = document.createElement("div");
     headerDesign.classList.add("alg-list-header-container");
+    let headerCount = 0;
     listHeader.forEach((element) => {
       const headerBlock = document.createElement("div");
       headerBlock.classList.add("alg-list-header-block");
+      if (collumnLengths) {
+        headerBlock.style.width = collumnLengths[headerCount] + "px";
+        headerCount++;
+      } else {
+        headerBlock.style.flexGrow = "1";
+        headerBlock.style.width = "150px";
+      }
+
       headerBlock.innerText = element;
       headerDesign.appendChild(headerBlock);
     });
@@ -333,9 +356,18 @@ class DashboardComponents {
     listRows.forEach((element) => {
       let bodyRow = document.createElement("div");
       bodyRow.classList.add("alg-list-body-row");
+      let bodyCount = 0;
       element.forEach((element) => {
         const bodyBlock = document.createElement("div");
         bodyBlock.classList.add("alg-list-body-block");
+        if (collumnLengths) {
+          bodyBlock.style.width = collumnLengths[bodyCount] + "px";
+          bodyCount++;
+        } else {
+          bodyBlock.style.flexGrow = "1";
+          bodyBlock.style.width = "150px";
+        }
+
         bodyBlock.innerHTML = element;
         bodyRow.appendChild(bodyBlock);
       });
@@ -364,9 +396,13 @@ class DashboardComponents {
     document.getElementById(parentElementId).appendChild(component);
   }
 
-  async addListToContainer(id, callback = async () => {}) {
+  async addListToContainer(
+    id,
+    callback = async () => {},
+    collumnLengths = null
+  ) {
     const listData = await callback();
-    const list = ALG.createList(listData);
+    const list = ALG.createList(listData, collumnLengths);
     ALG.renderComponent(id, list, true);
   }
 

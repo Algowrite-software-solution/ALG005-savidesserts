@@ -68,9 +68,24 @@
         </div>
         <div class="p-2 h-100 d-none alg-bg-light alg-rounded-small" id="productItemProductSection">
             <div class="w-100 d-flex flex-column gap-2 alg-text-white">
-                <div class="w-100 alg-rounded-mid alg-bg-dark p-2 d-flex flex-column gap-3">
-                    <div class="w-100 m-0 d-flex">
-                        <input class="alg-rounded-mid form-control w-75" placeholder="add a new Product Item" type="text" id="setProductItemInput"><button class="w-25 alg-btn-pill" onclick="setProductItem()">Add Category</button>
+                <div class="w-100 alg-rounded-small alg-bg-dark p-2 d-flex flex-column gap-3">
+                    <div class="w-100 m-0 d-flex flex-column py-2">
+                        <label class="fw-bold" for="productItemProductSelectInput">Product</label>
+                        <select class="form-select" name="productItemProductSelectInput" id="productItemProductSelectInput">
+
+                        </select>
+                    </div>
+                    <div class="w-100 m-0 d-flex flex-column py-2">
+                        <label class="fw-bold" for="productItemProductSelectInput">Product</label>
+                        <select class="form-select" name="productItemProductSelectInput" id="productItemProductSelectInput">
+
+                        </select>
+                    </div>
+                    <div class="w-100 m-0 d-flex flex-column py-2">
+                        <label class="fw-bold" for="productItemProductSelectInput">Product</label>
+                        <select class="form-select" name="productItemProductSelectInput" id="productItemProductSelectInput">
+
+                        </select>
                     </div>
                 </div>
                 <div class="w-100 alg-bg-dark p-2 alg-rounded-mid overflow-auto" id="productItemViewContainer">

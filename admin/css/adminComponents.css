@@ -77,22 +77,20 @@
 .alg-table {
   min-width: max-content;
   min-width: max-content;
-  max-width: 100%;
+  max-width: max-content;
   border-radius: 10px;
   overflow: hidden;
 }
 
 .alg-table-header-container {
-  width: 100%;
+  width: max-content;
   display: flex;
   overflow: hidden;
 }
 
 .alg-table-header-cell {
-  width: 150px;
   text-wrap: wrap;
   padding: 7px 15px;
-  flex-grow: 1;
   text-align: start;
   font-weight: bold;
   border-bottom: black 1px solid;
@@ -106,10 +104,8 @@
 }
 
 .alg-table-body-cell {
-  width: 150px;
   text-wrap: wrap;
   padding: 5px 10px;
-  flex-grow: 1;
   text-align: start;
   overflow: hidden;
   text-wrap: wrap;
@@ -132,7 +128,7 @@
 .alg-list {
   min-width: max-content;
   min-width: max-content;
-  max-width: 100%;
+  max-width: max-content;
   overflow: hidden;
 }
 
@@ -145,10 +141,8 @@
 }
 
 .alg-list-header-block {
-  width: 150px;
   text-wrap: wrap;
   padding: 7px 15px;
-  flex-grow: 1;
   text-align: start;
   font-weight: bold;
   border-right: black 1px solid;
@@ -164,10 +158,8 @@
 }
 
 .alg-list-body-block {
-  width: 150px;
   text-wrap: wrap;
   padding: 5px 10px;
-  flex-grow: 1;
   text-align: start;
   overflow: hidden;
   text-wrap: wrap;

@@ -1,4 +1,4 @@
-// add a product
+
 function addProduct() {
   const name = document.getElementById("productNameInputField");
   const description = document.getElementById("productDescriptionInputField");
@@ -188,3 +188,4 @@ function openCategoryEditModel() {
 
   ALG.openModel("Category Delete", modelBodyDesign, modelFooterDesign);
 }
+
