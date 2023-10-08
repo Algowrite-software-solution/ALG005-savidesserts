@@ -171,10 +171,20 @@ async function addWeight() {
     });
 }
 
-function openCategoryEditModel() {
-  ALG.openModel(
-    "Category Delete",
-    "delete things go here",
-    `<button class="btn btn-secondary">Cancel</button><button class="btn btn-danger">Delete</button>`
+function deleteCategory() {
+  console.log("not developed yet");
+  ALG.openToast(
+    "Developer Alert",
+    "This section is udner construction",
+    ALG.getCurrentTime(),
+    "",
+    "Error"
   );
+}
+
+function openCategoryEditModel() {
+  const modelBodyDesign = `<h5>Are you sure you want to <span class="text-danger">delete</span> this category?</h5>`;
+  const modelFooterDesign = `<button data-bs-dismiss="modal" aria-label="Close" class="btn btn-danger" onclick="deleteCategory()">Delete</button>`;
+
+  ALG.openModel("Category Delete", modelBodyDesign, modelFooterDesign);
 }

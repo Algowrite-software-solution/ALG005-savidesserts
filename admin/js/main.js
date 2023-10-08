@@ -97,6 +97,8 @@ async function toggleProductSection(section) {
     await ALG.addListToContainer("weightViewContainer", loadWeightData);
   } else if (section === "categoryAdd") {
     await ALG.addListToContainer("categoryViewContainer", loadCategoryData);
+  } else if (section === "productItem") {
+    await ALG.addListToContainer("productItemViewContainer", loadProductItems);
   }
 }
 
@@ -120,6 +122,57 @@ async function addCategoriesToSelect() {
 }
 
 // data loaders
+async function loadProductItems() {
+  return fetch("api/product_item_load.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        const results = data.results;
+        const listArray = [];
+
+        results.forEach((element) => {
+          const newData = {
+            id: element.product_item_id,
+            "product id": element.product_id,
+            "product item id": element.product_item_id,
+            "product status id": element.product_status_id,
+            quantity: element.qty,
+            price: element.price,
+            "weight id": element.weight_id,
+            image: element["images[0]"]
+              ? `<img src="${element["images[0]"]}" class="alg-list-cell-image"  />`
+              : "Empty",
+          };
+
+          listArray.push(newData);
+        });
+
+        return listArray;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
 async function loadCategoryData() {
   return fetch("api/categoryView.php", {
     method: "GET", // HTTP request method
