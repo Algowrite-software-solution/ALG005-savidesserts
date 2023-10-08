@@ -20,8 +20,8 @@ $responseObject->status = 'failed';
 // chekcing is user logging
 $userCheckSession = new SessionManager();
 if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
-     $responseObject->error = 'Please LogIn';
-     response_sender::sendJson($responseObject);
+    $responseObject->error = 'Please LogIn';
+    response_sender::sendJson($responseObject);
 }
 
 //database object
@@ -84,11 +84,11 @@ if ($resultSet->num_rows > 0) {
     $responseArray = array_values($groupedResults);
 
     $responseObject->status = 'success';
-    $responseObject->result = $responseArray;
+    $responseObject->results = $responseArray;
     response_sender::sendJson($responseObject);
 } else {
     $responseObject->error = 'no row data';
-    $responseObject->result = []; // Ensure result is an empty array
+    $responseObject->results = []; // Ensure result is an empty array
     response_sender::sendJson($responseObject);
 }
  // ...

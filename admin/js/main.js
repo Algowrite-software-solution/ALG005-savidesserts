@@ -96,11 +96,65 @@ async function toggleProductSection(section) {
   } else if (section === "weight") {
     await ALG.addListToContainer("weightViewContainer", loadWeightData);
   } else if (section === "categoryAdd") {
-    await ALG.addListToContainer("categoryViewContainer", loadCategoryData);
+    await ALG.addListToContainer(
+      "categoryViewContainer",
+      loadCategoryData,
+      [40, 120, 250, 80]
+    );
+  } else if (section === "productItem") {
+    await ALG.addListToContainer("productItemViewContainer", loadProductItems);
+    await loadProductsOnProductItemSelector();
   }
 }
 
 // ui data updators
+async function loadProductsOnProductItemSelector() {
+  const products = await loadProductData();
+  const select = document.getElementById("productItemProductSelectInput");
+  select.innerHTML = "";
+  console.log(products);
+
+  products.forEach((element) => {
+    const option = document.createElement("option");
+    option.value = element.product_id;
+    option.innerText = element.product_name;
+
+    select.appendChild(option);
+  });
+}
+
+// data loaders
+async function loadProductData() {
+  return fetch("api/productView.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
 async function addCategoriesToSelect() {
   const select = document.getElementById("productCategoryInputField");
   const categories = await loadCategoriesData();
@@ -120,6 +174,56 @@ async function addCategoriesToSelect() {
 }
 
 // data loaders
+async function loadProductItems() {
+  return fetch("api/product_item_load.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        const results = data.results;
+        const listArray = [];
+
+        results.forEach((element) => {
+          const newData = {
+            "id": element.product_item_id,
+            "product id": element.product_id,
+            "product status id": element.product_status_id,
+            quantity: element.qty,
+            price: element.price,
+            "weight id": element.weight_id,
+            image: element["images[0]"]
+              ? `<img src="${element["images[0]"]}" class="alg-list-cell-image"  />`
+              : "Empty",
+          };
+
+          listArray.push(newData);
+        });
+
+        return listArray;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
 async function loadCategoryData() {
   return fetch("api/categoryView.php", {
     method: "GET", // HTTP request method
@@ -144,6 +248,7 @@ async function loadCategoryData() {
             id: element.category_id,
             category: element.category_type,
             image: `<img src="${element.category_image}" class="alg-list-cell-image"  />`,
+            edit: `<i class="bi bi-pen fs-4" onclick="openCategoryEditModel();"></i>`,
             delete: `<i class="bi bi-x-circle fs-4" onclick="openCategoryEditModel();"></i>`,
           };
 
@@ -213,7 +318,10 @@ async function loadProductsData() {
     .then((data) => {
       // Handle the JSON data received from the API
       if (data.status == "success") {
-        const userData = ALG.createTable(data.results);
+        const userData = ALG.createTable(
+          data.results,
+          [120, 150, 250, 120, 120, 130]
+        );
         ALG.renderComponent("productViewProductSection", userData, true);
       } else if (data.status == "failed") {
         console.log(data.error);

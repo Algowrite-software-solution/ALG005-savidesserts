@@ -93,7 +93,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modelTitle">Modal title</h5>
-                    <button type="button" class="alg-rounded-large alg-bg-dark px-2 text-white fs-3" data-bs-dismiss="modal" aria-label="Close">X</button>
+                    <button type="button" class="bg-transparent border-0 d-flex justify-content-center align-items-center alg-rounded-large alg-text-dark" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-circle-fill" style="font-size: 26px;"></i></button>
                 </div>
                 <div class="modal-body" id="modelBody">
 
