@@ -465,7 +465,8 @@ function signUp() {
           signUpModel.hide();
         }, 2000);
       } else {
-        toastMessage(data.error, "text-bg-danger");
+        toastMessage(data.error.error, "text-bg-danger");
+        console.log(data.error);
       }
     })
     .catch((error) => {

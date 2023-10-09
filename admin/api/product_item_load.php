@@ -56,11 +56,15 @@ if ($resultSet->num_rows > 0) {
         $resRowDetailObject->product_status_id = $rowData['product_status_id'];
         $resRowDetailObject->product_id = $productId;
         $resRowDetailObject->weight_id = $weightId;
+         
 
+        $imageArray = [];
         // Add images to the new object if available
         if (is_array($searchResults)) {
             foreach ($searchResults as $index => $searchResult) {
                 $resRowDetailObject->{"images[$index]"} = $searchResult;
+                $imageArray.array_push($searchResult);
+                
             }
         }
 

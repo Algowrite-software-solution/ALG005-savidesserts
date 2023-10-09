@@ -329,33 +329,34 @@ function placeOrder() {
      //validation input filed
      if (fullName === null || fullName === undefined) {
           toastMessage("Please enter the full name", "text-bg-danger");
-          return;
+         
      }
 
      if (mobile === null || mobile === undefined) {
           toastMessage("Please enter the mobile number", "text-bg-danger");
-          return;
+         
      }
      if (addressLine1 === null || addressLine1 === undefined) {
           toastMessage("Please enter the address", "text-bg-danger");
-          return;
+         
      }
      if (city === null || city === undefined) {
           toastMessage("Please enter the city", "text-bg-danger");
-          return;
+         
      }
      if (district === 0) {
           toastMessage("Please enter the district", "text-bg-danger");
-          return;
+          
      }
      if (province === 0) {
           toastMessage("Please enter the province", "text-bg-danger");
-          return;
+          
      }
 
      //genarate random order Id
      const orderId = generateUniqueId();
      const total = Total;
+
 
      const formData = new FormData();
      formData.append('orderId', orderId);
@@ -380,7 +381,9 @@ function placeOrder() {
                     payhere.onCompleted = function onCompleted(orderId) {
                          console.log("Payment completed. OrderID:" + orderId);
                          // Note: validate the payment and show success or failure page to the customer
-                         // addInvoice(orderId);
+
+                         addInvoice(orderId);
+
                     };
 
                     // Payment window closed
@@ -404,7 +407,7 @@ function placeOrder() {
                          "cancel_url": 'http://localhost:9001/paymentCheckout.php',     // Important
                          "notify_url": "http://sample.com/notify",
                          "order_id": orderId,
-                         "items": "null",
+                         "items": orderId,
                          "amount": total,
                          "currency": "LKR",
                          "hash": data.results, // *Replace with generated hash retrieved from backend
@@ -427,8 +430,7 @@ function placeOrder() {
                          payhere.startPayment(payment);
                     };
                } else {
-                    // toastMessage(data.error, "text-bg-danger");
-                    console.log(data.error);
+                    toastMessage(data.error, "text-bg-danger");
                }
           })
           .catch((error) => {
@@ -442,7 +444,7 @@ function placeOrder() {
 function addInvoice(orderId) {
 
      const formData = new FormData();
-     formData.append("globalElementResult", globalElementResult);
+     formData.append("globalElementResult", JSON.stringify(globalElementResult));
      formData.append("Total", Total);
      formData.append("ProductItemPrice", ProductItemPrice);
      formData.append("ExtraToppingsPrice", ExtraToppingsPrice);
@@ -462,7 +464,9 @@ function addInvoice(orderId) {
           .then((data) => {
                if (data.status === "success") {
                     toastMessage("Order Placed", "text-bg-success");
-                    shippingDetailsLoad();
+
+                    setTimeout(() => { window.location.reload() }, 2000);
+
                } else {
                     toastMessage(data.error, "text-bg-danger");
                }
