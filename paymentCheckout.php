@@ -98,7 +98,7 @@ if ($sessionManager->isLoggedIn()) {
 
                 <div class="checkoutSwiper swiper mySwiperCheckOut pt-4 px-5 border-bottom">
                     <div class="swiper-wrapper pt-4 d-flex gap-4" id="swiperDetailContainer">
-                           
+                        <!-- slider goes here check paymentCheckout.js-->
                     </div>
                     <div class="swiper-button-next alg-text-gold"></div>
                     <div class="swiper-button-prev alg-text-gold"></div>
@@ -107,29 +107,14 @@ if ($sessionManager->isLoggedIn()) {
 
                 <!--purchased product slider -->
                 <!-- </div> -->
-                <div class="d-flex py-4 flex-column flex-lg-row justify-content-center align-items-center justify-content-lg-around border-bottom">
+                <div class="d-flex py-5 flex-column flex-lg-row justify-content-center align-items-center justify-content-lg-around border-bottom">
                     <img class="img-fluid paycheck-thanku-img " src="https://img.freepik.com/free-vector/thank-you-placard-concept-illustration_114360-13436.jpg?w=996&t=st=1694928554~exp=1694929154~hmac=b5cf8b7b5d163da7bc470ecf12e411fb11ba50a1fe07d773b469898eda55e21d" alt="">
                     <div class="col-12 pt-3 pt-lg-0 col-lg-6 text-white" id="priceContainer">
-                        <div class="d-flex justify-content-around ">
-                            <span>Product Total Price:</span>
-                            <p>Rs. 1200</p>
-                        </div>
-                        <div class="d-flex justify-content-around ">
-                            <span class="fw-bolder">Extra Item Total price :</span>
-                            <p class="fw-bolder">Rs. 1080</p>
-                        </div>
-                        <div class="d-flex justify-content-around ">
-                            <span class="fw-bolder">Shipping price :</span>
-                            <p class="fw-bolder">Rs. 1080</p>
-                        </div>
-                        <div class="d-flex justify-content-around ">
-                            <span class="fw-bolder">Total Price :</span>
-                            <p class="fw-bolder">Rs. 1080</p>
-                        </div>
+
                     </div>
                 </div>
                 <div class="d-flex justify-content-center justify-content-lg-end pt-4">
-                    <button onclick="add();" type="button" class="alg-bg-gold w-100 alg-text-h2 border-0 rounded-3 p-2 fw-bolder"> Place
+                    <button onclick="placeOrder();" id="payhere-payment" type="button" class="alg-bg-gold w-100 alg-text-h2 border-0 rounded-3 p-2 fw-bolder"> Place
                         Order
                     </button>
                 </div>
@@ -140,6 +125,7 @@ if ($sessionManager->isLoggedIn()) {
     <?php include("pages/components/toastMessage.php") ?>
     <script src="../js/script.js"></script>
     <script src="../js/paymentCheckout.js"></script>
+    <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
 </body>
 
 </html>

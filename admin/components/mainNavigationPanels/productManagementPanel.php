@@ -6,6 +6,7 @@
             <button onclick="toggleProductSection('productAdd')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Add Products</span><i class="bi bi-box d-block d-lg-none"></i></button>
             <button onclick="toggleProductSection('weight')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Weight</span><i class="bi bi-box d-block d-lg-none"></i></button>
             <button onclick="toggleProductSection('categoryAdd')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Add Category</span><i class="bi bi-box d-block d-lg-none"></i></button>
+            <button onclick="toggleProductSection('productItem')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Set Product Item</span><i class="bi bi-box d-block d-lg-none"></i></button>
         </div>
     </div>
     <div class="p-2 col-9 flex-grow-1 text-dark" id="productSectionsContainer">
@@ -61,6 +62,33 @@
                     </div>
                 </div>
                 <div class="w-100 alg-bg-dark p-2 alg-rounded-mid overflow-auto" id="categoryViewContainer">
+                    Loading....
+                </div>
+            </div>
+        </div>
+        <div class="p-2 h-100 d-none alg-bg-light alg-rounded-small" id="productItemProductSection">
+            <div class="w-100 d-flex flex-column gap-2 alg-text-white">
+                <div class="w-100 alg-rounded-small alg-bg-dark p-2 d-flex flex-column gap-3">
+                    <div class="w-100 m-0 d-flex flex-column py-2">
+                        <label class="fw-bold" for="productItemProductSelectInput">Product</label>
+                        <select class="form-select" id="productItemProductSelectInput">
+                        </select>
+                    </div>
+                    <div class="w-100 m-0 d-flex flex-column py-2">
+                        <label class="fw-bold" for="productItemQuantitySelectInput">Quantity</label>
+                        <input placeholder="Please add a quantity" class="form-control" type="number" min="0" id="productItemQuantitySelectInput">
+                    </div>
+                    <div class="w-100 m-0 d-flex flex-column py-2">
+                        <label class="fw-bold" for="productItemProductPriceInput">Price</label>
+                        <input placeholder="Please add a price" class="form-control" type="number" min="0" id="productItemProductPriceInput">
+                    </div>
+                    <div class="w-100 m-0 d-flex flex-column py-2">
+                        <label class="fw-bold" for="productItemWeightSelectInput">Weight</label>
+                        <select class="form-select" id="productItemWeightSelectInput">
+                        </select>
+                    </div>
+                </div>
+                <div class="w-100 alg-bg-dark p-2 alg-rounded-mid overflow-auto" id="productItemViewContainer">
                     Loading....
                 </div>
             </div>
