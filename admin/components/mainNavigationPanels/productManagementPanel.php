@@ -76,15 +76,15 @@
                     </div>
                     <div class="w-100 m-0 d-flex flex-column py-2">
                         <label class="fw-bold" for="productItemQuantitySelectInput">Quantity</label>
-                        <input class="form-control" type="number" min="0" id="productItemQuantitySelectInput">
+                        <input placeholder="Please add a quantity" class="form-control" type="number" min="0" id="productItemQuantitySelectInput">
                     </div>
                     <div class="w-100 m-0 d-flex flex-column py-2">
                         <label class="fw-bold" for="productItemProductPriceInput">Price</label>
-                        <input class="form-control" type="number" min="0" id="productItemProductPriceInput">
+                        <input placeholder="Please add a price" class="form-control" type="number" min="0" id="productItemProductPriceInput">
                     </div>
                     <div class="w-100 m-0 d-flex flex-column py-2">
-                        <label class="fw-bold" for="productItemWeightPriceInput">Weight</label>
-                        <select class="form-select" id="productItemWeightPriceInput">
+                        <label class="fw-bold" for="productItemWeightSelectInput">Weight</label>
+                        <select class="form-select" id="productItemWeightSelectInput">
                         </select>
                     </div>
                 </div>

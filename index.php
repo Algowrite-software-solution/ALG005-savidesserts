@@ -232,44 +232,19 @@
                         </div>
                         <div class="col-12 col-lg-6 desc-box scrollbar rounded-4">
                             <div>
-                                <h4 class="mt-3 alg-text-tan">This is how Savi dessert started.....</h4>
-                                <p class="alg-text-light">Contrary to popular belief, Lorem Ipsum is not simply random
-                                    text. It
-                                    has roots in a piece of
-                                    classical Latin literature from 45 BC, making it over 2000 years old. Richard
-                                    McClintock, a
-                                    Latin
-                                    professor at Hampden-Sydney College in Virginia, looked up one of the more obscure
-                                    Latin
-                                    words,
-                                    consectetur, from a Lorem Ipsum passage, and going through the cites of the word in
-                                    classical
-                                    literature, discovered the undoubtable source. Lorem Ipsum comes from sections
-                                    1.10.32 and
-                                    1.10.33
-                                    of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero,
-                                    written in 45
-                                    BC. This
-                                    book is a treatise on the theory of ethics, very popular during the Renaissance. The
-                                    first
-                                    line of
-                                    Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-                                    The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those
-                                    interested.
-                                    Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also
-                                    reproduced in
-                                    their exact original form, accompanied by English versions from the 1914 translation
-                                    by H.
-                                    Rackham.
-                                    Lorem Ipsum comes from sections 1.10.32 and 1.10.33
-                                    of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero,
-                                    written in 45
-                                    BC. This
-                                    book is a treatise on the theory of ethics, very popular during the Renaissance. The
-                                    first
-                                    line of
-                                    Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                                <h4 class="mt-3 alg-text-tan">Journey of sawee dessert.....</h4>
+                                <p class="alg-text-light">
+                                    Sawee dessert started at 2014 as a small business and continued till today with succussful 7 years of a journey.
+                                    In the early stages we managed to deliver the products to the customers trough our trusted agest around the country.
+                                    At the moment we have agents on Gampaha, Kandy, Yatiyanthota and Anuradhapura. They managed to deliver the producsts with in the mentioned ares while keeping the freshness
+                                    and goodness.We are capable of delivering dessert products to your hand with in 36 Hours of the order with the well care and quality of the products. It is a
+                                    huge achivement that we have gained troughout this business journey.
+                                    <br>
+                                    <br>
+                                    <br>
+                                    Even in the echnomical crisis tha are happening in the country, we still managed to provide you a well prepared desserts with the same quality in a fare
+                                    price range. We hope to continue with this and provide an amazing service to you. Our motive is providing healthy, tasty and clean dessrt to our beloved
+                                    customers who enjoy the tast of sawee dessrt.
                                 </p>
                             </div>
                         </div>
@@ -399,7 +374,7 @@
         </div>
     </section>
 
-    
+
 
     <?php include("pages/components/footer.php") ?>
 </body>
