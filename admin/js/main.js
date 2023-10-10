@@ -236,7 +236,6 @@ async function loadProductItems() {
 
           listArray.push(newData);
         });
-
         return listArray;
       } else if (data.status == "failed") {
         console.log(data.error);

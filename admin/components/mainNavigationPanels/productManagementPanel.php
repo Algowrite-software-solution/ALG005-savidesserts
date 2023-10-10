@@ -82,7 +82,7 @@
                         <input placeholder="Please add a quantity" class="form-control" type="number" min="0" id="productItemQuantitySelectInput">
                     </div>
                     <div class="w-100 m-0 d-flex flex-column py-2">
-                        <label class="fw-bold" for="productItemProductPriceInput">Price</label>
+                        <label class="fw-bold" for="productItemProductPriceInput">Price (LKR)</label>
                         <input placeholder="Please add a price" class="form-control" type="number" min="0" id="productItemProductPriceInput">
                     </div>
                     <div class="w-100 m-0 d-flex flex-column py-2">
@@ -90,6 +90,14 @@
                         <select class="form-select" id="productItemWeightSelectInput">
                         </select>
                     </div>
+                    <div class="w-100 m-0 d-flex flex-column py-2">
+                        <label class="fw-bold" for="productItemImageInput">Images</label>
+                        <input onchange="addProductItemImageToList()" multiple type="file" id="productItemImageInput" class="form-control">
+                        <div class="my-2 p-1 rounded-1 product-items-images" id="productItemImagePreviewContainer">
+                            <img class="product-items-image-slide" />
+                        </div>
+                    </div>
+                    <button class="alg-btn-pill" onclick="productItemSave()">Save Product Item</button>
                 </div>
                 <div class="w-100 alg-bg-dark p-2 alg-rounded-mid overflow-auto" id="productItemViewContainer">
                     Loading....

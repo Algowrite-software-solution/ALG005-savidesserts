@@ -16,7 +16,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 //response
 $responseObject = new stdClass();
-$responseObject->status = 'false';
+$responseObject->status = 'failed';
 
 // chekcing is user logging
 $userCheckSession = new SessionManager();
@@ -35,7 +35,6 @@ $qty = $_POST['qty'];
 $price = $_POST['price'];
 $weightId = $_POST['weight_id'];
 $productId = $_POST['product_id'];
-$imageId = $_POST['image_id'];
 
 
 
@@ -100,6 +99,7 @@ if (is_array($_FILES['product_image']['error'])) {
      $imageUrls = [];
 
      // Loop through each uploaded file
+     $countIndex = 0;
      foreach ($_FILES['product_image']['error'] as $key => $error) {
           if ($error === 0) {
                // files manage 
@@ -114,7 +114,8 @@ if (is_array($_FILES['product_image']['error'])) {
 
                //file save path and file name create
                $savePath = "../../resources/images/singleProductImg/";
-               $newImageName = "productId=" . $productId . "&&" . "weightId=" . $weightId . "&&" . "image=" . $imageId . "." . $fileExtension;
+               $newImageName = "productId=" . $productId . "&&" . "weightId=" . $weightId . "&&" . "image=" . $countIndex . "." . $fileExtension;
+               $countIndex++;
 
                if (move_uploaded_file($_FILES['product_image']['tmp_name'], $savePath . $newImageName)) {
                     $currentURL = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -134,8 +135,8 @@ if (is_array($_FILES['product_image']['error'])) {
      //insert product Item
      $productItemInsert = "INSERT INTO `product_item` (`qty`,`price`,`product_status_id`,`product_product_id`,`weight_id`) VALUES (?,?,?,?,?)";
      $db->execute_query($productItemInsert, 'sssss', array($qty, $price, '1', $productId, $weightId));
-     $responseObject->status = "product item adding success";
-     $responseObject->result = $newImgUrl;
+     $responseObject->status = "success";
+     $responseObject->results = $newImgUrl;
      response_sender::sendJson($responseObject);
 } else {
      $responseObject->error = "no images upload";
