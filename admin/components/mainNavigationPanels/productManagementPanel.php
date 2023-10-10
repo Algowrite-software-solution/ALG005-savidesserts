@@ -5,7 +5,7 @@
             <button data-tooltip-holder="View Product" onclick="toggleProductSection('productView')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Products</span><i class="bi bi-box d-block d-lg-none"></i></button>
             <button onclick="toggleProductSection('productAdd')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Add Products</span><i class="bi bi-box d-block d-lg-none"></i></button>
             <button onclick="toggleProductSection('weight')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Weight</span><i class="bi bi-box d-block d-lg-none"></i></button>
-            <button onclick="toggleProductSection('categoryAdd')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Add Category</span><i class="bi bi-box d-block d-lg-none"></i></button>
+            <button onclick="toggleProductSection('category')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Category</span><i class="bi bi-box d-block d-lg-none"></i></button>
             <button onclick="toggleProductSection('productItem')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Set Product Item</span><i class="bi bi-box d-block d-lg-none"></i></button>
         </div>
     </div>
@@ -48,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <div class="p-2 h-100 d-none alg-bg-light alg-rounded-small" id="categoryAddProductSection">
+        <div class="p-2 h-100 d-none alg-bg-light alg-rounded-small" id="categoryProductSection">
             <div class="w-100 d-flex flex-column gap-2 alg-text-white">
                 <div class="w-100 alg-rounded-mid alg-bg-dark p-2 d-flex flex-column gap-3">
                     <div class="w-100 m-0 py-2">
