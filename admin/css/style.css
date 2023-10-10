@@ -1,9 +1,11 @@
 /* navbar */
 
-
-
-/* sectoin1 */
-
-
+/* produt  manipulation */
+/* category */
+.category-adding-preview {
+  object-fit: contain;
+  width: 300px;
+  height: 250px;
+}
 
 /* section2 */
