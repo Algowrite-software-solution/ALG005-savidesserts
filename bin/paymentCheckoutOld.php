@@ -1,18 +1,3 @@
-<?php
-
-// require_once("backend/model/SessionManager.php");
-// $sessionManager = new SessionManager();
-// $isLoggedIn = false;
-// $userData = null;
-// if ($sessionManager->isLoggedIn()) {
-//     $isLoggedIn = true;
-//     $userData = $sessionManager->getUserId();
-// }
-
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,12 +26,14 @@
         crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script defer src="../js/bootstrap.bundle.js"></script>
+    <script defer src="../js/singleProduct.js"></script>
+    <script defer src="../js/script.js"></script>
     <script defer src="../js/homeSliders.js"></script>
 </head>
 
 <body>
-    <!-- <?php include("pages/components/header.php") ?> -->
-    <div class="container-fluid flex-column flex-lg-row m-0 p-0 d-flex paycheck-main ">
+
+    <div class="container-fluid flex-column flex-lg-row m-0 p-0 d-flex paycheck-main">
         <div class="col-12 col-lg-6 d-flex flex-column alg-bg-light">
             <div class="d-flex justify-content-center justify-content-lg-start p-3">
                 <h2 class="alg-text-dark fw-bolder">Checkout Details</h2>
@@ -105,56 +92,74 @@
                 <!-- <div class="d-flex flex-row justify-content-around py-4 border-bottom"> -->
                 <!--purchased product slider -->
 
-                <!-- <div class="checkoutSwiper swiper mySwiperCheckOut pt-4 px-5 border-bottom">
-                    <div class="swiper-wrapper pt-4 d-flex gap-4" id="swiperDetailContainer">
-                       
+                <div class="checkoutSwiper swiper mySwiperCheckOut pt-4 px-5 border-bottom prdct-sldr-div">
+                    <div class="swiper-wrapper h-100 pt-4">
+
+                        <?php
+
+                        for ($x = 0; $x < 6; $x++) {
+                            ?>
+                            <div
+                                class="checkoutSwiper swiper-slide col-3 alg-text-light d-flex flex-column justify-content-center align-items-center">
+
+                                <div class="h-75 w-100">
+                                    <img class="img-fluid paycheck-product-img"
+                                        src="../resources/images/categoryImages/Pudin.jpeg" alt="">
+                                </div>
+                                <div class=" mt-2  prdct-dtls-div overflow-auto">
+                                    <span class="pt-1 fw-bolder alg-text-h3">${element.product_name}</span>
+                                    <span class="alg-text-h3">RS.${element.price}</span>
+                                    <span class="alg-text-h3">Weight : ${element.weight}</span>
+                                    <span class="alg-text-h3">Toppings : ${element.extra_fruit}</span>
+                                    <span class="alg-text-h3">Toppings Price : ${element.extra_price}</span>
+                                    <span class="alg-text-h3">QTY : ${element.qty}</span>
+                                </div>
+
+                            </div>
+                            <?php
+                        }
+                        ?>
                     </div>
                     <div class="swiper-button-next alg-text-gold"></div>
                     <div class="swiper-button-prev alg-text-gold"></div>
-                </div> -->
-
-                <div
-                    class="checkoutSwiper col-3 overflow-auto bg-danger swiper-slide alg-text-light d-flex flex-column justify-content-start align-items-center">
-                    <img class="img-fluid paycheck-product-im"
-                        src="https://media.istockphoto.com/id/1179207306/photo/pudding-caramel-custard-with-caramel-sauce-and-mint-leaf-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=QOgo1aIuavOspqKTbKz7Qk2O5wJJOZZPg4fiPg0p2xM="
-                        alt="">
-                    <span class="pt-1 fw-bolder alg-text-h3">${element.product_name}</span>
-                    <span class="alg-text-h3">RS.${element.price}</span>
-                    <span class="alg-text-h3">Weight : ${element.weight}</span>
-                    <span class="alg-text-h3">Toppings : ${element.extra_fruit}</span>
-                    <span class="alg-text-h3">Toppings Price : ${element.extra_price}</span>
-                    <span class="alg-text-h3">QTY : ${element.qty}</span>
                 </div>
 
 
                 <!--purchased product slider -->
                 <!-- </div> -->
                 <div
-                    class="d-flex py-5 flex-column flex-lg-row justify-content-center align-items-center justify-content-lg-around border-bottom">
+                    class="d-flex py-4 flex-column flex-lg-row justify-content-center align-items-center justify-content-lg-around border-bottom">
                     <img class="img-fluid paycheck-thanku-img "
                         src="https://img.freepik.com/free-vector/thank-you-placard-concept-illustration_114360-13436.jpg?w=996&t=st=1694928554~exp=1694929154~hmac=b5cf8b7b5d163da7bc470ecf12e411fb11ba50a1fe07d773b469898eda55e21d"
                         alt="">
-                    <div class="col-12 pt-3 pt-lg-0 col-lg-6 text-white" id="priceContainer">
-
+                    <div class="col-12 pt-3 pt-lg-0 col-lg-6 text-white">
+                        <div class="d-flex ">
+                            <span>SubTotal :</span>
+                            <p>Rs. 1200</p>
+                        </div>
+                        <div class="d-flex ">
+                            <span>Tax :</span>
+                            <p>Free</p>
+                        </div>
+                        <div class="d-flex ">
+                            <span>Discount :</span>
+                            <p>10%</p>
+                        </div>
+                        <div class="d-flex ">
+                            <span class="fw-bolder">Total price :</span>
+                            <p class="fw-bolder">Rs. 1080</p>
+                        </div>
                     </div>
                 </div>
                 <div class="d-flex justify-content-center justify-content-lg-end pt-4">
-                    <button onclick="placeOrder();" id="payhere-payment" type="button"
-                        class="alg-bg-gold w-100 alg-text-h2 border-0 rounded-3 p-2 fw-bolder"> Place
+                    <button type="button" class="alg-bg-gold w-100 alg-text-h2 border-0 rounded-3 p-2 fw-bolder"> Place
                         Order
                     </button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- toast mode -->
-    <!-- <?php include("pages/components/toastMessage.php") ?> -->
 
-    <script src="../js/script.js"></script>
-    <script src="../js/paymentCheckout.js"></script>
-    <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
-
-    <!-- <?php include("pages/components/footer.php") ?> -->
 </body>
 
 </html>
