@@ -427,8 +427,16 @@
   border-radius: 25px;
 }
 
+.prdct-sldr-div{
+  height: 300px;
+}
+
+.prdct-dtls-div{
+  height:300px;
+}
+
 .paycheck-product-img {
-  width: 150px;
+  width: 120px;
   border-radius: 25px;
 }
 

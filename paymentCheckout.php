@@ -42,6 +42,7 @@ if ($sessionManager->isLoggedIn()) {
 </head>
 
 <body>
+    <?php include("pages/components/header.php") ?>
     <div class="container-fluid flex-column flex-lg-row m-0 p-0 d-flex paycheck-main ">
         <div class="col-12 col-lg-6 d-flex flex-column alg-bg-light">
             <div class="d-flex justify-content-center justify-content-lg-start p-3">
@@ -123,9 +124,11 @@ if ($sessionManager->isLoggedIn()) {
     </div>
     <!-- toast mode -->
     <?php include("pages/components/toastMessage.php") ?>
+
     <script src="../js/script.js"></script>
     <script src="../js/paymentCheckout.js"></script>
     <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
-</body>
 
+    <?php include("pages/components/footer.php") ?>
+</body>
 </html>

@@ -6,7 +6,7 @@ require_once("../model/password_encryptor.php");
 
 
 // headers
-// header("Content-Type: application/json; charset=UTF-8");
+header("Content-Type: application/json; charset=UTF-8");
 
 $email = $_POST['email'];
 $password = $_POST['password'];

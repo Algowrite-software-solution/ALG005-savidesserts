@@ -12,21 +12,21 @@ header("Content-Type: application/json; charset=UTF-8");
 $responseObject = new stdClass();
 $responseObject->status = 'failed';
 
-if (!isset($_POST['total']) && !isset($_POST['order_id'])) {
+if (!isset($_POST['total']) && !isset($_POST['orderId'])) {
      $responseObject->error = 'Access denied';
      response_sender::sendJson($responseObject);
 }
 
 $totalPayment = $_POST['total'];
-$order_id = $_POST['order_id'];
+$order_id = $_POST['orderId'];
 
-// currency Convert
-$currency_string = $totalPayment;
-$parts = explode(" ", $currency_string);
-$numerical_value = floatval($parts[1]);
+// // currency Convert
+// $currency_string = $totalPayment;
+// $parts = explode(" ", $currency_string);
+// $numerical_value = floatval($parts[1]);
 
 //values
-$amount = $numerical_value;
+// $amount = $numerical_value;
 $merchant_id = "1224343";
 
 $merchant_secret = 'MTYyNzU1ODg2MDEwNTg1OTM5MjIzNjgzMzQwMzM2MTY3Mjg0Njk3NA=='; // Replace with your Merchant Secret
@@ -37,7 +37,7 @@ $hash = strtoupper(
      md5(
           $merchant_id .
                $order_id .
-               number_format($amount, 2, '.', '') .
+               number_format($totalPayment, 2, '.', '') .
                $currency .
                strtoupper(md5($merchant_secret))
      )

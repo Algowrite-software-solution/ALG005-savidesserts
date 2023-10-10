@@ -57,12 +57,16 @@ if ($resultSet->num_rows > 0) {
         $resRowDetailObject->product_id = $productId;
         $resRowDetailObject->weight_id = $weightId;
 
+
+        $imageArray = array();
         // Add images to the new object if available
         if (is_array($searchResults)) {
             foreach ($searchResults as $index => $searchResult) {
-                $resRowDetailObject->{"images[$index]"} = $searchResult;
+                // $resRowDetailObject->{"images[$index]"} = $searchResult;
+                array_push($imageArray, $searchResult);
             }
         }
+        $resRowDetailObject->images = $imageArray;
 
         // Check if there's an existing object with the same productId and weightId
         $key = "{$productId}_{$weightId}";
