@@ -40,8 +40,10 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
                                 </div>
                             </a>
                             <a href="products.php?category=Jelly" class="text-decoration-none text-black">
-                                <div class="alg-bg-light px-5 py-1 rounded-pill header-btn fw-bold <?php echo ($currentPage === "products" && $currentCategory === "Jelly") ? "header-btn-selected" : "" ?> ">
-                                    <span class="d-none d-lg-block fs-6">Ingredients</span><i class="d-block d-lg-none bi bi-heart"></i>
+                                <div
+                                    class="alg-bg-light px-5 py-1 rounded-pill header-btn fw-bold <?php echo ($currentPage === "products" && $currentCategory === "Jelly") ? "header-btn-selected" : "" ?> ">
+                                    <span class="d-none d-lg-block fs-6">Ingredients</span><i
+                                        class="d-block d-lg-none bi bi-heart"></i>
                                 </div>
                             </a>
                         </div>
@@ -198,10 +200,18 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
                             placeholder="Retype the Password" />
                     </div>
 
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" id="flexRadioDefault1"
+                            onclick="activateSignUpBtn();">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            I agree to <a href="termsAndCondition.php">Terms & Conditions</a>
+                        </label>
+                    </div>
+
                     <!-- Submit button -->
                     <div class="d-flex justify-content-center align-items-center ">
                         <button class="p-2 mb-4 w-100 rounded-5 ALG-model-button text-white fw-bolder"
-                            onclick="signUp();">Sign up</button>
+                            onclick="signUp();" id="signUp-btn-id" disabled>Sign up</button>
                     </div>
 
                     <!-- Sign In buttons -->

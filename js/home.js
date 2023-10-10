@@ -104,3 +104,13 @@ function loadCategory() {
       console.error("Fetch error:", error);
     });
 }
+
+function activateSignUpBtn(){
+  let signUpbtnId =  document.getElementById("signUp-btn-id");
+  let termsAndConId = document.getElementById("flexRadioDefault1");
+
+  if (termsAndConId.checked) {
+    signUpbtnId.removeAttribute('disabled');
+  }
+}
+
