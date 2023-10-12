@@ -95,7 +95,7 @@ async function toggleProductSection(section) {
     await addCategoriesToSelect();
   } else if (section === "weight") {
     await ALG.addListToContainer("weightViewContainer", loadWeightData);
-  } else if (section === "categoryAdd") {
+  } else if (section === "category") {
     await ALG.addListToContainer(
       "categoryViewContainer",
       loadCategoryData,
@@ -236,7 +236,6 @@ async function loadProductItems() {
 
           listArray.push(newData);
         });
-
         return listArray;
       } else if (data.status == "failed") {
         console.log(data.error);

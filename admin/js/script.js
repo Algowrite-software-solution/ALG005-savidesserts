@@ -1,3 +1,213 @@
+// product item setup section
+let productItemImages = [];
+
+function addProductItemImageToList() {
+  const imageInput = document.getElementById("productItemImageInput");
+  console.log(imageInput.files);
+  for (const key in imageInput.files) {
+    if (Object.hasOwnProperty.call(imageInput.files, key)) {
+      const element = imageInput.files[key];
+      productItemImages.push(element);
+    }
+  }
+  previewProductListImages();
+}
+
+function previewProductListImages() {
+  const imageContainer = document.getElementById(
+    "productItemImagePreviewContainer"
+  );
+  imageContainer.innerHTML = "";
+
+  productItemImages.forEach((element) => {
+    const img = document.createElement("img");
+    img.classList.add("product-items-image-slide");
+
+    if (element) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        img.setAttribute("src", e.target.result);
+      };
+      reader.readAsDataURL(element);
+    }
+
+    imageContainer.appendChild(img);
+  });
+}
+
+function productItemSave() {
+  console.log(productItemImages);
+  return;
+
+  const product = document.getElementById("productItemProductSelectInput");
+  const quantity = document.getElementById("productItemQuantitySelectInput");
+  const price = document.getElementById("productItemProductPriceInput");
+  const weight = document.getElementById("productItemWeightSelectInput");
+
+  if (product.value == 0) {
+    ALG.openToast(
+      "Warnning",
+      "Please Select a product",
+      ALG.getCurrentTime(),
+      "bi-heart",
+      "Error"
+    );
+    return;
+  } else if (quantity.value == "") {
+    ALG.openToast(
+      "Warnning",
+      "Please add a quantity",
+      ALG.getCurrentTime(),
+      "bi-heart",
+      "Error"
+    );
+
+    return;
+  } else if (price.value == "") {
+    ALG.openToast(
+      "Warnning",
+      "Please add a price",
+      ALG.getCurrentTime(),
+      "bi-heart",
+      "Error"
+    );
+
+    return;
+  } else if (weight.value == 0) {
+    ALG.openToast(
+      "Warnning",
+      "Please select a weight",
+      ALG.getCurrentTime(),
+      "bi-heart",
+      "Error"
+    );
+
+    return;
+  }
+
+  const form = new FormData();
+  form.append("product_id", product.value);
+  form.append("qty", quantity.value);
+  form.append("price", price.value);
+  form.append("weight_id", weight.value);
+  form.append("product_image", productItemImages);
+
+  fetch("api/productItemAdding.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Product Item adding was successfull",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+function addCategory() {
+  const category = document.getElementById("addCategoryInput");
+  const categoryImage = document.getElementById("addCategoryImageInput");
+
+  if (category.value == "") {
+    ALG.openToast(
+      "Warnning",
+      "Category is empty",
+      ALG.getCurrentTime(),
+      "bi-heart",
+      "Error"
+    );
+    return;
+  } else if (categoryImage.files[0] == null) {
+    ALG.openToast(
+      "Warnning",
+      "Category image is empty",
+      ALG.getCurrentTime(),
+      "bi-heart",
+      "Error"
+    );
+
+    return;
+  }
+
+  const form = new FormData();
+  form.append("category_type", category.value);
+  form.append("category_image", categoryImage.files[0]);
+
+  fetch("api/categoryAdding.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Category adding was successfull",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+
+        category.value = "";
+        categoryImage.value = "";
+        document
+          .getElementById("categoryImagePreviewBox")
+          .setAttribute("src", "#");
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+function previewCategoryInputImage() {
+  const image = document.getElementById("addCategoryImageInput");
+  const categoryImagePreviewBox = document.getElementById(
+    "categoryImagePreviewBox"
+  );
+
+  if (image.files && image.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      categoryImagePreviewBox.setAttribute(
+        "src",
+        e.target.result ? e.target.result : "#"
+      );
+    };
+
+    reader.readAsDataURL(image.files[0]);
+  }
+}
 
 function addProduct() {
   const name = document.getElementById("productNameInputField");
@@ -188,4 +398,3 @@ function openCategoryEditModel() {
 
   ALG.openModel("Category Delete", modelBodyDesign, modelFooterDesign);
 }
-

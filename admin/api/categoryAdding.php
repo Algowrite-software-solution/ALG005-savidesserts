@@ -11,11 +11,11 @@ require_once("../../backend/model/response_sender.php");
 require_once("../../backend/model/SessionManager.php");
 
 // headers
-header("Content-Type: application/json; charset=UTF-8");
+header("Content-Type: multipart/form-data; charset=UTF-8");
 
 //response
 $responseObject = new stdClass();
-$responseObject->status = 'false';
+$responseObject->status = 'failed';
 
 // chekcing is user logging
 $userCheckSession = new SessionManager();
@@ -62,7 +62,7 @@ if ($_FILES['category_image']['error'] === 0) {
                // data insert
                $insertCategory = "INSERT INTO `category` (`category_type`) VALUES (?)";
                $db->execute_query($insertCategory, 's', array($category_type));
-               $responseObject->status = 'Added Success';
+               $responseObject->status = 'success';
                response_sender::sendJson($responseObject);
           } else {
                $responseObject->error = 'Failed to save the image';

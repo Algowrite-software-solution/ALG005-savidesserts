@@ -419,6 +419,39 @@ function openWatchlistModel() {
   watchlistDataView();
 }
 
+// forgot password model
+let forgotPasswordModel;
+function openForgotPassword() {
+  forgotPasswordModel = new bootstrap.Modal("#forgotPasswordModel");
+  signInModel.hide();
+  forgotPasswordModel.show();
+}
+
+// password reset
+let passwordResetModel;
+function passwordReset() {
+  passwordResetModel = new bootstrap.Modal("#passwordResetModel");
+  forgotPasswordModel.hide();
+  passwordResetModel.show();
+}
+
+// password set
+let passwordSetModel;
+function passwordSet() {
+  passwordSetModel = new bootstrap.Modal("#passwordSetModel");
+  passwordResetModel.hide();
+  passwordSetModel.show();
+  
+}
+
+// product details
+let productDetailsModel;
+function productDetails() {
+  productDetailsModel = new bootstrap.Modal("#productDetailsModel");
+  productDetailsModel.show();
+
+}
+
 // signin open
 let signInModel;
 let signUpModel;
@@ -427,6 +460,9 @@ signUpModel = new bootstrap.Modal("#signUpModel");
 
 function openSignInModel() {
   signInModel.show();
+  forgotPasswordModel.hide();
+  passwordResetModel.hide();
+  passwordSetModel.hide();
 }
 
 // signun open
