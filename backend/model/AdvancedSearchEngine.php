@@ -116,7 +116,7 @@ class AdvancedSearchEngine
 
     public function searchSingleProduct($id)
     {
-        $query = "SELECT `product_id`, `product_name`, `product_description`, `category_id`, `add_date`, `category_type`, `type` as `product_status`, `qty`, `price` as `item_price`, `weight` 
+        $query = "SELECT `product_id`, `product_name`, `product_description`, `category_id`, `add_date`, `category_type`, `type` as `product_status`, `qty`, `price` as `item_price`, `weight`.`id` as `weight_id`,`weight` 
         FROM `product_item` 
         INNER JOIN `product` ON `product_item`.`product_product_id`=`product`.`product_id` 
         INNER JOIN `category` ON `product`.`category_id`=`category`.`id` 

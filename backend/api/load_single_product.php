@@ -47,8 +47,8 @@ foreach ($errors as $key => $value) {
 $searchEngine = new AdvancedSearchEngine();
 $results = $searchEngine->searchSingleProduct($id);
 
-$imageSearch = new ImageSearch("../../resources/images/singleProductImg/", 753489932, 5, ["jpg"]);
-$results["images"] = ($imageSearch->search()) ? $imageSearch->search() : [];
+$imageSearch = new ImageSearch("../../resources/images/singleProductImg/", $results["product_id"], $results["weight_id"], ["jpg"]);
+$results["images"] = (is_array($imageSearch->search())) ? $imageSearch->search() : [];
 
 // response
 $responseObject->status = "success";

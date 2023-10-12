@@ -105,15 +105,29 @@ function loadProduct(productId) {
         mainImageSliderContainer.innerHTML = "";
         secondaryImageSliderContainer.innerHTML = "";
 
+        let hasImages = false;
         details.images.forEach((element) => {
-          mainImageSliderContainer.innerHTML += `<div class="swiper-slide">
-                                        <img src="${element}" />
-                                        </div>`;
+          if (element) {
+            mainImageSliderContainer.innerHTML += `<div class="swiper-slide">
+            <img src="${element}" />
+            </div>`;
 
-          secondaryImageSliderContainer.innerHTML += `<div class="swiper-slide">
-                                                                           <img src="${element}" />
-                                                                          </div>`;
+            secondaryImageSliderContainer.innerHTML += `<div class="swiper-slide">
+            <img src="${element}" />
+            </div>`;
+            hasImages = true;
+          }
         });
+
+        if (!hasImages) {
+          mainImageSliderContainer.innerHTML += `<div class="swiper-slide alg-text-light">
+                                                    <div>No images to Show</div>
+                                                  </div>`;
+
+          secondaryImageSliderContainer.innerHTML += `<div class="swiper-slide alg-text-light">
+                                                        
+                                                      </div>`;
+        }
 
         loadSwiper();
 
