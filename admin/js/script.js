@@ -3,14 +3,19 @@ let productItemImages = [];
 
 function addProductItemImageToList() {
   const imageInput = document.getElementById("productItemImageInput");
-  console.log(imageInput.files);
   for (const key in imageInput.files) {
     if (Object.hasOwnProperty.call(imageInput.files, key)) {
-      const element = imageInput.files[key];
-      productItemImages.push(element);
+      const reader = new FileReader();
+
+      reader.onload = function (event) {
+        const dataURL = event.target.result;
+        productItemImages.push(dataURL);
+        previewProductListImages();
+      };
+
+      reader.readAsDataURL(imageInput.files[key]);
     }
   }
-  previewProductListImages();
 }
 
 function previewProductListImages() {
@@ -22,23 +27,30 @@ function previewProductListImages() {
   productItemImages.forEach((element) => {
     const img = document.createElement("img");
     img.classList.add("product-items-image-slide");
-
     if (element) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        img.setAttribute("src", e.target.result);
-      };
-      reader.readAsDataURL(element);
+      img.setAttribute("src", element);
     }
 
     imageContainer.appendChild(img);
   });
 }
 
-function productItemSave() {
-  console.log(productItemImages);
-  return;
+function imageToDataUrl(image) {
+  const img = document.createElement("img");
+  img.setAttribute("src", image);
 
+  const canvas = document.createElement("canvas");
+  canvas.width = image.width;
+  canvas.height = image.height;
+  const context = canvas.getContext("2d");
+  context.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+  // Convert the canvas content to a Data URL
+  const dataURL = canvas.toDataURL("image/jpeg");
+  return dataURL;
+}
+
+function productItemSave() {
   const product = document.getElementById("productItemProductSelectInput");
   const quantity = document.getElementById("productItemQuantitySelectInput");
   const price = document.getElementById("productItemProductPriceInput");
@@ -83,6 +95,16 @@ function productItemSave() {
     );
 
     return;
+  } else if ((productItemImages, productItemImages.length === 0)) {
+    ALG.openToast(
+      "Warnning",
+      "Please add an image ",
+      ALG.getCurrentTime(),
+      "bi-heart",
+      "Error"
+    );
+
+    return;
   }
 
   const form = new FormData();
@@ -90,13 +112,19 @@ function productItemSave() {
   form.append("qty", quantity.value);
   form.append("price", price.value);
   form.append("weight_id", weight.value);
-  form.append("product_image", productItemImages);
+
+  // image handle
+  form.append("product_image", JSON.stringify(productItemImages));
 
   fetch("api/productItemAdding.php", {
     method: "POST",
     body: form,
   })
-    .then((response) => response.text())
+    .then((response) => {
+      console.log(response);
+      // console.log(response.text());
+      return response.text();
+    })
     .then((data) => {
       if (data.status == "success") {
         ALG.openToast(
