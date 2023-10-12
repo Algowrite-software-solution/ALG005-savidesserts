@@ -18,11 +18,11 @@ $responseObject = new stdClass();
 $responseObject->status = 'false';
 
 // chekcing is user logging
-// $userCheckSession = new SessionManager();
-// if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
-//      $responseObject->error = 'Please LogIn';
-//      response_sender::sendJson($responseObject);
-// }
+$userCheckSession = new SessionManager();
+if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
+     $responseObject->error = 'Please LogIn';
+     response_sender::sendJson($responseObject);
+}
 
 if (!isset($_POST['category_type']) && !isset($_FILES['category_image']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
      $responseObject->error = 'Access denied';
