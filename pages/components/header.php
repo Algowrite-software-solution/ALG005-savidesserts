@@ -45,7 +45,7 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
 
                     <div class="d-flex gap-3 align-items-center">
                         <div class="d-none d-md-block d-lg-block mx-2 ">
-                            <a href="#cart" class="alg-button-hover" onclick="openCartModel();"><i class="bi bi-cart-fill alg-text-gold fs-4 mx-3 alg-text-hover"><span class="translate-middle rounded-pill badge bg-danger header-badge position-absolute">99+</span></i></a>
+                            <a href="#cart" class="alg-button-hover" onclick="openCartModel();"><i class="bi bi-cart-fill alg-text-gold fs-4 mx-3 alg-text-hover"><span class="translate-middle rounded-pill badge bg-danger header-badge position-absolute">+</span></i></a>
                             <a href="#watchlist" onclick="openWatchlistModel();"><i class="bi bi-heart-fill alg-text-gold fs-4 alg-text-hover"></i></a>
                         </div>
                         <div class="d-flex align-items-center gap-3">
@@ -148,8 +148,10 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
 
                             <div class="text-start">
                                 <span class="alg-text-h3 fw-semibold">Email</span>
-                                <input type="email" id="email" class="ALG-model-input alg-text-h3 form-control rounded-5" placeholder="Email address" />
-                                <button class="p-2 mb-3 w-100 rounded-5 ALG-model-button alg-text-h3 text-white fw-bolder mt-2 mt-md-3" onclick="passwordReset();">Reset password</button>
+                                <input type="email" id="forgottenPasswordEmail" class="ALG-model-input alg-text-h3 form-control rounded-5" placeholder="Email address" />
+                                <button id="passwordResetBtn" class="p-2 mb-3 w-100 rounded-5 ALG-model-button alg-text-h3 text-white fw-bolder mt-2 mt-md-3" onclick="passwordReset();">
+                                    <span role="status">Reset Password</span>
+                                </button>
                                 <p class="alg-text-h3 text-center alg-cursor" onclick="openSignInModel();"><i class="bi bi-arrow-left"></i> Back to Sign In</p>
                             </div>
                         </div>
@@ -173,9 +175,10 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
 
                             <div class="text-start">
                                 <span class="alg-text-h3 fw-semibold">Verification code</span>
+                                <span class="alg-text-h3 fw-semibold" id="verificationSendingTimeRunner">30</span>
                                 <input type="text" id="verification_code" class="ALG-model-input alg-text-h3 form-control rounded-5" placeholder="code" />
                                 <button class="p-2 mb-3 w-100 rounded-5 alg-text-h3 ALG-model-button text-white fw-bolder mt-2 mt-md-3" onclick="passwordSet();">Next</button>
-                                <p class="alg-text-h3 text-center alg-cursor">Didn't receive the email? <a href="#">Click to resend</a></p>
+                                <p class="alg-text-h3 text-center alg-cursor" onclick="verificationSendAgain();">Didn't receive the email? <a href="#">Click to resend</a></p>
                                 <p class="alg-text-h3 text-center alg-cursor" onclick="openSignInModel();"><i class="bi bi-arrow-left"></i> Back to Sign In</p>
                             </div>
                         </div>
@@ -200,12 +203,12 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
                             <div class="text-start">
 
                                 <span class="alg-text-h3 fw-semibold">Password</span>
-                                <input type="password" id="password" class="ALG-model-input form-control alg-text-h3 rounded-5 mb-3" placeholder="password" />
+                                <input type="password" id="fg-password" class="ALG-model-input form-control alg-text-h3 rounded-5 mb-3" placeholder="password" />
 
                                 <span class="alg-text-h3 fw-semibold">Confirm Password</span>
-                                <input type="password" id="confirm_password" class="ALG-model-input alg-text-h3 form-control rounded-5" placeholder="confirm password" />
+                                <input type="password" id="fg-confirm_password" class="ALG-model-input alg-text-h3 form-control rounded-5" placeholder="confirm password" />
 
-                                <button class="p-2 mb-3 w-100 rounded-5 alg-text-h3 ALG-model-button text-white fw-bolder mt-2 mt-md-3" onclick="openSignInModel();">Reset password</button>
+                                <button class="p-2 mb-3 w-100 rounded-5 alg-text-h3 ALG-model-button text-white fw-bolder mt-2 mt-md-3" onclick="passwordResetLast();">Reset password</button>
                                 <p class="alg-text-h3 text-center alg-cursor" onclick="openSignInModel();"><i class="bi bi-arrow-left"></i> Back to Sign In</p>
                             </div>
                         </div>
@@ -258,15 +261,21 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
                     </div>
 
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="radio" id="flexRadioDefault1" onclick="activateSignUpBtn();">
+                        <input class="form-check-input"   type="checkbox" id="defaultCheck1" onclick="activateSignUpBtn();">
                         <label class="form-check-label" for="flexRadioDefault1">
                             I agree to <a href="termsAndCondition.php">Terms & Conditions</a>
+                        </label>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input checked class="form-check-input"  type="checkbox" id="defaultCheck2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Do you agree to use your email for marketing news ?
                         </label>
                     </div>
 
                     <!-- Submit button -->
                     <div class="d-flex justify-content-center align-items-center ">
-                        <button class="p-2 mb-4 w-100 rounded-5 ALG-model-button text-white fw-bolder" onclick="signUp();" id="signUp-btn-id" disabled>Sign up</button>
+                        <button class="p-2 mb-4 w-100 rounded-5 ALG-model-button text-white fw-bolder" onclick="signUp();" id="signUpBtn" disabled>Sign up</button>
                     </div>
 
                     <!-- Sign In buttons -->

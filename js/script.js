@@ -427,22 +427,163 @@ function openForgotPassword() {
   forgotPasswordModel.show();
 }
 
+let timeRemaining = 30; // Initial time in seconds
+let timerInterval;
+
+function timeUpdater() {
+  document.getElementById('verificationSendingTimeRunner').textContent = timeRemaining;
+  if (timeRemaining === 0) {
+    clearInterval(timerInterval);
+    console.log("Time's up!");
+  } else {
+    timeRemaining--;
+  }
+}
+
+function resetTimer() {
+  clearInterval(timerInterval);
+  timeRemaining = 30;
+  timeUpdater();
+  timerInterval = setInterval(timeUpdater, 1000);
+}
+
 // password reset
 let passwordResetModel;
 function passwordReset() {
+
+  const btn = document.getElementById('passwordResetBtn');
+  btn.innerHTML = "";
+  btn.innerHTML += `<span class="spinner-border spinner-border-sm" aria-disabled="true"></span>`;
+
+
   passwordResetModel = new bootstrap.Modal("#passwordResetModel");
-  forgotPasswordModel.hide();
-  passwordResetModel.show();
+
+  const forgotPasswordEmail = document.getElementById('forgottenPasswordEmail').value;
+  const formData = new FormData();
+  formData.append('email', forgotPasswordEmail);
+
+  fetch(SERVER_URL + "backend/api/verificationSendingApi.php", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status === 'success') {
+        forgotPasswordModel.hide();
+        passwordResetModel.show();
+        //time counter
+        timeUpdater();
+        setInterval(timeUpdater, 1000);
+      } else {
+        toastMessage(data.error, "text-bg-danger");
+        console.log(data.error);
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
+
+
+function verificationSendAgain() {
+
+  const forgotPasswordEmail = document.getElementById('forgottenPasswordEmail').value;
+  const formData = new FormData();
+  formData.append('email', forgotPasswordEmail);
+
+  fetch(SERVER_URL + "backend/api/verificationSendingApi.php", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status === 'success') {
+        toastMessage("Verification send again", "text-bg-success");
+      } else {
+        toastMessage(data.error, "text-bg-danger");
+        console.log(data.error);
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 }
 
 // password set
 let passwordSetModel;
 function passwordSet() {
   passwordSetModel = new bootstrap.Modal("#passwordSetModel");
-  passwordResetModel.hide();
-  passwordSetModel.show();
-  
+
+
+  const verificationCode = document.getElementById('verification_code').value;
+  const forgotPasswordEmail = document.getElementById('forgottenPasswordEmail').value;
+
+  console.log(verificationCode);
+  console.log(forgotPasswordEmail);
+
+  const formData = new FormData();
+  formData.append('verification_id', verificationCode);
+  formData.append('email', forgotPasswordEmail);
+
+  fetch(SERVER_URL + "backend/api/verificationMatchingApi.php", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status === 'success') {
+
+        passwordResetModel.hide();
+        passwordSetModel.show();
+
+      } else {
+        toastMessage(data.error, "text-bg-danger");
+        console.log(data.error);
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+
 }
+
+//password reset
+function passwordResetLast() {
+  const password = document.getElementById('fg-password').value;
+  const confPassword = document.getElementById('fg-confirm_password').value;
+  const forgotPasswordEmail = document.getElementById('forgottenPasswordEmail').value;
+
+  console.log(password);
+  console.log(confPassword);
+  console.log(forgotPasswordEmail);
+
+  const formData = new FormData();
+  formData.append('newPassword', password);
+  formData.append('confPassword', confPassword);
+  formData.append('email', forgotPasswordEmail);
+
+  fetch(SERVER_URL + "backend/api/forgottenPasswordProcess.php", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status === 'success') {
+
+        openSignInModel();
+
+      } else {
+        toastMessage(data.error.error, "text-bg-danger");
+        console.log(data.error);
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
+
 
 // product details
 let productDetailsModel;
@@ -476,7 +617,53 @@ function goBackToSignIn() {
   signInModel.show();
 }
 
+let termsAndCondition = 0;
+
+//signUp checkbox value change
+const checkbox1 = document.getElementById('defaultCheck1');
+const signUpBtn = document.getElementById('signUpBtn');
+
+checkbox1.addEventListener('change', () => {
+  if (checkbox1.checked) {
+    console.log('checked : 1');
+    signUpBtn.removeAttribute('disabled');
+    termsAndCondition = 1;
+    console.log(termsAndCondition);
+
+  } else {
+    signUpBtn.setAttribute('disabled', 'disabled');
+    console.log('unchecked : 2');
+    termsAndCondition = 2;
+    console.log(termsAndCondition);
+  }
+});
+
+
+
+let marketingPerpose = 1;
+//marketing pepose email validation
+const checkbox2 = document.getElementById('defaultCheck2');
+
+checkbox2.addEventListener('change', () => {
+  if (checkbox2.checked) {
+    console.log('checked : 1');
+    marketingPerpose = 1;
+    console.log(marketingPerpose);
+
+  } else {
+    console.log('unchecked : 2');
+    marketingPerpose = 2;
+    console.log(marketingPerpose);
+  }
+});
+
+
+
 function signUp() {
+
+  console.log(termsAndCondition);
+  console.log(marketingPerpose);
+
   const email = document.getElementById("signUp-email").value;
   const full_name = document.getElementById("signUp-fullname").value;
   const password = document.getElementById("signUp-password").value;
@@ -487,6 +674,8 @@ function signUp() {
   form.append("fullName", full_name);
   form.append("password", password);
   form.append("confPassword", rePassword);
+  form.append("termsAndCondition", termsAndCondition);
+  form.append("marketingPerpose", marketingPerpose);
 
   fetch(SERVER_URL + "backend/api/signUpProcess.php", {
     method: "POST",
@@ -495,14 +684,13 @@ function signUp() {
     .then((response) => response.json())
     .then((data) => {
       if (data.status === 'success') {
-        toastMessage("Sign Up Success", "text-bg-success");
+        toastMessage("Sign up success", "text-bg-success");
         setTimeout(() => {
           signInModel.show();
           signUpModel.hide();
         }, 2000);
       } else {
-        toastMessage(data.error.error, "text-bg-danger");
-        console.log(data.error);
+        toastMessage(data.error, "text-bg-danger");
       }
     })
     .catch((error) => {
@@ -567,6 +755,7 @@ function signOut() {
 function paymentCheckout() {
   window.location.assign("paymentCheckout.php");
 }
+
 
 
 
