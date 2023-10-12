@@ -95,37 +95,28 @@ if ($productResult['result']->num_rows > 0) {
 }
 
 
-if (is_array($_FILES['product_image']['error'])) {
+if (isset($_POST['product_image'])) {
+     $imageArray = json_decode($_POST['product_image']);
      $imageUrls = [];
 
      // Loop through each uploaded file
      $countIndex = 0;
-     foreach ($_FILES['product_image']['error'] as $key => $error) {
-          if ($error === 0) {
+     foreach ($imageArray as  $value) {
+          if ($value) {
                // files manage 
-               $allowImageExtension = ['png', 'jpg', 'jpeg'];
-               $fileExtension = strtolower(pathinfo($_FILES['product_image']['name'][$key], PATHINFO_EXTENSION));
+               // Remove the "data:image/jpeg;base64," part to get the base64 data
+               $base64Data = substr($value, strpos($value, ',') + 1);
 
-               // file extension checks
-               if (!in_array($fileExtension, $allowImageExtension)) {
-                    $responseObject->error = 'Only png,jpg and jpeg file formats are allowed';
-                    response_sender::sendJson($responseObject);
-               }
+               $binaryData = base64_decode($base64Data);
+               $fileExtension = ".jpg";
 
-               //file save path and file name create
+               // //file save path and file name create
                $savePath = "../../resources/images/singleProductImg/";
-               $newImageName = "productId=" . $productId . "&&" . "weightId=" . $weightId . "&&" . "image=" . $countIndex . "." . $fileExtension;
+               $newImageName = "productId=" . $productId . "&&" . "weightId=" . $weightId . "&&" . "image=" . $countIndex  . $fileExtension;
                $countIndex++;
 
-               if (move_uploaded_file($_FILES['product_image']['tmp_name'], $savePath . $newImageName)) {
-                    $currentURL = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-                    $newImgUrl = str_replace("api/productItemAdding.php", "", $currentURL) . "../../resources/images/singleProductImg/" . $newImageName;
-                    // Add the image URL to the array
-                    $imageUrls[] = $newImgUrl;
-               } else {
-                    $responseObject->error = "Image upload failed";
-                    response_sender::sendJson($responseObject);
-               }
+               // Save the image to a file
+               file_put_contents($savePath . $newImageName, $binaryData);
           } else {
                $responseObject->error = "upload one or more images";
                response_sender::sendJson($responseObject);
@@ -136,7 +127,6 @@ if (is_array($_FILES['product_image']['error'])) {
      $productItemInsert = "INSERT INTO `product_item` (`qty`,`price`,`product_status_id`,`product_product_id`,`weight_id`) VALUES (?,?,?,?,?)";
      $db->execute_query($productItemInsert, 'sssss', array($qty, $price, '1', $productId, $weightId));
      $responseObject->status = "success";
-     $responseObject->results = $newImgUrl;
      response_sender::sendJson($responseObject);
 } else {
      $responseObject->error = "no images upload";
