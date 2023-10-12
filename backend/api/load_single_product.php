@@ -10,6 +10,7 @@ require_once("../model/database_driver.php");
 require_once("../model/AdvancedSearchEngine.php");
 require_once("../model/response_sender.php");
 require_once("../model/RequestHandler.php");
+require_once("../model/imageSearchEngine.php");
 
 // headers
 header("Content-Type: application/json; charset=UTF-8");
@@ -45,6 +46,9 @@ foreach ($errors as $key => $value) {
 // search relevent data
 $searchEngine = new AdvancedSearchEngine();
 $results = $searchEngine->searchSingleProduct($id);
+
+$imageSearch = new ImageSearch("../../resources/images/singleProductImg/", 753489932, 5, ["jpg"]);
+$results["images"] = ($imageSearch->search()) ? $imageSearch->search() : [];
 
 // response
 $responseObject->status = "success";

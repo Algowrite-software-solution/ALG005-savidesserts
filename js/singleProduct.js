@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadProduct(productid);
   loadExtraItem(productid);
   loadWeight(productid, weight);
+  loadSwiper();
 });
 
 //toast Message
@@ -28,24 +29,26 @@ function toastMessage(message, className) {
   toastBootstrap.show();
 }
 
-var swiper = new Swiper(".mySwiper", {
-  loop: true,
-  spaceBetween: 10,
-  slidesPerView: 3,
-  freeMode: true,
-  watchSlidesProgress: true,
-});
-var swiper2 = new Swiper(".mySwiper2", {
-  loop: true,
-  spaceBetween: 10,
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  thumbs: {
-    swiper: swiper,
-  },
-});
+function loadSwiper() {
+  var swiper = new Swiper(".mySwiper", {
+    loop: true,
+    spaceBetween: 10,
+    slidesPerView: 3,
+    freeMode: true,
+    watchSlidesProgress: true,
+  });
+  var swiper2 = new Swiper(".mySwiper2", {
+    loop: true,
+    spaceBetween: 10,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    thumbs: {
+      swiper: swiper,
+    },
+  });
+}
 
 //Product Item Price
 let productItemPrice;
@@ -90,6 +93,29 @@ function loadProduct(productId) {
         productPrice.innerText = "LKR. " + " " + details.item_price;
         productCategory.innerHTML = details.category_type;
         productCategoryLargeScreen.innerHTML = details.category_type;
+
+        // load Images
+        const mainImageSliderContainer = document.getElementById(
+          "singleProductViewImageSliderMain"
+        );
+
+        const secondaryImageSliderContainer = document.getElementById(
+          "singleProductViewImageSliderSecondary"
+        );
+        mainImageSliderContainer.innerHTML = "";
+        secondaryImageSliderContainer.innerHTML = "";
+
+        details.images.forEach((element) => {
+          mainImageSliderContainer.innerHTML += `<div class="swiper-slide">
+                                        <img src="${element}" />
+                                        </div>`;
+
+          secondaryImageSliderContainer.innerHTML += `<div class="swiper-slide">
+                                                                           <img src="${element}" />
+                                                                          </div>`;
+        });
+
+        loadSwiper();
 
         // load related items
         let keywords =
@@ -146,7 +172,7 @@ function laodRelatedProducts(keywords) {
             productListViewContainer.innerHTML += `
               <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mx-0 p-0">
                 <div class="row m-0 w-100 p-2">
-                    <div class="col-12 d-flex justify-content-end overflow-hidden flex-column bg-danger ld-bs-card w-100 p-0" onclick="openSignleProductView('${element.product_id}', '${element.weight}');">
+                    <div class="product-list-card-bacground col-12 d-flex justify-content-end overflow-hidden flex-column bg-danger ld-bs-card w-100 p-0" onclick="openSignleProductView('${element.product_id}', '${element.weight}');" style="background-image: url('resources/images/singleProductImg/productId=${element.product_id}&&weightId=${element.weight_id}&&image=1.jpg');">
                     <div class="ld-bs-card-content d-flex flex-column text-start">
                       <div class="d-flex gap-1 fw-bold justify-content-between">
                         <div class="text-white alg-text-h3">${element.product_name}</div>
@@ -194,7 +220,6 @@ function getFirst20Words(inputString) {
   const resultString = first20WordsArray.join(" ");
   return resultString;
 }
-
 
 // load open Signle Product View
 function openSignleProductView(id, weightId) {
