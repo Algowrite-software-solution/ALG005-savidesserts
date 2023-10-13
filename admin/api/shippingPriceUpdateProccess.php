@@ -26,14 +26,14 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
 
 //use the POST method
 $ship_price = $_POST['shippingPrice'];
-$weight = $_POST['weightId'];
+$ship_id = $_POST['shipping_id'];
 
 
 $db = new database_driver();
 
 //update price
-$updateQuery = "UPDATE `shipping_price` SET `price`=? WHERE `weight_id`=?";
-$db->execute_query($updateQuery, 's', array($ship_price, $weight));
+$updateQuery = "UPDATE `shipping_price` SET `price`=? WHERE `shipping_price_id`=?";
+$db->execute_query($updateQuery, 'ss', array($ship_price, $ship_id));
 $responseObject->status = 'updated';
 response_sender::sendJson($responseObject);
 
