@@ -385,6 +385,7 @@ function addToCartItem(product_id, weight_id) {
       loadWeightContainer.innerHTML = "";
       if (data.status === "product added successfully") {
         toastMessage("Product Added", "text-bg-success");
+        cartRowCount();
       } else {
         toastMessage(data.error, "text-bg-danger");
       }
@@ -434,3 +435,51 @@ minus.addEventListener("click", () => {
     singleProductPriceCalculation();
   }
 });
+
+//cart row count
+function cartRowCount() {
+
+  const cartRow = document.getElementById('cartRow');
+
+  // Fetch request
+  fetch(SERVER_URL + "backend/api/cartDataCountLoader.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+
+      cartRow.innerHTML = "";
+
+      if (data.status === 'success') {
+
+        cartRow.innerHTML += ` 
+        <a class="alg-button-hover" onclick="openCartModel();"><i class="bi bi-cart-fill alg-text-gold fs-4 mx-3 alg-text-hover"><span class="translate-middle rounded-pill badge bg-danger header-badge position-absolute">${data.result.row_count}</span></i></a>
+        <a onclick="openWatchlistModel();"><i class="bi bi-heart-fill alg-text-gold fs-4 alg-text-hover"></i></a>
+        `;
+
+
+      } else {
+        cartRow.innerHTML += ` 
+        <a class="alg-button-hover" onclick="openCartModel();"><i class="bi bi-cart-fill alg-text-gold fs-4 mx-3 alg-text-hover"><span class="translate-middle rounded-pill badge bg-danger header-badge position-absolute">+</span></i></a>
+        <a onclick="openWatchlistModel();"><i class="bi bi-heart-fill alg-text-gold fs-4 alg-text-hover"></i></a>
+        `;
+      }
+
+      if (data.error) {
+        console.log(data.error);
+      }
+    })
+    .catch((error) => {
+      // Handle errors that occur during the Fetch request
+      console.error("Fetch error:", error);
+    });
+}
+

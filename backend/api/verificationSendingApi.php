@@ -32,15 +32,23 @@ $errors = $validator->validate();
 foreach ($errors as $key => $value) {
      if ($value) {
           $response->error = "Invalid Input for : " . $key;
-          response_sender::sendJson($responseObject);
+          response_sender::sendJson($response);
      }
 }
 
 //send 6 number of verification code our email and update our db();
 //generate 6 number of id
 $six_digit_random_number = random_int(100000, 999999);
-
 $db = new database_driver();
+
+$searchEmail = "SELECT * FROM `user` WHERE `email`=?";
+$result = $db->execute_query($searchEmail, 's', array($email));
+
+if ($result['result']->num_rows === 0) {
+     $response->error = "invalid email";
+     response_sender::sendJson($response);
+}
+
 $updateQuery = "UPDATE `user` SET `confomation_code`=? WHERE `email`=?";
 $db->execute_query($updateQuery, 'ss', array($six_digit_random_number, $email));
 

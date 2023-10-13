@@ -44,9 +44,8 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
                     </div>
 
                     <div class="d-flex gap-3 align-items-center">
-                        <div class="d-none d-md-block d-lg-block mx-2 ">
-                            <a href="#cart" class="alg-button-hover" onclick="openCartModel();"><i class="bi bi-cart-fill alg-text-gold fs-4 mx-3 alg-text-hover"><span class="translate-middle rounded-pill badge bg-danger header-badge position-absolute">+</span></i></a>
-                            <a href="#watchlist" onclick="openWatchlistModel();"><i class="bi bi-heart-fill alg-text-gold fs-4 alg-text-hover"></i></a>
+                        <div class="d-none d-md-block d-lg-block mx-2 " id="cartRow">
+                            <!-- cart opening section goes here check script.js line 786 -->
                         </div>
                         <div class="d-flex align-items-center gap-3">
                             <div class="d-flex align-items-center gap-3 alg-cursor">
@@ -80,7 +79,7 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
         <div class="flex-column text-center w-100 d-flex">
             <span class="py-2"><a href="index.php" class="alg-text-dark text-decoration-none fw-semibold">Home</a></span>
             <span class="py-2"><a href="products.php" class="alg-text-dark text-decoration-none fw-semibold">Products</a></span>
-            <span class="py-2"><a href="#cart" class="alg-text-dark text-decoration-none fw-semibold" onclick="openCartModel();">Cart</a><span class="translate-middle rounded-pill badge bg-danger header-badge position-absolute">99+</span></span>
+            <span class="py-2"><a href="#cart" class="alg-text-dark text-decoration-none fw-semibold" onclick="openCartModel();">Cart</a><span class="translate-middle rounded-pill badge bg-danger header-badge position-absolute">+</span></span>
             <span class="py-2" onclick="openWatchlistModel();"><a href="#watchlist" class="alg-text-dark text-decoration-none fw-semibold">Watchlist</a></span>
         </div>
     </div>
@@ -149,7 +148,8 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
                             <div class="text-start">
                                 <span class="alg-text-h3 fw-semibold">Email</span>
                                 <input type="email" id="forgottenPasswordEmail" class="ALG-model-input alg-text-h3 form-control rounded-5" placeholder="Email address" />
-                                <button id="passwordResetBtn" class="p-2 mb-3 w-100 rounded-5 ALG-model-button alg-text-h3 text-white fw-bolder mt-2 mt-md-3" onclick="passwordReset();">
+                                <button id="mainButton"  class="p-2 mb-3 w-100 rounded-5 ALG-model-button alg-text-h3 text-white fw-bolder mt-2 mt-md-3" onclick="passwordReset();">
+                                    <span class="spinner-border spinner-border-sm d-none" aria-hidden="true"></span>
                                     <span role="status">Reset Password</span>
                                 </button>
                                 <p class="alg-text-h3 text-center alg-cursor" onclick="openSignInModel();"><i class="bi bi-arrow-left"></i> Back to Sign In</p>
@@ -261,13 +261,13 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
                     </div>
 
                     <div class="form-check mb-3">
-                        <input class="form-check-input"   type="checkbox" id="defaultCheck1" onclick="activateSignUpBtn();">
+                        <input class="form-check-input" type="checkbox" id="defaultCheck1" onclick="activateSignUpBtn();">
                         <label class="form-check-label" for="flexRadioDefault1">
                             I agree to <a href="termsAndCondition.php">Terms & Conditions</a>
                         </label>
                     </div>
                     <div class="form-check mb-3">
-                        <input checked class="form-check-input"  type="checkbox" id="defaultCheck2">
+                        <input checked class="form-check-input" type="checkbox" id="defaultCheck2">
                         <label class="form-check-label" for="flexRadioDefault2">
                             Do you agree to use your email for marketing news ?
                         </label>

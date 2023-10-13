@@ -31,6 +31,7 @@ $totalCost = $_POST['Total'];
 $productItemPrice = $_POST['ProductItemPrice'];
 $extraToppingsPrice = $_POST['ExtraToppingsPrice'];
 $orderId = $_POST['orderId'];
+$shippingPrice = $_POST['shippingPrice'];
 $jsonString = $_POST['globalElementResult'];
 
 //decode json result
@@ -45,7 +46,7 @@ $currentDate = date('Y-m-d');
 
 //add data for invoice
 $insertQueryInvoice = "INSERT INTO `invoice` (`order_date`,`pay_amout`,`shipping_price`,`order_id`,`user_user_id`,`invoice_status_invoice_status_id`) VALUES (?,?,?,?,?,?)";
-$db->execute_query($insertQueryInvoice, 'ssssss', array($currentDate, $totalCost, '200', $orderId, $userId, '1'));
+$db->execute_query($insertQueryInvoice, 'ssssss', array($currentDate, $totalCost, $shippingPrice, $orderId, $userId, '1'));
 
 // get all details
 foreach ($elementResult as $requestArray) {

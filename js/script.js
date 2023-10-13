@@ -1,6 +1,7 @@
 const SERVER_URL = "";
 
 document.addEventListener("DOMContentLoaded", () => {
+  cartRowCount();
 });
 
 // header
@@ -32,46 +33,6 @@ function toastMessage(message, className) {
   toastBootstrap.show();
 
 
-}
-
-
-//product adding from cart
-function productAddingCart() {
-  const qty = document.getElementById("qty").value;
-  const productItemId = document.getElementById("productItemId").value;
-  const weightId = document.getElementById("weightId").value;
-  const extraItemId = document.getElementById("extraItemId").value;
-
-  // Fetch request
-  fetch(SERVER_URL + "backend/api/cardAddingProcess.php", {
-    method: "POST", // HTTP request method
-    headers: {
-      "Content-Type": "application/json", // Request headers
-    },
-    body:
-      "cardAddingData=" +
-      JSON.stringify({
-        // Request body (if sending data)
-        qty,
-        productItemId,
-        weightId,
-        extraItemId,
-      }),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json(); // Parse the response body as JSON
-    })
-    .then((data) => {
-      // Handle the JSON data received from the API
-      console.log("Data from the API:", data);
-    })
-    .catch((error) => {
-      // Handle errors that occur during the Fetch request
-      console.error("Fetch error:", error);
-    });
 }
 
 // cart data global object
@@ -228,6 +189,7 @@ function deleteCartProduct(card_id) {
       // Handle the JSON data received from the API
       console.log("Data from the API:", data);
       cartProductView();
+      cartRowCount();
     })
     .catch((error) => {
       // Handle errors that occur during the Fetch request
@@ -451,9 +413,11 @@ function resetTimer() {
 let passwordResetModel;
 function passwordReset() {
 
-  const btn = document.getElementById('passwordResetBtn');
-  btn.innerHTML = "";
-  btn.innerHTML += `<span class="spinner-border spinner-border-sm" aria-disabled="true"></span>`;
+  const btn = document.querySelector('.spinner-border');
+  const mainBtn = document.getElementById('mainButton');
+  btn.classList.remove('d-none');
+  mainBtn.setAttribute('disabled','disabled');
+
 
 
   passwordResetModel = new bootstrap.Modal("#passwordResetModel");
@@ -469,15 +433,22 @@ function passwordReset() {
     .then((response) => response.json())
     .then((data) => {
       if (data.status === 'success') {
+
         forgotPasswordModel.hide();
         passwordResetModel.show();
         //time counter
         timeUpdater();
         setInterval(timeUpdater, 1000);
+
       } else {
         toastMessage(data.error, "text-bg-danger");
         console.log(data.error);
       }
+
+      btn.classList.add('d-none');
+      mainBtn.removeAttribute('disabled');
+
+
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -518,9 +489,6 @@ function passwordSet() {
 
   const verificationCode = document.getElementById('verification_code').value;
   const forgotPasswordEmail = document.getElementById('forgottenPasswordEmail').value;
-
-  console.log(verificationCode);
-  console.log(forgotPasswordEmail);
 
   const formData = new FormData();
   formData.append('verification_id', verificationCode);
@@ -735,7 +703,7 @@ function signOut() {
     if (request.readyState == 4 && request.status == 200) {
       responseObject = JSON.parse(request.responseText);
       if (responseObject.status === "success") {
-        toastMessage("Sign Out Success", "text-bg-success");
+        toastMessage("Sign out success", "text-bg-success");
 
         setTimeout(() => {
           window.location = "index.php";
@@ -755,6 +723,54 @@ function signOut() {
 function paymentCheckout() {
   window.location.assign("paymentCheckout.php");
 }
+
+
+function cartRowCount() {
+
+  const cartRow = document.getElementById('cartRow');
+
+  // Fetch request
+  fetch(SERVER_URL + "backend/api/cartDataCountLoader.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+
+      cartRow.innerHTML = "";
+
+      if (data.status === 'success') {
+
+        cartRow.innerHTML += ` 
+        <a class="alg-button-hover" onclick="openCartModel();"><i class="bi bi-cart-fill alg-text-gold fs-4 mx-3 alg-text-hover"><span class="translate-middle rounded-pill badge bg-danger header-badge position-absolute">${data.result.row_count}</span></i></a>
+        <a onclick="openWatchlistModel();"><i class="bi bi-heart-fill alg-text-gold fs-4 alg-text-hover"></i></a>
+        `;
+
+
+      } else {
+        cartRow.innerHTML += ` 
+        <a class="alg-button-hover" onclick="openCartModel();"><i class="bi bi-cart-fill alg-text-gold fs-4 mx-3 alg-text-hover"><span class="translate-middle rounded-pill badge bg-danger header-badge position-absolute">+</span></i></a>
+        <a onclick="openWatchlistModel();"><i class="bi bi-heart-fill alg-text-gold fs-4 alg-text-hover"></i></a>
+        `;
+      }
+
+      if (data.error) {
+        console.log(data.error);
+      }
+    })
+    .catch((error) => {
+      // Handle errors that occur during the Fetch request
+      console.error("Fetch error:", error);
+    });
+}
+
 
 
 

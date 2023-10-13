@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
      shippingDetailsLoad();
      liveCartDetailsLoad();
+     shippingPriceLoader();
 });
 
 
@@ -211,9 +212,46 @@ function updateShippingData() {
 let Total = 0;
 let ProductItemPrice = 0;
 let ExtraToppingsPrice = 0;
+let ShippingPrice = 0;
 
 // global element result
 let globalElementResult = [];
+
+
+//shippingPrice loader
+function shippingPriceLoader() {
+     // Fetch request
+     fetch(SERVER_URL + "backend/api/shippingDataLoader.php", {
+          method: "GET", // HTTP request method
+          headers: {
+               "Content-Type": "application/json", // Request headers
+          },
+     })
+          .then((response) => {
+               if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+               }
+               return response.json(); // Parse the response body as JSON
+          })
+          .then((data) => {
+               ShippingPrice = 0;
+               if (data.status === "success") {
+                    ShippingPrice = data.result;
+                    // console.log(ShippingPrice);
+
+                    return data.result;
+               } else {
+                    toastMessage(data.error, "text-bg-danger");
+               }
+          })
+          .catch((error) => {
+               // Handle errors that occur during the Fetch request
+               console.error("Fetch error:", error);
+          });
+
+}
+shippingPriceLoader();
+
 
 
 function liveCartDetailsLoad() {
@@ -235,6 +273,9 @@ function liveCartDetailsLoad() {
                return response.json(); // Parse the response body as JSON
           })
           .then((data) => {
+
+
+
                priceContainer.innerHTML = "";
                swDetailContainer.innerHTML = "";
 
@@ -242,6 +283,7 @@ function liveCartDetailsLoad() {
                Total = 0;
                ProductItemPrice = 0;
                ExtraToppingsPrice = 0;
+
 
 
                if (data.status === "success") {
@@ -278,6 +320,8 @@ function liveCartDetailsLoad() {
 
                     })
 
+                    Total += parseInt(ShippingPrice);
+
                     priceContainer.innerHTML += `
                          <div class="d-flex justify-content-around" id="productPriceContainer">
                             <span>Product Total Price:</span>
@@ -289,7 +333,7 @@ function liveCartDetailsLoad() {
                          </div>
                          <div class="d-flex justify-content-around" id="ShippingPrice">
                             <span class="fw-bolder">Shipping price :</span>
-                            <p class="fw-bolder">Rs. 00</p>
+                            <p class="fw-bolder">Rs. ${ShippingPrice}</p>
                          </div>
                          <div class="d-flex justify-content-around" id="Total">
                             <span class="fw-bolder">Total Price :</span>
@@ -307,6 +351,9 @@ function liveCartDetailsLoad() {
                console.error("Fetch error:", error);
           });
 }
+
+
+
 
 //random number generate
 function generateUniqueId() {
@@ -326,33 +373,6 @@ function placeOrder() {
      const district = document.getElementById('district').value;
      const province = document.getElementById('province').value;
 
-     //validation input filed
-     if (fullName === null || fullName === undefined) {
-          toastMessage("Please enter the full name", "text-bg-danger");
-         
-     }
-
-     if (mobile === null || mobile === undefined) {
-          toastMessage("Please enter the mobile number", "text-bg-danger");
-         
-     }
-     if (addressLine1 === null || addressLine1 === undefined) {
-          toastMessage("Please enter the address", "text-bg-danger");
-         
-     }
-     if (city === null || city === undefined) {
-          toastMessage("Please enter the city", "text-bg-danger");
-         
-     }
-     if (district === 0) {
-          toastMessage("Please enter the district", "text-bg-danger");
-          
-     }
-     if (province === 0) {
-          toastMessage("Please enter the province", "text-bg-danger");
-          
-     }
-
      //genarate random order Id
      const orderId = generateUniqueId();
      const total = Total;
@@ -361,6 +381,12 @@ function placeOrder() {
      const formData = new FormData();
      formData.append('orderId', orderId);
      formData.append('total', total);
+     formData.append('fullName', fullName);
+     formData.append('mobile', mobile);
+     formData.append('addressLine1', addressLine1);
+     formData.append('city', city);
+     formData.append('district', district);
+     formData.append('province', province);
 
 
      // Fetch request
@@ -449,6 +475,7 @@ function addInvoice(orderId) {
      formData.append("ProductItemPrice", ProductItemPrice);
      formData.append("ExtraToppingsPrice", ExtraToppingsPrice);
      formData.append("orderId", orderId);
+     formData.append("shippingPrice", ShippingPrice);
 
      // Fetch request
      fetch(SERVER_URL + "backend/api/addInvoiceProcess.php", {

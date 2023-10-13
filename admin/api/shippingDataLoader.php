@@ -1,4 +1,10 @@
 <?php
+// shpping data load api
+// by madusha pravinda
+// version - 1.0.0
+// 03-09-2023
+
+
 //include models
 require_once("../model/database_driver.php");
 require_once("../model/response_sender.php");
@@ -18,24 +24,12 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
      response_sender::sendJson($responseObject);
 }
 
-$userData = $userCheckSession->getUserId();
-$userId = $userData["user_id"];
-
-
 //search card data
 $db = new database_driver();
-$countQuery = "SELECT COUNT(*) AS row_count FROM `card` WHERE `user_user_id`=?";
-$result = $db->execute_query($countQuery, 'i', array($userId));
-$resultSet = $result['result'];
-
-if ($resultSet->num_rows === 0) {
-     $responseObject->status = 'no rows';
-     $responseObject->result = null;
-     response_sender::sendJson($responseObject);
-}
-
-$rowCount = $resultSet->fetch_assoc();
-
+$searchQuery = "SELECT * FROM `shipping_price`";
+$result = $db->query($searchQuery);
+$queryResult = $result->fetch_assoc();
+$shippingPrice = $queryResult['price'];
 $responseObject->status = 'success';
-$responseObject->result = $rowCount;
+$responseObject->result = $shippingPrice;
 response_sender::sendJson($responseObject);
