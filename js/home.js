@@ -87,7 +87,7 @@ function loadCategory() {
           categorySliderContainer.innerHTML += `
             <div class="categorySwiper swiper-slide">
               <a class="text-decoration-none category-hover" href="products.php?category=${element.category_type}">
-                <img src="resources/images/${element.category_type}.png" class="img-fluid" alt="category_img">
+                <img src="resources/images/categoryImages/${element.category_type}.png" class="img-fluid" alt="category_img">
                 <span class="alg-text-gold alg-bg-dark alg-text-h3 p-1 px-5 rounded-4 fw-bold position-relative">${element.category_type}</span>
               </a>
             </div>
