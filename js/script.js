@@ -14,11 +14,12 @@ toggle.onclick = () => {
   toggleIcon.classList.toggle("bx-x");
 };
 
-//toast Message 
+//toast Message
 function toastMessage(message, className) {
-  const toastMessageContainer = document.getElementById('toastMessageContainer');
-  const toastLiveExample = document.getElementById('liveToast')
-
+  const toastMessageContainer = document.getElementById(
+    "toastMessageContainer"
+  );
+  const toastLiveExample = document.getElementById("liveToast");
 
   toastMessageContainer.innerHTML = "";
   const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
@@ -28,11 +29,9 @@ function toastMessage(message, className) {
   toastLiveExample.classList.remove("text-bg-danger");
 
   if (className !== undefined) {
-    toastLiveExample.classList.add(className)
+    toastLiveExample.classList.add(className);
   }
   toastBootstrap.show();
-
-
 }
 
 // cart data global object
@@ -40,7 +39,6 @@ var cartData = {
   items: [],
   total: 0,
 };
-
 
 // //cart product View
 function cartProductView() {
@@ -66,9 +64,7 @@ function cartProductView() {
 
       let Total = 0;
 
-
       if (data.status === "success") {
-
         cartEmptyContainer.innerHTML = "";
         cartMainContainer.innerHTML = "";
 
@@ -99,7 +95,9 @@ function cartProductView() {
           `;
 
           // Check if the item already exists in the cart
-          const existingItem = cartData.items.find((item) => item.id === element.card_id);
+          const existingItem = cartData.items.find(
+            (item) => item.id === element.card_id
+          );
           // If the item doesn't exist, add it to the cart
           if (!existingItem) {
             cartData.items.push({
@@ -253,7 +251,7 @@ function productAddingWatchlist(productId, weightId) {
     })
     .then((data) => {
       // Handle the JSON data received from the API
-      if (data.status === 'success') {
+      if (data.status === "success") {
         toastMessage("Product Added", "text-bg-success");
       } else {
         toastMessage(data.error, "text-bg-danger");
@@ -393,7 +391,8 @@ let timeRemaining = 30; // Initial time in seconds
 let timerInterval;
 
 function timeUpdater() {
-  document.getElementById('verificationSendingTimeRunner').textContent = timeRemaining;
+  document.getElementById("verificationSendingTimeRunner").textContent =
+    timeRemaining;
   if (timeRemaining === 0) {
     clearInterval(timerInterval);
     console.log("Time's up!");
@@ -412,19 +411,18 @@ function resetTimer() {
 // password reset
 let passwordResetModel;
 function passwordReset() {
-
-  const btn = document.querySelector('.spinner-border');
-  const mainBtn = document.getElementById('mainButton');
-  btn.classList.remove('d-none');
-  mainBtn.setAttribute('disabled','disabled');
-
-
+  const btn = document.querySelector(".spinner-border");
+  const mainBtn = document.getElementById("mainButton");
+  btn.classList.remove("d-none");
+  mainBtn.setAttribute("disabled", "disabled");
 
   passwordResetModel = new bootstrap.Modal("#passwordResetModel");
 
-  const forgotPasswordEmail = document.getElementById('forgottenPasswordEmail').value;
+  const forgotPasswordEmail = document.getElementById(
+    "forgottenPasswordEmail"
+  ).value;
   const formData = new FormData();
-  formData.append('email', forgotPasswordEmail);
+  formData.append("email", forgotPasswordEmail);
 
   fetch(SERVER_URL + "backend/api/verificationSendingApi.php", {
     method: "POST",
@@ -432,36 +430,31 @@ function passwordReset() {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data.status === 'success') {
-
+      if (data.status === "success") {
         forgotPasswordModel.hide();
         passwordResetModel.show();
         //time counter
         timeUpdater();
         setInterval(timeUpdater, 1000);
-
       } else {
         toastMessage(data.error, "text-bg-danger");
         console.log(data.error);
       }
 
-      btn.classList.add('d-none');
-      mainBtn.removeAttribute('disabled');
-
-
+      btn.classList.add("d-none");
+      mainBtn.removeAttribute("disabled");
     })
     .catch((error) => {
       console.error("Error:", error);
     });
 }
 
-
-
 function verificationSendAgain() {
-
-  const forgotPasswordEmail = document.getElementById('forgottenPasswordEmail').value;
+  const forgotPasswordEmail = document.getElementById(
+    "forgottenPasswordEmail"
+  ).value;
   const formData = new FormData();
-  formData.append('email', forgotPasswordEmail);
+  formData.append("email", forgotPasswordEmail);
 
   fetch(SERVER_URL + "backend/api/verificationSendingApi.php", {
     method: "POST",
@@ -469,7 +462,7 @@ function verificationSendAgain() {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data.status === 'success') {
+      if (data.status === "success") {
         toastMessage("Verification send again", "text-bg-success");
       } else {
         toastMessage(data.error, "text-bg-danger");
@@ -486,13 +479,14 @@ let passwordSetModel;
 function passwordSet() {
   passwordSetModel = new bootstrap.Modal("#passwordSetModel");
 
-
-  const verificationCode = document.getElementById('verification_code').value;
-  const forgotPasswordEmail = document.getElementById('forgottenPasswordEmail').value;
+  const verificationCode = document.getElementById("verification_code").value;
+  const forgotPasswordEmail = document.getElementById(
+    "forgottenPasswordEmail"
+  ).value;
 
   const formData = new FormData();
-  formData.append('verification_id', verificationCode);
-  formData.append('email', forgotPasswordEmail);
+  formData.append("verification_id", verificationCode);
+  formData.append("email", forgotPasswordEmail);
 
   fetch(SERVER_URL + "backend/api/verificationMatchingApi.php", {
     method: "POST",
@@ -500,11 +494,9 @@ function passwordSet() {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data.status === 'success') {
-
+      if (data.status === "success") {
         passwordResetModel.hide();
         passwordSetModel.show();
-
       } else {
         toastMessage(data.error, "text-bg-danger");
         console.log(data.error);
@@ -513,23 +505,24 @@ function passwordSet() {
     .catch((error) => {
       console.error("Error:", error);
     });
-
 }
 
 //password reset
 function passwordResetLast() {
-  const password = document.getElementById('fg-password').value;
-  const confPassword = document.getElementById('fg-confirm_password').value;
-  const forgotPasswordEmail = document.getElementById('forgottenPasswordEmail').value;
+  const password = document.getElementById("fg-password").value;
+  const confPassword = document.getElementById("fg-confirm_password").value;
+  const forgotPasswordEmail = document.getElementById(
+    "forgottenPasswordEmail"
+  ).value;
 
   console.log(password);
   console.log(confPassword);
   console.log(forgotPasswordEmail);
 
   const formData = new FormData();
-  formData.append('newPassword', password);
-  formData.append('confPassword', confPassword);
-  formData.append('email', forgotPasswordEmail);
+  formData.append("newPassword", password);
+  formData.append("confPassword", confPassword);
+  formData.append("email", forgotPasswordEmail);
 
   fetch(SERVER_URL + "backend/api/forgottenPasswordProcess.php", {
     method: "POST",
@@ -537,10 +530,8 @@ function passwordResetLast() {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data.status === 'success') {
-
+      if (data.status === "success") {
         openSignInModel();
-
       } else {
         toastMessage(data.error.error, "text-bg-danger");
         console.log(data.error);
@@ -551,14 +542,11 @@ function passwordResetLast() {
     });
 }
 
-
-
 // product details
 let productDetailsModel;
 function productDetails() {
   productDetailsModel = new bootstrap.Modal("#productDetailsModel");
   productDetailsModel.show();
-
 }
 
 // signin open
@@ -588,47 +576,40 @@ function goBackToSignIn() {
 let termsAndCondition = 0;
 
 //signUp checkbox value change
-const checkbox1 = document.getElementById('defaultCheck1');
-const signUpBtn = document.getElementById('signUpBtn');
+const checkbox1 = document.getElementById("defaultCheck1");
+const signUpBtn = document.getElementById("signUpBtn");
 
-checkbox1.addEventListener('change', () => {
+checkbox1.addEventListener("change", () => {
   if (checkbox1.checked) {
-    console.log('checked : 1');
-    signUpBtn.removeAttribute('disabled');
+    console.log("checked : 1");
+    signUpBtn.removeAttribute("disabled");
     termsAndCondition = 1;
     console.log(termsAndCondition);
-
   } else {
-    signUpBtn.setAttribute('disabled', 'disabled');
-    console.log('unchecked : 2');
+    signUpBtn.setAttribute("disabled", "disabled");
+    console.log("unchecked : 2");
     termsAndCondition = 2;
     console.log(termsAndCondition);
   }
 });
 
-
-
 let marketingPerpose = 1;
 //marketing pepose email validation
-const checkbox2 = document.getElementById('defaultCheck2');
+const checkbox2 = document.getElementById("defaultCheck2");
 
-checkbox2.addEventListener('change', () => {
+checkbox2.addEventListener("change", () => {
   if (checkbox2.checked) {
-    console.log('checked : 1');
+    console.log("checked : 1");
     marketingPerpose = 1;
     console.log(marketingPerpose);
-
   } else {
-    console.log('unchecked : 2');
+    console.log("unchecked : 2");
     marketingPerpose = 2;
     console.log(marketingPerpose);
   }
 });
 
-
-
 function signUp() {
-
   console.log(termsAndCondition);
   console.log(marketingPerpose);
 
@@ -651,7 +632,7 @@ function signUp() {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data.status === 'success') {
+      if (data.status === "success") {
         toastMessage("Sign up success", "text-bg-success");
         setTimeout(() => {
           signInModel.show();
@@ -708,7 +689,6 @@ function signOut() {
         setTimeout(() => {
           window.location = "index.php";
         }, 2000);
-
       } else {
         console.log(responseObject);
       }
@@ -719,15 +699,12 @@ function signOut() {
   request.send();
 }
 
-
 function paymentCheckout() {
   window.location.assign("paymentCheckout.php");
 }
 
-
 function cartRowCount() {
-
-  const cartRow = document.getElementById('cartRow');
+  const cartRow = document.getElementById("cartRow");
 
   // Fetch request
   fetch(SERVER_URL + "backend/api/cartDataCountLoader.php", {
@@ -743,17 +720,13 @@ function cartRowCount() {
       return response.json(); // Parse the response body as JSON
     })
     .then((data) => {
-
       cartRow.innerHTML = "";
 
-      if (data.status === 'success') {
-
+      if (data.status === "success") {
         cartRow.innerHTML += ` 
         <a class="alg-button-hover" onclick="openCartModel();"><i class="bi bi-cart-fill alg-text-gold fs-4 mx-3 alg-text-hover"><span class="translate-middle rounded-pill badge bg-danger header-badge position-absolute">${data.result.row_count}</span></i></a>
         <a onclick="openWatchlistModel();"><i class="bi bi-heart-fill alg-text-gold fs-4 alg-text-hover"></i></a>
         `;
-
-
       } else {
         cartRow.innerHTML += ` 
         <a class="alg-button-hover" onclick="openCartModel();"><i class="bi bi-cart-fill alg-text-gold fs-4 mx-3 alg-text-hover"><span class="translate-middle rounded-pill badge bg-danger header-badge position-absolute">+</span></i></a>
@@ -770,8 +743,3 @@ function cartRowCount() {
       console.error("Fetch error:", error);
     });
 }
-
-
-
-
-

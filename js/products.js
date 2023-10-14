@@ -48,7 +48,7 @@ function loadCategory() {
           categorySliderContainer.innerHTML += `
             <div class="categorySwiper swiper-slide category-slide" data-category="${element.category_type}">
               <div class="category-hover" onclick="setCategory('${element.category_type}');">
-                <img src="resources/images/category2.png" class="img-fluid" alt="category_img">
+                <img src="resources/images/${element.category_type}.png" class="img-fluid" alt="category_img">
                 <span class="alg-text-gold  alg-bg-dark p-1 px-5 rounded-4 fw-bold position-relative alg-text-h3">${element.category_type}</span>
               </div>
             </div>
