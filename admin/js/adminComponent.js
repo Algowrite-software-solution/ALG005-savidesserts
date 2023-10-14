@@ -39,8 +39,8 @@ class DashboardComponents {
   mainNavigationController(
     navigationPanelId,
     mainContainerId,
-    callback = () => {},
-    passdownCallback = () => {}
+    callback = () => { },
+    passdownCallback = () => { }
   ) {
     this.mainNavigationBtns = document
       .getElementById(navigationPanelId)
@@ -64,7 +64,7 @@ class DashboardComponents {
     callback();
   }
 
-  loadMainPanel(requestedPanel, mainContainerId, title, callback = () => {}) {
+  loadMainPanel(requestedPanel, mainContainerId, title, callback = () => { }) {
     const mainContainer = document.getElementById(mainContainerId);
     const mainContainerTitle = document.getElementById(
       "mainContentContainerTitle"
@@ -216,11 +216,11 @@ class DashboardComponents {
 
     toastIcon
       ? (document.getElementById("toastIcon").classList = [
-          "bi",
-          toastIcon,
-          "text-dark",
-          "mx-1",
-        ])
+        "bi",
+        toastIcon,
+        "text-dark",
+        "mx-1",
+      ])
       : null;
 
     this.toastBootstrap.show();
@@ -308,6 +308,14 @@ class DashboardComponents {
   createList(dataSet, collumnLengths = null) {
     let listHeader = [];
     let listRows = [];
+
+    if (dataSet === null) {
+      this.openToast('no data to show', 'Invalid data row count', this.getCurrentTime(), "", 'Alert');
+      const filler = document.createElement('p');
+      filler.innerText = 'no row data to show';
+      return filler;
+    }
+
 
     dataSet.forEach((element) => {
       listHeader = [];
@@ -398,7 +406,7 @@ class DashboardComponents {
 
   async addListToContainer(
     id,
-    callback = async () => {},
+    callback = async () => { },
     collumnLengths = null
   ) {
     const listData = await callback();
