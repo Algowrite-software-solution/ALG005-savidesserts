@@ -1,0 +1,24 @@
+.scroll-container {
+     max-height: 400px;
+     /* Set the maximum height for the scrollable container */
+     overflow-y: scroll;
+     /* Enable vertical scrolling */
+}
+
+
+
+.alg-pc-img {
+     width: 250px;
+     height: 160px;
+     object-fit: cover;
+     border-radius: 15px;
+}
+
+@media (max-width: 440px) {
+     .alg-pc-img {
+          width: 300px;
+          height: 200px;
+          object-fit: cover;
+          border-radius: 15px;
+     }
+}
