@@ -50,7 +50,10 @@ function imageToDataUrl(image) {
   return dataURL;
 }
 
-function productItemSave() {
+async function productItemSave(event) {
+  // loading effect start
+  event.target.disabled = true;
+
   const product = document.getElementById("productItemProductSelectInput");
   const quantity = document.getElementById("productItemQuantitySelectInput");
   const price = document.getElementById("productItemProductPriceInput");
@@ -64,6 +67,8 @@ function productItemSave() {
       "bi-heart",
       "Error"
     );
+
+    event.target.disabled = false;
     return;
   } else if (quantity.value == "") {
     ALG.openToast(
@@ -74,6 +79,7 @@ function productItemSave() {
       "Error"
     );
 
+    event.target.disabled = false;
     return;
   } else if (price.value == "") {
     ALG.openToast(
@@ -84,6 +90,7 @@ function productItemSave() {
       "Error"
     );
 
+    event.target.disabled = false;
     return;
   } else if (weight.value == 0) {
     ALG.openToast(
@@ -94,6 +101,7 @@ function productItemSave() {
       "Error"
     );
 
+    event.target.disabled = false;
     return;
   } else if ((productItemImages, productItemImages.length === 0)) {
     ALG.openToast(
@@ -104,6 +112,7 @@ function productItemSave() {
       "Error"
     );
 
+    event.target.disabled = false;
     return;
   }
 
@@ -114,6 +123,20 @@ function productItemSave() {
   form.append("weight_id", weight.value);
 
   // image handle
+  let tempDataUrlArray = [];
+
+  for (let index = 0; index < productItemImages.length; index++) {
+    try {
+      const element = productItemImages[index];
+
+      const imageDataUrl = await ALG.compressImageFromDataUrl(element);
+      tempDataUrlArray.push(imageDataUrl);
+    } catch (error) {
+      console.error("error : " + error);
+    }
+  }
+  productItemImages = tempDataUrlArray;
+  previewProductListImages();
   form.append("product_image", JSON.stringify(productItemImages));
 
   fetch("api/productItemAdding.php", {
@@ -145,6 +168,8 @@ function productItemSave() {
       } else {
         console.log(data);
       }
+
+      event.target.disabled = false;
     })
     .catch((error) => {
       console.error(error);

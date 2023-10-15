@@ -97,7 +97,7 @@
                             <img class="product-items-image-slide" />
                         </div>
                     </div>
-                    <button class="alg-btn-pill" onclick="productItemSave()">Save Product Item</button>
+                    <button class="alg-btn-pill" onclick="productItemSave(event)">Save Product Item</button>
                 </div>
                 <div class="w-100 alg-bg-dark p-2 alg-rounded-mid overflow-auto" id="productItemViewContainer">
                     Loading....

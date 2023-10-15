@@ -184,30 +184,31 @@ function laodRelatedProducts(keywords) {
               getFirst20Words(element.product_description) + "...";
 
             productListViewContainer.innerHTML += `
-              <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mx-0 p-0">
-                <div class="row m-0 w-100 p-2">
-                    <div class="product-list-card-bacground col-12 d-flex justify-content-end overflow-hidden flex-column bg-danger ld-bs-card w-100 p-0" onclick="openSignleProductView('${element.product_id}', '${element.weight}');" style="background-image: url('resources/images/singleProductImg/productId=${element.product_id}&&weightId=${element.weight_id}&&image=1.jpg');">
-                    <div class="ld-bs-card-content d-flex flex-column text-start">
-                      <div class="d-flex gap-1 fw-bold justify-content-between">
-                        <div class="text-white alg-text-h3">${element.product_name}</div>
-                        <div class="alg-text-h3 text-white">LKR ${element.item_price}</div>
+            <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mx-0 p-0">
+            <div class="row m-0 w-100 p-2 d-flex justify-content-center">
+              <div class=" col-12 d-flex justify-content-end overflow-hidden flex-column alg-bg-tan ld-bs-card p-0" onclick="openSignleProductView('${element.product_id}', '${element.weight_id}');">
+                <div class="product-list-card-bacground h-75 w-100" style="background-image: url('resources/images/singleProductImg/productId=${element.product_id}&&weightId=${element.weight_id}&&image=1.jpg');"></div>
+                <div class="h-25 ld-bs-card-content d-flex flex-column text-start">
+                  <div class="d-flex gap-1 fw-bold justify-content-between">
+                    <div class="text-white alg-text-h3">${element.product_name}</div>
+                    <div class="alg-text-h3">LKR ${element.item_price}</div>
+                  </div>
+                  <div class="alg-text-h3 text-white">${miniDescription}</div>
+                  <hr class="p-0 my-1"/>
+                  <div class="d-flex justify-content-between px-3">
+                      <div class="d-flex gap-2">
+                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                        <i class="bi bi-star-fill text-warning fs-6"></i>
+                        <i class="bi bi-star-fill text-white fs-6"></i>
                       </div>
-                      <div class="alg-text-h3 text-white">${miniDescription}</div>
-                      <hr/>
-                      <div class="d-flex justify-content-between px-3">
-                          <div class="d-flex gap-2">
-                            <i class="bi bi-star-fill text-warning fs-6"></i>
-                            <i class="bi bi-star-fill text-warning fs-6"></i>
-                            <i class="bi bi-star-fill text-warning fs-6"></i>
-                            <i class="bi bi-star-fill text-warning fs-6"></i>
-                            <i class="bi bi-star-fill text-white fs-6"></i>
-                          </div>
-                          <div class="alg-text-h4 text-white fw-bold">${element.weight}</div>
-                      </div>
-                    </div>
+                      <div class="alg-text-h4 text-white fw-bold">${element.weight}</div>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
             `;
           });
         } else {
@@ -229,7 +230,7 @@ function getFirst20Words(inputString) {
   // Split the input string into an array of words using whitespace as the delimiter
   const wordsArray = inputString.split(/\s+/);
   // Take the first 20 elements from the array using the slice method
-  const first20WordsArray = wordsArray.slice(0, 15);
+  const first20WordsArray = wordsArray.slice(0, 7);
   // Join the first 20 words back together into a new string using whitespace as a separator
   const resultString = first20WordsArray.join(" ");
   return resultString;
@@ -438,8 +439,7 @@ minus.addEventListener("click", () => {
 
 //cart row count
 function cartRowCount() {
-
-  const cartRow = document.getElementById('cartRow');
+  const cartRow = document.getElementById("cartRow");
 
   // Fetch request
   fetch(SERVER_URL + "backend/api/cartDataCountLoader.php", {
@@ -455,17 +455,13 @@ function cartRowCount() {
       return response.json(); // Parse the response body as JSON
     })
     .then((data) => {
-
       cartRow.innerHTML = "";
 
-      if (data.status === 'success') {
-
+      if (data.status === "success") {
         cartRow.innerHTML += ` 
         <a class="alg-button-hover" onclick="openCartModel();"><i class="bi bi-cart-fill alg-text-gold fs-4 mx-3 alg-text-hover"><span class="translate-middle rounded-pill badge bg-danger header-badge position-absolute">${data.result.row_count}</span></i></a>
         <a onclick="openWatchlistModel();"><i class="bi bi-heart-fill alg-text-gold fs-4 alg-text-hover"></i></a>
         `;
-
-
       } else {
         cartRow.innerHTML += ` 
         <a class="alg-button-hover" onclick="openCartModel();"><i class="bi bi-cart-fill alg-text-gold fs-4 mx-3 alg-text-hover"><span class="translate-middle rounded-pill badge bg-danger header-badge position-absolute">+</span></i></a>
@@ -482,4 +478,3 @@ function cartRowCount() {
       console.error("Fetch error:", error);
     });
 }
-
