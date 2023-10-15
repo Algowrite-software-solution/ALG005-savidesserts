@@ -122,7 +122,7 @@
 
                 <!-- order button -->
                 <div class="bg-black d-flex justify-content-end flex-grow-1">
-                    <button onclick="placeOrder();" id="payhere-payment" type="submit" class="alg-bg-gold w-100 alg-text-h2 border-0 rounded-3 p-2 fw-bolder">Place Order</button>
+                    <button id="payhere-payment" onclick="placeOrder();"  type="submit" class="alg-bg-gold w-100 alg-text-h2 border-0 rounded-3 p-2 fw-bolder">Place Order</button>
                 </div>
 
 

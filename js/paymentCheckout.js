@@ -309,7 +309,7 @@ function liveCartDetailsLoad() {
                          productDetailsContainer.innerHTML += `
                          <div class="d-flex flex-column flex-lg-row flex-lg-row gap-2  alg-pc-border pt-3 pb-3">
                         <!-- product image -->
-                        <img src="https://img.taste.com.au/6i4vEH8z/w354-h236-cfill-q80/taste/2016/11/warm-chocolate-puddings-22259-1.jpeg" alt="you order images" class="alg-pc-img">
+                        <img src="${element.image}" alt="you order images" class="alg-pc-img">
 
                         <!-- details goes here -->
                         <div class=" d-flex flex-column flex-grow-1">

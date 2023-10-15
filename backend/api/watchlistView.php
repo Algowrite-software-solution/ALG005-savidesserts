@@ -3,6 +3,8 @@
 require_once("../model/database_driver.php");
 require_once("../model/response_sender.php");
 require_once("../model/SessionManager.php");
+require_once("../model/imageSearchEngine.php");
+
 
 //response object
 $responseObject = new stdClass();
@@ -15,6 +17,10 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
      response_sender::sendJson($responseObject);
      die();
 }
+// image manager
+$directory = '../../resources/images/singleProductImg';
+$fileExtensions = ['png', 'jpeg', 'jpg'];
+
 
 $userData = $userCheckSession->getUserId();
 $userId = $userData["user_id"];
@@ -52,6 +58,15 @@ if ($result->num_rows > 0) {
           $ppRow = $productItemAndPrice->fetch_assoc();
           $resRowDetailObject->price = $ppRow['price'];
           $resRowDetailObject->weight = $ppRow['weight'];
+          $resRowDetailObject->weight_id = $ppRow['weight_id'];
+
+          $searchResult = new ImageSearch($directory, $row['product_product_id'], $ppRow['weight_id'], $fileExtensions);
+          $relatedImage = $searchResult->search();
+
+          if (is_array($relatedImage)) {
+               $resRowDetailObject->image = $relatedImage[1];
+          }
+
 
           array_push($responseArray, $resRowDetailObject);
      }

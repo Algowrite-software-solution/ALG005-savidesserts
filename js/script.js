@@ -74,10 +74,10 @@ function cartProductView() {
 
           // cart main container
           cartMainContainer.innerHTML += `
-                    <div class="col-12 p-3 alg-bg-dark rounded-4">
+                    <div class="col-12 p-3 alg-bg-dark rounded-4" >
                         <div class="d-flex justify-content-around align-items-center text-white p-2 px-0 px-lg-0">
                             <div class="col-7 col-md-6 col-lg-7 d-flex gap-2 gap-lg-3 m-0 p-0">
-                                <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-2 mt-md-0">
+                                <img src="${element.image}" class="watchlsit_img mt-2 mt-md-0" onclick="openSignleProductView('${element.product_id}', '${element.weight_id}');">
                                 <div class="lh-1 m-0 p-0">
                                     <span class="alg-text-h3 fw-semibold">${element.product_name}</span><br />
                                     <span class="alg-text-h3">${element.category_type}</span><br/>
@@ -294,9 +294,9 @@ function watchlistDataView() {
         data.response.forEach((element) => {
           watchListMainContainer.innerHTML += `
           <div class="col-12 alg-bg-dark rounded-4 p-2">
-          <div class="d-flex justify-content-around align-items-center text-white m-0 p-2 px-3">
+          <div class="d-flex justify-content-around align-items-center text-white m-0 p-2 px-3" >
               <div class="col-7 col-md-6 col-lg-6 d-flex align-items-center gap-2 gap-lg-3 m-0 p-0">
-                  <img src="resources/images/watchlist_img.png" alt="watchlist_img" class="watchlsit_img mt-3 mt-md-0">
+                  <img src="${element.image}" class="watchlsit_img mt-3 mt-md-0" onclick="openSignleProductView('${element.product_id}', '${element.weight_id}');">
                   <div class="lh-1">
                       <span class="alg-text-h2 fw-semibold">${element.product_name}</span><br />
                       <span class="alg-text-h3">${element.category_type}</span>
@@ -335,6 +335,13 @@ function watchlistDataView() {
       // Handle errors that occur during the Fetch request
       console.error("Fetch error:", error);
     });
+}
+
+// load open Signle Product View
+function openSignleProductView(id, weightId) {
+  // alert(weight);
+  window.location.href =
+    "singleProductView.php?product_id=" + id + "&weightId=" + weightId;
 }
 
 //watchlist product delete
