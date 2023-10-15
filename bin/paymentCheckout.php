@@ -71,6 +71,8 @@
 
                 <!-- city -->
                 <input id="city" placeholder="City" type="text" class="form-control" disabled />
+                <!-- post code -->
+                <input id="postCode" placeholder="Post code" type="text" class="form-control" disabled />
                 <!-- selector -->
                 <select id="district" class="form-select" disabled>
                     <!-- district option goes here -->
