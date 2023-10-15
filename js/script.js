@@ -700,7 +700,7 @@ function signOut() {
 }
 
 function paymentCheckout() {
-  window.location.assign("paymentCheckout.php");
+  window.location.assign("paymentCheckoutUpdatedUI.php");
 }
 
 function cartRowCount() {

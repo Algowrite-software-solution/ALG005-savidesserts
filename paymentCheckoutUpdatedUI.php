@@ -1,18 +1,3 @@
-<?php
-
-// require_once("backend/model/SessionManager.php");
-// $sessionManager = new SessionManager();
-// $isLoggedIn = false;
-// $userData = null;
-// if ($sessionManager->isLoggedIn()) {
-//     $isLoggedIn = true;
-//     $userData = $sessionManager->getUserId();
-// }
-
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +12,8 @@
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/singleProduct.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
+
 
     <!-- boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
@@ -42,7 +28,8 @@
 </head>
 
 <body class="alg-bg-light">
-    <div class="container my-3 pb-3 pt-3">
+    <?php include("pages/components/header.php") ?>
+    <div class="container my-3 pb-3 pt-3 overflow-hidden">
         <!-- topic -->
         <div class="d-flex pt-2 pb-2 alg-text-dark justify-content-center justify-content-lg-start">
             <h1>Checkout Details</h1>
@@ -92,7 +79,7 @@
             </div>
 
             <!-- second dev -->
-            <div class="alg-bg-dark alg-rounded-small flex-grow-1 p-3 ">
+            <div class="alg-bg-dark alg-rounded-small flex-grow-1 p-3  ">
 
                 <!-- topic -->
                 <div class="alg-text-light">
@@ -101,44 +88,15 @@
 
 
                 <!-- your order detail section -->
-                <div class="alg-text-light d-flex gap-3 flex-column h-auto  pb-3">
-                    <div class="d-flex flex-column flex-lg-row gap-2">
-                        <!-- product image -->
-                        <img class="alg-rounded-small" src="https://img.taste.com.au/6i4vEH8z/w354-h236-cfill-q80/taste/2016/11/warm-chocolate-puddings-22259-1.jpeg" alt="you order images" class="alg-pc-img">
+                <div id="productDetailsContainer" class="alg-text-light d-flex gap-3 flex-column h-auto scroll-container pb-3">
 
-                        <!-- details goes here -->
-                        <div class=" d-flex flex-column flex-grow-1">
-                            <!-- product name -->
-                            <div class="">
-                                <h4 class="fw-bold">product name goes here</h4>
-                            </div>
-                            <div class="d-flex gap-2 overflow-auto">
-                                <!-- one side -->
-                                <div class="alg-bg-tan alg-text-dark alg-rounded-small d-flex flex-column flex-grow-1 p-2">
-                                    <span>Weight: 1kg</span>
-                                    <span>QTY: 1</span>
-                                    <span>Topping: white chocolate</span>
-                                </div>
-
-                                <!-- other side -->
-                                <div class="alg-bg-tan alg-text-dark alg-rounded-small d-flex flex-column flex-grow-1 p-2">
-                                    <span>Product Price : Rs.2000</span>
-                                    <span>Topping Price : Rs.300</span>
-
-                                </div>
-                                <!-- other side -->
-                                <div class="alg-bg-tan alg-text-dark alg-rounded-small d-flex flex-column flex-grow-1 p-2">
-                                    <span class="fw-bold">Rs.2300</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- detail row by row -->
+                    <!-- row details goes here check paymentCheckout.js -->
                 </div>
+
 
                 <!-- prices -->
                 <div class=" d-flex flex-column flex-lg-row  gap-2 pe-0 pe-lg-2 py-2">
-
-
                     <!-- payment Method -->
                     <div class="d-flex flex-row flex-lg-column flex-grow-1  alg-bg-darker alg-text-light p-3 alg-rounded-small">
                         <h4>Estimate Delivery Date</h4>
@@ -147,15 +105,15 @@
                     <div class="d-flex flex-grow-1 justify-content-lg-end justify-content-center gap-2">
                         <!-- side names -->
                         <div class="alg-bg-light alg-text-dark p-3 alg-rounded-small d-flex flex-grow-1 flex-column gap-1">
-                            <span class="">Sub Total :</span>
-                            <span class="">Shipping Price :</span>
+                            <span>Sub Total :</span>
+                            <span>Shipping Price :</span>
                             <span class="fw-bold ">TOTAL TO PAY :</span>
                         </div>
                         <!-- prices goes here -->
                         <div class="p-3 alg-rounded-small alg-bg-light d-flex flex-grow-1 flex-column gap-1 pe-0 pe-lg-3">
-                            <span class="">Rs.2300.00</span>
-                            <span class="">Rs. 200.00</span>
-                            <span class="fw-bolder">Rs.2500.00</span>
+                            <span id="subTotalPrice"></span>
+                            <span id="shippingPrice"></span>
+                            <span class="fw-bolder" id="totalPriceContainer"></span>
                         </div>
                     </div>
 
@@ -164,7 +122,7 @@
 
                 <!-- order button -->
                 <div class="bg-black d-flex justify-content-end flex-grow-1">
-                    <button class="alg-bg-gold w-100 alg-text-h2 border-0 rounded-3 p-2 fw-bolder">Place Order</button>
+                    <button onclick="placeOrder();" id="payhere-payment" type="submit" class="alg-bg-gold w-100 alg-text-h2 border-0 rounded-3 p-2 fw-bolder">Place Order</button>
                 </div>
 
 
@@ -173,11 +131,13 @@
     </div>
 
     <!-- toast mode -->
-    <!-- <?php include("pages/components/toastMessage.php") ?> -->
+    <?php include("pages/components/toastMessage.php") ?>
 
     <script src="../js/script.js"></script>
     <script src="../js/paymentCheckout.js"></script>
     <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+
+    <?php include("pages/components/footer.php") ?>
 </body>
 
 </html>

@@ -281,11 +281,9 @@
 
 /* promotion slider */
 .banner-main {
-  background: linear-gradient(
-      0deg,
+  background: linear-gradient(0deg,
       rgba(0, 0, 0, 0.2) 0%,
-      rgba(0, 0, 0, 0.2) 100%
-    ),
+      rgba(0, 0, 0, 0.2) 100%),
     #122620;
   /* height: 433px; */
   flex-shrink: 0;
@@ -463,4 +461,41 @@
 /* product view container section */
 .pd-s3-container {
   min-height: 500px;
+}
+
+/* payment Checkout Ui */
+.scroll-container {
+  max-height: 400px;
+  /* Set the maximum height for the scrollable container */
+  overflow-y: scroll;
+  /* Enable vertical scrolling */
+}
+
+.alg-pc-img {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.scroll-container {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.alg-pc-border {
+  border-bottom: 2px solid #b68b40;
+}
+
+@media (max-width: 440px) {
+  .alg-pc-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+
+  .alg-pc-font {
+    font-size: x-small;
+  }
 }
