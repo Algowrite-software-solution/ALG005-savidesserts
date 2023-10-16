@@ -20,24 +20,25 @@ $responseObject->status = "false";
 //chekcing is user logging
 $userCheckSession = new SessionManager();
 if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
-    $responseObject->status = 'Please LogIn';
+    $responseObject->status = 'Please Login';
     response_sender::sendJson($responseObject);
 }
+
 
 //load invoice details
 $db = new database_driver();
 
-$query = "SELECT * FROM `invoice` INNER JOIN `invoice_item` ON invoice.order_id=invoice.order_id INNER JOIN `invoice_status` ON invoice.invoice_status_invoice_status_id=invoice_status.invoice_status_id";
-$resultSet = $db->query($query);
+$query = "SELECT * FROM `invoice` WHERE `user_user_id`=? ";
+$resultSet = $db->execute_query($query,'s',array());
 
-$responseResultArray = [];
-for ($i = 0; $i < $resultSet->num_rows; $i++) {
-    $result = $resultSet->fetch_assoc();
-    array_push($responseResultArray, $result);
-}
+// $responseResultArray = [];
+// for ($i = 0; $i < $resultSet->num_rows; $i++) {
+//     $result = $resultSet->fetch_assoc();
+//     array_push($responseResultArray, $result);
+// }
 
-$responseObject->status = 'success';
-$responseObject->results = $responseResultArray;
-response_sender::sendJson($responseObject);
+// $responseObject->status = 'success';
+// $responseObject->results = $responseResultArray;
+// response_sender::sendJson($responseObject);
 
 ?>

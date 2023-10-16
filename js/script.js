@@ -549,13 +549,6 @@ function passwordResetLast() {
     });
 }
 
-// product details
-let productDetailsModel;
-function productDetails() {
-  productDetailsModel = new bootstrap.Modal("#productDetailsModel");
-  productDetailsModel.show();
-}
-
 // signin open
 let signInModel;
 let signUpModel;
