@@ -140,9 +140,10 @@ function loadInvoiceItem(orderId) {
 
           .then((data) => {
                const invoiceItemContainer = document.getElementById('invoiceItemContainer');
-
+               invoiceItemContainer.innerHTML = "";
+               
                if (data.status === "success") {
-                         invoiceItemContainer.innerHTML = "";
+
                     data.result.forEach((element) => {
                          invoiceItemContainer.innerHTML += `
                               
