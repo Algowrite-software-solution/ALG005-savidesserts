@@ -29,7 +29,7 @@
 
 <body class="alg-bg-light">
     <?php include("pages/components/header.php") ?>
-    <div class="container my-3 pb-3 pt-3 overflow-hidden">
+    <div class="container my-3 pb-3 pt-3 overflow-hidden min-vh-100">
         <!-- topic -->
         <div class="d-flex pt-2 pb-2 alg-text-dark justify-content-center justify-content-lg-start">
             <h1>Checkout Details</h1>
