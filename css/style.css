@@ -122,6 +122,13 @@
   width: 100%;
 }
 
+.category-slider-img {
+  width: 200px !important; 
+  height: 200px !important;
+  object-fit: cover;
+  border-radius: 300px;
+}
+
 .about-us-main {
   background: #f4ebd0;
   width: 1440px;
@@ -281,9 +288,11 @@
 
 /* promotion slider */
 .banner-main {
-  background: linear-gradient(0deg,
+  background: linear-gradient(
+      0deg,
       rgba(0, 0, 0, 0.2) 0%,
-      rgba(0, 0, 0, 0.2) 100%),
+      rgba(0, 0, 0, 0.2) 100%
+    ),
     #122620;
   /* height: 433px; */
   flex-shrink: 0;

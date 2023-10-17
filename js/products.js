@@ -47,8 +47,8 @@ function loadCategory() {
         data.results.forEach((element) => {
           categorySliderContainer.innerHTML += `
             <div class="categorySwiper swiper-slide category-slide" data-category="${element.category_type}">
-              <div class="category-hover" onclick="setCategory('${element.category_type}');">
-                <img src="${element.category_image}" class="my-2 rounded-circle img-fluid" alt="category_img">
+              <div class="category-hover p-3" onclick="setCategory('${element.category_type}');">
+                <img src="${element.category_image}" class="my-2 bg-danger category-slider-img" alt="category_img">
                 <span class="alg-text-gold  alg-bg-dark p-1 px-5 rounded-4 fw-bold position-relative alg-text-h3">${element.category_type}</span>
               </div>
             </div>
