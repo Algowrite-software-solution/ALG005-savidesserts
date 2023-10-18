@@ -97,10 +97,10 @@
 
                             <div class="row mx-3 alg-button-hover alg-cursor">
                                 <div class="col-12 alg-bg-light rounded-5 d-flex justify-content-center align-items-center gap-5">
-                                    <div><img src="resources/images/service1.png" alt="" class="alg-service-img"></div>
+                                    <div class="ps-3"><i class="bi bi-truck fs-1"></i></div>
                                     <div class="lh-1 mt-2 me-2">
-                                        <span class="fw-bold alg-text-h3">24/7 Services for any inquriy</span>
-                                        <p class="alg-text-h3">Our company provide 24/7 service on any service related
+                                        <span class="fw-bold alg-text-h3">Our Delivery Service</span>
+                                        <p class="alg-text-h3">Island-wide delivery with Fast & Safe
                                         </p>
                                     </div>
                                 </div>
@@ -108,10 +108,10 @@
 
                             <div class="row mx-3 alg-button-hover alg-cursor">
                                 <div class="col-12 alg-bg-light rounded-5 d-flex justify-content-center align-items-center gap-5">
-                                    <div><img src="resources/images/service1.png" alt="" class="alg-service-img"></div>
+                                    <div class="ps-3"><i class="bi bi-credit-card fs-1"></i></div>
                                     <div class="lh-1 mt-2 me-2">
-                                        <span class="fw-bold alg-text-h3">24/7 Services for any inquriy</span>
-                                        <p class="alg-text-h3">Our company provide 24/7 service on any service related
+                                        <span class="fw-bold alg-text-h3">Our Payment Method</span>
+                                        <p class="alg-text-h3">Secure payment 100% secure payment
                                         </p>
                                     </div>
                                 </div>
@@ -133,7 +133,7 @@
                 <div class=" text-center pb-4 pt-3 px-3">
                     <span class="alg-text-h2 alg-text-gold fw-bold">LATEST PRODUCTS</span>
                     <div class="bestSellingSwiper swiper mySwiperBestSelling mt-4">
-                        <div class="swiper-wrapper mx-auto" id="mainLatestProductContainer">
+                        <div class="swiper-wrapper mx-auto py-2" id="mainLatestProductContainer">
 
                             <!-- slider goes here check home.js -->
 
