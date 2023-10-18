@@ -400,6 +400,10 @@
   padding: 10px;
 }
 
+.card-font{
+  font-size:9px;
+}
+
 @media (min-width: 1440px) {
   .ld-s1-hero {
     min-height: max-content;
