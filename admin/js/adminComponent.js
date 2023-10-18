@@ -13,7 +13,6 @@ class DashboardComponents {
   }
 
   // image compressor
-
   async compressImageFromDataUrl(dataURL, quality = 0.3) {
     return await new Promise((resolve, reject) => {
       const img = new Image();
@@ -462,6 +461,17 @@ class DashboardComponents {
   }
 
   // utility
+  async imageFileToDataURL(file, callback) {
+    const reader = new FileReader();
+
+    reader.onload = function (event) {
+      const dataURL = event.target.result;
+       callback(dataURL);
+    };
+
+    reader.readAsDataURL(file);
+  }
+
   getCurrentTime() {
     const now = new Date();
     let hours = now.getHours();
