@@ -140,6 +140,7 @@ function shippingDetailsLoad() {
                     document.getElementById('addressLine1').value = data.results[0].address_line_1 || "";
                     document.getElementById('addressLine2').value = data.results[0].address_line_2 || "";
                     document.getElementById('city').value = data.results[0].city || "";
+                    document.getElementById('postCode').value = data.results[0].postal_code || "";
 
 
                     const districtId = data.results[0].distric_id;
@@ -169,6 +170,7 @@ function updateShippingData() {
      const addressLine1 = document.getElementById('addressLine1').value;
      const addressLine2 = document.getElementById('addressLine2').value;
      const city = document.getElementById('city').value;
+     const postCode = document.getElementById('postCode').value;
 
 
      const formData = new FormData();
@@ -179,6 +181,7 @@ function updateShippingData() {
      formData.append("addressLine1", addressLine1);
      formData.append("addressLine2", addressLine2);
      formData.append("city", city);
+     formData.append("postCode", postCode);
 
      // Fetch request
      fetch(SERVER_URL + "backend/api/shippingDataUpdate.php", {
@@ -253,11 +256,13 @@ function shippingPriceLoader() {
 shippingPriceLoader();
 
 
-
+// live cart details loader 2 
 function liveCartDetailsLoad() {
 
-     const swDetailContainer = document.getElementById('swiperDetailContainer');
-     const priceContainer = document.getElementById('priceContainer');
+     let shippingPriceContainer = document.getElementById('shippingPrice');
+     let totalPriceContainer = document.getElementById('totalPriceContainer');
+     let subTotalPrice = document.getElementById('subTotalPrice');
+     let productDetailsContainer = document.getElementById('productDetailsContainer');
 
      // Fetch request
      fetch(SERVER_URL + "backend/api/cardView.php", {
@@ -274,11 +279,6 @@ function liveCartDetailsLoad() {
           })
           .then((data) => {
 
-
-
-               priceContainer.innerHTML = "";
-               swDetailContainer.innerHTML = "";
-
                // calculation
                Total = 0;
                ProductItemPrice = 0;
@@ -290,7 +290,7 @@ function liveCartDetailsLoad() {
 
                     data.response.forEach((element) => {
 
-
+                         //all calculation
                          globalElementResult.push(element);
 
                          const extraPrice = element.qty * element.extra_price;
@@ -302,47 +302,51 @@ function liveCartDetailsLoad() {
                          const itemPrice = element.qty * (element.price + element.extra_price);
                          Total += itemPrice;
 
-                         swDetailContainer.innerHTML += `
-                         <div class="checkoutSwiper swiper-slide alg-text-light d-flex flex-column justify-content-center align-items-center" >
-                                <img class="img-fluid paycheck-product-im" src="https://media.istockphoto.com/id/1179207306/photo/pudding-caramel-custard-with-caramel-sauce-and-mint-leaf-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=QOgo1aIuavOspqKTbKz7Qk2O5wJJOZZPg4fiPg0p2xM=" alt="">
-                                <span class="pt-1 fw-bolder alg-text-h3">${element.product_name}</span>
-                                <span class="alg-text-h3">RS.${element.price}</span>
-                                <span class="alg-text-h3">Weight : ${element.weight}</span>
-                                <span class="alg-text-h3">Toppings : ${element.extra_fruit}</span>
-                                <span class="alg-text-h3">Toppings Price : ${element.extra_price}</span>
-                                <span class="alg-text-h3">QTY : ${element.qty}</span>
-                         </div>
-                         
+                         let rowItemsPrice = productItemsPrice + extraPrice;
+
+
+                         //    set element our design
+                         productDetailsContainer.innerHTML += `
+                         <div class="d-flex flex-column flex-lg-row flex-lg-row gap-2  alg-pc-border pt-3 pb-3">
+                        <!-- product image -->
+                        <img src="${element.image}" alt="you order images" class="alg-pc-img">
+
+                        <!-- details goes here -->
+                        <div class=" d-flex flex-column flex-grow-1">
+                            <!-- product name -->
+                            <div class="">
+                                <h4 class="fw-bold alg-pc-font">${element.product_name}</h4>
+                            </div>
+                            <div class="d-flex gap-2 overflow-auto">
+                                <!-- one side -->
+                                <div class="alg-bg-tan  justify-content-center alg-text-dark alg-rounded-small d-flex flex-column flex-grow-1 p-2">
+                                    <span class="alg-pc-font">Weight: ${element.weight}</span>
+                                    <span class="alg-pc-font">QTY: ${element.qty}</span>
+                                    <span class="alg-pc-font">Topping: ${element.extra_fruit}</span>
+                                </div>
+
+                                <!-- other side -->
+                                <div class="alg-bg-tan  justify-content-center alg-text-dark alg-rounded-small d-flex flex-column flex-grow-1 p-2">
+                                    <span class="alg-pc-font">Product Price : Rs.${element.price}</span>
+                                    <span class="alg-pc-font">Topping Price : Rs.${element.extra_price}</span>
+
+                                </div>
+                                <!-- other side -->
+                                <div class="alg-bg-tan align-items-center justify-content-center alg-text-dark alg-rounded-small d-flex flex-column flex-grow-1 p-2">
+                                    <span class="fw-bold alg-pc-font">Rs.${rowItemsPrice}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+ 
                          `;
-
-
-
-
                     })
-
+                    // add shipping cost for total
                     Total += parseInt(ShippingPrice);
-
-                    priceContainer.innerHTML += `
-                         <div class="d-flex justify-content-around" id="productPriceContainer">
-                            <span>Product Total Price:</span>
-                            <p>Rs. ${ProductItemPrice}</p>
-                         </div>
-                         <div class="d-flex justify-content-around" id="extraToppingPrice">
-                            <span class="fw-bolder">Extra Item Total price :</span>
-                            <p class="fw-bolder">Rs. ${ExtraToppingsPrice}</p>
-                         </div>
-                         <div class="d-flex justify-content-around" id="ShippingPrice">
-                            <span class="fw-bolder">Shipping price :</span>
-                            <p class="fw-bolder">Rs. ${ShippingPrice}</p>
-                         </div>
-                         <div class="d-flex justify-content-around" id="Total">
-                            <span class="fw-bolder">Total Price :</span>
-                            <p class="fw-bolder">Rs. ${Total}</p>
-                         </div>
-                    
-                    
-                    `;
-
+                    // prices sets
+                    shippingPriceContainer.textContent = "Rs.  " + ShippingPrice + ".00";
+                    totalPriceContainer.textContent = "Rs." + Total + ".00";
+                    subTotalPrice.textContent = "Rs." + ProductItemPrice + ".00";
 
                }
           })

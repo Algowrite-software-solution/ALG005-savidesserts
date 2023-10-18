@@ -10,6 +10,7 @@
 require_once("../model/database_driver.php");
 require_once("../model/response_sender.php");
 require_once("../model/SessionManager.php");
+require_once("../model/imageSearchEngine.php");
 
 // headers
 header("Content-Type: application/json; charset=UTF-8");
@@ -27,6 +28,10 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
 
 $userData = $userCheckSession->getUserId();
 $userId = $userData["user_id"];
+
+// image manager
+$directory = '../../resources/images/singleProductImg';
+$fileExtensions = ['png', 'jpeg', 'jpg'];
 
 //search card data
 $db = new database_driver();
@@ -63,12 +68,14 @@ if ($result->num_rows > 0) {
           $resRowDetailObject->product_name = $pcRow['product_name'];
           $resRowDetailObject->category_type = $pcRow['category_type'];
 
-          // $extraItemSearchQuery = "SELECT `extra_fruit` FROM `extra` WHERE `id`=?";
-          // $extraItemName = $db->execute_query($extraItemSearchQuery, 's', array($row['extra_id']));
+          $searchResult = new ImageSearch($directory,$row['product_product_id'],$row['card_weight_id'],$fileExtensions);
+          $relatedImage = $searchResult->search();
 
-          // $extraItem = $extraItemName['result'];
-          // $exRow = $extraItem->fetch_assoc();
-          // $resRowDetailObject->extra_fruit_name = $exRow['extra_fruit'];
+          if (is_array($relatedImage)) {
+               $resRowDetailObject->image = $relatedImage[1];
+          }
+
+
 
           array_push($responseArray, $resRowDetailObject);
      }

@@ -42,6 +42,7 @@ $db = new database_driver();
 
 
 //php date object
+date_default_timezone_set('Asia/Colombo');
 $currentDate = date('Y-m-d');
 
 //add data for invoice

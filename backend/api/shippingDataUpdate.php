@@ -25,6 +25,7 @@ $mobile = $_POST['mobile'];
 $addressLine1 = $_POST['addressLine1'];
 $addressLine2 = $_POST['addressLine2'];
 $city = $_POST['city'];
+$postCode = $_POST['postCode'];
 
 $userData = $userCheckSession->getUserId();
 $userId = $userData["user_id"];
@@ -34,7 +35,7 @@ if (empty($province) || $province === 0) {
      response_sender::sendJson($responseObject);
 }
 
-if (empty($district)|| $district === 0) {
+if (empty($district) || $district === 0) {
      $responseObject->error = 'Please select the district';
      response_sender::sendJson($responseObject);
 }
@@ -58,11 +59,15 @@ if (empty($city)) {
      $responseObject->error = 'Please enter the city';
      response_sender::sendJson($responseObject);
 }
+if (empty($postCode)) {
+     $responseObject->error = 'Please enter the post code';
+     response_sender::sendJson($responseObject);
+}
 
 
 $db = new database_driver();
-$query = "UPDATE `delivery_details` SET `address_line_1`=?,`address_line_2`=?,`mobile`=?,`province_province_id`=?,`distric_distric_id`=?,`city`=? WHERE `user_user_id`=?";
-$db->execute_query($query, 'sssssss', array($addressLine1, $addressLine2, $mobile, $province, $district, $city, $userId));
+$query = "UPDATE `delivery_details` SET `address_line_1`=?,`address_line_2`=?,`mobile`=?,`province_province_id`=?,`distric_distric_id`=?,`city`=?,`postal_code`=? WHERE `user_user_id`=?";
+$db->execute_query($query, 'ssssssss', array($addressLine1, $addressLine2, $mobile, $province, $district, $city, $postCode, $userId));
 
 $nameChangeQuery = "UPDATE `user` SET `full_name`=? WHERE `user_id`=?";
 $db->execute_query($nameChangeQuery, 'ss', array($fullName, $userId));

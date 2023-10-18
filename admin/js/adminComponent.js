@@ -12,6 +12,48 @@ class DashboardComponents {
     );
   }
 
+  // image compressor
+
+  async compressImageFromDataUrl(dataURL, quality = 0.3) {
+    return await new Promise((resolve, reject) => {
+      const img = new Image();
+      img.src = dataURL;
+
+      img.onload = function () {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        // Draw the original image on the canvas
+        ctx.drawImage(img, 0, 0, img.width, img.height);
+
+        // Convert the canvas to a Blob with the specified quality
+        canvas.toBlob(
+          function (blob) {
+            fileToDataURL(blob, (compressedDataURL) => {
+              resolve(compressedDataURL);
+            });
+          },
+          "image/jpeg",
+          quality
+        );
+      };
+
+      function fileToDataURL(file, callback) {
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+          const dataURL = event.target.result;
+          callback(dataURL);
+        };
+
+        reader.readAsDataURL(file);
+      }
+    });
+  }
+
   // dispose opened effect
   disposeOpnedPanel() {
     this.activeDropdown.dispose();
@@ -39,8 +81,8 @@ class DashboardComponents {
   mainNavigationController(
     navigationPanelId,
     mainContainerId,
-    callback = () => { },
-    passdownCallback = () => { }
+    callback = () => {},
+    passdownCallback = () => {}
   ) {
     this.mainNavigationBtns = document
       .getElementById(navigationPanelId)
@@ -64,7 +106,7 @@ class DashboardComponents {
     callback();
   }
 
-  loadMainPanel(requestedPanel, mainContainerId, title, callback = () => { }) {
+  loadMainPanel(requestedPanel, mainContainerId, title, callback = () => {}) {
     const mainContainer = document.getElementById(mainContainerId);
     const mainContainerTitle = document.getElementById(
       "mainContentContainerTitle"
@@ -216,11 +258,11 @@ class DashboardComponents {
 
     toastIcon
       ? (document.getElementById("toastIcon").classList = [
-        "bi",
-        toastIcon,
-        "text-dark",
-        "mx-1",
-      ])
+          "bi",
+          toastIcon,
+          "text-dark",
+          "mx-1",
+        ])
       : null;
 
     this.toastBootstrap.show();
@@ -310,12 +352,17 @@ class DashboardComponents {
     let listRows = [];
 
     if (dataSet === null) {
-      this.openToast('no data to show', 'Invalid data row count', this.getCurrentTime(), "", 'Alert');
-      const filler = document.createElement('p');
-      filler.innerText = 'no row data to show';
+      this.openToast(
+        "no data to show",
+        "Invalid data row count",
+        this.getCurrentTime(),
+        "",
+        "Alert"
+      );
+      const filler = document.createElement("p");
+      filler.innerText = "no row data to show";
       return filler;
     }
-
 
     dataSet.forEach((element) => {
       listHeader = [];
@@ -406,7 +453,7 @@ class DashboardComponents {
 
   async addListToContainer(
     id,
-    callback = async () => { },
+    callback = async () => {},
     collumnLengths = null
   ) {
     const listData = await callback();

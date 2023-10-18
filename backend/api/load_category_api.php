@@ -8,6 +8,7 @@ require_once("../model/database_driver.php");
 require_once("../model/data_validator.php");
 require_once("../model/response_sender.php");
 require_once("../model/RequestHandler.php");
+require_once("../model/fileSearch.php");
 
 header("Content-Type: application/json; charset=UTF-8");
 
@@ -23,6 +24,10 @@ if (!RequestHandler::isGetMethod()) {
 
 $limit = (!empty($_GET['limit'])) ? $_GET['limit'] : 15; // defult limit
 
+
+// image manager
+$directory = '../../resources/images/categoryImages';
+$fileExtensions = ['png', 'jpeg', 'jpg'];
 
 $validateReadyObject = (object) [
     "id_int" => [
@@ -46,7 +51,30 @@ $resultSet = $db_response["result"];
 $responseResultArray = [];
 for ($i = 0; $i < $resultSet->num_rows; $i++) {
     $result = $resultSet->fetch_assoc();
-    array_push($responseResultArray, $result);
+
+    $fileSearch = new FileSearch($directory, $result['category_type'], $fileExtensions); // Use categoryName as the search parameter
+
+    $searchResults = $fileSearch->search();
+
+    $resRowDetailObject = new stdClass();
+
+    $resRowDetailObject->category_id = $result['id'];
+    $resRowDetailObject->category_type = $result['category_type'];
+
+    if (is_array($searchResults)) {
+        foreach ($searchResults as $searchResult) {
+            $resRowDetailObject->category_image = $searchResult;
+        }
+    } else {
+        $responseObject->error = $searchResults;
+        response_sender::sendJson($responseObject);
+    }
+
+
+
+
+
+    array_push($responseResultArray, $resRowDetailObject);
 }
 
 $responseObject->status = "success";

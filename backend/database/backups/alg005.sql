@@ -62,7 +62,7 @@ CREATE TABLE `card` (
   CONSTRAINT `fk_card_product_item1` FOREIGN KEY (`product_item_id`) REFERENCES `product_item` (`id`),
   CONSTRAINT `fk_card_user1` FOREIGN KEY (`user_user_id`) REFERENCES `user` (`user_id`),
   CONSTRAINT `fk_card_weight1` FOREIGN KEY (`weight_id`) REFERENCES `weight` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +71,7 @@ CREATE TABLE `card` (
 
 LOCK TABLES `card` WRITE;
 /*!40000 ALTER TABLE `card` DISABLE KEYS */;
-INSERT INTO `card` VALUES (104,1,24,2,1,4),(105,1,28,2,2,4);
+INSERT INTO `card` VALUES (114,1,24,2,1,4),(115,1,27,2,7,4);
 /*!40000 ALTER TABLE `card` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,6 +115,7 @@ CREATE TABLE `delivery_details` (
   `province_province_id` int NOT NULL,
   `distric_distric_id` int NOT NULL,
   `city` varchar(45) NOT NULL,
+  `postal_code` varchar(15) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_address_user_idx` (`user_user_id`),
   KEY `fk_delivery_details_distric1_idx` (`distric_distric_id`),
@@ -131,7 +132,7 @@ CREATE TABLE `delivery_details` (
 
 LOCK TABLES `delivery_details` WRITE;
 /*!40000 ALTER TABLE `delivery_details` DISABLE KEYS */;
-INSERT INTO `delivery_details` VALUES (1,'No:31/A/1/10 makewita','No:31/A/1/10 makewita',2,'0711388634',1,1,'Marassana');
+INSERT INTO `delivery_details` VALUES (1,'No:31/A/1/10 makewita','No:31/A/1/10 makewita',2,'0711388634',1,1,'Marassana','113580');
 /*!40000 ALTER TABLE `delivery_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -259,7 +260,7 @@ CREATE TABLE `invoice` (
   KEY `fk_invoice_invoice_status1_idx` (`invoice_status_invoice_status_id`),
   CONSTRAINT `fk_invoice_invoice_status1` FOREIGN KEY (`invoice_status_invoice_status_id`) REFERENCES `invoice_status` (`invoice_status_id`),
   CONSTRAINT `fk_invoice_user1` FOREIGN KEY (`user_user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -268,6 +269,7 @@ CREATE TABLE `invoice` (
 
 LOCK TABLES `invoice` WRITE;
 /*!40000 ALTER TABLE `invoice` DISABLE KEYS */;
+INSERT INTO `invoice` VALUES (16,'2023-10-15',7300,200,'#828871',2,1),(18,'2023-10-16',3200,200,'#353540',2,1),(19,'2023-10-17',1200,200,'#565233',2,1);
 /*!40000 ALTER TABLE `invoice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -294,7 +296,7 @@ CREATE TABLE `invoice_item` (
   CONSTRAINT `fk_invoice_item_extra1` FOREIGN KEY (`extra_id`) REFERENCES `extra` (`id`),
   CONSTRAINT `fk_invoice_item_product_item1` FOREIGN KEY (`product_item_id`) REFERENCES `product_item` (`id`),
   CONSTRAINT `fk_invoice_item_weight1` FOREIGN KEY (`weight_id`) REFERENCES `weight` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -303,6 +305,7 @@ CREATE TABLE `invoice_item` (
 
 LOCK TABLES `invoice_item` WRITE;
 /*!40000 ALTER TABLE `invoice_item` DISABLE KEYS */;
+INSERT INTO `invoice_item` VALUES (16,24,4,1,1,3500,'#828871',0),(17,28,4,2,1,100,'#828871',0),(18,29,4,1,1,3500,'#828871',0),(19,26,4,6,2,1500,'#353540',0),(20,31,4,9,4,250,'#565233',0);
 /*!40000 ALTER TABLE `invoice_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -413,7 +416,7 @@ CREATE TABLE `product_item` (
 
 LOCK TABLES `product_item` WRITE;
 /*!40000 ALTER TABLE `product_item` DISABLE KEYS */;
-INSERT INTO `product_item` VALUES (24,20,3500,1,'452276',1),(25,20,2500,1,'452276',4),(26,20,1500,1,'452276',6),(27,20,4500,1,'452276',7),(28,200,100,1,'452276',2),(29,20,3500,1,'909861',1),(30,20,250,1,'221944',9),(31,10,250,1,'230434',9),(32,20,150,1,'442403',9),(33,20,150,1,'344791',9),(34,20,250,1,'224940',9);
+INSERT INTO `product_item` VALUES (24,19,3500,1,'452276',1),(25,20,2500,1,'452276',4),(26,18,1500,1,'452276',6),(27,20,4500,1,'452276',7),(28,199,100,1,'452276',2),(29,19,3500,1,'909861',1),(30,20,250,1,'221944',9),(31,6,250,1,'230434',9),(32,20,150,1,'442403',9),(33,20,150,1,'344791',9),(34,20,250,1,'224940',9);
 /*!40000 ALTER TABLE `product_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -645,7 +648,7 @@ CREATE TABLE `watchlist` (
   KEY `fk_watchlist_product_item1_idx` (`product_item_id`),
   CONSTRAINT `fk_watchlist_product_item1` FOREIGN KEY (`product_item_id`) REFERENCES `product_item` (`id`),
   CONSTRAINT `fk_watchlist_user1` FOREIGN KEY (`user_user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -654,6 +657,7 @@ CREATE TABLE `watchlist` (
 
 LOCK TABLES `watchlist` WRITE;
 /*!40000 ALTER TABLE `watchlist` DISABLE KEYS */;
+INSERT INTO `watchlist` VALUES (22,29,2),(23,24,2);
 /*!40000 ALTER TABLE `watchlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -690,4 +694,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-14 21:07:35
+-- Dump completed on 2023-10-17 19:22:12
