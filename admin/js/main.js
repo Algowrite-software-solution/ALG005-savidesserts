@@ -95,7 +95,7 @@ async function toggleProductSection(section) {
     await addCategoriesToSelect();
   } else if (section === "weight") {
     await ALG.addListToContainer("weightViewContainer", loadWeightData);
-  } else if (section === "categoryAdd") {
+  } else if (section === "category") {
     await ALG.addListToContainer(
       "categoryViewContainer",
       loadCategoryData,
@@ -105,10 +105,38 @@ async function toggleProductSection(section) {
     await ALG.addListToContainer("productItemViewContainer", loadProductItems);
     await loadProductsOnProductItemSelector();
     await loadWeightToProductItemSelector();
+  } else if (section === "extraItem") {
+    await ALG.addListToContainer(
+      "extraItemViewContainer",
+      extraItemTableDesignLoad,
+      [60, 150, 100, 70, 100, 60, 100]
+    );
   }
 }
 
 // ui data updators
+async function extraItemTableDesignLoad() {
+  const dataset = await loadExtraItem();
+  const newListDataSet = [];
+
+  console.log(dataset);
+
+  dataset.forEach((element) => {
+    const newData = {
+      id: element.extra_id,
+      extra_item: element.extra_fruit,
+      status: element.extra_status_id,
+      price: element.price,
+      availability: element.extraItem_status_type,
+      edit: `<i class="bi bi-pen" onclick="openExtraItemEditModel()"></i>`,
+      remove: `<i class="bi bi-x-circle" onclick="openExtraItemRemoveModel()"></i>`,
+    };
+    newListDataSet.push(newData);
+  });
+
+  return newListDataSet;
+}
+
 async function loadWeightToProductItemSelector() {
   const products = await loadWeightData();
   const select = document.getElementById("productItemWeightSelectInput");
@@ -152,6 +180,38 @@ async function loadProductsOnProductItemSelector() {
 }
 
 // data loaders
+
+async function loadExtraItem() {
+  return fetch("api/extraItemView.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
 async function loadProductData() {
   return fetch("api/productView.php", {
     method: "GET", // HTTP request method
@@ -236,7 +296,6 @@ async function loadProductItems() {
 
           listArray.push(newData);
         });
-
         return listArray;
       } else if (data.status == "failed") {
         console.log(data.error);

@@ -46,7 +46,7 @@
                             </div>
                             <div class="row mx-4 mx-0">
                                 <div class="col-12 col-md-4 mt-3 mt-lg-2 pb-2 m-lg-0 p-lg-0 d-flex justify-content-center justify-content-lg-start bg-dange">
-                                    <button class="alg-bg-gold alg-main-button alg-button-hover p-2 px-4 rounded-4 text-white fw-bold alg-text-h2">SHOP
+                                    <button onclick="window.location = 'products.php' " class="alg-bg-gold alg-main-button alg-button-hover p-2 px-4 rounded-4 text-white fw-bold alg-text-h2">SHOP
                                         NOW</button>
                                 </div>
                             </div>
@@ -68,21 +68,12 @@
     </section>
 
     <!-- Banner -->
-    <section class="alg-bg-light">
-        <div class="container">
-            <div class="col-12 text-center pt-2 px-2 pb-4">
-                <span class="alg-text-h2 alg-text-dark fw-bold m-0 p-0">PROMOTION</span>
-                <div class="promotionSwiper swiper mySwiperPromotion mt-2">
-                    <div class="swiper-wrapper" id="promotionSliderContainer">
-                        <!-- banner goes here -->
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section class="alg-bg-light" id="promotionContainer">
+        
     </section>
 
     <!-- services -->
-    <section class="alg-bg-dark">
+    <section class="alg-bg-dark py-4">
         <div class="container">
             <div class="row pb-5">
                 <div class="col-12">
@@ -106,10 +97,10 @@
 
                             <div class="row mx-3 alg-button-hover alg-cursor">
                                 <div class="col-12 alg-bg-light rounded-5 d-flex justify-content-center align-items-center gap-5">
-                                    <div><img src="resources/images/service1.png" alt="" class="alg-service-img"></div>
+                                    <div class="ps-3"><i class="bi bi-truck fs-1"></i></div>
                                     <div class="lh-1 mt-2 me-2">
-                                        <span class="fw-bold alg-text-h3">24/7 Services for any inquriy</span>
-                                        <p class="alg-text-h3">Our company provide 24/7 service on any service related
+                                        <span class="fw-bold alg-text-h3">Our Delivery Service</span>
+                                        <p class="alg-text-h3">Island-wide delivery with Fast & Safe
                                         </p>
                                     </div>
                                 </div>
@@ -117,10 +108,10 @@
 
                             <div class="row mx-3 alg-button-hover alg-cursor">
                                 <div class="col-12 alg-bg-light rounded-5 d-flex justify-content-center align-items-center gap-5">
-                                    <div><img src="resources/images/service1.png" alt="" class="alg-service-img"></div>
+                                    <div class="ps-3"><i class="bi bi-credit-card fs-1"></i></div>
                                     <div class="lh-1 mt-2 me-2">
-                                        <span class="fw-bold alg-text-h3">24/7 Services for any inquriy</span>
-                                        <p class="alg-text-h3">Our company provide 24/7 service on any service related
+                                        <span class="fw-bold alg-text-h3">Our Payment Method</span>
+                                        <p class="alg-text-h3">Secure payment 100% secure payment
                                         </p>
                                     </div>
                                 </div>
@@ -140,77 +131,13 @@
         <div class="d-flex justify-content-center m-0 p-0">
             <div class="col-10 p-0">
                 <div class=" text-center pb-4 pt-3 px-3">
-                    <span class="alg-text-h2 alg-text-gold fw-bold">BEST SELLING</span>
+                    <span class="alg-text-h2 alg-text-gold fw-bold">LATEST PRODUCTS</span>
                     <div class="bestSellingSwiper swiper mySwiperBestSelling mt-4">
-                        <div class="swiper-wrapper mx-auto">
+                        <div class="swiper-wrapper mx-auto py-2" id="mainLatestProductContainer">
 
-                            <div class="bestSellingSwiper swiper-slide ">
-                                <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-end overflow-hidden flex-column ld-bs-card w-100" style="background: url('resources/images/item1.png');">
-                                    <div class="ld-bs-card-content d-flex flex-column text-start">
-                                        <div class="d-flex gap-1 fw-bold justify-content-between">
-                                            <div class="text-white alg-text-h3">Product Title</div>
-                                            <div class="alg-text-h3">LKR 3000</div>
-                                        </div>
-                                        <div class="alg-text-h3 text-white">this is some little descrioption for the
-                                            product......</div>
-                                        <div class="d-flex gap-2">
-                                            <i class="bi bi-star-fill text-warning fs-6"></i>
-                                            <i class="bi bi-star-fill text-warning fs-6"></i>
-                                            <i class="bi bi-star-fill text-warning fs-6"></i>
-                                            <i class="bi bi-star-fill text-warning fs-6"></i>
-                                            <i class="bi bi-star-fill text-white fs-6"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bestSellingSwiper swiper-slide ">
-                                <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-end overflow-hidden flex-column ld-bs-card w-100" style="background: url('resources/images/item1.png');">
-                                    <div class="ld-bs-card-content d-flex flex-column text-start">
-                                        <div class="d-flex gap-1 fw-bold justify-content-between">
-                                            <div class="text-white alg-text-h3">Product Title</div>
-                                            <div class="alg-text-h3">LKR 3000</div>
-                                        </div>
-                                        <div class="alg-text-h3 text-white">this is some little descrioption for the
-                                            product......</div>
-                                        <div class="d-flex gap-2">
-                                            <i class="bi bi-star-fill text-warning fs-6"></i>
-                                            <i class="bi bi-star-fill text-warning fs-6"></i>
-                                            <i class="bi bi-star-fill text-warning fs-6"></i>
-                                            <i class="bi bi-star-fill text-warning fs-6"></i>
-                                            <i class="bi bi-star-fill text-white fs-6"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bestSellingSwiper swiper-slide ">
-                                <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-end overflow-hidden flex-column ld-bs-card w-100" style="background: url('resources/images/item1.png');">
-                                    <div class="ld-bs-card-content d-flex flex-column text-start">
-                                        <div class="d-flex gap-1 fw-bold justify-content-between">
-                                            <div class="text-white alg-text-h3">Product Title</div>
-                                            <div class="alg-text-h3">LKR 3000</div>
-                                        </div>
-                                        <div class="alg-text-h3 text-white">this is some little descrioption for the
-                                            product......</div>
-                                        <div class="d-flex gap-2">
-                                            <i class="bi bi-star-fill text-warning fs-6"></i>
-                                            <i class="bi bi-star-fill text-warning fs-6"></i>
-                                            <i class="bi bi-star-fill text-warning fs-6"></i>
-                                            <i class="bi bi-star-fill text-warning fs-6"></i>
-                                            <i class="bi bi-star-fill text-white fs-6"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
+                            <!-- slider goes here check home.js -->
 
                         </div>
-                        <!-- <div class="swiper-pagination alg-text-gold"></div> -->
-                        <!-- <div class="swiper-button-next alg-text-gold"></div>
-                    <div class="swiper-button-prev alg-text-gold"></div> -->
-
                     </div>
 
                 </div>
@@ -255,7 +182,7 @@
     </section>
 
     <!-- testamonials -->
-    <section class="alg-bg-dark">
+    <section class="alg-bg-dark py-4">
         <div class="container py-3">
             <div class="col-12 d-flex flex-column justify-content-center align-items-center testm-main w-100 pt-2  px-5">
                 <div class="py-2">
@@ -264,7 +191,7 @@
                 <div class="col-12 d-flex flex-lg-row flex-column justify-content-between align-items-center gap-3 m-2 p-0">
                     <div class="testm-card d-flex justify-content-center align-items-center  alg-bg-light p-2">
                         <div class="col-4 p-0">
-                            <img src="https://discover.javainstitute.edu.lk/img/faculty/mr-tharaka.jpg" class="img-fluid testm-card-img">
+                            <img src="resources/images/profile.png" class="img-fluid testm-card-img">
                         </div>
                         <div class="col-8 px-2">
                             <p class="ld-tes-card-paragraph  alg-text-dark fw-bold">"Pure nostalgia in every bite!
@@ -273,13 +200,13 @@
                                 perfectly!
                             </p>
                             <h5 class="alg-text-gold">
-                                - Rajeev D.
+                                -unknown
                             </h5>
                         </div>
                     </div>
                     <div class="testm-card d-flex justify-content-center align-items-center  alg-bg-light p-2">
                         <div class="col-4 p-0">
-                            <img src="https://discover.javainstitute.edu.lk/img/faculty/mr-tharaka.jpg" class="img-fluid testm-card-img">
+                            <img src="resources/images/profile.png" class="img-fluid testm-card-img">
                         </div>
                         <div class="col-8 px-2">
                             <p class="ld-tes-card-paragraph  alg-text-dark fw-bold">"Pure nostalgia in every bite!
@@ -288,13 +215,13 @@
                                 perfectly!
                             </p>
                             <h5 class="alg-text-gold">
-                                - Rajeev D.
+                                -unknown
                             </h5>
                         </div>
                     </div>
                     <div class="testm-card d-flex justify-content-center align-items-center  alg-bg-light p-2">
                         <div class="col-4 p-0">
-                            <img src="https://discover.javainstitute.edu.lk/img/faculty/mr-tharaka.jpg" class="img-fluid testm-card-img">
+                            <img src="resources/images/profile.png" class="img-fluid testm-card-img">
                         </div>
                         <div class="col-8 px-2">
                             <p class="ld-tes-card-paragraph  alg-text-dark fw-bold">"Pure nostalgia in every bite!
@@ -303,7 +230,7 @@
                                 perfectly!
                             </p>
                             <h5 class="alg-text-gold">
-                                - Rajeev D.
+                                -unknown
                             </h5>
                         </div>
                     </div>
@@ -363,6 +290,7 @@
                                         <div class="col-6 bg-lg-white p-2 d-flex gap-4 rounded-4 px-3 justify-content-center">
                                             <span><a class="text-decoration-none" href="https://www.facebook.com/profile.php?id=61551535876271&mibextid=ZbWKwL"><i class="bi bi-facebook alg-header-text fs-5 alg-text-hover cursor"></i></a></span>
                                             <span><i class="bi bi-instagram alg-header-text fs-5 alg-text-hover cursor"></i></span>
+                                            <span><i class="bi bi-whatsapp alg-header-text fs-5 alg-text-hover cursor"></i></span>
                                         </div>
                                     </div>
                                 </div>

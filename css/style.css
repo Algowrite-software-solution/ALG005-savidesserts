@@ -47,6 +47,11 @@
   margin-left: -10px;
 }
 
+.header-badge {
+  font-size: 8px;
+  margin-top: 5px;
+}
+
 /* home */
 .ld-s1-hero {
   width: 100%;
@@ -115,6 +120,13 @@
 .swiper-slide img {
   display: block;
   width: 100%;
+}
+
+.category-slider-img {
+  width: 200px !important; 
+  height: 200px !important;
+  object-fit: cover;
+  border-radius: 300px;
 }
 
 .about-us-main {
@@ -370,11 +382,8 @@
 /* landing page */
 /* best selling section */
 .ld-bs-card {
-  height: 300px;
+  min-height:300px;
   border-radius: var(--rounded-mid);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
   background-color: var(--gold);
   cursor: pointer;
   transition: var(--transition2);
@@ -389,6 +398,10 @@
   min-height: 100px;
   background-color: var(--tan);
   padding: 10px;
+}
+
+.card-font{
+  font-size:9px;
 }
 
 @media (min-width: 1440px) {
@@ -427,8 +440,22 @@
   border-radius: 25px;
 }
 
+.prdct-sldr-div {
+  height: 300px;
+}
+
+.prdct-dtls-div {
+  height: 300px;
+}
+
+.product-list-card-bacground {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .paycheck-product-img {
-  width: 150px;
+  width: 120px;
   border-radius: 25px;
 }
 
@@ -447,4 +474,41 @@
 /* product view container section */
 .pd-s3-container {
   min-height: 500px;
+}
+
+/* payment Checkout Ui */
+.scroll-container {
+  max-height: 400px;
+  /* Set the maximum height for the scrollable container */
+  overflow-y: scroll;
+  /* Enable vertical scrolling */
+}
+
+.alg-pc-img {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.scroll-container {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.alg-pc-border {
+  border-bottom: 2px solid #b68b40;
+}
+
+@media (max-width: 440px) {
+  .alg-pc-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+
+  .alg-pc-font {
+    font-size: x-small;
+  }
 }

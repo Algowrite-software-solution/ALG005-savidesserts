@@ -6,12 +6,14 @@ require_once("../model/password_encryptor.php");
 
 
 // headers
-// header("Content-Type: application/json; charset=UTF-8");
+header("Content-Type: application/json; charset=UTF-8");
 
 $email = $_POST['email'];
 $password = $_POST['password'];
 $fullName = $_POST['fullName'];
 $confPassword = $_POST['confPassword'];
+$termsAndCondition = $_POST['termsAndCondition'];
+$marketingPerpose = $_POST['marketingPerpose'];
 
 //response sending object
 $response = new stdClass();
@@ -61,34 +63,32 @@ $dataToValidate = [
      ],
 ];
 
-// Create an instance of the data_validator class
+// validate input
 $validator = new data_validator($dataToValidate);
-
-// Perform validation
 $errors = $validator->validate();
-
-// Check for validation errors
-if (!empty((array)$errors)) {
-     $response->error = $errors;
-     response_sender::sendJson($response);
-} else {
-     //password and confirmationPassword check
-     if ($password != $confPassword) {
-          $response->error = 'Retype Passwords does not match';
+foreach ($errors as $key => $value) {
+     if ($value) {
+          $response->error = "Invalid Input for : " . $key;
           response_sender::sendJson($response);
      }
+}
 
-     //password encryption
-     $passwordData = SecurePasswordHandler::encryptPassword($password);
-     $hashedPassword = $passwordData['hash'];
-     $saltPassword = $passwordData['salt'];
-
-     //php date object
-     $currentDate = date('Y-m-d');
-
-     // user data insert query
-     $insertQuery = "INSERT INTO `user`(`email`, `full_name`,`password_salt`, `password_hash`,`confomation_code`,`status_id`,`register_date`)  VALUES (?,?,?,?,?,?,?) ";
-     $db->execute_query($insertQuery, 'sssssss', array($email, $fullName, $saltPassword, $hashedPassword, '0', '1', $currentDate));
-     $response->status = 'success';
+//password and confirmationPassword check
+if ($password != $confPassword) {
+     $response->error = 'Retype Passwords does not match';
      response_sender::sendJson($response);
 }
+
+//password encryption
+$passwordData = SecurePasswordHandler::encryptPassword($password);
+$hashedPassword = $passwordData['hash'];
+$saltPassword = $passwordData['salt'];
+
+//php date object
+$currentDate = date('Y-m-d');
+
+// user data insert query
+$insertQuery = "INSERT INTO `user`(`email`, `full_name`,`password_salt`, `password_hash`,`confomation_code`,`status_id`,`register_date`,`marketing_email_validation_m_id`,`terms_and_condition_ta_id`)  VALUES (?,?,?,?,?,?,?,?,?) ";
+$db->execute_query($insertQuery, 'sssssssss', array($email, $fullName, $saltPassword, $hashedPassword, '0', '1', $currentDate,$marketingPerpose,$termsAndCondition));
+$response->status = 'success';
+response_sender::sendJson($response);

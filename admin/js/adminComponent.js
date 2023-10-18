@@ -12,6 +12,47 @@ class DashboardComponents {
     );
   }
 
+  // image compressor
+  async compressImageFromDataUrl(dataURL, quality = 0.3) {
+    return await new Promise((resolve, reject) => {
+      const img = new Image();
+      img.src = dataURL;
+
+      img.onload = function () {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        // Draw the original image on the canvas
+        ctx.drawImage(img, 0, 0, img.width, img.height);
+
+        // Convert the canvas to a Blob with the specified quality
+        canvas.toBlob(
+          function (blob) {
+            fileToDataURL(blob, (compressedDataURL) => {
+              resolve(compressedDataURL);
+            });
+          },
+          "image/jpeg",
+          quality
+        );
+      };
+
+      function fileToDataURL(file, callback) {
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+          const dataURL = event.target.result;
+          callback(dataURL);
+        };
+
+        reader.readAsDataURL(file);
+      }
+    });
+  }
+
   // dispose opened effect
   disposeOpnedPanel() {
     this.activeDropdown.dispose();
@@ -309,6 +350,19 @@ class DashboardComponents {
     let listHeader = [];
     let listRows = [];
 
+    if (dataSet === null) {
+      this.openToast(
+        "no data to show",
+        "Invalid data row count",
+        this.getCurrentTime(),
+        "",
+        "Alert"
+      );
+      const filler = document.createElement("p");
+      filler.innerText = "no row data to show";
+      return filler;
+    }
+
     dataSet.forEach((element) => {
       listHeader = [];
 
@@ -407,6 +461,17 @@ class DashboardComponents {
   }
 
   // utility
+  async imageFileToDataURL(file, callback) {
+    const reader = new FileReader();
+
+    reader.onload = function (event) {
+      const dataURL = event.target.result;
+       callback(dataURL);
+    };
+
+    reader.readAsDataURL(file);
+  }
+
   getCurrentTime() {
     const now = new Date();
     let hours = now.getHours();

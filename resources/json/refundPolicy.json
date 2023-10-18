@@ -1,0 +1,32 @@
+{
+  "version": "1.0.0 - last updated on 17-10-2023",
+  "title": "Refund Policy",
+  "description": "Refund PolicyThank you very much for shopping at our saweedessert.com . We are really concerned about your satisfaction and the best user experience throughout the process of online shopping on this website. In case you are not completely satisfied with the purchase, we are here to help.",
+  "sections": [
+    {
+      "sectionTitle": "Returns",
+      "sectionDescription": "Once you place an order, we do not accept any cancellation of the order and it is on you to make sure to be careful with the purchase that you made with the website. Also we do not accept any returned items and for the placed orders. ",
+      "list": []
+    },
+    {
+      "sectionTitle": "Refunds",
+      "sectionDescription": "Once an order is placed there is no refunding process and you have to be concerned about this before you purchase a product. But in case if the delivery is not made within 48 Hours of the order placement, we will redelivery another replacement product to the purchased item.this will be the same order that has been previously delivered.",
+      "list": []
+    },
+    {
+      "sectionTitle": "Exchanges",
+      "sectionDescription": "Exchanges are not allowed for any purchased item from our website.",
+      "list": []
+    },
+    {
+      "sectionTitle": "Processing Time",
+      "sectionDescription": "Replacement product sending for late deliveries will be processed as soon as the expected delivery day ends for the current purchase. Replacement delivery also will take at least 2 days of delivery time.",
+      "list": []
+    },
+    {
+      "sectionTitle": "Contact Us",
+      "sectionDescription": "If you need to assist with any of the above or if you need to ask any questions regarding the process, please contact us using the contact details provided within the website. We are always willing to assist you with any problem that you encounter.",
+      "list": []
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   loadProductPromotions();
   loadCategory();
+  latesProductLoader();
 });
 
 //toast Message
@@ -20,6 +21,16 @@ function toastMessage(message, className) {
   toastBootstrap.show();
 }
 
+function getFirst20Words(inputString) {
+  // Split the input string into an array of words using whitespace as the delimiter
+  const wordsArray = inputString.split(/\s+/);
+  // Take the first 20 elements from the array using the slice method
+  const first20WordsArray = wordsArray.slice(0, 7);
+  // Join the first 20 words back together into a new string using whitespace as a separator
+  const resultString = first20WordsArray.join(" ");
+  return resultString;
+}
+
 //product promotion view section
 function loadProductPromotions() {
   // Fetch request
@@ -36,13 +47,28 @@ function loadProductPromotions() {
       return response.json(); // Parse the response body as JSON
     })
     .then((data) => {
-      const promotionSliderContainer = document.getElementById(
-        "promotionSliderContainer"
-      );
+      const promotionContainer = document.getElementById("promotionContainer");
+
 
       if (data.status == "success") {
+        promotionContainer.innerHTML = `<div class="container">
+        <div class="col-12 text-center pt-2 px-2 pb-4">
+            <span class="alg-text-h2 alg-text-dark fw-bold m-0 p-0">PROMOTION</span>
+            <div class="promotionSwiper swiper mySwiperPromotion mt-2">
+                <div class="swiper-wrapper" id="promotionSliderContainer">
+                    <!-- banner goes here -->
+                </div>
+            </div>
+        </div>
+    </div>`;
+        const promotionSliderContainer = document.getElementById(
+          "promotionSliderContainer"
+        );
         promotionSliderContainer.innerHTML = "";
+        var x =0;
         data.response.forEach((element) => {
+          x = x+1;
+          console.log(x);
           promotionSliderContainer.innerHTML += `
                 <div class="promotionSwiper swiper-slide">
                     <div>
@@ -86,8 +112,8 @@ function loadCategory() {
         data.results.forEach((element) => {
           categorySliderContainer.innerHTML += `
             <div class="categorySwiper swiper-slide">
-              <a class="text-decoration-none category-hover" href="products.php?category=${element.category_type}">
-                <img src="resources/images/category2.png" class="img-fluid" alt="category_img">
+              <a class="text-decoration-none p-3 category-hover" href="products.php?category=${element.category_type}">
+                <img src="${element.category_image}" class="my-2 rounded-circle category-slider-img" alt="category_img">
                 <span class="alg-text-gold alg-bg-dark alg-text-h3 p-1 px-5 rounded-4 fw-bold position-relative">${element.category_type}</span>
               </a>
             </div>
@@ -103,4 +129,74 @@ function loadCategory() {
       // Handle errors that occur during the Fetch request
       console.error("Fetch error:", error);
     });
+}
+
+//lates product loader
+function latesProductLoader() {
+  fetch(SERVER_URL + "backend/api/latesProductLoader.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      const mainLatestProductContainer = document.getElementById(
+        "mainLatestProductContainer"
+      );
+
+      if (data.status === "success") {
+        mainLatestProductContainer.innerHTML = "";
+        data.results.forEach((element) => {
+          let miniDescription = getFirst20Words(element.description) + ".....";
+
+          mainLatestProductContainer.innerHTML += `
+          <div class="bestSellingSwiper swiper-slide col-12 col-md-6 col-lg-2 d-flex justify-content-center mx-0 p-0">
+              <div class="row m-0 w-100 d-flex justify-content-center">
+                <div class="col-12 d-flex justify-content-between overflow-hidden flex-column alg-bg-tan ld-bs-card p-0" onclick="openSignleProductView('${element.product_id}', '${element.weight_id}');">
+                  <div class="product-list-card-bacground h-50 w-100 flex-grow-1" style="background-image: url('resources/images/singleProductImg/productId=${element.product_id}&&weightId=${element.weight_id}&&image=1.jpg');width:100px;"></div>
+                  <div class="h-2 ld-bs-card-content d-flex flex-column text-start">
+                  <div class="d-flex gap-1 fw-bold justify-content-between">
+                  <div class="text-white alg-text-h3">${element.product_name}</div>
+                  <div class="alg-text-h3">LKR. ${element.price}</div>
+              </div>
+              <div class="text-white card-font">${miniDescription}</div>
+              <hr/>
+              <div class="d-flex gap-2 pb-1">
+                  <i class="bi bi-star-fill text-warning fs-6"></i>
+                  <i class="bi bi-star-fill text-warning fs-6"></i>
+                  <i class="bi bi-star-fill text-warning fs-6"></i>
+                  <i class="bi bi-star-fill text-warning fs-6"></i>
+                  <i class="bi bi-star-fill text-white fs-6"></i>
+              </div>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+      } else if (data.status === "failed") {
+        console.log(data.error);
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      // Handle errors that occur during the Fetch request
+      console.error("Fetch error:", error);
+    });
+}
+
+// load open Signle Product View
+function openSignleProductView(id, weightId) {
+  // alert(weight);
+  window.location.href =
+    "singleProductView.php?product_id=" + id + "&weightId=" + weightId;
 }

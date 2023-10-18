@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
      shippingDetailsLoad();
      liveCartDetailsLoad();
+     shippingPriceLoader();
 });
 
 
@@ -139,6 +140,7 @@ function shippingDetailsLoad() {
                     document.getElementById('addressLine1').value = data.results[0].address_line_1 || "";
                     document.getElementById('addressLine2').value = data.results[0].address_line_2 || "";
                     document.getElementById('city').value = data.results[0].city || "";
+                    document.getElementById('postCode').value = data.results[0].postal_code || "";
 
 
                     const districtId = data.results[0].distric_id;
@@ -168,6 +170,7 @@ function updateShippingData() {
      const addressLine1 = document.getElementById('addressLine1').value;
      const addressLine2 = document.getElementById('addressLine2').value;
      const city = document.getElementById('city').value;
+     const postCode = document.getElementById('postCode').value;
 
 
      const formData = new FormData();
@@ -178,6 +181,7 @@ function updateShippingData() {
      formData.append("addressLine1", addressLine1);
      formData.append("addressLine2", addressLine2);
      formData.append("city", city);
+     formData.append("postCode", postCode);
 
      // Fetch request
      fetch(SERVER_URL + "backend/api/shippingDataUpdate.php", {
@@ -211,15 +215,54 @@ function updateShippingData() {
 let Total = 0;
 let ProductItemPrice = 0;
 let ExtraToppingsPrice = 0;
+let ShippingPrice = 0;
 
 // global element result
 let globalElementResult = [];
 
 
+//shippingPrice loader
+function shippingPriceLoader() {
+     // Fetch request
+     fetch(SERVER_URL + "backend/api/shippingDataLoader.php", {
+          method: "GET", // HTTP request method
+          headers: {
+               "Content-Type": "application/json", // Request headers
+          },
+     })
+          .then((response) => {
+               if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+               }
+               return response.json(); // Parse the response body as JSON
+          })
+          .then((data) => {
+               ShippingPrice = 0;
+               if (data.status === "success") {
+                    ShippingPrice = data.result;
+                    // console.log(ShippingPrice);
+
+                    return data.result;
+               } else {
+                    toastMessage(data.error, "text-bg-danger");
+               }
+          })
+          .catch((error) => {
+               // Handle errors that occur during the Fetch request
+               console.error("Fetch error:", error);
+          });
+
+}
+shippingPriceLoader();
+
+
+// live cart details loader 2 
 function liveCartDetailsLoad() {
 
-     const swDetailContainer = document.getElementById('swiperDetailContainer');
-     const priceContainer = document.getElementById('priceContainer');
+     let shippingPriceContainer = document.getElementById('shippingPrice');
+     let totalPriceContainer = document.getElementById('totalPriceContainer');
+     let subTotalPrice = document.getElementById('subTotalPrice');
+     let productDetailsContainer = document.getElementById('productDetailsContainer');
 
      // Fetch request
      fetch(SERVER_URL + "backend/api/cardView.php", {
@@ -235,8 +278,6 @@ function liveCartDetailsLoad() {
                return response.json(); // Parse the response body as JSON
           })
           .then((data) => {
-               priceContainer.innerHTML = "";
-               swDetailContainer.innerHTML = "";
 
                // calculation
                Total = 0;
@@ -244,11 +285,12 @@ function liveCartDetailsLoad() {
                ExtraToppingsPrice = 0;
 
 
+
                if (data.status === "success") {
 
                     data.response.forEach((element) => {
 
-
+                         //all calculation
                          globalElementResult.push(element);
 
                          const extraPrice = element.qty * element.extra_price;
@@ -260,45 +302,51 @@ function liveCartDetailsLoad() {
                          const itemPrice = element.qty * (element.price + element.extra_price);
                          Total += itemPrice;
 
-                         swDetailContainer.innerHTML += `
-                         <div class="checkoutSwiper swiper-slide alg-text-light d-flex flex-column justify-content-center align-items-center" >
-                                <img class="img-fluid paycheck-product-im" src="https://media.istockphoto.com/id/1179207306/photo/pudding-caramel-custard-with-caramel-sauce-and-mint-leaf-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=QOgo1aIuavOspqKTbKz7Qk2O5wJJOZZPg4fiPg0p2xM=" alt="">
-                                <span class="pt-1 fw-bolder alg-text-h3">${element.product_name}</span>
-                                <span class="alg-text-h3">RS.${element.price}</span>
-                                <span class="alg-text-h3">Weight : ${element.weight}</span>
-                                <span class="alg-text-h3">Toppings : ${element.extra_fruit}</span>
-                                <span class="alg-text-h3">Toppings Price : ${element.extra_price}</span>
-                                <span class="alg-text-h3">QTY : ${element.qty}</span>
-                         </div>
-                         
+                         let rowItemsPrice = productItemsPrice + extraPrice;
+
+
+                         //    set element our design
+                         productDetailsContainer.innerHTML += `
+                         <div class="d-flex flex-column flex-lg-row flex-lg-row gap-2  alg-pc-border pt-3 pb-3">
+                        <!-- product image -->
+                        <img src="${element.image}" alt="you order images" class="alg-pc-img">
+
+                        <!-- details goes here -->
+                        <div class=" d-flex flex-column flex-grow-1">
+                            <!-- product name -->
+                            <div class="">
+                                <h4 class="fw-bold alg-pc-font">${element.product_name}</h4>
+                            </div>
+                            <div class="d-flex gap-2 overflow-auto">
+                                <!-- one side -->
+                                <div class="alg-bg-tan  justify-content-center alg-text-dark alg-rounded-small d-flex flex-column flex-grow-1 p-2">
+                                    <span class="alg-pc-font">Weight: ${element.weight}</span>
+                                    <span class="alg-pc-font">QTY: ${element.qty}</span>
+                                    <span class="alg-pc-font">Topping: ${element.extra_fruit}</span>
+                                </div>
+
+                                <!-- other side -->
+                                <div class="alg-bg-tan  justify-content-center alg-text-dark alg-rounded-small d-flex flex-column flex-grow-1 p-2">
+                                    <span class="alg-pc-font">Product Price : Rs.${element.price}</span>
+                                    <span class="alg-pc-font">Topping Price : Rs.${element.extra_price}</span>
+
+                                </div>
+                                <!-- other side -->
+                                <div class="alg-bg-tan align-items-center justify-content-center alg-text-dark alg-rounded-small d-flex flex-column flex-grow-1 p-2">
+                                    <span class="fw-bold alg-pc-font">Rs.${rowItemsPrice}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+ 
                          `;
-
-
-
-
                     })
-
-                    priceContainer.innerHTML += `
-                         <div class="d-flex justify-content-around" id="productPriceContainer">
-                            <span>Product Total Price:</span>
-                            <p>Rs. ${ProductItemPrice}</p>
-                         </div>
-                         <div class="d-flex justify-content-around" id="extraToppingPrice">
-                            <span class="fw-bolder">Extra Item Total price :</span>
-                            <p class="fw-bolder">Rs. ${ExtraToppingsPrice}</p>
-                         </div>
-                         <div class="d-flex justify-content-around" id="ShippingPrice">
-                            <span class="fw-bolder">Shipping price :</span>
-                            <p class="fw-bolder">Rs. 00</p>
-                         </div>
-                         <div class="d-flex justify-content-around" id="Total">
-                            <span class="fw-bolder">Total Price :</span>
-                            <p class="fw-bolder">Rs. ${Total}</p>
-                         </div>
-                    
-                    
-                    `;
-
+                    // add shipping cost for total
+                    Total += parseInt(ShippingPrice);
+                    // prices sets
+                    shippingPriceContainer.textContent = "Rs.  " + ShippingPrice + ".00";
+                    totalPriceContainer.textContent = "Rs." + Total + ".00";
+                    subTotalPrice.textContent = "Rs." + ProductItemPrice + ".00";
 
                }
           })
@@ -307,6 +355,9 @@ function liveCartDetailsLoad() {
                console.error("Fetch error:", error);
           });
 }
+
+
+
 
 //random number generate
 function generateUniqueId() {
@@ -326,40 +377,20 @@ function placeOrder() {
      const district = document.getElementById('district').value;
      const province = document.getElementById('province').value;
 
-     //validation input filed
-     if (fullName === null || fullName === undefined) {
-          toastMessage("Please enter the full name", "text-bg-danger");
-          return;
-     }
-
-     if (mobile === null || mobile === undefined) {
-          toastMessage("Please enter the mobile number", "text-bg-danger");
-          return;
-     }
-     if (addressLine1 === null || addressLine1 === undefined) {
-          toastMessage("Please enter the address", "text-bg-danger");
-          return;
-     }
-     if (city === null || city === undefined) {
-          toastMessage("Please enter the city", "text-bg-danger");
-          return;
-     }
-     if (district === 0) {
-          toastMessage("Please enter the district", "text-bg-danger");
-          return;
-     }
-     if (province === 0) {
-          toastMessage("Please enter the province", "text-bg-danger");
-          return;
-     }
-
      //genarate random order Id
      const orderId = generateUniqueId();
      const total = Total;
 
+
      const formData = new FormData();
      formData.append('orderId', orderId);
      formData.append('total', total);
+     formData.append('fullName', fullName);
+     formData.append('mobile', mobile);
+     formData.append('addressLine1', addressLine1);
+     formData.append('city', city);
+     formData.append('district', district);
+     formData.append('province', province);
 
 
      // Fetch request
@@ -380,7 +411,9 @@ function placeOrder() {
                     payhere.onCompleted = function onCompleted(orderId) {
                          console.log("Payment completed. OrderID:" + orderId);
                          // Note: validate the payment and show success or failure page to the customer
-                         // addInvoice(orderId);
+
+                         addInvoice(orderId);
+
                     };
 
                     // Payment window closed
@@ -404,7 +437,7 @@ function placeOrder() {
                          "cancel_url": 'http://localhost:9001/paymentCheckout.php',     // Important
                          "notify_url": "http://sample.com/notify",
                          "order_id": orderId,
-                         "items": "null",
+                         "items": orderId,
                          "amount": total,
                          "currency": "LKR",
                          "hash": data.results, // *Replace with generated hash retrieved from backend
@@ -427,8 +460,7 @@ function placeOrder() {
                          payhere.startPayment(payment);
                     };
                } else {
-                    // toastMessage(data.error, "text-bg-danger");
-                    console.log(data.error);
+                    toastMessage(data.error, "text-bg-danger");
                }
           })
           .catch((error) => {
@@ -442,11 +474,12 @@ function placeOrder() {
 function addInvoice(orderId) {
 
      const formData = new FormData();
-     formData.append("globalElementResult", globalElementResult);
+     formData.append("globalElementResult", JSON.stringify(globalElementResult));
      formData.append("Total", Total);
      formData.append("ProductItemPrice", ProductItemPrice);
      formData.append("ExtraToppingsPrice", ExtraToppingsPrice);
      formData.append("orderId", orderId);
+     formData.append("shippingPrice", ShippingPrice);
 
      // Fetch request
      fetch(SERVER_URL + "backend/api/addInvoiceProcess.php", {
@@ -462,7 +495,9 @@ function addInvoice(orderId) {
           .then((data) => {
                if (data.status === "success") {
                     toastMessage("Order Placed", "text-bg-success");
-                    shippingDetailsLoad();
+
+                    setTimeout(() => { window.location.reload() }, 2000);
+
                } else {
                     toastMessage(data.error, "text-bg-danger");
                }

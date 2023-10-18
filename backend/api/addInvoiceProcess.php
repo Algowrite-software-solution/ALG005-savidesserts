@@ -30,23 +30,28 @@ if (!isset($_POST['Total']) && !isset($_POST['ProductItemPrice']) && !isset($_PO
 $totalCost = $_POST['Total'];
 $productItemPrice = $_POST['ProductItemPrice'];
 $extraToppingsPrice = $_POST['ExtraToppingsPrice'];
-$globalElementResult = $_POST['globalElementResult'];
 $orderId = $_POST['orderId'];
+$shippingPrice = $_POST['shippingPrice'];
+$jsonString = $_POST['globalElementResult'];
 
+//decode json result
+$elementResult = json_decode($jsonString, true);
 
 //global DB object
 $db = new database_driver();
 
 
 //php date object
+date_default_timezone_set('Asia/Colombo');
 $currentDate = date('Y-m-d');
 
-//order Id generate
-$orderId = '#' . str_pad(mt_rand(0, 999999), 6, '0', STR_PAD_LEFT);
+//add data for invoice
+$insertQueryInvoice = "INSERT INTO `invoice` (`order_date`,`pay_amout`,`shipping_price`,`order_id`,`user_user_id`,`invoice_status_invoice_status_id`) VALUES (?,?,?,?,?,?)";
+$db->execute_query($insertQueryInvoice, 'ssssss', array($currentDate, $totalCost, $shippingPrice, $orderId, $userId, '1'));
 
+// get all details
+foreach ($elementResult as $requestArray) {
 
-//get all details
-foreach ($globalElementResult as $key => $requestArray) {
      $card_id = $requestArray['card_id'];
      $price = $requestArray['price'];
      $category_type = $requestArray['category_type'];
@@ -60,14 +65,32 @@ foreach ($globalElementResult as $key => $requestArray) {
      $weight = $requestArray['weight'];
      $weight_id = $requestArray['weight_id'];
 
-
      // invoice item add
      $insertInvoiceItem = "INSERT INTO `invoice_item` (`product_item_id`,`extra_id`,`weight_id`,`qty`,`total_product_items_price`,`order_id`,`extra_item_price`) VALUES (?,?,?,?,?,?,?)";
      $db->execute_query($insertInvoiceItem, 'sssssss', array($product_item_id, $extra_id, $weight_id, $qty, $price, $orderId, $extra_price));
+
+     //product Item Search
+     $searchQuery = "SELECT * FROM `product_item` WHERE `id`=?";
+     $result = $db->execute_query($searchQuery, 's', array($product_item_id));
+
+     //get and new qty calculation
+     $relatedProductItem = $result['result']->fetch_assoc();
+     $oldQty = $relatedProductItem['qty'];
+     $intOldQty = intval($oldQty);
+     $buyQty = intval($qty);
+
+     //new qty
+     $newQty = $intOldQty - $buyQty;
+
+     //updateProductItem
+     $updateProductItem = "UPDATE `product_item` SET `qty`=? WHERE `id`=?";
+     $db->execute_query($updateProductItem, 'ii', array($newQty, $product_item_id));
+
+     //delete product user cart
+     $deleteProductItemCart = "DELETE FROM `card` WHERE `id`=? AND `user_user_id`=?";
+     $db->execute_query($deleteProductItemCart, 'ii', array($card_id, $userId));
 }
 
 
-$insertQueryInvoice = "INSERT INTO `invoice` (`order_date`,`pay_amout`,`shipping_price`,`order_id`,`user_user_id`,`invoice_status_invoice_status_id`) VALUES (?,?,?,?,?,?)";
-$db->execute_query($insertQueryInvoice, 'ssssss', array($currentDate, $totalCost, '200', $orderId, $userId, '1'));
 $responseObject->status = 'success';
 response_sender::sendJson($responseObject);

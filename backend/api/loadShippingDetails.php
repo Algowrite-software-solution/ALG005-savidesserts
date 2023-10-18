@@ -35,6 +35,7 @@ if ($row = $result['result']->fetch_assoc()) {
      $responseResultObject->province_id = $row['province_province_id'];
      $responseResultObject->distric_id = $row['distric_distric_id'];
      $responseResultObject->city = $row['city'];
+     $responseResultObject->postal_code = $row['postal_code'];
 
 
      array_push($responseArray, $responseResultObject);

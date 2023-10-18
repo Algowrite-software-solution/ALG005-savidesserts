@@ -26,14 +26,13 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
 
 //use the POST method
 $ship_price = $_POST['shippingPrice'];
-$weight = $_POST['weightId'];
 
 $db = new database_driver();
 
 
 //Cheaking if there are already have weight and price
-$searchQuery = "SELECT * FROM `shipping_price` WHERE `price`=? AND `weight_id`=?";
-$resultSetShipPrice = $db->execute_query($searchQuery, 'ss', array($ship_price, $weight));
+$searchQuery = "SELECT * FROM `shipping_price` WHERE `price`=?";
+$resultSetShipPrice = $db->execute_query($searchQuery, 's', array($ship_price));
 
 
 if ($resultSetShipPrice['result']->num_rows > 0) {
@@ -41,8 +40,8 @@ if ($resultSetShipPrice['result']->num_rows > 0) {
     response_sender::sendJson($responseObject);
 } else {
     //adding price
-    $insertQuery = "INSERT INTO `shipping_price`(`price`,`weight_id`) VALUES (?,?)";
-    $db->execute_query($insertQuery, 'ss', array($ship_price, $weight));
+    $insertQuery = "INSERT INTO `shipping_price`(`price`) VALUES (?)";
+    $db->execute_query($insertQuery, 's', array($ship_price));
     $responseObject->status = 'Shipping price added successfully';
     response_sender::sendJson($responseObject);
 }
