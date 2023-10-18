@@ -93,9 +93,9 @@
   padding: 7px 15px;
   text-align: start;
   font-weight: bold;
-  border-bottom: black 1px solid;
-  border-right: black 1px solid;
-  background-color: rgb(4, 85, 51);
+  border-bottom: var(--light) 1px solid;
+  border-right: var(--light) 1px solid;
+  background-color: var(--dark);
   color: white;
 }
 
@@ -109,10 +109,10 @@
   text-align: start;
   overflow: hidden;
   text-wrap: wrap;
-  border-bottom: black 1px solid;
-  border-right: black 1px solid;
-  background-color: gray;
-  color: black;
+  border-bottom: var(--light) 1px solid;
+  border-right: var(--light) 1px solid;
+  background-color: var(--tan);
+  color: var(--dark);
 }
 
 /* lists */
@@ -145,9 +145,9 @@
   padding: 7px 15px;
   text-align: start;
   font-weight: bold;
-  border-right: black 1px solid;
-  background-color: rgb(4, 85, 51);
-  color: white;
+  border-right: var(--dark) 1px solid;
+  background-color: var(--darker);
+  color: var(--light);
 }
 
 .alg-list-body-row {
@@ -163,9 +163,9 @@
   text-align: start;
   overflow: hidden;
   text-wrap: wrap;
-  border-right: black 1px solid;
-  background-color: gray;
-  color: black;
+  border-right: var(--light) 1px solid;
+  background-color: var(--tan);
+  color: var(--dark);
 }
 
 .alg-list-cell-image {

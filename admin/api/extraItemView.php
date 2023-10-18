@@ -2,7 +2,7 @@
 
 //extraItem view API
 //by madusha pravinda
-//version - 1.0.1
+//version - 1.0.2 (last updated - 18-10-2023)
 //26-09-2023
 
 //include models
@@ -15,12 +15,12 @@ header("Content-Type: application/json; charset=UTF-8");
 
 //response
 $responseObject = new stdClass();
-$responseObject->status = 'false';
+$responseObject->status = 'failed';
 
 //chekcing is user logging
 $userCheckSession = new SessionManager();
 if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
-     $responseObject->status = 'Please LogIn';
+     $responseObject->error = 'Please LogIn';
      response_sender::sendJson($responseObject);
 }
 //database object
@@ -52,10 +52,9 @@ if ($resultSet->num_rows > 0) {
           array_push($responseArray, $resRowDetailObject);
      }
      $responseObject->status = 'success';
-     $responseObject->result = $responseArray;
+     $responseObject->results = $responseArray;
      response_sender::sendJson($responseObject);
 } else {
-     $responseObject->status = 'no row data';
-     $responseObject->result = null;
+     $responseObject->error = 'no row data';
      response_sender::sendJson($responseObject);
 }

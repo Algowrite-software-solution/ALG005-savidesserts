@@ -1,3 +1,81 @@
+// extra item section
+function openExtraItemRemoveModel() {
+  ALG.openModel(
+    "Remove Extra Item",
+    "do you really want to remove this extra item",
+    `<button class="alg-btn-pill" onclick="alert('something')">Remove</button>`
+  );
+}
+
+function addExtraItem(event) {
+  const extraItem = document.getElementById("extraItemInputField").value;
+  const price = document.getElementById("extraItemPriceInputField").value;
+
+  if (!extraItem || extraItem == "") {
+    ALG.openToast(
+      "Invalid Input",
+      "Extra item is invalid",
+      ALG.getCurrentTime(),
+      "",
+      "Error"
+    );
+    return;
+  }
+
+  if (!price || price == "") {
+    ALG.openToast(
+      "Invalid Input",
+      "Price is invalid",
+      ALG.getCurrentTime(),
+      "",
+      "Error"
+    );
+    return;
+  }
+
+  // form
+  const form = new FormData();
+  form.append("fruit", extraItem);
+  form.append("price", price);
+
+  fetch("api/extraItemAdding.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => {
+      console.log(response);
+      // console.log(response.text());
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Product Item adding was successfull",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+        ALG.addListToContainer("extraItemViewContainer", loadExtraItem);
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+
+      event.target.disabled = false;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 // product item setup section
 let productItemImages = [];
 
