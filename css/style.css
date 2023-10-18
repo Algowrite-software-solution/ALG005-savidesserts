@@ -382,7 +382,7 @@
 /* landing page */
 /* best selling section */
 .ld-bs-card {
-  height: 400px;
+  min-height:300px;
   border-radius: var(--rounded-mid);
   background-color: var(--gold);
   cursor: pointer;

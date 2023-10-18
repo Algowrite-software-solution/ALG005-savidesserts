@@ -73,7 +73,7 @@
     </section>
 
     <!-- services -->
-    <section class="alg-bg-dark">
+    <section class="alg-bg-dark py-4">
         <div class="container">
             <div class="row pb-5">
                 <div class="col-12">
@@ -182,7 +182,7 @@
     </section>
 
     <!-- testamonials -->
-    <section class="alg-bg-dark">
+    <section class="alg-bg-dark py-4">
         <div class="container py-3">
             <div class="col-12 d-flex flex-column justify-content-center align-items-center testm-main w-100 pt-2  px-5">
                 <div class="py-2">
@@ -191,7 +191,7 @@
                 <div class="col-12 d-flex flex-lg-row flex-column justify-content-between align-items-center gap-3 m-2 p-0">
                     <div class="testm-card d-flex justify-content-center align-items-center  alg-bg-light p-2">
                         <div class="col-4 p-0">
-                            <img src="https://discover.javainstitute.edu.lk/img/faculty/mr-tharaka.jpg" class="img-fluid testm-card-img">
+                            <img src="resources/images/profile.png" class="img-fluid testm-card-img">
                         </div>
                         <div class="col-8 px-2">
                             <p class="ld-tes-card-paragraph  alg-text-dark fw-bold">"Pure nostalgia in every bite!
@@ -200,13 +200,13 @@
                                 perfectly!
                             </p>
                             <h5 class="alg-text-gold">
-                                - Rajeev D.
+                                -unknown
                             </h5>
                         </div>
                     </div>
                     <div class="testm-card d-flex justify-content-center align-items-center  alg-bg-light p-2">
                         <div class="col-4 p-0">
-                            <img src="https://discover.javainstitute.edu.lk/img/faculty/mr-tharaka.jpg" class="img-fluid testm-card-img">
+                            <img src="resources/images/profile.png" class="img-fluid testm-card-img">
                         </div>
                         <div class="col-8 px-2">
                             <p class="ld-tes-card-paragraph  alg-text-dark fw-bold">"Pure nostalgia in every bite!
@@ -215,13 +215,13 @@
                                 perfectly!
                             </p>
                             <h5 class="alg-text-gold">
-                                - Rajeev D.
+                                -unknown
                             </h5>
                         </div>
                     </div>
                     <div class="testm-card d-flex justify-content-center align-items-center  alg-bg-light p-2">
                         <div class="col-4 p-0">
-                            <img src="https://discover.javainstitute.edu.lk/img/faculty/mr-tharaka.jpg" class="img-fluid testm-card-img">
+                            <img src="resources/images/profile.png" class="img-fluid testm-card-img">
                         </div>
                         <div class="col-8 px-2">
                             <p class="ld-tes-card-paragraph  alg-text-dark fw-bold">"Pure nostalgia in every bite!
@@ -230,7 +230,7 @@
                                 perfectly!
                             </p>
                             <h5 class="alg-text-gold">
-                                - Rajeev D.
+                                -unknown
                             </h5>
                         </div>
                     </div>
@@ -290,6 +290,7 @@
                                         <div class="col-6 bg-lg-white p-2 d-flex gap-4 rounded-4 px-3 justify-content-center">
                                             <span><a class="text-decoration-none" href="https://www.facebook.com/profile.php?id=61551535876271&mibextid=ZbWKwL"><i class="bi bi-facebook alg-header-text fs-5 alg-text-hover cursor"></i></a></span>
                                             <span><i class="bi bi-instagram alg-header-text fs-5 alg-text-hover cursor"></i></span>
+                                            <span><i class="bi bi-whatsapp alg-header-text fs-5 alg-text-hover cursor"></i></span>
                                         </div>
                                     </div>
                                 </div>
