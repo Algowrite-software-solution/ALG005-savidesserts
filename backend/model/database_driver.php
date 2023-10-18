@@ -11,7 +11,7 @@ class database_driver
         $user = 'root';
         // $password = 'JanithNirmal12#$'; // janith
         // $password = '#Apeamma2001'; //madusha
-        $database = 'savi_dessert_shop';
+        // $database = 'savi_dessert_shop';
         $password = 'Assiment@1234ABC';
         $database = 'alg005_db';
 
