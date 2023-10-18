@@ -157,24 +157,29 @@ function latesProductLoader() {
           let miniDescription = getFirst20Words(element.description) + ".....";
 
           mainLatestProductContainer.innerHTML += `
-          <div class="bestSellingSwiper swiper-slide" onclick="openSignleProductView('${element.product_id}', '${element.weight_id}');">
-          <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-end overflow-hidden flex-column ld-bs-card w-100" style="background: url('resources/images/singleProductImg/productId=${element.product_id}&&weightId=${element.weight_id}&&image=1.jpg'); height:300px">
-              <div class="ld-bs-card-content d-flex flex-column text-start">
+          <div class="bestSellingSwiper swiper-slide col-12 col-md-6 col-lg-2 d-flex justify-content-center mx-0 p-0">
+              <div class="row m-0 w-100 d-flex justify-content-center">
+                <div class="col-12 d-flex justify-content-between overflow-hidden flex-column alg-bg-tan ld-bs-card p-0" onclick="openSignleProductView('${element.product_id}', '${element.weight_id}');">
+                  <div class="product-list-card-bacground h-50 w-100 flex-grow-1" style="background-image: url('resources/images/singleProductImg/productId=${element.product_id}&&weightId=${element.weight_id}&&image=1.jpg');width:100px;"></div>
+                  <div class="h-2 ld-bs-card-content d-flex flex-column text-start">
                   <div class="d-flex gap-1 fw-bold justify-content-between">
-                      <div class="text-white alg-text-h3">${element.product_name}</div>
-                      <div class="alg-text-h3">LKR. ${element.price}</div>
-                  </div>
-                  <div class="text-white card-font">${miniDescription}</div>
-                  <div class="d-flex gap-2">
-                      <i class="bi bi-star-fill text-warning fs-6"></i>
-                      <i class="bi bi-star-fill text-warning fs-6"></i>
-                      <i class="bi bi-star-fill text-warning fs-6"></i>
-                      <i class="bi bi-star-fill text-warning fs-6"></i>
-                      <i class="bi bi-star-fill text-white fs-6"></i>
-                  </div>
+                  <div class="text-white alg-text-h3">${element.product_name}</div>
+                  <div class="alg-text-h3">LKR. ${element.price}</div>
               </div>
-          </div>
-      </div>
+              <div class="text-white card-font">${miniDescription}</div>
+              <hr/>
+              <div class="d-flex gap-2 pb-1">
+                  <i class="bi bi-star-fill text-warning fs-6"></i>
+                  <i class="bi bi-star-fill text-warning fs-6"></i>
+                  <i class="bi bi-star-fill text-warning fs-6"></i>
+                  <i class="bi bi-star-fill text-warning fs-6"></i>
+                  <i class="bi bi-star-fill text-white fs-6"></i>
+              </div>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
           `;
         });
       } else if (data.status === "failed") {
