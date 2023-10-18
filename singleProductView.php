@@ -12,7 +12,9 @@ if (!isset($_GET["product_id"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALG005 - savi dessert</title>
+    <title>Sawee Dessert</title>
+
+    <link rel="shortcut icon" href="resources/images/favicon.png">
 
     <!-- css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
@@ -69,14 +71,14 @@ if (!isset($_GET["product_id"])) {
                         <div class="w-100 position-relative px-3">
                             <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
                                 <div class="swiper-wrapper" id="singleProductViewImageSliderMain">
-                                    
+
                                 </div>
                                 <div class="swiper-button-next"></div>
                                 <div class="swiper-button-prev"></div>
                             </div>
                             <div thumbsSlider="" class="swiper mySwiper">
                                 <div class="swiper-wrapper" id="singleProductViewImageSliderSecondary">
-                                    
+
                                 </div>
                             </div>
                         </div>

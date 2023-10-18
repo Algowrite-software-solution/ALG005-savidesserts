@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALG005 - savi dessert</title>
+    <title>Sawee Dessert</title>
+
+    <link rel="shortcut icon" href="resources/images/favicon.png" >
 
     <!-- css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
@@ -69,7 +71,7 @@
 
     <!-- Banner -->
     <section class="alg-bg-light" id="promotionContainer">
-        
+
     </section>
 
     <!-- services -->
