@@ -7,6 +7,8 @@
             <button onclick="toggleProductSection('weight')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Weight</span><i class="bi bi-box d-block d-lg-none"></i></button>
             <button onclick="toggleProductSection('category')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Category</span><i class="bi bi-box d-block d-lg-none"></i></button>
             <button onclick="toggleProductSection('productItem')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Set Product Item</span><i class="bi bi-box d-block d-lg-none"></i></button>
+            <button onclick="toggleProductSection('extraItem')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Extra Items</span><i class="bi bi-box d-block d-lg-none"></i></button>
+            <button onclick="toggleProductSection('setExtraItem')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Set Extra Items</span><i class="bi bi-box d-block d-lg-none"></i></button>
         </div>
     </div>
     <div class="p-2 col-9 flex-grow-1 text-dark" id="productSectionsContainer">
@@ -101,6 +103,32 @@
                 </div>
                 <div class="w-100 alg-bg-dark p-2 alg-rounded-mid overflow-auto" id="productItemViewContainer">
                     Loading....
+                </div>
+            </div>
+        </div>
+        <div class="p-2 h-100 d-none alg-bg-light alg-rounded-small" id="extraItemProductSection">
+            <div class="w-100 d-flex flex-column gap-2 alg-text-white">
+                <div class="w-100 alg-rounded-small alg-bg-dark p-2 d-flex flex-column gap-3">
+                    <label class="fw-bold" for="extraItemInputField">Extra item</label>
+                    <input type="text" class="form-control rounded-pill" id="extraItemInputField" placeholder="Enter the name of extra item">
+
+                    <label class="fw-bold" for="extraItemPriceInputField">Add Price</label>
+                    <input type="text" class="form-control rounded-pill" id="extraItemPriceInputField" placeholder="Enter the price of extra item">
+
+                    <button class="alg-btn-pill" onclick="addExtraItem(event)">Add Extra Item</button>
+                </div>
+                <div class="w-100 alg-bg-dark p-2 alg-rounded-mid overflow-auto" id="extraItemViewContainer">
+                    Loading extras....
+                </div>
+            </div>
+        </div>
+        <div class="p-2 h-100 d-none alg-bg-light alg-rounded-small" id="setExtraItemProductSection">
+            <div class="w-100 d-flex flex-column gap-2 alg-text-white">
+                <div class="w-100 alg-rounded-small alg-bg-dark p-2 d-flex flex-column gap-3">
+                    loading
+                </div>
+                <div class="w-100 alg-bg-dark p-2 alg-rounded-mid overflow-auto" id="extraItemViewContainer">
+                    Loading extras....
                 </div>
             </div>
         </div>
