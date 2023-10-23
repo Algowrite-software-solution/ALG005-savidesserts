@@ -1,3 +1,40 @@
+// weight section
+function editWeight(id) {
+  const weight = document.getElementById("weightEditWeightInput" + id).value;
+
+  fetch("")
+}
+
+function openWeightRemoveModel() {
+  ALG.openModel(
+    "Remove Weight",
+    "do you really want to remove this Weight",
+    `<button  class="alg-btn-pill" data-bs-dismiss="modal" aria-label="Close" onclick="alert('weight removed')">Remove</button>`
+  );
+}
+
+function openWeightEditModel(id, weight) {
+  // design
+  const design = `
+    <div class="d-flex flex-column w-100 gap-3">
+      <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+        <div class=" alg-text-light w-25 text-center p-2">id</div>
+        <input class="rounded-pill form-control w-75" type="text" disabled value="${id}" />
+      </div>
+      <div class="alg-bg-darker rounded-pill d-flex w-100 rounded-pill">
+        <div class=" alg-text-light w-25 text-center p-2">weight</div>
+        <input id="weightEditWeightInput${id}" class="form-control rounded-pill w-75" type="text" placeholder="please add the weight value" value="${weight}"/>
+      </div>
+    </div>
+  `;
+
+  ALG.openModel(
+    "Edit Weight",
+    design,
+    `<button data-bs-dismiss="modal" aria-label="Close" class="alg-btn-pill" onclick="editWeight(${id})">Edit</button>`
+  );
+}
+
 // extra item section
 function openExtraItemRemoveModel() {
   ALG.openModel(

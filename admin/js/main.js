@@ -94,7 +94,11 @@ async function toggleProductSection(section) {
   } else if (section === "productAdd") {
     await addCategoriesToSelect();
   } else if (section === "weight") {
-    await ALG.addListToContainer("weightViewContainer", loadWeightData);
+    await ALG.addListToContainer(
+      "weightViewContainer",
+      weightListUiDesignAdder,
+      [40, 100, 60, 80]
+    );
   } else if (section === "category") {
     await ALG.addListToContainer(
       "categoryViewContainer",
@@ -115,6 +119,23 @@ async function toggleProductSection(section) {
 }
 
 // ui data updators
+async function weightListUiDesignAdder() {
+  const weightData = await loadWeightData();
+  let preparedResultSet = [];
+  weightData.forEach((element) => {
+    const data = {
+      id: element.weight_id,
+      weight: element.weight,
+      edit: `<i class="bi bi-pen" onclick="openWeightEditModel(${element.weight_id}, '${element.weight}');"></i>`,
+      remove: `<i class="bi bi-x-circle" onclick="openWeightRemoveModel();"></i>`,
+    };
+
+    preparedResultSet.push(data);
+  });
+
+  return preparedResultSet;
+}
+
 async function extraItemTableDesignLoad() {
   const dataset = await loadExtraItem();
   const newListDataSet = [];
