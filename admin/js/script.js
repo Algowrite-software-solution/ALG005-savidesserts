@@ -172,12 +172,94 @@ function openWeightEditModel(id, weight) {
   );
 }
 
-// extra item section
+// extra item
+function editExtraItem(id) {
+  const extraItem = document.getElementById(
+    "extraItemEditExtraItemInput" + id
+  ).value;
+  const status = document.getElementById("extraItemEditStatusInput" + id).value;
+  const price = document.getElementById("extraItemEditPriceInput" + id).value;
+
+  const form = new FormData();
+  form.append("id", id);
+  form.append("fruit", extraItem);
+  form.append("extra_status_id", status);
+  form.append("price", price);
+
+  fetch("api/extraItemUpdate.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Weight Update was successfull",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+
+        ALG.addListToContainer(
+          "extraItemViewContainer",
+          extraItemTableDesignLoad,
+          [60, 150, 100, 70, 100, 60, 100]
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 function openExtraItemRemoveModel() {
   ALG.openModel(
     "Remove Extra Item",
     "do you really want to remove this extra item",
-    `<button class="alg-btn-pill" onclick="alert('something')">Remove</button>`
+    `<button class="alg-btn-pill" data-bs-dismiss="modal" aria-label="Close" onclick="alert('extra item removed')">Remove</button>`
+  );
+}
+
+function openExtraItemEditModel(id, extraItem, statusId, status, price) {
+  // design
+  const design = `
+    <div class="d-flex flex-column w-100 gap-3">
+      <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+        <div class=" alg-text-light w-25 text-center p-2">id</div>
+        <input class="rounded-pill form-control w-75" type="text" disabled value="${id}" />
+      </div>
+      <div class="alg-bg-darker rounded-pill d-flex w-100 rounded-pill">
+        <div class=" alg-text-light w-25 text-center p-2">extra item</div>
+        <input id="extraItemEditExtraItemInput${id}" class="form-control rounded-pill w-75" type="text" placeholder="please add the extra item value" value="${extraItem}"/>
+      </div>
+      <div class="alg-bg-darker rounded-pill d-flex w-100 rounded-pill">
+        <div class=" alg-text-light w-25 text-center p-2">status</div>
+        <input id="extraItemEditStatusInput${id}" class="form-control rounded-pill w-75" type="text" placeholder="please add the status value" value="${statusId}"/>
+      </div>
+      <div class="alg-bg-darker rounded-pill d-flex w-100 rounded-pill">
+        <div class=" alg-text-light w-25 text-center p-2">price</div>
+        <input id="extraItemEditPriceInput${id}" class="form-control rounded-pill w-75" type="text" placeholder="please add the price" value="${price}"/>
+      </div>
+    </div>
+  `;
+
+  ALG.openModel(
+    "Edit Weight",
+    design,
+    `<button data-bs-dismiss="modal" aria-label="Close" class="alg-btn-pill" onclick="editExtraItem(${id})">Edit</button>`
   );
 }
 

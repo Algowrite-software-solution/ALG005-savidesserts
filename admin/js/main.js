@@ -197,7 +197,7 @@ async function extraItemTableDesignLoad() {
       status: element.extra_status_id,
       price: element.price,
       availability: element.extraItem_status_type,
-      edit: `<i class="bi bi-pen" onclick="openExtraItemEditModel()"></i>`,
+      edit: `<i class="bi bi-pen" onclick="openExtraItemEditModel(${element.id}, '${element.extra_fruit}', '${element.extra_status_id}', '${element.extraItem_status_type}', '${element.price}')"></i>`,
       remove: `<i class="bi bi-x-circle" onclick="openExtraItemRemoveModel()"></i>`,
     };
     newListDataSet.push(newData);
