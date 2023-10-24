@@ -1,3 +1,100 @@
+// product section
+function editProduct(id) {
+  const description = document.getElementById(
+    "productEditDescriptionInput" + id
+  ).value;
+  const product = document.getElementById("productEditProductInput" + id).value;
+  const categoryId = document.getElementById(
+    "productEditCategoryInput" + id
+  ).value;
+
+  const form = new FormData();
+  form.append("product_id", id);
+  form.append("description", description);
+  form.append("product_name", product);
+  form.append("category_id", categoryId);
+
+  fetch("api/productUpdate.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Product Update was successfull",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+
+        ALG.addTableToContainer(
+          "productViewProductSection",
+          productTableDesignData,
+          [100, 150, 250, 120, 120, 60, 80]
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+function openProductRemoveModel() {
+  ALG.openModel(
+    "Remove Product",
+    "do you really want to remove this product",
+    `<button  class="alg-btn-pill" data-bs-dismiss="modal" aria-label="Close" onclick="alert('product removed removed')">Remove</button>`
+  );
+}
+
+function openProductEditModel(id, product, description, category, addedDate) {
+  // design
+  const design = `
+    <div class="d-flex flex-column w-100 gap-3">
+      <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+        <div class=" alg-text-light w-25 text-center p-2">id</div>
+        <input class="rounded-pill form-control w-75" type="text" disabled value="${id}" />
+      </div>
+      <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+        <div class=" alg-text-light w-25 text-center p-2">product</div>
+        <input id="productEditProductInput${id}" class="rounded-pill form-control w-75" type="text" value="${product}" />
+      </div>
+      <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+        <div class=" alg-text-light w-25 text-center p-2">category</div>
+        <input id="productEditCategoryInput${id}" class="rounded-pill form-control w-75" type="text" value="${category}" />
+      </div>
+      <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+        <div class=" alg-text-light w-25 text-center p-2">description</div>
+        <input id="productEditDescriptionInput${id}" class="rounded-pill form-control w-75" type="text" value="${description}" />
+      </div>
+      <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+        <div class=" alg-text-light w-25 text-center p-2">addedDate</div>
+        <input disabled class="rounded-pill form-control w-75" type="text" value="${addedDate}" />
+      </div>
+    </div>
+  `;
+
+  ALG.openModel(
+    "Edit Product",
+    design,
+    `<button data-bs-dismiss="modal" aria-label="Close" class="alg-btn-pill" onclick="editProduct(${id})">Edit</button>`
+  );
+}
+
 // weight section
 function editWeight(id) {
   const weight = document.getElementById("weightEditWeightInput" + id).value;

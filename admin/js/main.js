@@ -24,7 +24,13 @@ document.addEventListener("DOMContentLoaded", () => {
     "productManagementPanel",
     "mainContentContainer",
     "Product Management",
-    loadProductsData
+    async () => {
+      await ALG.addTableToContainer(
+        "productViewProductSection",
+        productTableDesignData,
+        [100, 150, 250, 120, 120, 60, 80]
+      );
+    }
   );
 
   ALG.addTooltipDitectors("tooltip-holder");
@@ -88,7 +94,11 @@ async function toggleProductSection(section) {
 
   // load data accordingly
   if (section === "productView") {
-    await loadProductsData();
+    await ALG.addTableToContainer(
+      "productViewProductSection",
+      productTableDesignData,
+      [100, 150, 250, 120, 120, 60, 80]
+    );
   } else if (section === "categoryView") {
     await ALG.addListToContainer("categoryViewContainer", loadCategoriesData);
   } else if (section === "productAdd") {
@@ -119,6 +129,44 @@ async function toggleProductSection(section) {
 }
 
 // ui data updators
+async function productTableDesignData() {
+  const tableData = await loadProductsData();
+  let designData = [];
+  tableData.forEach((element) => {
+    const newData = {
+      id: element.product_id,
+      product: element.product_name,
+      description: element.product_description,
+      category: element.category_type,
+      ["added date"]: element.add_date,
+      edit: `<i class="bi bi-pen" onclick="openProductEditModel(${element.product_id}, '${element.product_name}', '${element.product_description}', '${element.category_id}', '${element.add_date}')"></i>`,
+      remove: `<i class="bi bi-x-circle" onclick="openProductRemoveModel()"></i>`,
+    };
+
+    designData.push(newData);
+  });
+
+  return designData;
+}
+
+async function addCategoriesToSelect() {
+  const select = document.getElementById("productCategoryInputField");
+  const categories = await loadCategoriesData();
+
+  select.innerHTML = "";
+  const defaultOption = document.createElement("option");
+  defaultOption.value = 0;
+  defaultOption.innerText = "Select a category";
+  select.appendChild(defaultOption);
+
+  categories.forEach((element) => {
+    const option = document.createElement("option");
+    option.value = element.id;
+    option.innerText = element.category_type;
+    select.appendChild(option);
+  });
+}
+
 async function weightListUiDesignAdder() {
   const weightData = await loadWeightData();
   let preparedResultSet = [];
@@ -201,7 +249,6 @@ async function loadProductsOnProductItemSelector() {
 }
 
 // data loaders
-
 async function loadExtraItem() {
   return fetch("api/extraItemView.php", {
     method: "GET", // HTTP request method
@@ -264,25 +311,6 @@ async function loadProductData() {
     });
 }
 
-async function addCategoriesToSelect() {
-  const select = document.getElementById("productCategoryInputField");
-  const categories = await loadCategoriesData();
-
-  select.innerHTML = "";
-  const defaultOption = document.createElement("option");
-  defaultOption.value = 0;
-  defaultOption.innerText = "Select a category";
-  select.appendChild(defaultOption);
-
-  categories.forEach((element) => {
-    const option = document.createElement("option");
-    option.value = element.id;
-    option.innerText = element.category_type;
-    select.appendChild(option);
-  });
-}
-
-// data loaders
 async function loadProductItems() {
   return fetch("api/product_item_load.php", {
     method: "GET", // HTTP request method
@@ -409,7 +437,6 @@ async function loadWeightData() {
     });
 }
 
-// data loaders
 async function loadProductsData() {
   return fetch("api/productView.php", {
     method: "GET", // HTTP request method
@@ -426,19 +453,18 @@ async function loadProductsData() {
     .then((data) => {
       // Handle the JSON data received from the API
       if (data.status == "success") {
-        const userData = ALG.createTable(
-          data.results,
-          [120, 150, 250, 120, 120, 130]
-        );
-        ALG.renderComponent("productViewProductSection", userData, true);
+        return data.results;
       } else if (data.status == "failed") {
         console.log(data.error);
+        return null;
       } else {
         console.log(data);
+        return null;
       }
     })
     .catch((error) => {
       console.error("Fetch error:", error);
+      return null;
     });
 }
 

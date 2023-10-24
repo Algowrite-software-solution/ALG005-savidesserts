@@ -329,7 +329,7 @@ class DashboardComponents {
           bodyCell.style.flexGrow = "1";
           bodyCell.style.width = "150px";
         }
-        bodyCell.innerText = element;
+        bodyCell.innerHTML = element;
         bodyRow.appendChild(bodyCell);
       });
       bodyDesign.appendChild(bodyRow);
@@ -460,13 +460,23 @@ class DashboardComponents {
     ALG.renderComponent(id, list, true);
   }
 
+  async addTableToContainer(
+    id,
+    callback = async () => {},
+    collumnLengths = null
+  ) {
+    const tableData = await callback();
+    const table = ALG.createTable(tableData, collumnLengths);
+    ALG.renderComponent(id, table, true);
+  }
+
   // utility
   async imageFileToDataURL(file, callback) {
     const reader = new FileReader();
 
     reader.onload = function (event) {
       const dataURL = event.target.result;
-       callback(dataURL);
+      callback(dataURL);
     };
 
     reader.readAsDataURL(file);
