@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALG005 - savi dessert</title>
+    <title>Sawee Dessert</title>
+
+    <link rel="shortcut icon" href="resources/images/favicon.png" >
 
     <!-- css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
@@ -46,7 +48,7 @@
                             </div>
                             <div class="row mx-4 mx-0">
                                 <div class="col-12 col-md-4 mt-3 mt-lg-2 pb-2 m-lg-0 p-lg-0 d-flex justify-content-center justify-content-lg-start bg-dange">
-                                    <button class="alg-bg-gold alg-main-button alg-button-hover p-2 px-4 rounded-4 text-white fw-bold alg-text-h2">SHOP
+                                    <button onclick="window.location = 'products.php' " class="alg-bg-gold alg-main-button alg-button-hover p-2 px-4 rounded-4 text-white fw-bold alg-text-h2">SHOP
                                         NOW</button>
                                 </div>
                             </div>
@@ -69,7 +71,7 @@
 
     <!-- Banner -->
     <section class="alg-bg-light" id="promotionContainer">
-        
+
     </section>
 
     <!-- services -->

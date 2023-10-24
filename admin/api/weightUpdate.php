@@ -15,7 +15,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 //response
 $responseObject = new stdClass();
-$responseObject->status = 'false';
+$responseObject->status = 'failed';
 
 // chekcing is user logging
 $userCheckSession = new SessionManager();
@@ -24,14 +24,14 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
      response_sender::sendJson($responseObject);
 }
 
-if (!isset($_GET['id'])) {
+if (!isset($_POST['id'])) {
      $responseObject->error = 'Access denied';
      response_sender::sendJson($responseObject);
 }
 
 // input data
-$weightId = $_GET['id'];
-$newWeight = $_GET['newWeight'];
+$weightId = $_POST['id'];
+$newWeight = $_POST['newWeight'];
 
 //database object
 $db = new database_driver();
@@ -39,5 +39,5 @@ $db = new database_driver();
 // data insert
 $weightUpdate = "UPDATE `weight` SET `weight`=? WHERE `id`=?";
 $db->execute_query($weightUpdate, 'ss', array($newWeight, $weightId));
-$responseObject->status = 'Update Success';
+$responseObject->status = 'success';
 response_sender::sendJson($responseObject);

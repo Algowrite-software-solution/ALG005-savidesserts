@@ -2,7 +2,7 @@
 
 //extra fruit Update API
 //by Madusha Pravinda
-//version - 1.0.1
+//version - 1.0.2
 //26-09-2023
 
 //include models
@@ -15,7 +15,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 //response
 $responseObject = new stdClass();
-$responseObject->status = 'false';
+$responseObject->status = 'failed';
 
 // checking is user logging
 $userCheckSession = new SessionManager();
@@ -24,22 +24,22 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
      response_sender::sendJson($responseObject);
 }
 
-if (!isset($_GET['id'])) {
+if (!isset($_POST['id'])) {
      $responseObject->error = 'Access denied';
      response_sender::sendJson($responseObject);
 }
 
 // input data
-$extraFruitId = $_GET['id'];
-$extraFruitName = $_GET['fruit'];
-$extraFruitPrice = $_GET['price'];
-$extraFruitStatus = $_GET['extra_status_id'];
+$extraFruitId = $_POST['id'];
+$extraFruitName = $_POST['fruit'];
+$extraFruitPrice = $_POST['price'];
+$extraFruitStatus = $_POST['extra_status_id'];
 
 //database object
 $db = new database_driver();
 
 // data insert
 $extraUpdate = "UPDATE `extra` SET `extra_status_id`=?,`fruit`=?,`price`=? WHERE `id`=?";
-$db->execute_query($extraUpdate, 'sss', array($extraFruitStatus, $extraFruitName, $extraFruitPrice, $extraFruitId));
-$responseObject->status = 'Update Success';
+$db->execute_query($extraUpdate, 'sssi', array($extraFruitStatus, $extraFruitName, $extraFruitPrice, $extraFruitId));
+$responseObject->status = 'success';
 response_sender::sendJson($responseObject);
