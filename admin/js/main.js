@@ -90,7 +90,7 @@ async function toggleProductSection(section) {
   if (section === "productView") {
     await loadProductsData();
   } else if (section === "categoryView") {
-    await ALG.addListToContainer("weightViewContainer", loadCategoriesData);
+    await ALG.addListToContainer("categoryViewContainer", loadCategoriesData);
   } else if (section === "productAdd") {
     await addCategoriesToSelect();
   } else if (section === "weight") {

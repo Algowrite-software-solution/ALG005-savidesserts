@@ -2,7 +2,47 @@
 function editWeight(id) {
   const weight = document.getElementById("weightEditWeightInput" + id).value;
 
-  fetch("")
+  const form = new FormData();
+  form.append("id", id);
+  form.append("newWeight", weight);
+
+  fetch("api/weightUpdate.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Weight Update was successfull",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+
+        ALG.addListToContainer(
+          "weightViewContainer",
+          weightListUiDesignAdder,
+          [40, 100, 60, 80]
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 function openWeightRemoveModel() {
