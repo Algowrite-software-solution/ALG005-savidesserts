@@ -259,7 +259,7 @@ function openExtraItemEditModel(id, extraItem, statusId, status, price) {
   ALG.openModel(
     "Edit Weight",
     design,
-    `<button data-bs-dismiss="modal" aria-label="Close" class="alg-btn-pill" onclick="editExtraItem(${id})">Edit</button>`
+    `<button data-bs-dismiss="modal" aria-label="Close" class="alg-btn-pill" onclick="editExtraItem('${id}')">Edit</button>`
   );
 }
 

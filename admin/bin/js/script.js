@@ -174,6 +174,8 @@ function openWeightEditModel(id, weight) {
 
 // extra item
 function editExtraItem(id) {
+  alert(id);
+  return;
   const extraItem = document.getElementById(
     "extraItemEditExtraItemInput" + id
   ).value;

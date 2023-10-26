@@ -6,8 +6,21 @@ document.addEventListener("DOMContentLoaded", () => {
     "navigationSection",
     "mainContentContainer",
     () => {},
-    () => {
-      toggleProductSection("productView");
+    (panel) => {
+      console.log("2st callback");
+      switch (panel) {
+        case "productManagementPanel":
+          toggleProductSection("productView");
+          break;
+
+        case "userManagementPanel":
+          toggleUserSection("userView");
+          break;
+
+        default:
+          console.log(panel);
+          break;
+      }
     }
   );
 
@@ -73,6 +86,29 @@ function toggleNavigation() {
     contentSection.classList.remove("col-xl-10");
   }
   isNavigationPanelOpned = !isNavigationPanelOpned;
+}
+
+// user section
+async function toggleUserSection(section) {
+  const sections = document.getElementById("userSectionsContainer").childNodes;
+
+  for (var i = 0; i < sections.length; i++) {
+    if (sections[i].nodeType === Node.ELEMENT_NODE) {
+      sections[i].classList.remove("d-block");
+      sections[i].classList.add("d-none");
+    }
+  }
+
+  const selectedSection = document.getElementById(section + "UserSection");
+  selectedSection.classList.add("d-block");
+  selectedSection.classList.remove("d-none");
+
+  // load data accordingly
+  if (section === "userView") {
+    const button = document.createElement("button");
+    button.innerText = "test";
+    ALG.renderComponent("userViewUserSection", button, true);
+  }
 }
 
 // product section
@@ -188,8 +224,6 @@ async function extraItemTableDesignLoad() {
   const dataset = await loadExtraItem();
   const newListDataSet = [];
 
-  console.log(dataset);
-
   dataset.forEach((element) => {
     const newData = {
       id: element.extra_id,
@@ -197,7 +231,7 @@ async function extraItemTableDesignLoad() {
       status: element.extra_status_id,
       price: element.price,
       availability: element.extraItem_status_type,
-      edit: `<i class="bi bi-pen" onclick="openExtraItemEditModel(${element.id}, '${element.extra_fruit}', '${element.extra_status_id}', '${element.extraItem_status_type}', '${element.price}')"></i>`,
+      edit: `<i class="bi bi-pen" onclick="openExtraItemEditModel('${element.extra_id}', '${element.extra_fruit}', '${element.extra_status_id}', '${element.extraItem_status_type}', '${element.price}')"></i>`,
       remove: `<i class="bi bi-x-circle" onclick="openExtraItemRemoveModel()"></i>`,
     };
     newListDataSet.push(newData);
