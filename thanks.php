@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALG005 - savi dessert</title>
+    <title>sawee dessert</title>
 
     <!-- css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
@@ -34,7 +34,7 @@
                         <span class="alg-text-h1 fw-bold">Thank You !</span><br/>
                         <p class="alg-text-h2 fst-italic">Come back again......</p>
                     </div>
-                    <button class="alg-bg-dark alg-main-button alg-button-hover p-1 p-lg-2 px-2 px-lg-4 rounded-4 fw-bold alg-text-h2 alg-cursor"><a href="index.php" class="text-decoration-none text-white">Back to Home</a></button>
+                    <button onclick="window.location.reload('index.php')" class="alg-bg-dark alg-main-button alg-button-hover p-1 p-lg-2 px-2 px-lg-4 rounded-4 fw-bold alg-text-h2 alg-cursor"><a href="index.php" class="text-decoration-none text-white">Back to Home</a></button>
                 </div>
             </div>
         </div>
