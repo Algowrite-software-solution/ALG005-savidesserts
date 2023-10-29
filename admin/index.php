@@ -48,9 +48,8 @@
     <div class="alg-bg-dark d-flex flex-grow-1 position-relative alg-text-light">
         <div class="alg-sm-position-ablsolute col-8 h-100 col-md-4 col-lg-3 col-xl-2 p-3" id="navigationSection">
             <div class="rounded-3 alg-bg-darker px-3 py-4 h-100 alg-shadow navigation-sidebar">
-                <button data-algMainNavigationPanel="productManagementPanel" data-algMainNavigationPanelTitle="Product Management" class="alg-btn-pill my-2 w-100 main-navigation-panel-btn">Product Management</button>
-                <button data-algMainNavigationPanel="panel2" data-algMainNavigationPanelTitle="panel2" class="alg-btn-pill my-2 w-100 main-navigation-panel-btn">Navigation 2</button>
-                <button data-algMainNavigationPanel="panel3" data-algMainNavigationPanelTitle="panel3" class="alg-btn-pill my-2 w-100 main-navigation-panel-btn">Navigation 3</button>
+                <button data-algMainNavigationPanel="productManagementPanel" data-algMainNavigationPanelTitle="Product Management" class="alg-btn-pill rounded-4 my-2 w-100 main-navigation-panel-btn">Product Management</button>
+                <button data-algMainNavigationPanel="userManagementPanel" data-algMainNavigationPanelTitle="User Management" class="alg-btn-pill rounded-4 my-2 w-100 main-navigation-panel-btn">User Management</button>
             </div>
         </div>
         <div class=" col-12 col-md-8  col-lg-9 col-xl-10 p-3" id="contentSection">
@@ -60,28 +59,7 @@
                 </div>
                 <hr class="content-divider py-0 m-0">
                 <div class="flex-grow-1 rounded-3 d-flex flex-column gap-2" id="mainContentContainer">
-                    <section class="w-100 d-flex flex-wrap">
-                        <div class="col-12 col-lg-6 p-2">
-                            <div class="w-100 rounded-4 alg-bg-tan p-3" id="adminContainer1">1 <br> <br> <br> <br> <br> </div>
-                        </div>
-                        <div class="col-12 col-lg-6 p-2">
-                            <div class="w-100 rounded-4 alg-bg-tan p-3">1 <br> <br> <br> <br> <br> </div>
-                        </div>
-                    </section>
-                    <section class="w-100 d-flex flex-wrap">
-                        <div class="col-6 col-lg-3 p-2">
-                            <div class="w-100 rounded-4 alg-bg-tan p-3"><br> <br> <br> <br> <br></div>
-                        </div>
-                        <div class="col-6 col-lg-3 p-2">
-                            <div class="w-100 rounded-4 alg-bg-tan p-3">1</div>
-                        </div>
-                        <div class="col-6 col-lg-3 p-2">
-                            <div class="w-100 rounded-4 alg-bg-tan p-3">1</div>
-                        </div>
-                        <div class="col-6 col-lg-3 p-2">
-                            <div class="w-100 rounded-4 alg-bg-tan p-3">1</div>
-                        </div>
-                    </section>
+                    Loading...🔃
                 </div>
             </div>
         </div>
