@@ -100,6 +100,10 @@
                     <!-- payment Method -->
                     <div class="d-flex flex-row flex-lg-column flex-grow-1  alg-bg-darker alg-text-light p-3 alg-rounded-small">
                         <h4>Estimate Delivery Date</h4>
+
+                        <span id="estimateDateContainer" class="text-white fs-4">
+
+                        </span>
                     </div>
 
                     <div class="d-flex flex-grow-1 justify-content-lg-end justify-content-center gap-2">

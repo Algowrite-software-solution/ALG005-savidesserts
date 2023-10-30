@@ -30,11 +30,11 @@
             <div class="d-flex justify-content-center align-items-center" style="height:100vh;">
                 <img src="resources/images/thanks_img.jpg" alt="" class="thanks_img opacity-25 position-absolute" />
                 <div class="d-flex flex-column gap-2 gap-md-3 gap-lg-4">
-                    <div class="text-center"> 
-                        <span class="alg-text-h1 fw-bold">Thank You !</span><br/>
+                    <div class="text-center">
+                        <span class="alg-text-h1 fw-bold">Thank You !</span><br />
                         <p class="alg-text-h2 fst-italic">Come back again......</p>
                     </div>
-                    <button onclick="window.location.reload('index.php')" class="alg-bg-dark alg-main-button alg-button-hover p-1 p-lg-2 px-2 px-lg-4 rounded-4 fw-bold alg-text-h2 alg-cursor"><a href="index.php" class="text-decoration-none text-white">Back to Home</a></button>
+                    <button  class="alg-bg-dark alg-main-button alg-button-hover p-1 p-lg-2 px-2 px-lg-4 rounded-4 fw-bold alg-text-h2 alg-cursor"><a href="http://localhost:9001/index.php" class="text-decoration-none text-white">Back to Home</a></button>
                 </div>
             </div>
         </div>
