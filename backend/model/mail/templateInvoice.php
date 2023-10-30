@@ -1,7 +1,7 @@
 <?php
 require_once("MailSender.php");
 
-$mailer = new MailSender("rmjanithnirmal@gmail.com");
+$mailer = new MailSender("wickramarathnapravinda2001@gmail.com");
 $body = <<<'HTML'
 <div style="width: max-content; font-family: Arial, Helvetica, sans-serif; margin: 20px; background-color: #0a1411; border-radius: 30px; padding: 20px; color: #f6f6f6;">
   <h1 style="text-align: center;">Sawee Dessert</h1>

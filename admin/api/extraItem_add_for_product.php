@@ -25,11 +25,11 @@ $db = new database_driver();
 if (RequestHandler::isPostMethod()) {
 
      // chekcing is user logging
-     // $userCheckSession = new SessionManager();
-     // if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
-     //      $responseObject->error = 'Please LogIn';
-     //      response_sender::sendJson($responseObject);
-     // }
+     $userCheckSession = new SessionManager();
+     if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
+          $responseObject->error = 'Please LogIn';
+          response_sender::sendJson($responseObject);
+     }
 
      //data add extra item
      if (isset($_POST['ad_product_id']) && isset($_POST['ad_extra_id'])) {
@@ -121,7 +121,7 @@ if (RequestHandler::isGetMethod()) {
      $searchTable = "SELECT * FROM `extra_item` INNER JOIN `extra` ON `extra_item`.`extra_id`=`extra`.`id` INNER JOIN `product` ON `extra_item`.`product_product_id`=`product`.`product_id`";
      $result = $db->query($searchTable);
 
-
+    //response data array 
      $resultArray = [];
 
      //check row data
