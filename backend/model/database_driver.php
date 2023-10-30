@@ -1,6 +1,6 @@
 <?php
 
-require_once(__FILE__ . "/../../model/config.php");
+require_once(__DIR__ . "/config.php");
 
 class database_driver
 {
@@ -10,7 +10,7 @@ class database_driver
     // Constructor that takes in connection details and establishes a connection to the database
     public function __construct()
     {
-        $host = DB_SERVER;
+        $host = DB_HOST;
         $user = DB_USERNAME;
         $password =  DB_PASSWORD;
         $database = DATABASE;

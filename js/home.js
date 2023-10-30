@@ -44,11 +44,10 @@ function loadProductPromotions() {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      return response.json(); // Parse the response body as JSON
+      return response.text(); // Parse the response body as JSON
     })
     .then((data) => {
       const promotionContainer = document.getElementById("promotionContainer");
-
 
       if (data.status == "success") {
         promotionContainer.innerHTML = `<div class="container">
@@ -65,9 +64,9 @@ function loadProductPromotions() {
           "promotionSliderContainer"
         );
         promotionSliderContainer.innerHTML = "";
-        var x =0;
+        var x = 0;
         data.response.forEach((element) => {
-          x = x+1;
+          x = x + 1;
           console.log(x);
           promotionSliderContainer.innerHTML += `
                 <div class="promotionSwiper swiper-slide">
@@ -79,6 +78,7 @@ function loadProductPromotions() {
         });
       } else {
         console.log("no promotion results");
+        console.log(data);
       }
     })
     .catch((error) => {
