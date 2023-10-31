@@ -18,6 +18,14 @@ header("Content-Type: application/json; charset=UTF-8");
 $responseObject = new stdClass();
 $responseObject->status = 'failed';
 
+
+// chekcing is user logging
+$userCheckSession = new SessionManager("alg005_admin");
+if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
+    $responseObject->error = 'Please LogIn';
+    response_sender::sendJson($responseObject);
+}
+
 // db connection
 $db = new database_driver();
 
@@ -33,5 +41,3 @@ for ($i = 0; $i < $resultSet->num_rows; $i++) {
 $responseObject->status = "success";
 $responseObject->results = $responseResultArray;
 response_sender::sendJson($responseObject);
-
-

@@ -480,7 +480,7 @@ async function productItemSave(event) {
     .then((response) => {
       console.log(response);
       // console.log(response.text());
-      return response.text();
+      return response.json();
     })
     .then((data) => {
       if (data.status == "success") {

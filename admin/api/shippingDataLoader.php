@@ -18,7 +18,7 @@ $responseObject = new stdClass();
 $responseObject->status = 'failed';
 
 //check is login user
-$userCheckSession = new SessionManager();
+$userCheckSession = new SessionManager("alg005_admin");
 if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
      $responseObject->error = 'Please login';
      response_sender::sendJson($responseObject);
