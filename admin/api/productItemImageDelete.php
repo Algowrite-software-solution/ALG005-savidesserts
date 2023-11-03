@@ -15,6 +15,14 @@ $responseObject = new stdClass();
 $responseObject->status = 'failed';
 
 
+// chekcing is user logging
+$userCheckSession = new SessionManager("alg005_admin");
+if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
+     $responseObject->error = 'Please LogIn';
+     response_sender::sendJson($responseObject);
+}
+
+
 $imagePath = $_GET['image_path'];
 
 if (file_exists($imagePath)) {

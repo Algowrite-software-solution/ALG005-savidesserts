@@ -1,4 +1,7 @@
 <?php
+
+require_once(__DIR__ . "/config.php");
+
 class database_driver
 {
 
@@ -7,10 +10,11 @@ class database_driver
     // Constructor that takes in connection details and establishes a connection to the database
     public function __construct()
     {
-        $host = 'localhost';
-        $user = 'algowrit_savidessert';
-        $password = 'CytsTeeY%fw-'; // janith
-        $database = 'algowrit_savidessert';
+        // update configs
+        $host = DB_HOST;
+        $user = DB_USERNAME;
+        $password =  DB_PASSWORD;
+        $database = DATABASE;
 
         // Connect to the database using mysqli
         $this->connection = new mysqli($host, $user, $password, $database);

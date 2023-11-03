@@ -2,10 +2,11 @@
 
 class SessionManager
 {
-    private $sessionVariable = "alg005_user";
+    private $sessionVariable;
 
-    public function __construct()
+    public function __construct(string $sessionVariable = "alg005_user")
     {
+        $this->sessionVariable = $sessionVariable;
         $this->sessionStarter();
     }
 

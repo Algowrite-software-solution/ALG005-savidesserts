@@ -224,6 +224,8 @@
   border: none;
 }
 
+
+
 @media screen and (min-width: 1070px) {
   /* font size */
   .alg-text-p {
@@ -246,6 +248,10 @@
   .watchlsit_img {
     width: 80px;
     height: 50px;
+  }
+
+  .thanks_img{
+    width: 50%;
   }
 }
 
@@ -272,6 +278,10 @@
     width: 66px;
     height: 50px;
   }
+
+  .thanks_img{
+    width: 70%;
+  }
 }
 
 @media screen and (max-width: 575px) {
@@ -296,5 +306,9 @@
   .watchlsit_img {
     width: 50px;
     height: 40px;
+  }
+
+  .thanks_img{
+    width: 90%;
   }
 }

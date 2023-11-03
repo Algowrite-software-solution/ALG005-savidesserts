@@ -1,7 +1,7 @@
 <?php
 //product Update API
 //by madusha pravinda
-//version - 1.0.0
+//version - 1.0.1
 //26-09-2023
 
 //include models
@@ -15,10 +15,10 @@ header("Content-Type: application/json; charset=UTF-8");
 
 //response
 $responseObject = new stdClass();
-$responseObject->status = 'false';
+$responseObject->status = 'failed';
 
 // chekcing is user logging
-$userCheckSession = new SessionManager();
+$userCheckSession = new SessionManager("alg005_admin");
 if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
      $responseObject->error = 'Please LogIn';
      response_sender::sendJson($responseObject);
@@ -70,8 +70,8 @@ if ($categoryId == 0) {
 //database object
 $db = new database_driver();
 
-//data insert
+//data update
 $productInsert = "UPDATE `product` SET `product_name`=?,`product_description`=?,`category_id`=? WHERE `product_id`=?";
-$db->execute_query($productInsert, 'ssss', array($productName, $description, $categoryId,$productId));
-$responseObject->status = 'Product Update Success';
+$db->execute_query($productInsert, 'ssss', array($productName, $description, $categoryId, $productId));
+$responseObject->status = 'success';
 response_sender::sendJson($responseObject);

@@ -6,8 +6,21 @@ document.addEventListener("DOMContentLoaded", () => {
     "navigationSection",
     "mainContentContainer",
     () => {},
-    () => {
-      toggleProductSection("productView");
+    (panel) => {
+      console.log("2st callback");
+      switch (panel) {
+        case "productManagementPanel":
+          toggleProductSection("productView");
+          break;
+
+        case "userManagementPanel":
+          toggleUserSection("userView");
+          break;
+
+        default:
+          console.log(panel);
+          break;
+      }
     }
   );
 
@@ -24,7 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
     "productManagementPanel",
     "mainContentContainer",
     "Product Management",
-    loadProductsData
+    async () => {
+      await ALG.addTableToContainer(
+        "productViewProductSection",
+        productTableDesignData,
+        [100, 150, 250, 120, 120, 60, 80]
+      );
+    }
   );
 
   ALG.addTooltipDitectors("tooltip-holder");
@@ -69,6 +88,29 @@ function toggleNavigation() {
   isNavigationPanelOpned = !isNavigationPanelOpned;
 }
 
+// user section
+async function toggleUserSection(section) {
+  const sections = document.getElementById("userSectionsContainer").childNodes;
+
+  for (var i = 0; i < sections.length; i++) {
+    if (sections[i].nodeType === Node.ELEMENT_NODE) {
+      sections[i].classList.remove("d-block");
+      sections[i].classList.add("d-none");
+    }
+  }
+
+  const selectedSection = document.getElementById(section + "UserSection");
+  selectedSection.classList.add("d-block");
+  selectedSection.classList.remove("d-none");
+
+  // load data accordingly
+  if (section === "userView") {
+    const button = document.createElement("button");
+    button.innerText = "test";
+    ALG.renderComponent("userViewUserSection", button, true);
+  }
+}
+
 // product section
 async function toggleProductSection(section) {
   const sections = document.getElementById(
@@ -88,13 +130,21 @@ async function toggleProductSection(section) {
 
   // load data accordingly
   if (section === "productView") {
-    await loadProductsData();
+    await ALG.addTableToContainer(
+      "productViewProductSection",
+      productTableDesignData,
+      [100, 150, 250, 120, 120, 60, 80]
+    );
   } else if (section === "categoryView") {
-    await ALG.addListToContainer("weightViewContainer", loadCategoriesData);
+    await ALG.addListToContainer("categoryViewContainer", loadCategoriesData);
   } else if (section === "productAdd") {
     await addCategoriesToSelect();
   } else if (section === "weight") {
-    await ALG.addListToContainer("weightViewContainer", loadWeightData);
+    await ALG.addListToContainer(
+      "weightViewContainer",
+      weightListUiDesignAdder,
+      [40, 100, 60, 80]
+    );
   } else if (section === "category") {
     await ALG.addListToContainer(
       "categoryViewContainer",
@@ -111,15 +161,115 @@ async function toggleProductSection(section) {
       extraItemTableDesignLoad,
       [60, 150, 100, 70, 100, 60, 100]
     );
+  } else if (section === "setExtraItem") {
+    loadProductListToExtraItemSettingUi();
+    loadExtraItemsToExtraItemSettingUi();
+    await ALG.addListToContainer(
+      "setupExtraItemViewContainer",
+      loadSetExtraItemData,
+      [60, 150, 200]
+    );
   }
 }
 
 // ui data updators
+async function loadExtraItemsToExtraItemSettingUi() {
+  const tableData = await loadExtraItem();
+  const setupExtraItemSelector = document.getElementById(
+    "setupExtraItemSelector"
+  );
+  setupExtraItemSelector.innerHTML = "";
+
+  const option = document.createElement("option");
+  option.value = 0;
+  option.innerText = "select an extra item";
+  setupExtraItemSelector.appendChild(option);
+
+  tableData.forEach((element) => {
+    const option = document.createElement("option");
+    option.value = element.extra_id;
+    option.innerText = element.extra_fruit;
+    setupExtraItemSelector.appendChild(option);
+  });
+}
+
+async function loadProductListToExtraItemSettingUi() {
+  const tableData = await loadProductData();
+
+  const addProductSelector = document.getElementById("setupProductSelector");
+  addProductSelector.innerHTML = "";
+
+  const option = document.createElement("option");
+  option.value = 0;
+  option.innerText = "select a product";
+  addProductSelector.appendChild(option);
+
+  tableData.forEach((element) => {
+    const option = document.createElement("option");
+    option.value = element.product_id;
+    option.innerText = element.product_name;
+    addProductSelector.appendChild(option);
+  });
+}
+
+async function productTableDesignData() {
+  const tableData = await loadProductsData();
+  let designData = [];
+  tableData.forEach((element) => {
+    const newData = {
+      id: element.product_id,
+      product: element.product_name,
+      description: element.product_description,
+      category: element.category_type,
+      ["added date"]: element.add_date,
+      edit: `<i class="bi bi-pen" onclick="openProductEditModel(${element.product_id}, '${element.product_name}', '${element.product_description}', '${element.category_id}', '${element.add_date}')"></i>`,
+      remove: `<i class="bi bi-x-circle" onclick="openProductRemoveModel()"></i>`,
+    };
+
+    designData.push(newData);
+  });
+
+  return designData;
+}
+
+async function addCategoriesToSelect() {
+  const select = document.getElementById("productCategoryInputField");
+  const categories = await loadCategoriesData();
+
+  select.innerHTML = "";
+  const defaultOption = document.createElement("option");
+  defaultOption.value = 0;
+  defaultOption.innerText = "Select a category";
+  select.appendChild(defaultOption);
+
+  categories.forEach((element) => {
+    const option = document.createElement("option");
+    option.value = element.id;
+    option.innerText = element.category_type;
+    select.appendChild(option);
+  });
+}
+
+async function weightListUiDesignAdder() {
+  const weightData = await loadWeightData();
+  let preparedResultSet = [];
+  weightData.forEach((element) => {
+    const data = {
+      id: element.weight_id,
+      weight: element.weight,
+      edit: `<i class="bi bi-pen" onclick="openWeightEditModel(${element.weight_id}, '${element.weight}');"></i>`,
+      remove: `<i class="bi bi-x-circle" onclick="openWeightRemoveModel();"></i>`,
+    };
+
+    preparedResultSet.push(data);
+  });
+
+  return preparedResultSet;
+}
+
 async function extraItemTableDesignLoad() {
   const dataset = await loadExtraItem();
   const newListDataSet = [];
-
-  console.log(dataset);
 
   dataset.forEach((element) => {
     const newData = {
@@ -128,7 +278,7 @@ async function extraItemTableDesignLoad() {
       status: element.extra_status_id,
       price: element.price,
       availability: element.extraItem_status_type,
-      edit: `<i class="bi bi-pen" onclick="openExtraItemEditModel()"></i>`,
+      edit: `<i class="bi bi-pen" onclick="openExtraItemEditModel('${element.extra_id}', '${element.extra_fruit}', '${element.extra_status_id}', '${element.extraItem_status_type}', '${element.price}')"></i>`,
       remove: `<i class="bi bi-x-circle" onclick="openExtraItemRemoveModel()"></i>`,
     };
     newListDataSet.push(newData);
@@ -180,7 +330,6 @@ async function loadProductsOnProductItemSelector() {
 }
 
 // data loaders
-
 async function loadExtraItem() {
   return fetch("api/extraItemView.php", {
     method: "GET", // HTTP request method
@@ -243,25 +392,49 @@ async function loadProductData() {
     });
 }
 
-async function addCategoriesToSelect() {
-  const select = document.getElementById("productCategoryInputField");
-  const categories = await loadCategoriesData();
+async function loadSetExtraItemData() {
+  return fetch("api/extraItem_add_for_product.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        const results = data.results;
+        const listArray = [];
 
-  select.innerHTML = "";
-  const defaultOption = document.createElement("option");
-  defaultOption.value = 0;
-  defaultOption.innerText = "Select a category";
-  select.appendChild(defaultOption);
+        results.forEach((element) => {
+          const newData = {
+            id: element.id,
+            "extra item": element.fruit,
+            product: element.product_name,
+          };
 
-  categories.forEach((element) => {
-    const option = document.createElement("option");
-    option.value = element.id;
-    option.innerText = element.category_type;
-    select.appendChild(option);
-  });
+          listArray.push(newData);
+        });
+        return listArray;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
 }
 
-// data loaders
 async function loadProductItems() {
   return fetch("api/product_item_load.php", {
     method: "GET", // HTTP request method
@@ -388,7 +561,6 @@ async function loadWeightData() {
     });
 }
 
-// data loaders
 async function loadProductsData() {
   return fetch("api/productView.php", {
     method: "GET", // HTTP request method
@@ -405,19 +577,18 @@ async function loadProductsData() {
     .then((data) => {
       // Handle the JSON data received from the API
       if (data.status == "success") {
-        const userData = ALG.createTable(
-          data.results,
-          [120, 150, 250, 120, 120, 130]
-        );
-        ALG.renderComponent("productViewProductSection", userData, true);
+        return data.results;
       } else if (data.status == "failed") {
         console.log(data.error);
+        return null;
       } else {
         console.log(data);
+        return null;
       }
     })
     .catch((error) => {
       console.error("Fetch error:", error);
+      return null;
     });
 }
 

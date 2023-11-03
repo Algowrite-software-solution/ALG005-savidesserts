@@ -52,10 +52,25 @@ if ($result['result']->num_rows === 0) {
 $updateQuery = "UPDATE `user` SET `confomation_code`=? WHERE `email`=?";
 $db->execute_query($updateQuery, 'ss', array($six_digit_random_number, $email));
 
-// send verification code user email
-$sendMail = new MailSender($email);
-$sendMail->mailInitiate('Verification Code', 'Sawee Dessert', "Your Verification Code : $six_digit_random_number ");
-$sendMail->sendMail();
+//api sending template
+$mailer = new MailSender($email);
+$body = <<< HTML
+<div style="border-radius: 20px; background-color: #122620;">
+  <h2 style="text-align: center; color: #b68b40; padding: 20px 0 0 0;">SAWEE DESSERT</h2>
+  <hr>
+  <div style="background-color: #b68b40; color: black; border-radius: 20px; ">
+    <h3 style="text-align: center; background-color: #122620;color: #b68b40; padding: 10px;">Verification Code</h3>
+    <div style="text-align: center; padding: 10px; font-weight: bold;">{$six_digit_random_number}</div>
+  </div>
+</div>
+HTML;
+$mailer->mailInitiate("Sawee Dessert", "Your Verification Code", $body);
 
-$response->status = "success";
-response_sender::sendJson($response);
+$error = $mailer->sendMail();
+if ($error === 'Verification code sending failed') {
+     $responseObject->error = $error;
+     response_sender::sendJson($responseObject);
+} else {
+     $response->status = "success";
+     response_sender::sendJson($response);
+}
