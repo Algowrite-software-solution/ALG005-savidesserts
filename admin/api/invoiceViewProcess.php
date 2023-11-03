@@ -18,19 +18,23 @@ $responseObject = new stdClass();
 $responseObject->status = "false";
 
 //chekcing is user logging
-$userCheckSession = new SessionManager();
-if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
-    $responseObject->status = 'Please login';
-    response_sender::sendJson($responseObject);
-}
+// $userCheckSession = new SessionManager();
+// if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
+//     $responseObject->status = 'Please login';
+//     response_sender::sendJson($responseObject);
+// }
 
 
 //load invoice details
 $db = new database_driver();
 
-$query = "SELECT `invoice`.*, `user`.`full_name`,`invoice_status`.* FROM `invoice` 
+$query = "SELECT `invoice`.*, `user`.*,`invoice_status`.* FROM `invoice` 
 INNER JOIN `user` ON `invoice`.`user_user_id`=`user`.`user_id`
-INNER JOIN `invoice_status` ON `invoice_status`.`invoice_status_id`=`invoice`.`invoice_status_invoice_status_id` ORDER BY `order_date` DESC";
+INNER JOIN `invoice_status` ON `invoice_status`.`invoice_status_id`=`invoice`.`invoice_status_invoice_status_id` 
+INNER JOIN `delivery_details` ON `user`.`user_id`=`delivery_details`.`user_user_id`
+INNER JOIN `province` ON `delivery_details`.`province_province_id` = `province`.`province_id`
+INNER JOIN `distric` ON `delivery_details`.`distric_distric_id` = `distric`.`distric_id`
+ORDER BY `order_date` DESC";
 $resultSet = $db->query($query);
 
 $responseResultArray = [];
