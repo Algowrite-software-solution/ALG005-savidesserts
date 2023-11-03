@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
--- Host: localhost    Database: savi_dessert_shop
+-- Host: localhost    Database: alg005_db
 -- ------------------------------------------------------
--- Server version	8.0.30
+-- Server version	8.0.31
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,7 +27,7 @@ CREATE TABLE `admin` (
   `mobile` varchar(12) NOT NULL,
   `password` varchar(45) NOT NULL,
   PRIMARY KEY (`admin_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,6 +36,7 @@ CREATE TABLE `admin` (
 
 LOCK TABLES `admin` WRITE;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` VALUES (1,'0710902997','123123');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,7 +205,7 @@ CREATE TABLE `extra_item` (
   KEY `fk_extra_item_extra1_idx` (`extra_id`),
   CONSTRAINT `fk_extra_item_extra1` FOREIGN KEY (`extra_id`) REFERENCES `extra` (`id`),
   CONSTRAINT `fk_extra_item_product1` FOREIGN KEY (`product_product_id`) REFERENCES `product` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -213,6 +214,7 @@ CREATE TABLE `extra_item` (
 
 LOCK TABLES `extra_item` WRITE;
 /*!40000 ALTER TABLE `extra_item` DISABLE KEYS */;
+INSERT INTO `extra_item` VALUES (10,2,'909861'),(11,3,'452276');
 /*!40000 ALTER TABLE `extra_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -382,7 +384,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES ('221944','Sawee Special Watalappan Powder','Ingredients: Cardamom,Cloves,Cinnamon,Nutmeg Including Secret Natural Ingredients',15,'2023-10-14'),('224940','Cinnamon','ingredients',15,'2023-10-14'),('230434','8mm Cardamom','ingredients',15,'2023-10-14'),('344791','Nutmeg','ingredients',15,'2023-10-14'),('442403','Cloves','ingredients',15,'2023-10-14'),('452276','Sawee Special Watalappan','This product is a very delirious food made according to our own recipe',11,'2023-10-14'),('909861','Special Biscuit Pudding','This product is a very delicious food made according to our own recipe',14,'2023-10-14');
+INSERT INTO `product` VALUES ('221944','Sawee Special Watalappan Powder','Ingredients: Cardamom,Cloves,Cinnamon,Nutmeg Including Secret Natural Ingredients',15,'2023-10-14'),('224940','Cinnamon',' aa ingredients',15,'2023-10-14'),('230434','8mm Cardamom','ingredients',15,'2023-10-14'),('344791','Nutmeg','ingredients',15,'2023-10-14'),('442403','Cloves','ingredients are as mentioned',15,'2023-10-14'),('452276','Sawee Special Watalappan','This product is a very delirious food made according to our own recipe',11,'2023-10-14'),('909861','Special Biscuit Pudding','This product is a very delicious food made according to our own recipe',14,'2023-10-14');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -694,4 +696,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-18 22:22:32
+-- Dump completed on 2023-11-03 23:10:15
