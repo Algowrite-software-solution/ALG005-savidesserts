@@ -462,9 +462,11 @@ async function loadProductItems() {
             quantity: element.qty,
             price: element.price,
             "weight id": element.weight_id,
-            image: element["images[0]"]
-              ? `<img src="${element["images[0]"]}" class="alg-list-cell-image"  />`
+            image: element.images[0]
+              ? `<img src="${element.images[0]}" class="alg-list-cell-image"  />`
               : "Empty",
+            edit: `<i class="fs-4 bi bi-pen" onclick="openProductItemEditModel('${element.product_item_id}')"></i>`,
+            remove: `<i class="fs-4 bi bi-x-circle" onclick="openProductItemRemoveModel('${element.product_item_id}')"></i>`,
           };
 
           listArray.push(newData);
