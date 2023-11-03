@@ -110,7 +110,6 @@ class DashboardComponents {
     const mainContainerTitle = document.getElementById(
       "mainContentContainerTitle"
     );
-    console.log("just before panel loads");
     fetch("components/mainNavigationPanels/" + requestedPanel + ".php", {
       method: "GET",
     })
@@ -123,13 +122,11 @@ class DashboardComponents {
 
         // callback
         try {
-          console.log("something+");
           callback();
         } catch (error) {
           console.log("error");
         }
       });
-    console.log("just after panel loads");
   }
 
   // listners

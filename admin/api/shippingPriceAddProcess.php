@@ -18,7 +18,7 @@ $responseObject = new stdClass();
 $responseObject->status = 'false';
 
 //cheak is login user
-$userCheckSession = new SessionManager();
+$userCheckSession = new SessionManager("alg005_admin");
 if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
     $responseObject->status = "Please LogIn";
     response_sender::sendJson($responseObject);

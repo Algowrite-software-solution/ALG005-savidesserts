@@ -25,7 +25,7 @@ $db = new database_driver();
 if (RequestHandler::isPostMethod()) {
 
      // chekcing is user logging
-     $userCheckSession = new SessionManager();
+     $userCheckSession = new SessionManager("alg005_admin");
      if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
           $responseObject->error = 'Please LogIn';
           response_sender::sendJson($responseObject);
@@ -111,7 +111,7 @@ if (RequestHandler::isPostMethod()) {
 if (RequestHandler::isGetMethod()) {
 
      // chekcing is user logging
-     $userCheckSession = new SessionManager();
+     $userCheckSession = new SessionManager("alg005_admin");
      if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
           $responseObject->error = 'Please LogIn';
           response_sender::sendJson($responseObject);

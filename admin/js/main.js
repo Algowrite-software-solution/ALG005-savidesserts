@@ -161,10 +161,56 @@ async function toggleProductSection(section) {
       extraItemTableDesignLoad,
       [60, 150, 100, 70, 100, 60, 100]
     );
+  } else if (section === "setExtraItem") {
+    loadProductListToExtraItemSettingUi();
+    loadExtraItemsToExtraItemSettingUi();
+    await ALG.addListToContainer(
+      "setupExtraItemViewContainer",
+      loadProductItems
+    );
   }
 }
 
 // ui data updators
+async function loadExtraItemsToExtraItemSettingUi() {
+  const tableData = await loadExtraItem();
+  const setupExtraItemSelector = document.getElementById(
+    "setupExtraItemSelector"
+  );
+  setupExtraItemSelector.innerHTML = "";
+
+  const option = document.createElement("option");
+  option.value = 0;
+  option.innerText = "select an extra item";
+  setupExtraItemSelector.appendChild(option);
+
+  tableData.forEach((element) => {
+    const option = document.createElement("option");
+    option.value = element.extra_id;
+    option.innerText = element.extra_fruit;
+    setupExtraItemSelector.appendChild(option);
+  });
+}
+
+async function loadProductListToExtraItemSettingUi() {
+  const tableData = await loadProductData();
+
+  const addProductSelector = document.getElementById("setupProductSelector");
+  addProductSelector.innerHTML = "";
+
+  const option = document.createElement("option");
+  option.value = 0;
+  option.innerText = "select a product";
+  addProductSelector.appendChild(option);
+
+  tableData.forEach((element) => {
+    const option = document.createElement("option");
+    option.value = element.product_id;
+    option.innerText = element.product_name;
+    addProductSelector.appendChild(option);
+  });
+}
+
 async function productTableDesignData() {
   const tableData = await loadProductsData();
   let designData = [];

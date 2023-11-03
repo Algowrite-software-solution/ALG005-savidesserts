@@ -173,6 +173,69 @@ function openWeightEditModel(id, weight) {
 }
 
 // extra item
+function setupExtraItem() {
+  const product = document.getElementById("setupProductSelector").value;
+  const extraItem = document.getElementById("setupExtraItemSelector").value;
+
+  if (product == 0) {
+    ALG.openToast(
+      "Warnning",
+      "Please select a product",
+      ALG.getCurrentTime(),
+      "bi-heart",
+      "Error"
+    );
+    return;
+  } else if (extraItem == 0) {
+    ALG.openToast(
+      "Warnning",
+      "Please select a extra item",
+      ALG.getCurrentTime(),
+      "bi-heart",
+      "Error"
+    );
+    return;
+  }
+
+  const form = new FormData();
+  form.append("ad_product_id", product);
+  form.append("ad_extra_id", extraItem);
+
+  fetch("api/extraItem_add_for_product.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Extra item set up successful",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+
+        ALG.addListToContainer("setupExtraItemViewContainer", loadProductItems);
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 function editExtraItem(id) {
   const extraItem = document.getElementById(
     "extraItemEditExtraItemInput" + id
@@ -480,7 +543,7 @@ async function productItemSave(event) {
     .then((response) => {
       console.log(response);
       // console.log(response.text());
-      return response.text();
+      return response.json();
     })
     .then((data) => {
       if (data.status == "success") {
