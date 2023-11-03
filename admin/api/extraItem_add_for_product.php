@@ -136,7 +136,7 @@ if (RequestHandler::isGetMethod()) {
      }
 
      $responseObject->status = 'success';
-     $responseObject->result = $resultArray;
+     $responseObject->results = $resultArray;
      response_sender::sendJson($responseObject);
      //load all extra item
 

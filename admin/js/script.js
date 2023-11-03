@@ -218,7 +218,11 @@ function setupExtraItem() {
           "Success"
         );
 
-        ALG.addListToContainer("setupExtraItemViewContainer", loadProductItems);
+        ALG.addListToContainer(
+          "setupExtraItemViewContainer",
+          loadSetExtraItemData,
+          [60, 150, 200]
+        );
       } else if (data.status == "failed") {
         ALG.openToast(
           "Alert",
