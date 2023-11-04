@@ -487,6 +487,7 @@ async function openProductItemEditModel(
 }
 
 function updateProductItem(id) {
+  alert(id);
   const productId = document.getElementById(
     "productItemUpdateProductsSelect"
   ).value;
@@ -510,7 +511,7 @@ function updateProductItem(id) {
     body: form,
   })
     .then((response) => {
-      return response.text();
+      return response.json();
     })
     .then((data) => {
       if (data.status == "success") {

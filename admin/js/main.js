@@ -456,12 +456,13 @@ async function loadProductItems() {
 
         results.forEach((element) => {
           const newData = {
-            id: element.product_item_id,
-            "product id": element.product_id,
-            "product status id": element.product_status_id,
+            Id: element.product_item_id,
+            "Product Id": element.product_id,
+            "Product Name": element.product_name,
+            "Product Status": element.type,
             quantity: element.qty,
             price: element.price,
-            "weight id": element.weight_id,
+            "weight id": element.weight,
             image: element.images[0]
               ? `<img src="${element.images[0]}" class="alg-list-cell-image"  />`
               : "Empty",

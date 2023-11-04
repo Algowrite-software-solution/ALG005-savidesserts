@@ -37,8 +37,6 @@ $productItemStatusId = $_POST['product_status_id'];
 $productId = $_POST['product_product_id'];
 $weightId = $_POST['weight_id'];
 
-
-
 //data validation sending object
 $dataToValidate = [
      'qty' => [
