@@ -26,7 +26,7 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
 
 //database object
 $db = new database_driver();
-$productItemSearchQuery = "SELECT * FROM `product_item` 
+$productItemSearchQuery = "SELECT *, `product_item`.`id` as `product_item_id` FROM `product_item` 
 INNER JOIN `product` ON `product_item`.`product_product_id`=`product`.`product_id`
 INNER JOIN `product_status` ON `product_item`.`product_status_id`=`product_status`.`id`
 INNER JOIN `weight` ON `product_item`.`weight_id`=`weight`.`id`";
@@ -53,7 +53,7 @@ if ($resultSet->num_rows > 0) {
 
         // Create a new object for each product item
         $resRowDetailObject = new stdClass();
-        $resRowDetailObject->product_item_id = $rowData['id'];
+        $resRowDetailObject->product_item_id = $rowData['product_item_id'];
         $resRowDetailObject->qty = $rowData['qty'];
         $resRowDetailObject->price = $rowData['price'];
         $resRowDetailObject->product_status_id = $rowData['product_status_id'];
