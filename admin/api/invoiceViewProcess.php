@@ -18,11 +18,11 @@ $responseObject = new stdClass();
 $responseObject->status = "false";
 
 //chekcing is user logging
-// $userCheckSession = new SessionManager();
-// if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
-//     $responseObject->status = 'Please login';
-//     response_sender::sendJson($responseObject);
-// }
+$userCheckSession = new SessionManager();
+if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
+    $responseObject->status = 'Please login';
+    response_sender::sendJson($responseObject);
+}
 
 
 //load invoice details

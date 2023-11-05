@@ -70,12 +70,6 @@ function loadCategory() {
     });
 }
 
-// load open Signle Product View
-function openSignleProductView(id, weightId) {
-  // alert(weight);
-  window.location.href =
-    "singleProductView.php?product_id=" + id + "&weightId=" + weightId;
-}
 
 function loadProducts(
   searchTerm = "",
@@ -90,15 +84,15 @@ function loadProducts(
 
   fetch(
     SERVER_URL +
-      "backend/api/load_product_list_api.php?search=" +
-      searchTerm +
-      "&options=" +
-      JSON.stringify({
-        category: category,
-        orderBy: orderBy,
-        orderDirection: orderDirection,
-        limit: limit,
-      }),
+    "backend/api/load_product_list_api.php?search=" +
+    searchTerm +
+    "&options=" +
+    JSON.stringify({
+      category: category,
+      orderBy: orderBy,
+      orderDirection: orderDirection,
+      limit: limit,
+    }),
     {
       method: "GET", // HTTP request method
       headers: {
@@ -159,6 +153,14 @@ function loadProducts(
       console.error("Fetch error:", error);
     });
 }
+
+// load open Signle Product View
+function openSignleProductView(id, weightId) {
+  // alert(weight);
+  window.location.href =
+    "singleProductView.php?product_id=" + id + "&weightId=" + weightId;
+}
+
 
 function getFirst15Words(inputString) {
   // Split the input string into an array of words using whitespace as the delimiter

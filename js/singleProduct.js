@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const productid = document.body.dataset.productid;
   const weight = document.body.dataset.weight;
 
-  loadProduct(productid);
+  loadProduct(productid, weight);
   loadExtraItem(productid);
   loadWeight(productid, weight);
   loadSwiper();
@@ -54,10 +54,10 @@ function loadSwiper() {
 let productItemPrice;
 
 // load product details
-function loadProduct(productId) {
+function loadProduct(productId, weightId) {
   // Fetch request
   fetch(
-    SERVER_URL + "backend/api/load_single_product.php?product_id=" + productId,
+    SERVER_URL + "backend/api/load_single_product.php?product_id=" + productId + "&weightId=" + weightId,
     {
       method: "GET", // HTTP request method
       headers: {
@@ -343,16 +343,9 @@ function loadWeight(productId, weightId) {
 }
 
 function changeProductItemForWeight(productId) {
-  const loadWeightContainer = document.getElementById(
-    "loadWeightContainer"
-  ).value;
-
+  const loadWeightContainer = document.getElementById("loadWeightContainer").value;
   // alert(weight);
-  window.location.href =
-    "singleProductView.php?product_id=" +
-    productId +
-    "&weightId=" +
-    loadWeightContainer;
+  window.location.href = "singleProductView.php?product_id=" + productId + "&weightId=" + loadWeightContainer;
 }
 
 //add to cart
