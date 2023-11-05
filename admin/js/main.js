@@ -2,26 +2,28 @@
 const ALG = new DashboardComponents();
 
 document.addEventListener("DOMContentLoaded", () => {
+  const mainPanelContentLoad = async (panel) => {
+    switch (panel) {
+      case "productManagementPanel":
+        toggleProductSection("productView");
+        break;
+
+      case "userManagementPanel":
+        toggleUserSection("userView");
+        break;
+
+      default:
+        console.log(panel);
+        break;
+    }
+  };
   ALG.mainNavigationController(
     "navigationSection",
     "mainContentContainer",
-    () => {},
-    (panel) => {
-      console.log("2st callback");
-      switch (panel) {
-        case "productManagementPanel":
-          toggleProductSection("productView");
-          break;
-
-        case "userManagementPanel":
-          toggleUserSection("userView");
-          break;
-
-        default:
-          console.log(panel);
-          break;
-      }
-    }
+    () => {
+      mainPanelContentLoad("productManagementPanel");
+    },
+    mainPanelContentLoad
   );
 
   // sidebar controls
@@ -32,19 +34,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // defaults
-  ALG.loadMainPanel(
-    "productManagementPanel",
-    "mainContentContainer",
-    "Product Management",
-    async () => {
-      await ALG.addTableToContainer(
-        "productViewProductSection",
-        productTableDesignData,
-        [100, 150, 250, 120, 120, 60, 80]
-      );
-    }
-  );
+  // // defaults
+  // ALG.loadMainPanel(
+  //   "productManagementPanel",
+  //   "mainContentContainer",
+  //   "Product Management",
+  //   async () => {
+  //     await ALG.addTableToContainer(
+  //       "productViewProductSection",
+  //       productTableDesignData,
+  //       [100, 150, 250, 120, 120, 60, 80]
+  //     );
+  //   }
+  // );
 
   ALG.addTooltipDitectors("tooltip-holder");
 
@@ -105,9 +107,7 @@ async function toggleUserSection(section) {
 
   // load data accordingly
   if (section === "userView") {
-    const button = document.createElement("button");
-    button.innerText = "test";
-    ALG.renderComponent("userViewUserSection", button, true);
+    await ALG.addTableToContainer("userViewUserSection", loadUserData);
   }
 }
 
@@ -330,6 +330,37 @@ async function loadProductsOnProductItemSelector() {
 }
 
 // data loaders
+async function loadUserData() {
+  return fetch("api/userDataLoad.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
 async function loadExtraItem() {
   return fetch("api/extraItemView.php", {
     method: "GET", // HTTP request method

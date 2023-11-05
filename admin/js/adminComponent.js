@@ -77,40 +77,48 @@ class DashboardComponents {
   }
 
   // main navigation panel content arranger
-  mainNavigationController(
+  async mainNavigationController(
     navigationPanelId,
     mainContainerId,
-    callback = () => {},
+    callback = async () => {},
     passdownCallback = () => {}
   ) {
+    console.log("1");
     this.mainNavigationBtns = document
       .getElementById(navigationPanelId)
       .querySelectorAll(".main-navigation-panel-btn");
 
     this.mainNavigationBtns.forEach((element) => {
-      element.addEventListener("click", () => {
+      element.addEventListener("click", async () => {
         const requestedPanel = element.dataset.algmainnavigationpanel;
         const requestedPaneltitle = element.dataset.algmainnavigationpaneltitle;
 
-        this.loadMainPanel(
+        await this.loadMainPanel(
           requestedPanel,
           mainContainerId,
           requestedPaneltitle,
           passdownCallback(requestedPanel)
         );
       });
+      console.log(".");
     });
-
+    console.log("3");
     // callback
-    callback();
+    await callback();
+    console.log("end");
   }
 
-  loadMainPanel(requestedPanel, mainContainerId, title, callback = () => {}) {
+  async loadMainPanel(
+    requestedPanel,
+    mainContainerId,
+    title,
+    callback = () => {}
+  ) {
     const mainContainer = document.getElementById(mainContainerId);
     const mainContainerTitle = document.getElementById(
       "mainContentContainerTitle"
     );
-    fetch("components/mainNavigationPanels/" + requestedPanel + ".php", {
+    await fetch("components/mainNavigationPanels/" + requestedPanel + ".php", {
       method: "GET",
     })
       .then((response) => response.text())
@@ -119,13 +127,8 @@ class DashboardComponents {
 
         mainContainer.innerHTML = "";
         mainContainer.innerHTML = data;
-
         // callback
-        try {
-          callback();
-        } catch (error) {
-          console.log("error");
-        }
+        callback();
       });
   }
 
