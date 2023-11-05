@@ -28,7 +28,7 @@ $responseObject->status = "false";
 //load invoice details
 $db = new database_driver();
 
-$query = "SELECT `invoice`.*, `user`.*,`invoice_status`.* FROM `invoice` 
+$query = "SELECT `invoice`.*, `user`.`user_id`,`user`.`email`,`user`.`full_name`,`invoice_status`.*,`delivery_details`.*,`province`.*,`distric`.* FROM `invoice` 
 INNER JOIN `user` ON `invoice`.`user_user_id`=`user`.`user_id`
 INNER JOIN `invoice_status` ON `invoice_status`.`invoice_status_id`=`invoice`.`invoice_status_invoice_status_id` 
 INNER JOIN `delivery_details` ON `user`.`user_id`=`delivery_details`.`user_user_id`
