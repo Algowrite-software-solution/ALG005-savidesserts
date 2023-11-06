@@ -45,5 +45,5 @@ for ($i = 0; $i < $resultSet->num_rows; $i++) {
 }
 
 $responseObject->status = 'success';
-$responseObject->result = $responseResultArray;
+$responseObject->results = $responseResultArray;
 response_sender::sendJson($responseObject);

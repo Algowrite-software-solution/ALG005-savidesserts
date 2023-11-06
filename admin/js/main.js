@@ -111,7 +111,10 @@ async function toggleOrderSection(section) {
 
   // load data accordingly
   if (section === "ongoingOrderView") {
-    await ALG.addTableToContainer("ongoingOrderView", loadOrderDataToUi);
+    await ALG.addTableToContainer(
+      "ongoingOrderViewOrderSection",
+      loadOrderDataToUi
+    );
   }
 }
 
@@ -204,8 +207,31 @@ async function toggleProductSection(section) {
 // ui data updators
 async function loadOrderDataToUi() {
   const orderData = await loadOrderData();
-  console.log(orderData)
-  return orderData.invoiceResult;
+  const newOrderData = [];
+
+  orderData.forEach((element) => {
+    const newData = {
+      View: `<button class="alg-btn-pill" onclick="openSingleOrderViewModel('${element.order_id}')">View</button>`,
+      "Order Id": element.order_id,
+      "Order Date": element.order_date,
+      Payment: element.pay_amount,
+      "Shipping Price": element.shipping_price,
+      Status: element.status,
+      "User Id": element.user_user_id,
+      email: element.email,
+      "Full Name": element.full_name,
+      "Address 1": element.address_line_1,
+      "Address 2": element.address_line_2,
+      Mobile: element.mobile,
+      Province: element.province,
+      District: element.distric_name,
+      City: element.city,
+      "Postal Code": element.postal_code,
+    };
+    newOrderData.push(newData);
+  });
+
+  return newOrderData;
 }
 
 async function loadUserDataToUserManagement() {

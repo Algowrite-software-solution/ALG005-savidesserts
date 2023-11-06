@@ -1,3 +1,21 @@
+// order section
+function openSingleOrderViewModel(invoiceId) {
+  const orderDesign = `
+  <div class="d-flex flex-column w-100 gap-3">
+  <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+    <div class=" alg-text-light w-25 text-center p-2">id</div>
+    <input class="rounded-pill form-control w-75" type="text" disabled value="${invoiceId}" />
+  </div>
+</div>
+  `;
+
+  ALG.openModel(
+    "Model",
+    orderDesign,
+    `<button class="alg-btn-pill">Accept</button>`
+  );
+}
+
 // product section
 function changeUserStatus(event, userId) {
   const statusId = event.target.value;
