@@ -304,8 +304,8 @@
                                 <div class="row">
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-6 bg-lg-white p-2 d-flex gap-4 rounded-4 px-3 justify-content-center">
-                                            <span><a class="text-decoration-none" href="https://www.facebook.com/profile.php?id=61551535876271&mibextid=ZbWKwL"><i class="bi bi-facebook alg-header-text fs-5 alg-text-hover cursor"></i></a></span>
-                                            <span><i class="bi bi-instagram alg-header-text fs-5 alg-text-hover cursor"></i></span>
+                                            <span><a class="text-decoration-none" href="https://www.facebook.com/profile.php?id=61552367446267&mibextid=ZbWKwL"><i class="bi bi-facebook alg-header-text fs-5 alg-text-hover cursor"></i></a></span>
+                                            <span><a class="text-decoration-none" href="https://instagram.com/saweedessert?igshid=YzAwZjE1ZTI0Zg=="><i class="bi bi-instagram alg-header-text fs-5 alg-text-hover cursor"></i></a></span>
                                             <span><i class="bi bi-whatsapp alg-header-text fs-5 alg-text-hover cursor"></i></span>
                                         </div>
                                     </div>
