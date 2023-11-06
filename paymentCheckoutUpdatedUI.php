@@ -25,6 +25,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script defer src="../js/bootstrap.bundle.js"></script>
     <script defer src="../js/homeSliders.js"></script>
+    <script defer type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+    <script defer src="../js/script.js"></script>
+    <script defer src="../js/paymentCheckout.js"></script>
 </head>
 
 <body class="alg-bg-light">
@@ -134,7 +137,7 @@
 
                 <!-- order button -->
                 <div class="bg-black d-flex justify-content-end flex-grow-1">
-                    <button id="payhere-payment" onclick="placeOrder();" type="submit" class="alg-bg-gold w-100 alg-text-h2 border-0 rounded-3 p-2 fw-bolder">Place Order</button>
+                    <button onclick="placeOrder();" type="submit" id="payhere-payment" class="alg-bg-gold w-100 alg-text-h2 border-0 rounded-3 p-2 fw-bolder">Place Order</button>
                 </div>
 
 
@@ -145,9 +148,8 @@
     <!-- toast mode -->
     <?php include("pages/components/toastMessage.php") ?>
 
-    <script src="../js/script.js"></script>
-    <script src="../js/paymentCheckout.js"></script>
-    <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+    
+
 
     <?php include("pages/components/footer.php") ?>
 </body>
