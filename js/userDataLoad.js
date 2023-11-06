@@ -61,6 +61,14 @@ function userProfileDataload() {
           });
 }
 
+//estimate date calculator
+function addToDate(date) {
+     const newDate = new Date(date);
+     newDate.setDate(newDate.getDate() + 3);
+     return newDate;
+}
+
+let estimateDeliveryDate;
 //purchasing history data load
 function loadInvoiceData() {
      fetch(SERVER_URL + "backend/api/loadInvoiceData.php", {
@@ -73,6 +81,17 @@ function loadInvoiceData() {
 
           .then((data) => {
                const detailsContainer = document.getElementById('detailsContainer');
+
+               const newDateEs = addToDate(new Date());
+               const month = newDateEs.toLocaleString("en-US", { month: "short" });
+               const day = newDateEs.getDate();
+               const year = newDateEs.getFullYear();
+
+               const formattedDate = `${month} ${day} ${year}`;
+
+               //set a date
+               estimateDeliveryDate = formattedDate;
+
                if (data.status === "success") {
 
                     data.result.forEach((element) => {
@@ -85,29 +104,15 @@ function loadInvoiceData() {
                          orderContainer.innerHTML += `
                                 
               
-                <div class="col-9 col-lg-6 m-0 p-0 px-2 px-lg-0">
-                    <div class="row">
-                        <div class="col-3">
+                <div class="d-flex justify-content-around">
                             <span id="orderId">${element.order_id}</span>
-                        </div>
-                        <div class="col-4">
                             <span>${element.order_date}</span>
-                        </div>
-                        <div class="col-5">
+                            <span>${estimateDeliveryDate}</span>
                             <span>Rs. ${element.shipping_price}</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3 m-0 p-0">
-                    <div class="row">
-                        <div class="col-3 me-3">
                             <span>Rs. ${element.pay_amout}</span>
-                        </div>
-                        <div class="col-6">
-                            <span class="fw-bold">${element.status}</span>
-                        </div>
-                    </div>
+                            <span class="fw-bold">${element.status}</span> 
                 </div>
+
                
                          
                          `;
@@ -122,7 +127,7 @@ function loadInvoiceData() {
                console.error("Error:", error);
           });
 }
-
+let ProductItemPrice = 0;
 //load Invoice item
 function loadInvoiceItem(orderId) {
 
@@ -141,10 +146,23 @@ function loadInvoiceItem(orderId) {
           .then((data) => {
                const invoiceItemContainer = document.getElementById('invoiceItemContainer');
                invoiceItemContainer.innerHTML = "";
-               
+
+
+
+
                if (data.status === "success") {
 
+
+
+
                     data.result.forEach((element) => {
+                         ProductItemPrice = 0;
+                         let extraPrice = element.invoice_item_qty * element.extra_item_price;
+
+                         let productItemsPrice = extraPrice + (element.invoice_item_qty * element.total_product_items_price);
+                         ProductItemPrice += productItemsPrice;
+
+
                          invoiceItemContainer.innerHTML += `
                               
                          <div class="d-flex justify-content-around alg-bg-light align-items-center alg-text-h3 p-2 px-0 px-lg-0 mb-2 rounded-3">
@@ -154,6 +172,7 @@ function loadInvoiceItem(orderId) {
                                 <span>QTY ${element.invoice_item_qty}</span>
                                 <span>${element.weight}</span>
                                 <span>Rs. ${element.total_product_items_price}.00</span>
+                                <span>Rs. ${ProductItemPrice}.00</span>
                          </div>
                          
                          `;

@@ -54,7 +54,6 @@ if (!$session_manager->isLoggedIn()) {
             </div>
         </div>
 
-        <?php include("pages/components/addressView.php") ?>
         <?php include("pages/components/productPurchasingHistory.php") ?>
 
     </section>

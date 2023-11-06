@@ -40,16 +40,13 @@ $productId = $_POST['product_id'];
 
 //data validation sending object
 $dataToValidate = [
-     'qty' => [
-          (object)['datakey' => 'int_or_null', 'value' => $qty],
+     'int_or_null' => [
+          (object)['datakey' => 'qty', 'value' => $qty],
           // Add more email data objects if needed
      ],
-     'weightId' => [
-          (object)['datakey' => 'id_int', 'value' => $weightId],
-          // Add more password data objects if needed
-     ],
-     'productId' => [
-          (object)['datakey' => 'id_int', 'value' => $productId],
+     'id_int' => [
+          (object)['datakey' => 'weightId', 'value' => $weightId],
+          (object)['datakey' => 'productId', 'value' => $productId],
           // Add more password data objects if needed
      ],
      'price' => [
