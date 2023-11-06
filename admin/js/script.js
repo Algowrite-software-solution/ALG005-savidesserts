@@ -1,4 +1,46 @@
 // product section
+function changeUserStatus(event, userId) {
+  const statusId = event.target.value;
+
+  const query = `?u_id=${userId}&s_id=${statusId}`;
+  fetch("api/userStatusUpdate.php" + query, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then(async (data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "User status updated!",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+
+        await ALG.addTableToContainer(
+          "userViewUserSection",
+          loadUserDataToUserManagement,
+          [60, 250, 100, 100, 120, 100, 150]
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 function editProduct(id) {
   const description = document.getElementById(
     "productEditDescriptionInput" + id

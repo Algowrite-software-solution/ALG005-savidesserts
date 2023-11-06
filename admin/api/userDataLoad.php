@@ -30,7 +30,10 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
 // db connection
 $db = new database_driver();
 
-$search_quary = "SELECT * FROM `user` INNER JOIN `user_status` ON `user`.`status_id` = `user_status`.`id` ";
+$search_quary = "SELECT * FROM `user` 
+                INNER JOIN `user_status` ON `user`.`status_id` = `user_status`.`id` 
+                INNER JOIN `terms_and_condition` ON `user`.`terms_and_condition_ta_id` = `terms_and_condition`.`ta_id` 
+                INNER JOIN `marketing_email_validation` ON `user`.`marketing_email_validation_m_id` = `marketing_email_validation`.`m_id`";
 $resultSet = $db->query($search_quary);
 
 $responseResultArray = [];
@@ -41,9 +44,10 @@ for ($i = 0; $i < $resultSet->num_rows; $i++) {
     $newResults->email = $results["email"];
     $newResults->full_name = $results["full_name"];
     $newResults->status_id = $results["status_id"];
+    $newResults->status = $results["type"];
     $newResults->register_date = $results["register_date"];
-    $newResults->marketing_email_validation_m_id = $results["marketing_email_validation_m_id"];
-    $newResults->terms_and_condition_ta_id = $results["terms_and_condition_ta_id"];
+    $newResults->marketing_email_status = $results["m_validation"];
+    $newResults->t_and_c_status = $results["t_and_c"];
     array_push($responseResultArray, $newResults);
 }
 

@@ -83,7 +83,6 @@ class DashboardComponents {
     callback = async () => {},
     passdownCallback = () => {}
   ) {
-    console.log("1");
     this.mainNavigationBtns = document
       .getElementById(navigationPanelId)
       .querySelectorAll(".main-navigation-panel-btn");
@@ -100,12 +99,9 @@ class DashboardComponents {
           passdownCallback(requestedPanel)
         );
       });
-      console.log(".");
     });
-    console.log("3");
     // callback
     await callback();
-    console.log("end");
   }
 
   async loadMainPanel(
@@ -473,6 +469,78 @@ class DashboardComponents {
   }
 
   // utility
+
+  async requestHandler(
+    requestUrl,
+    method = "GET",
+    dataSet,
+    callback = () => {}
+  ) {
+    const url = new URL(requestUrl);
+
+    const options = {
+      method: method,
+    };
+
+    // data setter
+    if (method === "GET") {
+      dataSet.parameters.forEach((element) => {
+        url.searchParams.append(element.key, element.value);
+      });
+    } else if (method === "POST") {
+      options.body = dataSet.body;
+    }
+
+    let headerContentType = "";
+    switch (dataSet.reqType) {
+      case "json":
+        headerContentType = "application/json";
+        break;
+
+      case "html":
+        headerContentType = "text/html; charset=utf-8";
+        break;
+
+      case "form":
+        headerContentType = "multipart/form-data";
+        break;
+
+      case "text":
+        headerContentType = "text/plain";
+        break;
+
+      default:
+        headerContentType = "text/plain";
+        break;
+    }
+    options.headers = {
+      "Content-Type": headerContentType,
+    };
+
+    console.log("launch");
+    await fetch(url.toString(), options)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+      })
+      .then((data) => {
+        if (data.status === "success") {
+          alert(data.status);
+          return callback(data);
+        } else if (data.status === "failed") {
+          console.log(data.error);
+          return null;
+        } else {
+          console.log(data);
+          return null;
+        }
+      })
+      .catch((error) => console.error(error));
+  }
+
   async imageFileToDataURL(file, callback) {
     const reader = new FileReader();
 
