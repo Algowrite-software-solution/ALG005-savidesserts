@@ -38,31 +38,12 @@ ORDER BY `order_date` DESC";
 $resultSet = $db->query($query);
 
 $responseResultArray = [];
-$invoiceItemData = [];
+
 for ($i = 0; $i < $resultSet->num_rows; $i++) {
     $result = $resultSet->fetch_assoc();
-
-    //get related order id
-    $orderId = $result['order_id'];
-
-    $searchItemsQuery = "SELECT * FROM `invoice_item` 
-    INNER JOIN `product_item` ON `invoice_item`.`product_item_id`=`product_item`.`id`
-    INNER JOIN `product` ON `product_item`.`product_product_id`=`product`.`product_id`
-    INNER JOIN `extra` ON `invoice_item`.`extra_id`=`extra`.`id`
-    INNER JOIN `weight` ON `invoice_item`.`weight_id`=`weight`.`id`
-    INNER JOIN `product_status` ON `product_item`.`product_status_id`=`product_status`.`id` WHERE `order_id`=?";
-    $invoiceItemResult = $db->execute_query($searchItemsQuery, 's', array($orderId));
-
-    while ($rowData = $invoiceItemResult['result']->fetch_assoc()) {
-        array_push($invoiceItemData, $rowData);
-    }
-
     array_push($responseResultArray, $result);
 }
 
 $responseObject->status = 'success';
-$responseObject->results = (object) [
-    "invoiceResult" => $responseResultArray,
-    "invoiceItemResult" => $invoiceItemData
-];
+$responseObject->result = $responseResultArray;
 response_sender::sendJson($responseObject);

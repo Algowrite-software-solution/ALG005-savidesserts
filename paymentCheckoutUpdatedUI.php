@@ -29,6 +29,14 @@
 
 <body class="alg-bg-light">
     <?php include("pages/components/header.php") ?>
+    <!-- spinner bootstrap -->
+    <div class="spinner-wrapper bg-black opacity-50">
+        <div class="d-flex">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
     <div class="container my-3 pb-3 pt-3 overflow-hidden min-vh-100">
         <!-- topic -->
         <div class="d-flex pt-2 pb-2 alg-text-dark justify-content-center justify-content-lg-start">
@@ -126,7 +134,7 @@
 
                 <!-- order button -->
                 <div class="bg-black d-flex justify-content-end flex-grow-1">
-                    <button id="payhere-payment" onclick="placeOrder();"  type="submit" class="alg-bg-gold w-100 alg-text-h2 border-0 rounded-3 p-2 fw-bolder">Place Order</button>
+                    <button id="payhere-payment" onclick="placeOrder();" type="submit" class="alg-bg-gold w-100 alg-text-h2 border-0 rounded-3 p-2 fw-bolder">Place Order</button>
                 </div>
 
 

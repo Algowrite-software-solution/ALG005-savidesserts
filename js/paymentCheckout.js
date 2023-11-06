@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
      shippingDetailsLoad();
      liveCartDetailsLoad();
      shippingPriceLoader();
+     hideSpinner();
+
 });
 
 
@@ -494,7 +496,22 @@ function placeOrder() {
 }
 
 
+const spinnerWrapperEl = document.querySelector('.spinner-wrapper');
+
+// Show the spinner while fetching data
+function showSpinner() {
+     spinnerWrapperEl.classList.remove('active');
+}
+
+// Hide the spinner once the data has been fetched
+function hideSpinner() {
+     spinnerWrapperEl.classList.add('active');
+}
+
+
+
 function addInvoice(orderId) {
+     showSpinner();
 
      const formData = new FormData();
      formData.append("globalElementResult", JSON.stringify(globalElementResult));
@@ -510,6 +527,7 @@ function addInvoice(orderId) {
           body: formData,
      })
           .then((response) => {
+
                if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                }
@@ -518,6 +536,7 @@ function addInvoice(orderId) {
           .then((data) => {
                if (data.status === "success") {
 
+                    hideSpinner();
                     window.location.assign('http://localhost:9001/thanks.php');
 
                } else {
