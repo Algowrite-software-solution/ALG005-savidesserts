@@ -19,7 +19,7 @@ header("Content-Type: application/json; charset=UTF-8");
 $responseObject = new stdClass();
 $responseObject->status = "failed";
 
-// chekcing is user logging
+//chekcing is user logging
 $userCheckSession = new SessionManager();
 if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
      $responseObject->error = 'Please login';
