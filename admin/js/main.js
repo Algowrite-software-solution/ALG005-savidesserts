@@ -12,6 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleUserSection("userView");
         break;
 
+      case "orderManagementPanel":
+        toggleOrderSection("ongoingOrderView");
+        break;
+
       default:
         console.log(panel);
         break;
@@ -88,6 +92,27 @@ function toggleNavigation() {
     contentSection.classList.remove("col-xl-10");
   }
   isNavigationPanelOpned = !isNavigationPanelOpned;
+}
+
+// order section
+async function toggleOrderSection(section) {
+  const sections = document.getElementById("orderSectionsContainer").childNodes;
+
+  for (var i = 0; i < sections.length; i++) {
+    if (sections[i].nodeType === Node.ELEMENT_NODE) {
+      sections[i].classList.remove("d-block");
+      sections[i].classList.add("d-none");
+    }
+  }
+
+  const selectedSection = document.getElementById(section + "OrderSection");
+  selectedSection.classList.add("d-block");
+  selectedSection.classList.remove("d-none");
+
+  // load data accordingly
+  if (section === "ongoingOrderView") {
+    await ALG.addTableToContainer("ongoingOrderView", loadOrderDataToUi);
+  }
 }
 
 // user section
@@ -177,6 +202,12 @@ async function toggleProductSection(section) {
 }
 
 // ui data updators
+async function loadOrderDataToUi() {
+  const orderData = await loadOrderData();
+  console.log(orderData)
+  return orderData.invoiceResult;
+}
+
 async function loadUserDataToUserManagement() {
   const userData = await loadUserData();
   const statusData = await loadUserStatusData();
@@ -191,7 +222,7 @@ async function loadUserDataToUserManagement() {
       selected = statusElement[0] == element.status_id ? " selected " : "";
       options += `<option ${selected} value="${statusElement[0]}">${statusElement[1]}</option>`;
     });
-    console.log(element);
+
     switch (element.status_id) {
       case "1":
         colors = " bg-success text-white ";
@@ -386,6 +417,37 @@ async function loadProductsOnProductItemSelector() {
 }
 
 // data loaders
+async function loadOrderData() {
+  return fetch("api/invoiceViewProcess.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
 async function loadUserStatusData() {
   return fetch("api/userStatusLoader.php", {
     method: "GET", // HTTP request method

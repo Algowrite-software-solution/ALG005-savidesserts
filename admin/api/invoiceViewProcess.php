@@ -15,12 +15,12 @@ header("Content-Type: application/json; charset=UTF-8");
 
 //response
 $responseObject = new stdClass();
-$responseObject->status = "false";
+$responseObject->status = "failed";
 
 //chekcing is user logging
 $userCheckSession = new SessionManager();
 if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
-    $responseObject->status = 'Please login';
+    $responseObject->error = 'Please login';
     response_sender::sendJson($responseObject);
 }
 
