@@ -113,7 +113,7 @@ $body = <<< HTML
   <hr />
   <div style="display: flex; width: 100%">
     <h4 style="font-weight: bold; border-radius: 20px 0 0 20px; background-color: #b68b40; padding: 10px; color: #122620; margin: 0;">Order Id</h4>
-    <p style="border-radius: 0 20px 20px 0; background-color: #d6ad60; color: #0a1411; margin: 0; display: flex; align-items: center; padding: 0 30px; flex-grow: 1;">{$orderId}</p>
+    <p style="border-radius: 0 20px 20px 0; background-color: #d6ad60; color: #0a1411; margin-top: 10px; display: flex; align-items: center; justify-items: center; padding: 0 30px; flex-grow: 1;">{$orderId}</p>
   </div>
   <hr>
   <div>
@@ -168,7 +168,7 @@ $body .= <<< HTML
   </div>
   <hr>
   <div style="display: flex; justify-content: center;">
-    <div style="padding: 10px; background-color: #d6ad60; margin: 5px 0; border-radius: 30px;"><a style="color: #0a1411; text-decoration: none;" href="www.youtube.com">Give Us a Review</a></div>
+    <div style="padding: 10px; background-color: #d6ad60; margin: 5px 0; border-radius: 30px;"><a style="color: #0a1411; text-decoration: none;" href="#">Give Us a Review</a></div>
   </div>
 </div>
 HTML;
