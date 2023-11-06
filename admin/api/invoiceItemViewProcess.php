@@ -20,11 +20,11 @@ $responseObject = new stdClass();
 $responseObject->status = "failed";
 
 //chekcing is user logging
-// $userCheckSession = new SessionManager();
-// if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
-//      $responseObject->error = 'Please login';
-//      response_sender::sendJson($responseObject);
-// }
+$userCheckSession = new SessionManager();
+if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
+     $responseObject->error = 'Please login';
+     response_sender::sendJson($responseObject);
+}
 
 if (!RequestHandler::isGetMethod()) {
      $responseObject->error = 'Access denied';
