@@ -107,7 +107,11 @@ async function toggleUserSection(section) {
 
   // load data accordingly
   if (section === "userView") {
-    await ALG.addTableToContainer("userViewUserSection", loadUserData);
+    await ALG.addTableToContainer(
+      "userViewUserSection",
+      loadUserDataToUserManagement,
+      [60, 250, 100, 100, 120, 100, 150]
+    );
   }
 }
 
@@ -173,6 +177,58 @@ async function toggleProductSection(section) {
 }
 
 // ui data updators
+async function loadUserDataToUserManagement() {
+  const userData = await loadUserData();
+  const statusData = await loadUserStatusData();
+
+  const newUserData = [];
+  userData.forEach((element) => {
+    // dropdown
+    let options = "";
+    let selected = "";
+    let colors = "";
+    statusData.forEach((statusElement) => {
+      selected = statusElement[0] == element.status_id ? " selected " : "";
+      options += `<option ${selected} value="${statusElement[0]}">${statusElement[1]}</option>`;
+    });
+    console.log(element);
+    switch (element.status_id) {
+      case "1":
+        colors = " bg-success text-white ";
+        break;
+      case "2":
+        colors = " bg-secondary text-dark ";
+        break;
+      case "3":
+        colors = " bg-danger text-white ";
+        break;
+
+      default:
+        colors = " bg-white text-dark ";
+        break;
+    }
+
+    const statusDropDown = `
+        <select class="form-select ${colors}" onchange="changeUserStatus(event, '${element.user_id}')">
+          ${options}
+        </select>
+      `;
+
+    const newData = {
+      Id: element.user_id,
+      Email: element.email,
+      "Full Name": element.full_name,
+      "Registered Date": element.register_date,
+      Marketing: element.marketing_email_status,
+      "T&C": element.t_and_c_status,
+      Status: statusDropDown,
+    };
+    newUserData.push(newData);
+  });
+
+  return newUserData;
+}
+
 async function loadExtraItemsToExtraItemSettingUi() {
   const tableData = await loadExtraItem();
   const setupExtraItemSelector = document.getElementById(
@@ -330,6 +386,37 @@ async function loadProductsOnProductItemSelector() {
 }
 
 // data loaders
+async function loadUserStatusData() {
+  return fetch("api/userStatusLoader.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
 async function loadUserData() {
   return fetch("api/userDataLoad.php", {
     method: "GET", // HTTP request method
