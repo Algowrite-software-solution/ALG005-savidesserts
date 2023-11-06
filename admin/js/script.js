@@ -1,19 +1,98 @@
 // order section
-function openSingleOrderViewModel(invoiceId) {
+function orderStatusChange(event, id, orderId) {
+  const statusId = event.target.value;
+
+  const query = `?invoice_id=${id}&invoice_status_Id=${statusId}`;
+  fetch("api/invoiceStatusUpdateProcess.php" + query, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then(async (data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "User status updated!",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+        openSingleOrderViewModel(orderId);
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+async function openSingleOrderViewModel(invoiceId) {
+  const invoiceData = await loadOrderData(invoiceId);
+  const invoiceStatusData = await loadInvoiceStatusData();
+
+  let options = "";
+  let colors = "";
+  switch (invoiceData[0].invoice_status_id) {
+    case "1":
+      colors = " bg-warning text-dark ";
+      break;
+    case "2":
+      colors = " bg-primary text-white ";
+      break;
+    case "3":
+      colors = " bg-success text-white ";
+      break;
+
+    case "4":
+      colors = " bg-danger text-white ";
+      break;
+
+    default:
+      colors = " bg-white text-dark ";
+      break;
+  }
+
+  let index = 1;
+  invoiceStatusData.forEach((statusElement) => {
+    selected = index == invoiceData[0].invoice_status_id ? " selected " : "";
+    options += `<option ${selected} value="${index}">${statusElement[0]}</option>`;
+    index++;
+  });
+
   const orderDesign = `
   <div class="d-flex flex-column w-100 gap-3">
-  <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
-    <div class=" alg-text-light w-25 text-center p-2">id</div>
-    <input class="rounded-pill form-control w-75" type="text" disabled value="${invoiceId}" />
+    <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+      <div class=" alg-text-light w-25 text-center p-2">id</div>
+      <input class="rounded-pill form-control w-75" type="text" disabled value="${invoiceId}" />
+    </div>
+    <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+      <div class=" alg-text-light w-25 text-center p-2">order data</div>
+      <input class="rounded-pill form-control w-75" type="text" disabled value="${invoiceData[0].order_date}" />
+    </div>
+    <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+      <div class=" alg-text-light w-25 text-center p-2">Amount</div>
+      <input class="rounded-pill form-control w-75" type="text" disabled value="LKR ${invoiceData[0].pay_amout}" />
+    </div>
+    <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+      <div class=" alg-text-light w-25 text-center p-2">Amount</div>
+      <select onchange="orderStatusChange(event, '${invoiceData[0].invoice_id}', '${invoiceData[0].order_id}')" class="form-select ${colors}">
+        ${options}
+      </select>
+    </div>
   </div>
-</div>
   `;
 
-  ALG.openModel(
-    "Model",
-    orderDesign,
-    `<button class="alg-btn-pill">Accept</button>`
-  );
+  ALG.openModel("Model", orderDesign, "&nbsp;");
 }
 
 // product section
