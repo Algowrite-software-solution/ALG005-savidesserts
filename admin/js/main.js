@@ -39,19 +39,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // // defaults
-  // ALG.loadMainPanel(
-  //   "productManagementPanel",
-  //   "mainContentContainer",
-  //   "Product Management",
-  //   async () => {
-  //     await ALG.addTableToContainer(
-  //       "productViewProductSection",
-  //       productTableDesignData,
-  //       [100, 150, 250, 120, 120, 60, 80]
-  //     );
-  //   }
-  // );
+  // defaults
+  ALG.loadMainPanel(
+    "orderManagementPanel",
+    "mainContentContainer",
+    "Order Management",
+    async () => {
+      await ALG.addTableToContainer(
+        "ongoingOrderViewOrderSection",
+        loadOrderDataToUi
+      );
+    }
+  );
 
   ALG.addTooltipDitectors("tooltip-holder");
 

@@ -7,7 +7,7 @@
     </div>
     <div class="p-2 col-9 flex-grow-1 text-dark" id="orderSectionsContainer">
         <div class="p-2 h-100 d-block alg-bg-light alg-rounded-small overflow-auto flex-grow-1" id="ongoingOrderViewOrderSection">
-            1
+        👈 Please Select a section...
         </div>
     </div>
 </section>
