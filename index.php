@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sawee Dessert</title>
 
-    <link rel="shortcut icon" href="resources/images/favicon.png" >
+    <link rel="shortcut icon" href="resources/images/favicon.png">
 
     <!-- css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
@@ -196,13 +196,18 @@
                             <img src="resources/images/profile.png" class="img-fluid testm-card-img">
                         </div>
                         <div class="col-8 px-2">
-                            <p class="ld-tes-card-paragraph  alg-text-dark fw-bold">"Pure nostalgia in every bite!
-                                [Your Dessert Brand Name] captures
-                                the essence of Sri Lankan sweets
-                                perfectly!
+                            <p class="ld-tes-card-paragraph  alg-text-dark fw-bold">"A unique Watallappan Experience,
+                                Highly Recommended!
                             </p>
+                            <div class="d-flex gap-2 pb-1">
+                                <i class="bi bi-star-fill text-warning fs-6"></i>
+                                <i class="bi bi-star-fill text-warning fs-6"></i>
+                                <i class="bi bi-star-fill text-warning fs-6"></i>
+                                <i class="bi bi-star-fill text-warning fs-6"></i>
+                                <i class="bi bi-star-fill text-white fs-6"></i>
+                            </div>
                             <h5 class="alg-text-gold">
-                                -unknown
+                                -Dasun Silva
                             </h5>
                         </div>
                     </div>
@@ -211,13 +216,18 @@
                             <img src="resources/images/profile.png" class="img-fluid testm-card-img">
                         </div>
                         <div class="col-8 px-2">
-                            <p class="ld-tes-card-paragraph  alg-text-dark fw-bold">"Pure nostalgia in every bite!
-                                [Your Dessert Brand Name] captures
-                                the essence of Sri Lankan sweets
-                                perfectly!
+                            <p class="ld-tes-card-paragraph  alg-text-dark fw-bold">"That's Watallappan powder is quality
+                                product , perfect smell and unique taste
                             </p>
+                            <div class="d-flex gap-2 pb-1">
+                                <i class="bi bi-star-fill text-warning fs-6"></i>
+                                <i class="bi bi-star-fill text-warning fs-6"></i>
+                                <i class="bi bi-star-fill text-warning fs-6"></i>
+                                <i class="bi bi-star-fill text-warning fs-6"></i>
+                                <i class="bi bi-star-fill text-white fs-6"></i>
+                            </div>
                             <h5 class="alg-text-gold">
-                                -unknown
+                                -Seleena Cooray
                             </h5>
                         </div>
                     </div>
@@ -226,13 +236,17 @@
                             <img src="resources/images/profile.png" class="img-fluid testm-card-img">
                         </div>
                         <div class="col-8 px-2">
-                            <p class="ld-tes-card-paragraph  alg-text-dark fw-bold">"Pure nostalgia in every bite!
-                                [Your Dessert Brand Name] captures
-                                the essence of Sri Lankan sweets
-                                perfectly!
+                            <p class="ld-tes-card-paragraph  alg-text-dark fw-bold">"Good Product Highly recommended!
                             </p>
+                            <div class="d-flex gap-2 pb-1">
+                                <i class="bi bi-star-fill text-warning fs-6"></i>
+                                <i class="bi bi-star-fill text-warning fs-6"></i>
+                                <i class="bi bi-star-fill text-warning fs-6"></i>
+                                <i class="bi bi-star-fill text-white fs-6"></i>
+                                <i class="bi bi-star-fill text-white fs-6"></i>
+                            </div>
                             <h5 class="alg-text-gold">
-                                -unknown
+                                -Lalani Perera
                             </h5>
                         </div>
                     </div>
@@ -290,8 +304,8 @@
                                 <div class="row">
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-6 bg-lg-white p-2 d-flex gap-4 rounded-4 px-3 justify-content-center">
-                                            <span><a class="text-decoration-none" href="https://www.facebook.com/profile.php?id=61551535876271&mibextid=ZbWKwL"><i class="bi bi-facebook alg-header-text fs-5 alg-text-hover cursor"></i></a></span>
-                                            <span><i class="bi bi-instagram alg-header-text fs-5 alg-text-hover cursor"></i></span>
+                                            <span><a class="text-decoration-none" href="https://www.facebook.com/profile.php?id=61552367446267&mibextid=ZbWKwL"><i class="bi bi-facebook alg-header-text fs-5 alg-text-hover cursor"></i></a></span>
+                                            <span><a class="text-decoration-none" href="https://instagram.com/saweedessert?igshid=YzAwZjE1ZTI0Zg=="><i class="bi bi-instagram alg-header-text fs-5 alg-text-hover cursor"></i></a></span>
                                             <span><i class="bi bi-whatsapp alg-header-text fs-5 alg-text-hover cursor"></i></span>
                                         </div>
                                     </div>

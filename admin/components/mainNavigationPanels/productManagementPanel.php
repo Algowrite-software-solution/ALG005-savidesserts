@@ -12,7 +12,10 @@
         </div>
     </div>
     <div class="p-2 col-9 flex-grow-1 text-dark" id="productSectionsContainer">
-        <div class="p-2 h-100 d-block alg-bg-light alg-rounded-small overflow-auto flex-grow-1" id="productViewProductSection">
+        <div class="p-2 h-100 d-block alg-bg-light alg-rounded-small overflow-auto flex-grow-1">
+            👈 Please Select a section...
+        </div>
+        <div class="p-2 h-100 d-none alg-bg-light alg-rounded-small overflow-auto flex-grow-1" id="productViewProductSection">
 
         </div>
         <div class="p-2 h-100 d-none alg-bg-light alg-rounded-small" id="productAddProductSection">
@@ -101,7 +104,7 @@
                     </div>
                     <button class="alg-btn-pill" onclick="productItemSave(event)">Save Product Item</button>
                 </div>
-                <div class="w-100 alg-bg-dark p-2 alg-rounded-mid overflow-auto" id="productItemViewContainer">
+                <div class="w-100 alg-bg-dark p-2 alg-rounded-mid overflow-auto" id="productItemViewContainer" style="max-height: 600px;">
                     Loading....
                 </div>
             </div>

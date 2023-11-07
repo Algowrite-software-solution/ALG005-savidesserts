@@ -9,6 +9,7 @@
 //include models
 require_once("../../backend/model/database_driver.php");
 require_once("../../backend/model/response_sender.php");
+require_once("../../backend/model/SessionManager.php");
 
 // headers
 header("Content-Type: application/json; charset=UTF-8");
@@ -29,13 +30,25 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
 // db connection
 $db = new database_driver();
 
-$search_quary = "SELECT * FROM `user` INNER JOIN `delivery_details` ON `user`.`status_id` = `delivery_details`.`id` INNER JOIN `city` ON `delivery_details`.`city_id`=`city`.`id`";
+$search_quary = "SELECT * FROM `user` 
+                INNER JOIN `user_status` ON `user`.`status_id` = `user_status`.`id` 
+                INNER JOIN `terms_and_condition` ON `user`.`terms_and_condition_ta_id` = `terms_and_condition`.`ta_id` 
+                INNER JOIN `marketing_email_validation` ON `user`.`marketing_email_validation_m_id` = `marketing_email_validation`.`m_id`";
 $resultSet = $db->query($search_quary);
 
 $responseResultArray = [];
 for ($i = 0; $i < $resultSet->num_rows; $i++) {
-    $result = $resultSet->fetch_assoc();
-    array_push($responseResultArray, $result);
+    $newResults = (object) [];
+    $results   = $resultSet->fetch_assoc();
+    $newResults->user_id = $results["user_id"];
+    $newResults->email = $results["email"];
+    $newResults->full_name = $results["full_name"];
+    $newResults->status_id = $results["status_id"];
+    $newResults->status = $results["type"];
+    $newResults->register_date = $results["register_date"];
+    $newResults->marketing_email_status = $results["m_validation"];
+    $newResults->t_and_c_status = $results["t_and_c"];
+    array_push($responseResultArray, $newResults);
 }
 
 $responseObject->status = "success";

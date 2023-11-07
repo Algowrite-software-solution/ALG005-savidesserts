@@ -1,9 +1,10 @@
 <?php
 
-//Invoice Status load
-//by Nisal uthsara
-//version - 1.0.1
-//27-09-2023
+// all user status change
+// by janith nirmal
+// version - 1.0.0
+// 06-11-2023
+
 
 //include models
 require_once("../../backend/model/database_driver.php");
@@ -13,26 +14,25 @@ require_once("../../backend/model/SessionManager.php");
 // headers
 header("Content-Type: application/json; charset=UTF-8");
 
-//response
+
+//response object
 $responseObject = new stdClass();
 $responseObject->status = 'failed';
 
-//chekcing is user logging
+// chekcing is user logging
 $userCheckSession = new SessionManager("alg005_admin");
 if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
     $responseObject->error = 'Please LogIn';
     response_sender::sendJson($responseObject);
 }
 
-//load invoice status
 
+
+// db connection
 $db = new database_driver();
+$query = "SELECT * FROM `user_status`";
+$db_result =  $db->query($query);
 
-$query = "SELECT `status` FROM `invoice_status`";
-$resultSet = $db->query($query);
-
-
-
-$responseObject->status = 'success';
-$responseObject->results = $resultSet->fetch_all();
+$responseObject->status = "success";
+$responseObject->results = $db_result->fetch_all();
 response_sender::sendJson($responseObject);

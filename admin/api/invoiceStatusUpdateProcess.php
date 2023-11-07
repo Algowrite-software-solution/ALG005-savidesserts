@@ -15,25 +15,23 @@ header("Content-Type: application/json; charset=UTF-8");
 
 //response
 $responseObject = new stdClass();
-$responseObject->status = "false";
+$responseObject->status = "failed";
 
 //chekcing is user logging
 $userCheckSession = new SessionManager("alg005_admin");
 if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
-    $responseDataObject->status = "Please LogIn";
+    $responseDataObject->error = "Please LogIn";
     response_sender::sendJson($responseObject);
 }
 
 //use POST method
-$invoiceId = $_POST['invoice_id'];
-$invoice_statusId = $_POST['invoice_status_Id'];
+$invoiceId = $_GET['invoice_id'];
+$invoice_statusId = $_GET['invoice_status_Id'];
 
 $db = new database_driver();
 
 //update invoice status
 $updateQuery = "UPDATE `invoice` SET `invoice_status_invoice_status_id`=? WHERE `invoice_id`=?";
 $db->execute_query($updateQuery, 'ss', array($invoice_statusId, $invoiceId));
-$responseObject->status = "updated";
+$responseObject->status = "success";
 response_sender::sendJson($responseObject);
-
-?>

@@ -34,9 +34,10 @@
                         <span class="alg-text-h1 fw-bold">Thank You !</span><br />
                         <p class="alg-text-h2 fst-italic">Come back again......</p>
                     </div>
-                    <button  class="alg-bg-dark alg-main-button alg-button-hover p-1 p-lg-2 px-2 px-lg-4 rounded-4 fw-bold alg-text-h2 alg-cursor"><a href="http://localhost:9001/index.php" class="text-decoration-none text-white">Back to Home</a></button>
+                    <button class="alg-bg-dark alg-main-button  alg-button-hover p-1 p-lg-2 px-2 px-lg-4 rounded-4 fw-bold alg-text-h2 alg-cursor" style="z-index: 9999;"><a href="http://localhost:9001/index.php" class="text-decoration-none text-white">Back to Home</a></button>
                 </div>
             </div>
+
         </div>
     </section>
 </body>

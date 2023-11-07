@@ -59,6 +59,7 @@ if (!$sessionManager->isLoggedIn()) {
             <div class="rounded-3 alg-bg-darker px-3 py-4 h-100 alg-shadow navigation-sidebar">
                 <button data-algMainNavigationPanel="productManagementPanel" data-algMainNavigationPanelTitle="Product Management" class="alg-btn-pill rounded-4 my-2 w-100 main-navigation-panel-btn">Product Management</button>
                 <button data-algMainNavigationPanel="userManagementPanel" data-algMainNavigationPanelTitle="User Management" class="alg-btn-pill rounded-4 my-2 w-100 main-navigation-panel-btn">User Management</button>
+                <button data-algMainNavigationPanel="orderManagementPanel" data-algMainNavigationPanelTitle="Order Management" class="alg-btn-pill rounded-4 my-2 w-100 main-navigation-panel-btn">Order Management</button>
             </div>
         </div>
         <div class=" col-12 col-md-8  col-lg-9 col-xl-10 p-3" id="contentSection">

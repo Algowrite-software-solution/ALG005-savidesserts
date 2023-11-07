@@ -77,10 +77,10 @@ class DashboardComponents {
   }
 
   // main navigation panel content arranger
-  mainNavigationController(
+  async mainNavigationController(
     navigationPanelId,
     mainContainerId,
-    callback = () => {},
+    callback = async () => {},
     passdownCallback = () => {}
   ) {
     this.mainNavigationBtns = document
@@ -88,11 +88,11 @@ class DashboardComponents {
       .querySelectorAll(".main-navigation-panel-btn");
 
     this.mainNavigationBtns.forEach((element) => {
-      element.addEventListener("click", () => {
+      element.addEventListener("click", async () => {
         const requestedPanel = element.dataset.algmainnavigationpanel;
         const requestedPaneltitle = element.dataset.algmainnavigationpaneltitle;
 
-        this.loadMainPanel(
+        await this.loadMainPanel(
           requestedPanel,
           mainContainerId,
           requestedPaneltitle,
@@ -100,17 +100,21 @@ class DashboardComponents {
         );
       });
     });
-
     // callback
-    callback();
+    await callback();
   }
 
-  loadMainPanel(requestedPanel, mainContainerId, title, callback = () => {}) {
+  async loadMainPanel(
+    requestedPanel,
+    mainContainerId,
+    title,
+    callback = () => {}
+  ) {
     const mainContainer = document.getElementById(mainContainerId);
     const mainContainerTitle = document.getElementById(
       "mainContentContainerTitle"
     );
-    fetch("components/mainNavigationPanels/" + requestedPanel + ".php", {
+    await fetch("components/mainNavigationPanels/" + requestedPanel + ".php", {
       method: "GET",
     })
       .then((response) => response.text())
@@ -119,13 +123,8 @@ class DashboardComponents {
 
         mainContainer.innerHTML = "";
         mainContainer.innerHTML = data;
-
         // callback
-        try {
-          callback();
-        } catch (error) {
-          console.log("error");
-        }
+        callback();
       });
   }
 
@@ -470,6 +469,85 @@ class DashboardComponents {
   }
 
   // utility
+
+  async requestHandler(
+    requestUrl,
+    method = "GET",
+    dataSet,
+    callback = () => {},
+    preventDefault = false
+  ) {
+    const url = new URL(requestUrl);
+
+    const options = {
+      method: method,
+    };
+
+    // data setter
+    if (method === "GET") {
+      if (dataSet.parameters) {
+        dataSet.parameters.forEach((element) => {
+          url.searchParams.append(element.key, element.value);
+        });
+      }
+    } else if (method === "POST") {
+      if (options.body) {
+        options.body = dataSet.body;
+      }
+    }
+
+    let headerContentType = "";
+    switch (dataSet.reqType) {
+      case "json":
+        headerContentType = "application/json";
+        break;
+
+      case "html":
+        headerContentType = "text/html; charset=utf-8";
+        break;
+
+      case "form":
+        headerContentType = "multipart/form-data";
+        break;
+
+      case "text":
+        headerContentType = "text/plain";
+        break;
+
+      default:
+        headerContentType = "text/plain";
+        break;
+    }
+    options.headers = {
+      "Content-Type": headerContentType,
+    };
+
+   return await fetch(url.toString(), options)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+      })
+      .then((data) => {
+        if (data.status === "success") {
+          if (!preventDefault) {
+            alert(data.status);
+          }
+          
+          return callback(data.results);
+        } else if (data.status === "failed") {
+          console.log(data.error);
+          return null;
+        } else {
+          console.log(data);
+          return null;
+        }
+      })
+      .catch((error) => console.error(error));
+  }
+
   async imageFileToDataURL(file, callback) {
     const reader = new FileReader();
 

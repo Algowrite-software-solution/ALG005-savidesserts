@@ -1,27 +1,34 @@
 // initiator
+const SERVER_URL = "http://localhost:9001/";
 const ALG = new DashboardComponents();
 
 document.addEventListener("DOMContentLoaded", () => {
+  const mainPanelContentLoad = async (panel) => {
+    switch (panel) {
+      case "productManagementPanel":
+        toggleProductSection("productView");
+        break;
+
+      case "userManagementPanel":
+        toggleUserSection("userView");
+        break;
+
+      case "orderManagementPanel":
+        toggleOrderSection("ongoingOrderView");
+        break;
+
+      default:
+        console.log(panel);
+        break;
+    }
+  };
   ALG.mainNavigationController(
     "navigationSection",
     "mainContentContainer",
-    () => {},
-    (panel) => {
-      console.log("2st callback");
-      switch (panel) {
-        case "productManagementPanel":
-          toggleProductSection("productView");
-          break;
-
-        case "userManagementPanel":
-          toggleUserSection("userView");
-          break;
-
-        default:
-          console.log(panel);
-          break;
-      }
-    }
+    () => {
+      mainPanelContentLoad("productManagementPanel");
+    },
+    mainPanelContentLoad
   );
 
   // sidebar controls
@@ -34,14 +41,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // defaults
   ALG.loadMainPanel(
-    "productManagementPanel",
+    "orderManagementPanel",
     "mainContentContainer",
-    "Product Management",
+    "Order Management",
     async () => {
       await ALG.addTableToContainer(
-        "productViewProductSection",
-        productTableDesignData,
-        [100, 150, 250, 120, 120, 60, 80]
+        "ongoingOrderViewOrderSection",
+        loadOrderDataToUi
       );
     }
   );
@@ -49,7 +55,44 @@ document.addEventListener("DOMContentLoaded", () => {
   ALG.addTooltipDitectors("tooltip-holder");
 
   //test
+  orderCheckerNotificationChecker();
+  setInterval(() => {
+    orderCheckerNotificationChecker();
+  }, 1000 * 60 * 10);
 });
+
+async function orderCheckerNotificationChecker() {
+  const data = await ALG.requestHandler(
+    SERVER_URL + "admin/api/orderNotificationChecker.php",
+    "GET",
+    { reqType: "text" },
+    (data) => {
+      return data;
+    },
+    true
+  );
+
+  let options = "";
+  if (!data.length) {
+    return;
+  }
+  data.forEach((element) => {
+    options += `<div class="p-2 px-4 rounded-pill w-100 alg-bg-dark d-flex justify-content-between gap-3 alg-text-light my-2" value="${element[0]}">
+      <div>${element[4]}</div>
+      <div>${element[1]}</div>
+      <div>${element[8]}</div>
+    </div>`;
+  });
+  const design = `
+    <div class="d-flex">
+      <div class="w-100">
+        ${options}
+      </div>
+    </div>
+  `;
+
+  ALG.openModel("Active Orders", design, "&nbsp;");
+}
 
 // navigation
 let isNavigationPanelOpned = false;
@@ -88,6 +131,30 @@ function toggleNavigation() {
   isNavigationPanelOpned = !isNavigationPanelOpned;
 }
 
+// order section
+async function toggleOrderSection(section) {
+  const sections = document.getElementById("orderSectionsContainer").childNodes;
+
+  for (var i = 0; i < sections.length; i++) {
+    if (sections[i].nodeType === Node.ELEMENT_NODE) {
+      sections[i].classList.remove("d-block");
+      sections[i].classList.add("d-none");
+    }
+  }
+
+  const selectedSection = document.getElementById(section + "OrderSection");
+  selectedSection.classList.add("d-block");
+  selectedSection.classList.remove("d-none");
+
+  // load data accordingly
+  if (section === "ongoingOrderView") {
+    await ALG.addTableToContainer(
+      "ongoingOrderViewOrderSection",
+      loadOrderDataToUi
+    );
+  }
+}
+
 // user section
 async function toggleUserSection(section) {
   const sections = document.getElementById("userSectionsContainer").childNodes;
@@ -105,9 +172,11 @@ async function toggleUserSection(section) {
 
   // load data accordingly
   if (section === "userView") {
-    const button = document.createElement("button");
-    button.innerText = "test";
-    ALG.renderComponent("userViewUserSection", button, true);
+    await ALG.addTableToContainer(
+      "userViewUserSection",
+      loadUserDataToUserManagement,
+      [60, 250, 100, 100, 120, 100, 150]
+    );
   }
 }
 
@@ -173,6 +242,87 @@ async function toggleProductSection(section) {
 }
 
 // ui data updators
+async function loadOrderDataToUi() {
+  const orderData = await loadOrderData();
+  const newOrderData = [];
+
+  orderData.forEach((element) => {
+    const newData = {
+      View: `<button class="alg-btn-pill" onclick="openSingleOrderViewModel('${element.order_id}')">View</button>`,
+      "Order Id": element.order_id,
+      "Order Date": element.order_date,
+      Payment: element.pay_amount,
+      "Shipping Price": element.shipping_price,
+      Status: element.status,
+      "User Id": element.user_user_id,
+      email: element.email,
+      "Full Name": element.full_name,
+      "Address 1": element.address_line_1,
+      "Address 2": element.address_line_2,
+      Mobile: element.mobile,
+      Province: element.province,
+      District: element.distric_name,
+      City: element.city,
+      "Postal Code": element.postal_code,
+    };
+    newOrderData.push(newData);
+  });
+
+  return newOrderData;
+}
+
+async function loadUserDataToUserManagement() {
+  const userData = await loadUserData();
+  const statusData = await loadUserStatusData();
+
+  const newUserData = [];
+  userData.forEach((element) => {
+    // dropdown
+    let options = "";
+    let selected = "";
+    let colors = "";
+    statusData.forEach((statusElement) => {
+      selected = statusElement[0] == element.status_id ? " selected " : "";
+      options += `<option ${selected} value="${statusElement[0]}">${statusElement[1]}</option>`;
+    });
+
+    switch (element.status_id) {
+      case "1":
+        colors = " bg-success text-white ";
+        break;
+      case "2":
+        colors = " bg-secondary text-dark ";
+        break;
+      case "3":
+        colors = " bg-danger text-white ";
+        break;
+
+      default:
+        colors = " bg-white text-dark ";
+        break;
+    }
+
+    const statusDropDown = `
+        <select class="form-select ${colors}" onchange="changeUserStatus(event, '${element.user_id}')">
+          ${options}
+        </select>
+      `;
+
+    const newData = {
+      Id: element.user_id,
+      Email: element.email,
+      "Full Name": element.full_name,
+      "Registered Date": element.register_date,
+      Marketing: element.marketing_email_status,
+      "T&C": element.t_and_c_status,
+      Status: statusDropDown,
+    };
+    newUserData.push(newData);
+  });
+
+  return newUserData;
+}
+
 async function loadExtraItemsToExtraItemSettingUi() {
   const tableData = await loadExtraItem();
   const setupExtraItemSelector = document.getElementById(
@@ -330,6 +480,131 @@ async function loadProductsOnProductItemSelector() {
 }
 
 // data loaders
+async function loadOrderData(id = null) {
+  const query = id != null ? "?order_id=" + id.slice(1) : "";
+  return fetch("api/invoiceViewProcess.php" + query, {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
+async function loadInvoiceStatusData() {
+  return fetch("api/invoiceStatusLoadProcess.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
+async function loadUserStatusData() {
+  return fetch("api/userStatusLoader.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
+async function loadUserData() {
+  return fetch("api/userDataLoad.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
 async function loadExtraItem() {
   return fetch("api/extraItemView.php", {
     method: "GET", // HTTP request method
@@ -456,15 +731,18 @@ async function loadProductItems() {
 
         results.forEach((element) => {
           const newData = {
-            id: element.product_item_id,
-            "product id": element.product_id,
-            "product status id": element.product_status_id,
+            Id: element.product_item_id,
+            "Product Id": element.product_id,
+            "Product Name": element.product_name,
+            "Product Status": element.type,
             quantity: element.qty,
             price: element.price,
-            "weight id": element.weight_id,
-            image: element["images[0]"]
-              ? `<img src="${element["images[0]"]}" class="alg-list-cell-image"  />`
+            "weight id": element.weight,
+            image: element.images[0]
+              ? `<img src="${element.images[0]}" class="alg-list-cell-image"  />`
               : "Empty",
+            edit: `<i class="fs-4 bi bi-pen" onclick="openProductItemEditModel('${element.product_item_id}', '${element.product_id}','${element.product_status_id}','${element.qty}','${element.price}','${element.weight_id}')"></i>`,
+            remove: `<i class="fs-4 bi bi-x-circle" onclick="openProductItemRemoveModel('${element.product_item_id}')"></i>`,
           };
 
           listArray.push(newData);
@@ -532,6 +810,37 @@ async function loadCategoryData() {
 
 async function loadWeightData() {
   return fetch("api/weightsView.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
+async function loadProductStatusData() {
+  return fetch("api/productItemStatusLoader.php", {
     method: "GET", // HTTP request method
     headers: {
       "Content-Type": "application/json", // Request headers

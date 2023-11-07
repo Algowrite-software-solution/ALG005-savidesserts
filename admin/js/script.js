@@ -1,4 +1,143 @@
+// order section
+function orderStatusChange(event, id, orderId) {
+  const statusId = event.target.value;
+
+  const query = `?invoice_id=${id}&invoice_status_Id=${statusId}`;
+  fetch("api/invoiceStatusUpdateProcess.php" + query, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then(async (data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "User status updated!",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+        openSingleOrderViewModel(orderId);
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+async function openSingleOrderViewModel(invoiceId) {
+  const invoiceData = await loadOrderData(invoiceId);
+  const invoiceStatusData = await loadInvoiceStatusData();
+
+  let options = "";
+  let colors = "";
+  switch (invoiceData[0].invoice_status_id) {
+    case "1":
+      colors = " bg-warning text-dark ";
+      break;
+    case "2":
+      colors = " bg-primary text-white ";
+      break;
+    case "3":
+      colors = " bg-success text-white ";
+      break;
+
+    case "4":
+      colors = " bg-danger text-white ";
+      break;
+
+    default:
+      colors = " bg-white text-dark ";
+      break;
+  }
+
+  let index = 1;
+  invoiceStatusData.forEach((statusElement) => {
+    selected = index == invoiceData[0].invoice_status_id ? " selected " : "";
+    options += `<option ${selected} value="${index}">${statusElement[0]}</option>`;
+    index++;
+  });
+
+  const orderDesign = `
+  <div class="d-flex flex-column w-100 gap-3">
+    <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+      <div class=" alg-text-light w-25 text-center p-2">id</div>
+      <input class="rounded-pill form-control w-75" type="text" disabled value="${invoiceId}" />
+    </div>
+    <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+      <div class=" alg-text-light w-25 text-center p-2">order data</div>
+      <input class="rounded-pill form-control w-75" type="text" disabled value="${invoiceData[0].order_date}" />
+    </div>
+    <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+      <div class=" alg-text-light w-25 text-center p-2">Amount</div>
+      <input class="rounded-pill form-control w-75" type="text" disabled value="LKR ${invoiceData[0].pay_amout}" />
+    </div>
+    <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+      <div class=" alg-text-light w-25 text-center p-2">Amount</div>
+      <select onchange="orderStatusChange(event, '${invoiceData[0].invoice_id}', '${invoiceData[0].order_id}')" class="form-select ${colors}">
+        ${options}
+      </select>
+    </div>
+  </div>
+  `;
+
+  ALG.openModel("Model", orderDesign, "&nbsp;");
+}
+
 // product section
+function changeUserStatus(event, userId) {
+  const statusId = event.target.value;
+
+  const query = `?u_id=${userId}&s_id=${statusId}`;
+  fetch("api/userStatusUpdate.php" + query, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then(async (data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "User status updated!",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+
+        await ALG.addTableToContainer(
+          "userViewUserSection",
+          loadUserDataToUserManagement,
+          [60, 250, 100, 100, 120, 100, 150]
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 function editProduct(id) {
   const description = document.getElementById(
     "productEditDescriptionInput" + id
@@ -417,6 +556,135 @@ function addProductItemImageToList() {
       reader.readAsDataURL(imageInput.files[key]);
     }
   }
+}
+
+async function openProductItemEditModel(
+  id,
+  productId,
+  productStatusId,
+  quantity,
+  price,
+  weightId
+) {
+  const products = await loadProductData();
+  let productSelectOptions = ``;
+  products.forEach((element) => {
+    const selected = element.product_id === productId ? " selected " : "";
+    productSelectOptions += `<option ${selected} value="${element.product_id}" id="${element.product_id}">${element.product_name}</option>`;
+  });
+
+  const weights = await loadWeightData();
+  let weightsSelectOptions = ``;
+  weights.forEach((element) => {
+    const selected = element.weight_id === weightId ? " selected " : "";
+    weightsSelectOptions += `<option ${selected} value="${element.weight_id}" id="${element.weight_id}">${element.weight}</option>`;
+  });
+
+  const productStatuses = await loadProductStatusData();
+  let productStatusesSelectOptions = ``;
+  productStatuses.forEach((element) => {
+    const selected = element.status_id === productStatusId ? " selected " : "";
+    productStatusesSelectOptions += `<option ${selected} value="${element.status_id}" id="${element.status_id}">${element.status_type}</option>`;
+  });
+
+  const modelBodyDesign = `
+                          <div class="d-flex flex-column w-100 gap-3">
+                            <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+                                <div class=" alg-text-light w-25 text-center p-2">id</div>
+                                <input class="rounded-pill form-control w-75" type="text" disabled value="${id}" />
+                            </div>
+                            <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+                                <div class=" alg-text-light w-25 text-center p-2">Product Id</div>
+                                <select class="rounded-pill form-control w-75" name="productItemUpdateProductsSelect" id="productItemUpdateProductsSelect">
+                                    ${productSelectOptions}
+                                </select>
+                            </div>
+                            <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+                                <div class=" alg-text-light w-25 text-center p-2">Product Status Id</div>
+                                <select class="rounded-pill form-control w-75" name="productItemUpdateStatusSelect" id="productItemUpdateStatusSelect">
+                                    ${productStatusesSelectOptions}
+                                </select>
+                            </div>
+                            <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+                                <div class=" alg-text-light w-25 text-center p-2">Quantity</div>
+                                <input class="rounded-pill form-control w-75" type="text" id="productItemUpdateQuantitySelect" value="${quantity}" />
+                            </div>
+                            <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+                                <div class=" alg-text-light w-25 text-center p-2">Price</div>
+                                <input class="rounded-pill form-control w-75" type="text" id="productItemUpdatePriceSelect" value="${price}" />
+                            </div>
+                            <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+                                <div class=" alg-text-light w-25 text-center p-2">Weight</div>
+                                <select class="rounded-pill form-control w-75" name="productItemUpdateWeightSelect" id="productItemUpdateWeightSelect">
+                                    ${weightsSelectOptions}
+                                </select>
+                            </div>
+                          </div>`;
+  const modelFooterDesign = `<button onclick="updateProductItem('${id}')" class="alg-btn-pill">Edit</button>`;
+
+  ALG.openModel("Product Item Edit", modelBodyDesign, modelFooterDesign);
+}
+
+function updateProductItem(id) {
+  alert(id);
+  const productId = document.getElementById(
+    "productItemUpdateProductsSelect"
+  ).value;
+  const status = document.getElementById("productItemUpdateStatusSelect").value;
+  const quantity = document.getElementById(
+    "productItemUpdateQuantitySelect"
+  ).value;
+  const price = document.getElementById("productItemUpdatePriceSelect").value;
+  const weight = document.getElementById("productItemUpdateWeightSelect").value;
+
+  const form = new FormData();
+  form.append("id", id);
+  form.append("qty", quantity);
+  form.append("price", price);
+  form.append("product_status_id", status);
+  form.append("product_product_id", productId);
+  form.append("weight_id", weight);
+
+  fetch("api/productItemUpdate.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Product Item Update was successfull",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+
+        ALG.addTableToContainer("productItemViewContainer", loadProductItems);
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+function openProductItemRemoveModel(id) {
+  const modelBodyDesign = `product item remove model ${id}`;
+  const modelFooterDesign = `remove`;
+
+  ALG.openModel("Product Item Remove", modelBodyDesign, modelFooterDesign);
 }
 
 function previewProductListImages() {
