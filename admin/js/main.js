@@ -1,4 +1,5 @@
 // initiator
+const SERVER_URL = "http://localhost:9001/";
 const ALG = new DashboardComponents();
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -55,7 +56,44 @@ document.addEventListener("DOMContentLoaded", () => {
   ALG.addTooltipDitectors("tooltip-holder");
 
   //test
+  orderCheckerNotificationChecker();
+  setInterval(() => {
+    orderCheckerNotificationChecker();
+  }, 1000 * 60 * 10);
 });
+
+async function orderCheckerNotificationChecker() {
+  const data = await ALG.requestHandler(
+    SERVER_URL + "admin/api/orderNotificationChecker.php",
+    "GET",
+    { reqType: "text" },
+    (data) => {
+      return data;
+    },
+    true
+  );
+
+  let options = "";
+  if (!data.length) {
+    return;
+  }
+  data.forEach((element) => {
+    options += `<div class="p-2 px-4 rounded-pill w-100 alg-bg-dark d-flex justify-content-between gap-3 alg-text-light my-2" value="${element[0]}">
+      <div>${element[4]}</div>
+      <div>${element[1]}</div>
+      <div>${element[8]}</div>
+    </div>`;
+  });
+  const design = `
+    <div class="d-flex">
+      <div class="w-100">
+        ${options}
+      </div>
+    </div>
+  `;
+
+  ALG.openModel("Active Orders", design, "&nbsp;");
+}
 
 // navigation
 let isNavigationPanelOpned = false;

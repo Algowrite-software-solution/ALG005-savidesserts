@@ -474,7 +474,8 @@ class DashboardComponents {
     requestUrl,
     method = "GET",
     dataSet,
-    callback = () => {}
+    callback = () => {},
+    preventDefault = false
   ) {
     const url = new URL(requestUrl);
 
@@ -484,11 +485,15 @@ class DashboardComponents {
 
     // data setter
     if (method === "GET") {
-      dataSet.parameters.forEach((element) => {
-        url.searchParams.append(element.key, element.value);
-      });
+      if (dataSet.parameters) {
+        dataSet.parameters.forEach((element) => {
+          url.searchParams.append(element.key, element.value);
+        });
+      }
     } else if (method === "POST") {
-      options.body = dataSet.body;
+      if (options.body) {
+        options.body = dataSet.body;
+      }
     }
 
     let headerContentType = "";
@@ -517,8 +522,7 @@ class DashboardComponents {
       "Content-Type": headerContentType,
     };
 
-    console.log("launch");
-    await fetch(url.toString(), options)
+   return await fetch(url.toString(), options)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -528,8 +532,11 @@ class DashboardComponents {
       })
       .then((data) => {
         if (data.status === "success") {
-          alert(data.status);
-          return callback(data);
+          if (!preventDefault) {
+            alert(data.status);
+          }
+          
+          return callback(data.results);
         } else if (data.status === "failed") {
           console.log(data.error);
           return null;
