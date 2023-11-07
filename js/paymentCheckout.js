@@ -456,7 +456,7 @@ function placeOrder() {
 
                     // Put the payment variables here
                     var payment = {
-                         "sandbox": true,
+                         "sandbox": false,
                          "merchant_id": "229586",    // Replace your Merchant ID
                          "return_url": 'https://saweedessert.com/thanks.php',     // Important
                          "cancel_url": 'https://saweedessert.com/paymentCheckout.php',     // Important
