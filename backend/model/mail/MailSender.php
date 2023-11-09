@@ -8,6 +8,7 @@ require_once "SMTP.php";
 require_once "PHPMailer.php";
 require_once "Exception.php";
 
+use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
 final class MailSender
@@ -27,28 +28,35 @@ final class MailSender
 
     public function mailInitiate($subject, $title, $bodyContent)
     {
-        // email code
-        $this->mail = new PHPMailer;
-        $this->mail->IsSMTP();
-        $this->mail->Host = 'smtp.gmail.com';
-        $this->mail->SMTPAuth = true;
-        $this->mail->Username = $this->senderMail;
-        $this->mail->Password = $this->password;
-        $this->mail->SMTPSecure = 'ssl';
-        $this->mail->Port = 465;
-        $this->mail->setFrom($this->senderMail, $title);
-        $this->mail->addReplyTo($this->senderMail, $title);
-        $this->mail->addAddress($this->toAddress);
-        $this->mail->isHTML(true);
-        $this->mail->Subject = $subject;
+        try {
+            // email code
+            $this->mail = new PHPMailer(true);
+            $this->mail->IsSMTP();
+            $this->mail->Host = 'smtp.gmail.com';
+            $this->mail->SMTPAuth = true;
+            $this->mail->SMTPAuth = true;
+            $this->mail->Username = $this->senderMail;
+            $this->mail->Password = $this->password;
+            $this->mail->SMTPSecure = 'ssl';
+            $this->mail->Port = 465;
+            $this->mail->setFrom($this->senderMail, $title);
+            $this->mail->addReplyTo($this->senderMail, $title);
+            $this->mail->addAddress($this->toAddress);
+            $this->mail->isHTML(true);
+            $this->mail->Subject = $subject;
 
-        $this->mail->Body    = $bodyContent;
+            $this->mail->Body    = $bodyContent;
+        } catch (Exception $e) {
+            echo $e->errorMessage(); //Pretty error messages from PHPMailer
+        } catch (Exception $e) {
+            echo $e->getMessage(); //Boring error messages from anything else!
+        }
     }
 
     public function sendMail()
     {
         if (!$this->mail->send()) {
-            return "Verification code sending failed";
+            return $this->mail;
         } else {
             return "success";
         }

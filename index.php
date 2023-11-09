@@ -56,10 +56,8 @@
                         <div class="col-7 col-lg-4 m-0 pb-5 d-flex align-self-center mt-5 mt-lg-0">
                             <div class="mainSlider swiper mySwiperHome bg-dange m-0 p-0">
                                 <div class="swiper-wrapper bg-dar mt-2">
-                                    <div class="mainSlider swiper-slide"><img src="resources/images/mainSliderImg.png" class="rounded-5 img-fluid" alt="Some thing went wrong"></div>
-                                    <div class="mainSlider swiper-slide"><img src="resources/images/mainSliderImg.png" class="rounded-5 img-fluid" alt="Some thing went wrong"></div>
-                                    <div class="mainSlider swiper-slide"><img src="resources/images/mainSliderImg.png" class="rounded-5 img-fluid" alt="Some thing went wrong"></div>
-                                    <div class="mainSlider swiper-slide"><img src="resources/images/mainSliderImg.png" class="rounded-5 img-fluid" alt="Some thing went wrong"></div>
+                                    <div class="mainSlider swiper-slide"><img src="resources/images/mainSliderImg1.png" class="rounded-5 img-fluid" alt="Some thing went wrong"></div>
+                                    <div class="mainSlider swiper-slide"><img src="resources/images/mainSliderImg2.png" class="rounded-5 img-fluid" alt="Some thing went wrong"></div>
                                 </div>
                             </div>
                         </div>
@@ -157,7 +155,7 @@
                     </div>
                     <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3 mt-5">
                         <div class="col-12 col-lg-6 rounded-4 p-0 abtus-image-backdrop">
-                            <img src="resources/images/aboutUsPerson.jpg" alt="" class="abtus-image-div w-100  rounded-5">
+                            <img src="resources/images/aboutUsPerson.png" alt="" class="abtus-image-div w-100  rounded-5">
                         </div>
                         <div class="col-12 col-lg-6 desc-box scrollbar rounded-4">
                             <div>
