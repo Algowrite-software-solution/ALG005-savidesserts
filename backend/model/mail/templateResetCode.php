@@ -16,7 +16,7 @@ $mailer->mailInitiate("mail sender test", "this is title", $body);
 
 $error = $mailer->sendMail();
 if ($error) {
-  echo $error;
+  echo var_dump($error);
 } else {
   echo "no";
 }
