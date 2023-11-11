@@ -537,7 +537,7 @@ function addInvoice(orderId) {
                if (data.status === "success") {
 
                     hideSpinner();
-                    window.location.assign('http://localhost:9001/thanks.php');
+                    window.location.assign('https://saweedessert.com/thanks.php');
 
                } else {
                     toastMessage(data.error, "text-bg-danger");
