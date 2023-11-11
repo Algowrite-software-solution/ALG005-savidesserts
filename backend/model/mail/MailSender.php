@@ -9,6 +9,7 @@ require_once "PHPMailer.php";
 require_once "Exception.php";
 
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\PHPMailer;
 
 final class MailSender
@@ -38,7 +39,7 @@ final class MailSender
             $this->mail->Username = $this->senderMail;
             $this->mail->Password = $this->password;
             $this->mail->SMTPSecure = 'ssl';
-            $this->mail->Port = 25;
+            $this->mail->Port = 587;
             $this->mail->setFrom($this->senderMail, $title);
             $this->mail->addReplyTo($this->senderMail, $title);
             $this->mail->addAddress($this->toAddress);
