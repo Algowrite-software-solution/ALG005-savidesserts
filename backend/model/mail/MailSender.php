@@ -58,25 +58,12 @@ final class MailSender
     {
         try {
             if (!$this->mail->send()) {
-                return $this->mail;
+                return "failed";
             } else {
                 return "success";
             }
         } catch (\Throwable $th) {
-            return $th->getMessage();
+            return "failed";
         }
     }
 }
-
-
-$mailer = new MailSender("rmjanithnirmal@gmail.com");
-
-$html =  <<<HTML
-<div style="padding: 20px; background-color: orange;">
-    <h1>Hello, World!</h1>
-    <p>This is a sample HTML page.</p>
-</div>
-HTML;
-
-$mailer->mailInitiate("testing mail", "this is a temp mail", $html);
-echo $mailer->sendMail();
