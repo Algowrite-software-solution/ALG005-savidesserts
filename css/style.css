@@ -30,7 +30,7 @@
   max-height: 0;
   overflow: hidden;
   transition: opacity 1s ease, max-height 2s ease;
-  
+
 }
 
 .nav-box.alg-nav-box {
@@ -520,7 +520,7 @@
   display: none;
 }
 
-.spinner-border {
+.spinner-border.checkout {
   height: 60px;
   width: 60px;
 }

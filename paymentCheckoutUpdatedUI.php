@@ -35,7 +35,7 @@
     <!-- spinner bootstrap -->
     <div class="spinner-wrapper bg-black opacity-50">
         <div class="d-flex">
-            <div class="spinner-border text-primary" role="status">
+            <div class="spinner-border checkout text-primary" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
         </div>
