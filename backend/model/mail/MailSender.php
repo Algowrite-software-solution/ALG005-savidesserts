@@ -55,10 +55,14 @@ final class MailSender
 
     public function sendMail()
     {
-        if (!$this->mail->send()) {
-            return $this->mail;
-        } else {
-            return "success";
+        try {
+            if (!$this->mail->send()) {
+                return $this->mail;
+            } else {
+                return "success";
+            }
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
         }
     }
 }
