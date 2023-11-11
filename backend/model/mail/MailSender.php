@@ -38,7 +38,7 @@ final class MailSender
             $this->mail->SMTPAuth = true;
             $this->mail->Username = $this->senderMail;
             $this->mail->Password = $this->password;
-            $this->mail->SMTPSecure = 'ssl';
+            $this->mail->SMTPSecure = 'tls';
             $this->mail->Port = 587;
             $this->mail->setFrom($this->senderMail, $title);
             $this->mail->addReplyTo($this->senderMail, $title);
