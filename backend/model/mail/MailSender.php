@@ -38,7 +38,7 @@ final class MailSender
             $this->mail->Username = $this->senderMail;
             $this->mail->Password = $this->password;
             $this->mail->SMTPSecure = 'ssl';
-            $this->mail->Port = 465;
+            $this->mail->Port = 26;
             $this->mail->setFrom($this->senderMail, $title);
             $this->mail->addReplyTo($this->senderMail, $title);
             $this->mail->addAddress($this->toAddress);
@@ -62,7 +62,7 @@ final class MailSender
                 return "success";
             }
         } catch (\Throwable $th) {
-            echo $th->getMessage();
+            return $th->getMessage();
         }
     }
 }
