@@ -62,3 +62,16 @@ final class MailSender
         }
     }
 }
+
+
+$mailer = new MailSender("rmjanithnirmal@gmail.com");
+
+$html =  <<<HTML
+<div style="padding: 20px; background-color: orange;">
+    <h1>Hello, World!</h1>
+    <p>This is a sample HTML page.</p>
+</div>
+HTML;
+
+$mailer->mailInitiate("testing mail", "this is a temp mail", $html);
+echo $mailer->sendMail();
