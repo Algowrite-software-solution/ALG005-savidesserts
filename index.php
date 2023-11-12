@@ -68,8 +68,18 @@
     </section>
 
     <!-- Banner -->
-    <section class="alg-bg-light" id="promotionContainer">
-
+    <section class="alg-bg-light d-none" id="promotionContainer">
+        <div class="container">
+            <div class="col-12 text-center pt-2 px-2 pb-4">
+                <span class="alg-text-h2 alg-text-dark fw-bold m-0 p-0">PROMOTION</span>
+                <div class="promotionSwiper swiper mySwiperPromotion mt-2">
+                    <div class="swiper-wrapper" id="promotionSliderContainer">
+                        <!-- image container goes here -->
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- services -->
