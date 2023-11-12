@@ -1125,11 +1125,18 @@ async function openCategoryEditModel(categoryId, categoryType, categoryImage) {
       </div>
       <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
         <div class=" alg-text-light w-25 text-center p-2">Category</div>
-        <input class="rounded-pill form-control w-75" type="text" disabled value="${categoryType}" />
+        <input class="rounded-pill form-control w-75" type="text" value="${categoryType}" />
+      </div>
+      <div class=" alg-bg-darker alg-rounded-small d-flex w-100 ">
+        <div class=" alg-text-light w-25 text-center p-2">Image</div>
+        <div class="alg-bg-light p-2 w-100">
+          <img style="width: 200px; height: 200px; object-fit: cover;" class="rounded-pill" src="${categoryImage}" />
+        </div>
+        <input type="file" id="categoryImageEditInput" class="form-control" />
       </div>
     </div>  
   `;
-  const modelFooterDesign = `<button data-bs-dismiss="modal" aria-label="Close" class="btn btn-danger" onclick="editCategory()">Edit</button>`;
+  const modelFooterDesign = `<button data-bs-dismiss="modal" aria-label="Close" class="btn btn-danger" onclick="editCategory(${categoryId})">Edit</button>`;
 
   ALG.openModel("Category Delete", modelBodyDesign, modelFooterDesign);
 }
