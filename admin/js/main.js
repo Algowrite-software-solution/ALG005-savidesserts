@@ -23,7 +23,14 @@ document.addEventListener("DOMContentLoaded", () => {
         break;
     }
   };
-  
+  ALG.mainNavigationController(
+    "navigationSection",
+    "mainContentContainer",
+    () => {
+      mainPanelContentLoad("productManagementPanel");
+    },
+    mainPanelContentLoad
+  );
 
   // sidebar controls
   const icon = document.getElementById("navigationIcon");
