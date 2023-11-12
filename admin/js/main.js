@@ -787,8 +787,7 @@ async function loadCategoryData() {
             id: element.category_id,
             category: element.category_type,
             image: `<img src="${element.category_image}" class="alg-list-cell-image"  />`,
-            edit: `<i class="bi bi-pen fs-4" onclick="openCategoryEditModel();"></i>`,
-            delete: `<i class="bi bi-x-circle fs-4" onclick="openCategoryEditModel();"></i>`,
+            edit: `<i class="bi bi-pen fs-4" onclick="openCategoryEditModel('${element.category_id}', '${element.category_type}', '${element.category_image}');"></i>`,
           };
 
           listArray.push(newData);
