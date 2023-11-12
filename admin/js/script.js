@@ -1125,18 +1125,69 @@ async function openCategoryEditModel(categoryId, categoryType, categoryImage) {
       </div>
       <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
         <div class=" alg-text-light w-25 text-center p-2">Category</div>
-        <input class="rounded-pill form-control w-75" type="text" value="${categoryType}" />
+        <input class="rounded-pill form-control w-75" id="categoryEditInput${categoryId}" type="text" value="${categoryType}" />
       </div>
       <div class=" alg-bg-darker alg-rounded-small d-flex w-100 ">
         <div class=" alg-text-light w-25 text-center p-2">Image</div>
         <div class="alg-bg-light p-2 w-100">
           <img style="width: 200px; height: 200px; object-fit: cover;" class="rounded-pill" src="${categoryImage}" />
         </div>
-        <input type="file" id="categoryImageEditInput" class="form-control" />
+        <input onchange="selectCategoryImage()" type="file" id="categoryImageEditInput${categoryId}" class="form-control" />
       </div>
     </div>  
   `;
   const modelFooterDesign = `<button data-bs-dismiss="modal" aria-label="Close" class="btn btn-danger" onclick="editCategory(${categoryId})">Edit</button>`;
 
   ALG.openModel("Category Delete", modelBodyDesign, modelFooterDesign);
+}
+
+// let categoryUpdatedImage;
+// function selectCategoryImage() {}
+
+function editCategory(id) {
+  const category = document.getElementById("categoryEditInput" + id).value;
+  const image = document.getElementById("categoryImageEditInput" + id);
+
+  const form = new FormData();
+  form.append("id", id);
+  form.append("category_type", category);
+  form.append("image", image.files[0]);
+
+  fetch("api/categoryUpdate.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Category Update was successfull",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+
+        ALG.addTableToContainer(
+          "categoryViewContainer",
+          loadCategoryData,
+          [40, 120, 250, 80]
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }

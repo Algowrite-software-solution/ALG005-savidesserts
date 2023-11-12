@@ -15,7 +15,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 //response
 $responseObject = new stdClass();
-$responseObject->status = 'false';
+$responseObject->status = 'failed';
 
 // chekcing is user logging
 $userCheckSession = new SessionManager("alg005_admin");
@@ -24,14 +24,15 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
      response_sender::sendJson($responseObject);
 }
 
-if (!isset($_GET['id'])) {
-     $responseObject->error = 'Access denied';
+if (!isset($_POST['id'])) {
+     $responseObject->error = 'Invalid Parameter';
      response_sender::sendJson($responseObject);
 }
 
 // input data
-$categoryId = $_GET['id'];
-$categoryType = $_GET['category_type'];
+$categoryId = $_POST['id'];
+$categoryType = $_POST['category_type'];
+$image = $_FILES['image']; // image
 
 //database object
 $db = new database_driver();
