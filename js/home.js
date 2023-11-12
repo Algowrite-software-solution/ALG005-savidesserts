@@ -55,7 +55,7 @@ function loadProductPromotions() {
 
         if (data.result.length > 0) {
           promotionContainer.classList.remove('d-none');
-          console.log(data.result.length);
+          
           data.result.map((item) => {
 
             promotionSliderContainer.innerHTML +=
