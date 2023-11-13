@@ -2,7 +2,7 @@
 
 //category Update API
 //by madusha pravinda
-//version - 1.0.1
+//version - 1.0.2
 //26-09-2023
 
 //include models
@@ -32,7 +32,7 @@ if (!isset($_POST['id'])) {
 // input data
 $categoryId = $_POST['id'];
 $categoryType = $_POST['category_type'];
-$image = $_FILES['image']; // image
+// $image = $_FILES['image']; // image
 
 //database object
 $db = new database_driver();
@@ -40,5 +40,5 @@ $db = new database_driver();
 // data insert
 $categoryUpdate = "UPDATE `category` SET `category_type`=? WHERE `id`=?";
 $db->execute_query($categoryUpdate, 'ss', array($categoryType, $categoryId));
-$responseObject->status = 'Update Success';
+$responseObject->status = 'success';
 response_sender::sendJson($responseObject);

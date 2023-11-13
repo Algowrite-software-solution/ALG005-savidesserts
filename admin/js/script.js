@@ -1,3 +1,88 @@
+// promotion sectino
+function openSinglePromotionView(id) {
+  const body = `
+  <div class="d-flex justify-content-center">
+    <img src="../resources/images/promotionImages/${id}.jpg" style="width: 100%; height: 300px; object-fit: contain;" />
+  </div>
+  `;
+
+  ALG.openModel("Promotion : " + id, body, "&nbsp;");
+}
+
+function savePromotion() {
+  const product = document.getElementById("promotionAddProductSelect").value;
+  const weight = document.getElementById("promotionAddWeightSelect").value;
+  const endData = document.getElementById("promotionAddEndDate").value;
+  const image = document.getElementById("promotionAddImage").files[0];
+
+  if (product == 0) {
+    ALG.openToast(
+      "Warnning",
+      "Please select a product",
+      ALG.getCurrentTime(),
+      "bi-heart",
+      "Error"
+    );
+    return;
+  } else if (weight == 0) {
+    ALG.openToast(
+      "Warnning",
+      "Please select a weight",
+      ALG.getCurrentTime(),
+      "bi-heart",
+      "Error"
+    );
+    return;
+  } else if (!endData) {
+    ALG.openToast(
+      "Warnning",
+      "Please select end date",
+      ALG.getCurrentTime(),
+      "bi-heart",
+      "Error"
+    );
+    return;
+  }
+
+  const form = new FormData();
+  form.append("product_id", product);
+  form.append("weight_id", weight);
+  form.append("end_date_time", endData);
+  form.append("promotion_image", image);
+
+  fetch("api/productPromotionAdding.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Promotion added successfully",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 // order section
 function orderStatusChange(event, id, orderId) {
   const statusId = event.target.value;

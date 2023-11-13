@@ -27,7 +27,7 @@ if (!RequestHandler::isPostMethod()) {
 
 //parameters
 if (!isset($_POST['end_date_time'], $_POST['product_id'], $_POST['weight_id'])) {
-     $responseObject->error = 'Access denied';
+     $responseObject->error = 'Invalid Parameters';
      response_sender::sendJson($responseObject);
 }
 
@@ -60,7 +60,7 @@ $searchPromotion = "SELECT * FROM `promotion` WHERE `product_product_id`=? AND `
 $searchResult = $db->execute_query($searchPromotion, 'iis', array($productId, $weightId, $statusId));
 
 if ($searchResult['result']->num_rows > 0) {
-     $responseObject->error = 'already promotion have this product';
+     $responseObject->error = 'promotions are already assigned to this product';
      response_sender::sendJson($responseObject);
 }
 

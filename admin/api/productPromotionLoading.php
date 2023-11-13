@@ -31,7 +31,7 @@ if ($queryResult->num_rows > 0) {
           array_push($responseArray, $row);
      }
      $responseObject->status = 'success';
-     $responseObject->result = $responseArray;
+     $responseObject->results = $responseArray;
      response_sender::sendJson($responseObject);
 } else {
      $responseObject->error = 'no result';
