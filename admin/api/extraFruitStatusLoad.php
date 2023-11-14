@@ -18,11 +18,11 @@ $responseObject = new stdClass();
 $responseObject->status = 'false';
 
 // checking is user logging
-$userCheckSession = new SessionManager();
-// if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
-//      $responseObject->error = 'Please LogIn';
-//      response_sender::sendJson($responseObject);
-// }
+$userCheckSession = new SessionManager("alg005_admin");
+if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
+     $responseObject->error = 'Please LogIn';
+     response_sender::sendJson($responseObject);
+}
 
 //database object
 $db = new database_driver();

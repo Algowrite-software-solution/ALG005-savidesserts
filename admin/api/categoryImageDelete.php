@@ -1,5 +1,5 @@
 <?php
-//product Item Load API
+//category image delete API
 //by madusha pravinda
 //version - 1.0.2
 //02-10-2023
@@ -13,6 +13,13 @@ header("Content-Type: application/json; charset=UTF-8");
 //response
 $responseObject = new stdClass();
 $responseObject->status = 'failed';
+
+// chekcing is user logging
+$userCheckSession = new SessionManager("alg005_admin");
+if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
+     $responseObject->error = 'Please LogIn';
+     response_sender::sendJson($responseObject);
+}
 
 
 $imagePath = $_GET['category_image_path'];

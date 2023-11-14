@@ -15,12 +15,12 @@ header("Content-Type: application/json; charset=UTF-8");
 
 //response
 $responseObject = new stdClass();
-$responseObject->status = 'false';
+$responseObject->status = 'failed';
 
 //chekcing is user logging
-$userCheckSession = new SessionManager();
+$userCheckSession = new SessionManager("alg005_admin");
 if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
-    $responseObject->status = 'Please LogIn';
+    $responseObject->error = 'Please LogIn';
     response_sender::sendJson($responseObject);
 }
 
@@ -31,15 +31,8 @@ $db = new database_driver();
 $query = "SELECT `status` FROM `invoice_status`";
 $resultSet = $db->query($query);
 
-$responseResultArray = [];
-for ($i = 0; $i < $resultSet->num_rows; $i++) {
-    $result = $resultSet->fetch_assoc();
-    array_push($responseResultArray, $result);
-}
+
 
 $responseObject->status = 'success';
-$responseObject->results = $responseResultArray;
+$responseObject->results = $resultSet->fetch_all();
 response_sender::sendJson($responseObject);
-
-
-?>

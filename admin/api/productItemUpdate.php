@@ -18,7 +18,7 @@ $responseObject = new stdClass();
 $responseObject->status = 'failed';
 
 // chekcing is user logging
-$userCheckSession = new SessionManager();
+$userCheckSession = new SessionManager("alg005_admin");
 if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
      $responseObject->error = 'Please LogIn';
      response_sender::sendJson($responseObject);
@@ -36,8 +36,6 @@ $price = $_POST['price'];
 $productItemStatusId = $_POST['product_status_id'];
 $productId = $_POST['product_product_id'];
 $weightId = $_POST['weight_id'];
-
-
 
 //data validation sending object
 $dataToValidate = [
@@ -66,27 +64,28 @@ $validator = new data_validator($dataToValidate);
 // Perform validation
 $errors = $validator->validate();
 
-
 // Check for validation errors
 if (!empty((array)$errors)) {
      $responseObject->error = $errors;
      response_sender::sendJson($responseObject);
 }
 
-if ($productId == 0) {
+if ($productId <= 0) {
      $responseObject->error = "Please select the product";
      response_sender::sendJson($responseObject);
 }
-if ($weightId == 0) {
+if ($weightId <= 0) {
      $responseObject->error = "Please select the weight";
      response_sender::sendJson($responseObject);
 }
+
 
 //database object
 $db = new database_driver();
 
 //data update
 $productItemUpdate = "UPDATE `product_item` SET `qty`=?,`price`=?,`product_status_id`=?,`product_product_id`=?,`weight_id`=? WHERE `id`=?";
-$db->execute_query($productItemUpdate, 'ssssss', array($qty, $price, $productItemStatusId, $productId, $weightId, $productItemId));
-$responseObject->status = 'Product Item Update Success';
+$result = $db->execute_query($productItemUpdate, 'ssssss', array($qty, $price, $productItemStatusId, $productId, $weightId, $productItemId));
+
+$responseObject->status = 'success';
 response_sender::sendJson($responseObject);

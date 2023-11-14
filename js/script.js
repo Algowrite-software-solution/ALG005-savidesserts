@@ -743,3 +743,7 @@ function cartRowCount() {
       console.error("Fetch error:", error);
     });
 }
+
+function backend() {
+  window.location.assign('http://localhost:9001/index.php');
+}

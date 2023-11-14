@@ -53,9 +53,9 @@ if (empty($province) || $province === 0 ) {
 
 //values
 // $amount = $numerical_value;
-$merchant_id = "1224343";
+$merchant_id = "229586";
 
-$merchant_secret = 'MTYyNzU1ODg2MDEwNTg1OTM5MjIzNjgzMzQwMzM2MTY3Mjg0Njk3NA=='; // Replace with your Merchant Secret
+$merchant_secret = 'MTI2Nzk5NjE4MTIzMTY4NzA4MzE0OTYwNDM4OTk1MTI3NjYwNTk='; // Replace with your Merchant Secret
 $currency = "LKR";
 
 //hash generate

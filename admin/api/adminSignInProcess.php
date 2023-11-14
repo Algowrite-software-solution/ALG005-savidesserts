@@ -18,32 +18,31 @@ $responseObject = new stdClass();
 $responseObject->status = 'failed';
 
 //handle the request
-if (!isset($_POST['username']) || !isset($_POST['mobile'])) {
+if (!isset($_POST['password']) || !isset($_POST['mobile'])) {
     $responseObject->status = "invalid request";
     response_sender::sendJson($responseObject);
 }
 
-$username = $_POST["username"];
-$mobil = $_POST["mobile"];
+$mobile = $_POST["mobile"];
+$passoword = $_POST["password"];
 
 // db connection
 $db = new database_driver();
 
-$search_quary = "SELECT * FROM `admin` WHERE `username`=? AND `mobile`=?";
-$db_response = $db->execute_query($search_quary,"ss", array($username,$mobil));
+$search_quary = "SELECT * FROM `admin` WHERE `mobile`=? AND `password`=?";
+$db_response = $db->execute_query($search_quary, "ss", array($mobile, $passoword));
 
 $resultSet = $db_response["result"];
 
-if($resultSet->num_rows == 1){
+if ($resultSet->num_rows == 1) {
     $row = $resultSet->fetch_assoc();
 
-    $userAccess = new SessionManager();
+    $userAccess = new SessionManager("alg005_admin");
     $userAccess->login($row);
 
     $responseObject->status = "success";
     response_sender::sendJson($responseObject);
-}else{
-    
-    $responseObject->status = 'Invalid Details';
-    response_sender::sendJson($responseObject);
 }
+
+$responseObject->status = 'failed';
+response_sender::sendJson($responseObject);

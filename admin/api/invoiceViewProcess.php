@@ -15,30 +15,38 @@ header("Content-Type: application/json; charset=UTF-8");
 
 //response
 $responseObject = new stdClass();
-$responseObject->status = "false";
+$responseObject->status = "failed";
 
 //chekcing is user logging
-$userCheckSession = new SessionManager();
+$userCheckSession = new SessionManager("alg005_admin");
 if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
-    $responseObject->status = 'Please Login';
+    $responseObject->error = 'Please login';
     response_sender::sendJson($responseObject);
 }
+
 
 
 //load invoice details
 $db = new database_driver();
 
-$query = "SELECT * FROM `invoice` WHERE `user_user_id`=? ";
-$resultSet = $db->execute_query($query,'s',array());
+$query = "SELECT `invoice`.*, `user`.`user_id`,`user`.`email`,`user`.`full_name`,`invoice_status`.*,`delivery_details`.*,`province`.*,`distric`.* FROM `invoice` 
+INNER JOIN `user` ON `invoice`.`user_user_id`=`user`.`user_id`
+INNER JOIN `invoice_status` ON `invoice_status`.`invoice_status_id`=`invoice`.`invoice_status_invoice_status_id` 
+INNER JOIN `delivery_details` ON `user`.`user_id`=`delivery_details`.`user_user_id`
+INNER JOIN `province` ON `delivery_details`.`province_province_id` = `province`.`province_id`
+INNER JOIN `distric` ON `delivery_details`.`distric_distric_id` = `distric`.`distric_id` ";
+$query .= (isset($_GET["order_id"])) ? " WHERE `order_id` = '#" . $_GET["order_id"] . "' " : "";
+$query .= " ORDER BY `order_date` DESC";
+$resultSet = $db->query($query);
 
-// $responseResultArray = [];
-// for ($i = 0; $i < $resultSet->num_rows; $i++) {
-//     $result = $resultSet->fetch_assoc();
-//     array_push($responseResultArray, $result);
-// }
+$responseResultArray = [];
 
-// $responseObject->status = 'success';
-// $responseObject->results = $responseResultArray;
-// response_sender::sendJson($responseObject);
+for ($i = 0; $i < $resultSet->num_rows; $i++) {
+    $result = $resultSet->fetch_assoc();
+    array_push($responseResultArray, $result);
+}
 
-?>
+$responseObject->status = 'success';
+$responseObject->something = (isset($_GET["order_id"])) ? " WHERE `order_id` = '" . $_GET["order_id"] . "' " : "";
+$responseObject->results = $responseResultArray;
+response_sender::sendJson($responseObject);

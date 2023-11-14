@@ -12,7 +12,10 @@
         </div>
     </div>
     <div class="p-2 col-9 flex-grow-1 text-dark" id="productSectionsContainer">
-        <div class="p-2 h-100 d-block alg-bg-light alg-rounded-small overflow-auto flex-grow-1" id="productViewProductSection">
+        <div class="p-2 h-100 d-block alg-bg-light alg-rounded-small overflow-auto flex-grow-1">
+            👈 Please Select a section...
+        </div>
+        <div class="p-2 h-100 d-none alg-bg-light alg-rounded-small overflow-auto flex-grow-1" id="productViewProductSection">
 
         </div>
         <div class="p-2 h-100 d-none alg-bg-light alg-rounded-small" id="productAddProductSection">
@@ -101,7 +104,7 @@
                     </div>
                     <button class="alg-btn-pill" onclick="productItemSave(event)">Save Product Item</button>
                 </div>
-                <div class="w-100 alg-bg-dark p-2 alg-rounded-mid overflow-auto" id="productItemViewContainer">
+                <div class="w-100 alg-bg-dark p-2 alg-rounded-mid overflow-auto" id="productItemViewContainer" style="max-height: 600px;">
                     Loading....
                 </div>
             </div>
@@ -125,9 +128,19 @@
         <div class="p-2 h-100 d-none alg-bg-light alg-rounded-small" id="setExtraItemProductSection">
             <div class="w-100 d-flex flex-column gap-2 alg-text-white">
                 <div class="w-100 alg-rounded-small alg-bg-dark p-2 d-flex flex-column gap-3">
-                    loading
+                    <div class="d-flex flex-column">
+                        <label for="setupProductSelector">Product</label>
+                        <select class="form-select" id="setupProductSelector">
+                        </select>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <label for="setupExtraItemSelector">Extra Item</label>
+                        <select class="form-select" id="setupExtraItemSelector">
+                        </select>
+                    </div>
+                    <button class="btn alg-btn-pill" onclick="setupExtraItem()">SetUp</button>
                 </div>
-                <div class="w-100 alg-bg-dark p-2 alg-rounded-mid overflow-auto" id="extraItemViewContainer">
+                <div class="w-100 alg-bg-dark p-2 alg-rounded-mid overflow-auto" id="setupExtraItemViewContainer">
                     Loading extras....
                 </div>
             </div>

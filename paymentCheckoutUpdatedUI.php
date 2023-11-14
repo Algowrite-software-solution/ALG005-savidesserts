@@ -25,10 +25,21 @@
     <script defer src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script defer src="../js/bootstrap.bundle.js"></script>
     <script defer src="../js/homeSliders.js"></script>
+    <script defer type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+    <script defer src="../js/script.js"></script>
+    <script defer src="../js/paymentCheckout.js"></script>
 </head>
 
 <body class="alg-bg-light">
     <?php include("pages/components/header.php") ?>
+    <!-- spinner bootstrap -->
+    <div class="spinner-wrapper bg-black opacity-50">
+        <div class="d-flex">
+            <div class="spinner-border checkout text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
     <div class="container my-3 pb-3 pt-3 overflow-hidden min-vh-100">
         <!-- topic -->
         <div class="d-flex pt-2 pb-2 alg-text-dark justify-content-center justify-content-lg-start">
@@ -100,6 +111,10 @@
                     <!-- payment Method -->
                     <div class="d-flex flex-row flex-lg-column flex-grow-1  alg-bg-darker alg-text-light p-3 alg-rounded-small">
                         <h4>Estimate Delivery Date</h4>
+
+                        <span id="estimateDateContainer" class="text-white fs-4">
+
+                        </span>
                     </div>
 
                     <div class="d-flex flex-grow-1 justify-content-lg-end justify-content-center gap-2">
@@ -122,7 +137,7 @@
 
                 <!-- order button -->
                 <div class="bg-black d-flex justify-content-end flex-grow-1">
-                    <button id="payhere-payment" onclick="placeOrder();"  type="submit" class="alg-bg-gold w-100 alg-text-h2 border-0 rounded-3 p-2 fw-bolder">Place Order</button>
+                    <button onclick="placeOrder();" type="submit" id="payhere-payment" class="alg-bg-gold w-100 alg-text-h2 border-0 rounded-3 p-2 fw-bolder">Place Order</button>
                 </div>
 
 
@@ -133,9 +148,8 @@
     <!-- toast mode -->
     <?php include("pages/components/toastMessage.php") ?>
 
-    <script src="../js/script.js"></script>
-    <script src="../js/paymentCheckout.js"></script>
-    <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+    
+
 
     <?php include("pages/components/footer.php") ?>
 </body>

@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
      shippingDetailsLoad();
      liveCartDetailsLoad();
      shippingPriceLoader();
+     hideSpinner();
+
 });
 
 
@@ -216,6 +218,7 @@ let Total = 0;
 let ProductItemPrice = 0;
 let ExtraToppingsPrice = 0;
 let ShippingPrice = 0;
+let subTotal = 0;
 
 // global element result
 let globalElementResult = [];
@@ -263,6 +266,20 @@ function liveCartDetailsLoad() {
      let totalPriceContainer = document.getElementById('totalPriceContainer');
      let subTotalPrice = document.getElementById('subTotalPrice');
      let productDetailsContainer = document.getElementById('productDetailsContainer');
+     let estimateDateContainer = document.getElementById('estimateDateContainer');
+     //free text context
+     estimateDateContainer.textContent = "";
+
+     //gat astimate date
+     const newDateEs = addToDate(new Date());
+     const month = newDateEs.toLocaleString("en-US", { month: "short" });
+     const day = newDateEs.getDate();
+     const year = newDateEs.getFullYear();
+
+     const formattedDate = `${month} ${day} ${year}`;
+
+     //set a date
+     estimateDateContainer.textContent = formattedDate;
 
      // Fetch request
      fetch(SERVER_URL + "backend/api/cardView.php", {
@@ -283,6 +300,7 @@ function liveCartDetailsLoad() {
                Total = 0;
                ProductItemPrice = 0;
                ExtraToppingsPrice = 0;
+               subTotal = 0;
 
 
 
@@ -303,6 +321,7 @@ function liveCartDetailsLoad() {
                          Total += itemPrice;
 
                          let rowItemsPrice = productItemsPrice + extraPrice;
+                         subTotal += rowItemsPrice;
 
 
                          //    set element our design
@@ -346,7 +365,7 @@ function liveCartDetailsLoad() {
                     // prices sets
                     shippingPriceContainer.textContent = "Rs.  " + ShippingPrice + ".00";
                     totalPriceContainer.textContent = "Rs." + Total + ".00";
-                    subTotalPrice.textContent = "Rs." + ProductItemPrice + ".00";
+                    subTotalPrice.textContent = "Rs." + subTotal + ".00";
 
                }
           })
@@ -356,6 +375,12 @@ function liveCartDetailsLoad() {
           });
 }
 
+//estimate date calculator
+function addToDate(date) {
+     const newDate = new Date(date);
+     newDate.setDate(newDate.getDate() + 3);
+     return newDate;
+}
 
 
 
@@ -431,10 +456,10 @@ function placeOrder() {
 
                     // Put the payment variables here
                     var payment = {
-                         "sandbox": true,
-                         "merchant_id": "1224343",    // Replace your Merchant ID
-                         "return_url": 'http://localhost:9001/paymentCheckout.php',     // Important
-                         "cancel_url": 'http://localhost:9001/paymentCheckout.php',     // Important
+                         "sandbox": false,
+                         "merchant_id": "229586",    // Replace your Merchant ID
+                         "return_url": 'https://saweedessert.com/thanks.php',     // Important
+                         "cancel_url": 'https://saweedessert.com/paymentCheckout.php',     // Important
                          "notify_url": "http://sample.com/notify",
                          "order_id": orderId,
                          "items": orderId,
@@ -471,7 +496,22 @@ function placeOrder() {
 }
 
 
+const spinnerWrapperEl = document.querySelector('.spinner-wrapper');
+
+// Show the spinner while fetching data
+function showSpinner() {
+     spinnerWrapperEl.classList.remove('active');
+}
+
+// Hide the spinner once the data has been fetched
+function hideSpinner() {
+     spinnerWrapperEl.classList.add('active');
+}
+
+
+
 function addInvoice(orderId) {
+     showSpinner();
 
      const formData = new FormData();
      formData.append("globalElementResult", JSON.stringify(globalElementResult));
@@ -487,6 +527,7 @@ function addInvoice(orderId) {
           body: formData,
      })
           .then((response) => {
+
                if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                }
@@ -494,9 +535,9 @@ function addInvoice(orderId) {
           })
           .then((data) => {
                if (data.status === "success") {
-                    toastMessage("Order Placed", "text-bg-success");
 
-                    setTimeout(() => { window.location.reload() }, 2000);
+                    hideSpinner();
+                    window.location.assign('https://saweedessert.com/thanks.php');
 
                } else {
                     toastMessage(data.error, "text-bg-danger");

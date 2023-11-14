@@ -23,14 +23,22 @@ if (RequestHandler::getMethodHasError("product_id")) {
     $responseObject->error = "Invalid Request";
     response_sender::sendJson($responseObject);
 }
+if (RequestHandler::getMethodHasError("weightId")) {
+    $responseObject->error = "Invalid Request";
+    response_sender::sendJson($responseObject);
+}
 
 // catch inputs
 $id = (isset($_GET['product_id']) ? $_GET['product_id'] : null);
+$weightId = (isset($_GET['weightId']) ? $_GET['weightId'] : null);
 
 // validate input
 $validateReadyObject = (object) [
     "id_int" => [
         (object) ["datakey" => "product_id", "value" => $id]
+    ],
+    "id_int" => [
+        (object) ["datakey" => "weightId", "value" => $weightId]
     ]
 ];
 
@@ -45,7 +53,7 @@ foreach ($errors as $key => $value) {
 
 // search relevent data
 $searchEngine = new AdvancedSearchEngine();
-$results = $searchEngine->searchSingleProduct($id);
+$results = $searchEngine->searchSingleProduct($id, $weightId);
 
 $imageSearch = new ImageSearch("../../resources/images/singleProductImg/", $results["product_id"], $results["weight_id"], ["jpg"]);
 $results["images"] = (is_array($imageSearch->search())) ? $imageSearch->search() : [];

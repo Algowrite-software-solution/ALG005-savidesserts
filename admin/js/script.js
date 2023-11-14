@@ -1,4 +1,228 @@
+// promotion sectino
+function openSinglePromotionView(id) {
+  const body = `
+  <div class="d-flex justify-content-center">
+    <img src="../resources/images/promotionImages/${id}.jpg" style="width: 100%; height: 300px; object-fit: contain;" />
+  </div>
+  `;
+
+  ALG.openModel("Promotion : " + id, body, "&nbsp;");
+}
+
+function savePromotion() {
+  const product = document.getElementById("promotionAddProductSelect").value;
+  const weight = document.getElementById("promotionAddWeightSelect").value;
+  const endData = document.getElementById("promotionAddEndDate").value;
+  const image = document.getElementById("promotionAddImage").files[0];
+
+  if (product == 0) {
+    ALG.openToast(
+      "Warnning",
+      "Please select a product",
+      ALG.getCurrentTime(),
+      "bi-heart",
+      "Error"
+    );
+    return;
+  } else if (weight == 0) {
+    ALG.openToast(
+      "Warnning",
+      "Please select a weight",
+      ALG.getCurrentTime(),
+      "bi-heart",
+      "Error"
+    );
+    return;
+  } else if (!endData) {
+    ALG.openToast(
+      "Warnning",
+      "Please select end date",
+      ALG.getCurrentTime(),
+      "bi-heart",
+      "Error"
+    );
+    return;
+  }
+
+  const form = new FormData();
+  form.append("product_id", product);
+  form.append("weight_id", weight);
+  form.append("end_date_time", endData);
+  form.append("promotion_image", image);
+
+  fetch("api/productPromotionAdding.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Promotion added successfully",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+// order section
+function orderStatusChange(event, id, orderId) {
+  const statusId = event.target.value;
+
+  const query = `?invoice_id=${id}&invoice_status_Id=${statusId}`;
+  fetch("api/invoiceStatusUpdateProcess.php" + query, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then(async (data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "User status updated!",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+        openSingleOrderViewModel(orderId);
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+async function openSingleOrderViewModel(invoiceId) {
+  const invoiceData = await loadOrderData(invoiceId);
+  const invoiceStatusData = await loadInvoiceStatusData();
+
+  let options = "";
+  let colors = "";
+  switch (invoiceData[0].invoice_status_id) {
+    case "1":
+      colors = " bg-warning text-dark ";
+      break;
+    case "2":
+      colors = " bg-primary text-white ";
+      break;
+    case "3":
+      colors = " bg-success text-white ";
+      break;
+
+    case "4":
+      colors = " bg-danger text-white ";
+      break;
+
+    default:
+      colors = " bg-white text-dark ";
+      break;
+  }
+
+  let index = 1;
+  invoiceStatusData.forEach((statusElement) => {
+    selected = index == invoiceData[0].invoice_status_id ? " selected " : "";
+    options += `<option ${selected} value="${index}">${statusElement[0]}</option>`;
+    index++;
+  });
+
+  const orderDesign = `
+  <div class="d-flex flex-column w-100 gap-3">
+    <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+      <div class=" alg-text-light w-25 text-center p-2">id</div>
+      <input class="rounded-pill form-control w-75" type="text" disabled value="${invoiceId}" />
+    </div>
+    <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+      <div class=" alg-text-light w-25 text-center p-2">order data</div>
+      <input class="rounded-pill form-control w-75" type="text" disabled value="${invoiceData[0].order_date}" />
+    </div>
+    <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+      <div class=" alg-text-light w-25 text-center p-2">Amount</div>
+      <input class="rounded-pill form-control w-75" type="text" disabled value="LKR ${invoiceData[0].pay_amout}" />
+    </div>
+    <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+      <div class=" alg-text-light w-25 text-center p-2">Amount</div>
+      <select onchange="orderStatusChange(event, '${invoiceData[0].invoice_id}', '${invoiceData[0].order_id}')" class="form-select ${colors}">
+        ${options}
+      </select>
+    </div>
+  </div>
+  `;
+
+  ALG.openModel("Model", orderDesign, "&nbsp;");
+}
+
 // product section
+function changeUserStatus(event, userId) {
+  const statusId = event.target.value;
+
+  const query = `?u_id=${userId}&s_id=${statusId}`;
+  fetch("api/userStatusUpdate.php" + query, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then(async (data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "User status updated!",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+
+        await ALG.addTableToContainer(
+          "userViewUserSection",
+          loadUserDataToUserManagement,
+          [60, 250, 100, 100, 120, 100, 150]
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 function editProduct(id) {
   const description = document.getElementById(
     "productEditDescriptionInput" + id
@@ -173,6 +397,73 @@ function openWeightEditModel(id, weight) {
 }
 
 // extra item
+function setupExtraItem() {
+  const product = document.getElementById("setupProductSelector").value;
+  const extraItem = document.getElementById("setupExtraItemSelector").value;
+
+  if (product == 0) {
+    ALG.openToast(
+      "Warnning",
+      "Please select a product",
+      ALG.getCurrentTime(),
+      "bi-heart",
+      "Error"
+    );
+    return;
+  } else if (extraItem == 0) {
+    ALG.openToast(
+      "Warnning",
+      "Please select a extra item",
+      ALG.getCurrentTime(),
+      "bi-heart",
+      "Error"
+    );
+    return;
+  }
+
+  const form = new FormData();
+  form.append("ad_product_id", product);
+  form.append("ad_extra_id", extraItem);
+
+  fetch("api/extraItem_add_for_product.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Extra item set up successful",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+
+        ALG.addListToContainer(
+          "setupExtraItemViewContainer",
+          loadSetExtraItemData,
+          [60, 150, 200]
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 function editExtraItem(id) {
   const extraItem = document.getElementById(
     "extraItemEditExtraItemInput" + id
@@ -259,7 +550,7 @@ function openExtraItemEditModel(id, extraItem, statusId, status, price) {
   ALG.openModel(
     "Edit Weight",
     design,
-    `<button data-bs-dismiss="modal" aria-label="Close" class="alg-btn-pill" onclick="editExtraItem(${id})">Edit</button>`
+    `<button data-bs-dismiss="modal" aria-label="Close" class="alg-btn-pill" onclick="editExtraItem('${id}')">Edit</button>`
   );
 }
 
@@ -350,6 +641,135 @@ function addProductItemImageToList() {
       reader.readAsDataURL(imageInput.files[key]);
     }
   }
+}
+
+async function openProductItemEditModel(
+  id,
+  productId,
+  productStatusId,
+  quantity,
+  price,
+  weightId
+) {
+  const products = await loadProductData();
+  let productSelectOptions = ``;
+  products.forEach((element) => {
+    const selected = element.product_id === productId ? " selected " : "";
+    productSelectOptions += `<option ${selected} value="${element.product_id}" id="${element.product_id}">${element.product_name}</option>`;
+  });
+
+  const weights = await loadWeightData();
+  let weightsSelectOptions = ``;
+  weights.forEach((element) => {
+    const selected = element.weight_id === weightId ? " selected " : "";
+    weightsSelectOptions += `<option ${selected} value="${element.weight_id}" id="${element.weight_id}">${element.weight}</option>`;
+  });
+
+  const productStatuses = await loadProductStatusData();
+  let productStatusesSelectOptions = ``;
+  productStatuses.forEach((element) => {
+    const selected = element.status_id === productStatusId ? " selected " : "";
+    productStatusesSelectOptions += `<option ${selected} value="${element.status_id}" id="${element.status_id}">${element.status_type}</option>`;
+  });
+
+  const modelBodyDesign = `
+                          <div class="d-flex flex-column w-100 gap-3">
+                            <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+                                <div class=" alg-text-light w-25 text-center p-2">id</div>
+                                <input class="rounded-pill form-control w-75" type="text" disabled value="${id}" />
+                            </div>
+                            <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+                                <div class=" alg-text-light w-25 text-center p-2">Product Id</div>
+                                <select class="rounded-pill form-control w-75" name="productItemUpdateProductsSelect" id="productItemUpdateProductsSelect">
+                                    ${productSelectOptions}
+                                </select>
+                            </div>
+                            <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+                                <div class=" alg-text-light w-25 text-center p-2">Product Status Id</div>
+                                <select class="rounded-pill form-control w-75" name="productItemUpdateStatusSelect" id="productItemUpdateStatusSelect">
+                                    ${productStatusesSelectOptions}
+                                </select>
+                            </div>
+                            <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+                                <div class=" alg-text-light w-25 text-center p-2">Quantity</div>
+                                <input class="rounded-pill form-control w-75" type="text" id="productItemUpdateQuantitySelect" value="${quantity}" />
+                            </div>
+                            <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+                                <div class=" alg-text-light w-25 text-center p-2">Price</div>
+                                <input class="rounded-pill form-control w-75" type="text" id="productItemUpdatePriceSelect" value="${price}" />
+                            </div>
+                            <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+                                <div class=" alg-text-light w-25 text-center p-2">Weight</div>
+                                <select class="rounded-pill form-control w-75" name="productItemUpdateWeightSelect" id="productItemUpdateWeightSelect">
+                                    ${weightsSelectOptions}
+                                </select>
+                            </div>
+                          </div>`;
+  const modelFooterDesign = `<button onclick="updateProductItem('${id}')" class="alg-btn-pill">Edit</button>`;
+
+  ALG.openModel("Product Item Edit", modelBodyDesign, modelFooterDesign);
+}
+
+function updateProductItem(id) {
+  alert(id);
+  const productId = document.getElementById(
+    "productItemUpdateProductsSelect"
+  ).value;
+  const status = document.getElementById("productItemUpdateStatusSelect").value;
+  const quantity = document.getElementById(
+    "productItemUpdateQuantitySelect"
+  ).value;
+  const price = document.getElementById("productItemUpdatePriceSelect").value;
+  const weight = document.getElementById("productItemUpdateWeightSelect").value;
+
+  const form = new FormData();
+  form.append("id", id);
+  form.append("qty", quantity);
+  form.append("price", price);
+  form.append("product_status_id", status);
+  form.append("product_product_id", productId);
+  form.append("weight_id", weight);
+
+  fetch("api/productItemUpdate.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Product Item Update was successfull",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+
+        ALG.addTableToContainer("productItemViewContainer", loadProductItems);
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+function openProductItemRemoveModel(id) {
+  const modelBodyDesign = `product item remove model ${id}`;
+  const modelFooterDesign = `remove`;
+
+  ALG.openModel("Product Item Remove", modelBodyDesign, modelFooterDesign);
 }
 
 function previewProductListImages() {
@@ -480,7 +900,7 @@ async function productItemSave(event) {
     .then((response) => {
       console.log(response);
       // console.log(response.text());
-      return response.text();
+      return response.json();
     })
     .then((data) => {
       if (data.status == "success") {
@@ -779,9 +1199,80 @@ function deleteCategory() {
   );
 }
 
-function openCategoryEditModel() {
-  const modelBodyDesign = `<h5>Are you sure you want to <span class="text-danger">delete</span> this category?</h5>`;
-  const modelFooterDesign = `<button data-bs-dismiss="modal" aria-label="Close" class="btn btn-danger" onclick="deleteCategory()">Delete</button>`;
+async function openCategoryEditModel(categoryId, categoryType, categoryImage) {
+  console.log(categoryId + "\n" + categoryImage + "\n" + categoryType);
+
+  const modelBodyDesign = `
+    <div class="d-flex flex-column w-100 gap-3">
+      <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+        <div class=" alg-text-light w-25 text-center p-2">id</div>
+        <input class="rounded-pill form-control w-75" type="text" disabled value="${categoryId}" />
+      </div>
+      <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+        <div class=" alg-text-light w-25 text-center p-2">Category</div>
+        <input class="rounded-pill form-control w-75" id="categoryEditInput${categoryId}" type="text" value="${categoryType}" />
+      </div>
+      <div class=" alg-bg-darker alg-rounded-small d-flex w-100 ">
+        <div class=" alg-text-light w-25 text-center p-2">Image</div>
+        <div class="alg-bg-light p-2 w-100">
+          <img style="width: 200px; height: 200px; object-fit: cover;" class="rounded-pill" src="${categoryImage}" />
+        </div>
+        <input onchange="selectCategoryImage()" type="file" id="categoryImageEditInput${categoryId}" class="form-control" />
+      </div>
+    </div>  
+  `;
+  const modelFooterDesign = `<button data-bs-dismiss="modal" aria-label="Close" class="btn btn-danger" onclick="editCategory(${categoryId})">Edit</button>`;
 
   ALG.openModel("Category Delete", modelBodyDesign, modelFooterDesign);
+}
+
+// let categoryUpdatedImage;
+// function selectCategoryImage() {}
+
+function editCategory(id) {
+  const category = document.getElementById("categoryEditInput" + id).value;
+  const image = document.getElementById("categoryImageEditInput" + id);
+
+  const form = new FormData();
+  form.append("id", id);
+  form.append("category_type", category);
+  form.append("image", image.files[0]);
+
+  fetch("api/categoryUpdate.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Category Update was successfull",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+
+        ALG.addTableToContainer(
+          "categoryViewContainer",
+          loadCategoryData,
+          [40, 120, 250, 80]
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }

@@ -30,6 +30,7 @@ $postCode = $_POST['postCode'];
 $userData = $userCheckSession->getUserId();
 $userId = $userData["user_id"];
 
+
 if (empty($province) || $province === 0) {
      $responseObject->error = 'Please select the province';
      response_sender::sendJson($responseObject);
@@ -66,9 +67,21 @@ if (empty($postCode)) {
 
 
 $db = new database_driver();
-$query = "UPDATE `delivery_details` SET `address_line_1`=?,`address_line_2`=?,`mobile`=?,`province_province_id`=?,`distric_distric_id`=?,`city`=?,`postal_code`=? WHERE `user_user_id`=?";
-$db->execute_query($query, 'ssssssss', array($addressLine1, $addressLine2, $mobile, $province, $district, $city, $postCode, $userId));
+$dataSearch = "SELECT * FROM `delivery_details` WHERE `user_user_id`=?";
+$resultSet = $db->execute_query($dataSearch, 'i', array($userId));
 
+$result = $resultSet['result'];
+if ($result->num_rows > 0) {
+     $query = "UPDATE `delivery_details` SET `address_line_1`=?,`address_line_2`=?,`mobile`=?,`province_province_id`=?,`distric_distric_id`=?,`city`=?,`postal_code`=? WHERE `user_user_id`=?";
+     $db->execute_query($query, 'ssssssss', array($addressLine1, $addressLine2, $mobile, $province, $district, $city, $postCode, $userId));
+     $responseObject->status = 'success';
+     response_sender::sendJson($responseObject);
+}
+
+$dataAdd = "INSERT INTO `delivery_details` (`address_line_1`,`address_line_2`,`mobile`,`province_province_id`,`distric_distric_id`,`city`,`postal_code`,user_user_id) VALUES (?,?,?,?,?,?,?,?)";
+$db->execute_query($dataAdd, 'ssssssss', array($addressLine1, $addressLine2, $mobile, $province, $district, $city, $postCode, $userId));
+
+//user name if change
 $nameChangeQuery = "UPDATE `user` SET `full_name`=? WHERE `user_id`=?";
 $db->execute_query($nameChangeQuery, 'ss', array($fullName, $userId));
 

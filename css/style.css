@@ -30,6 +30,7 @@
   max-height: 0;
   overflow: hidden;
   transition: opacity 1s ease, max-height 2s ease;
+
 }
 
 .nav-box.alg-nav-box {
@@ -113,6 +114,7 @@
   transition: var(--transition2);
 }
 
+
 .category-hover:hover {
   transform: scale(105%);
   transition: var(--transition2);
@@ -124,7 +126,7 @@
 }
 
 .category-slider-img {
-  width: 200px !important; 
+  width: 200px !important;
   height: 200px !important;
   object-fit: cover;
   border-radius: 300px;
@@ -176,7 +178,7 @@
 }
 
 .abtus-image-backdrop {
-  background-image: url("../resources/images/aboutUsPersonBackDrop.jpg");
+  background-image: url("../resources/images//aboutUsPersonBg.jpg");
   background-size: cover;
   backdrop-filter: blur(200px);
 }
@@ -289,11 +291,9 @@
 
 /* promotion slider */
 .banner-main {
-  background: linear-gradient(
-      0deg,
+  background: linear-gradient(0deg,
       rgba(0, 0, 0, 0.2) 0%,
-      rgba(0, 0, 0, 0.2) 100%
-    ),
+      rgba(0, 0, 0, 0.2) 100%),
     #122620;
   /* height: 433px; */
   flex-shrink: 0;
@@ -383,7 +383,7 @@
 /* landing page */
 /* best selling section */
 .ld-bs-card {
-  min-height:300px;
+  min-height: 300px;
   border-radius: var(--rounded-mid);
   background-color: var(--gold);
   cursor: pointer;
@@ -401,8 +401,8 @@
   padding: 10px;
 }
 
-.card-font{
-  font-size:9px;
+.card-font {
+  font-size: 9px;
 }
 
 @media (min-width: 1440px) {
@@ -499,6 +499,31 @@
 
 .alg-pc-border {
   border-bottom: 2px solid #b68b40;
+}
+
+/* spinner payment checkout */
+.spinner-wrapper {
+  background-color: #0000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+
+}
+
+.spinner-wrapper.active {
+  display: none;
+}
+
+.spinner-border.checkout {
+  height: 60px;
+  width: 60px;
 }
 
 @media (max-width: 440px) {
