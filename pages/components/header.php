@@ -49,7 +49,7 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
                         </div>
                         <div class="d-flex align-items-center gap-3">
                             <div class="d-flex align-items-center gap-3 alg-cursor">
-                                <span class="rounded-circle"><i class="bi bi-whatsapp text-success fs-4"></i></i></span>
+                                <span class="rounded-circle"><i class="bi bi-whatsapp text-success fs-4"></i></span>
                                 <div class="alg-user-Word alg-bg-gold">
                                     <?php
                                     if ($isLoggedIn) {
@@ -79,7 +79,7 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
         <div class="flex-column text-center w-100 d-flex">
             <span class="py-2"><a href="index.php" class="alg-text-dark text-decoration-none fw-semibold">Home</a></span>
             <span class="py-2"><a href="products.php" class="alg-text-dark text-decoration-none fw-semibold">Products</a></span>
-            <span class="py-2"><a href="#cart" class="alg-text-dark text-decoration-none fw-semibold" onclick="openCartModel();">Cart</a><span class="translate-middle rounded-pill badge bg-danger header-badge position-absolute">+</span></span>
+            <span class="py-2"><a href="#cart" class="alg-text-dark text-decoration-none fw-semibold" onclick="openCartModel();">Cart</a><span class="translate-middle rounded-pill badge bg-danger header-badge position-absolute d-none d-lg-block">+</span></span>
             <span class="py-2" onclick="openWatchlistModel();"><a href="#watchlist" class="alg-text-dark text-decoration-none fw-semibold">Watchlist</a></span>
         </div>
     </div>
