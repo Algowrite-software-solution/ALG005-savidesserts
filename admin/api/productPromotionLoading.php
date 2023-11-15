@@ -21,6 +21,7 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
 $db = new database_driver();
 $searchQuery = "SELECT * FROM `promotion` 
 INNER JOIN `product` ON `promotion`.`product_product_id`=`product`.`product_id`
+INNER JOIN `promotion_status` ON `promotion`.`promotion_status_promotion_status_id`=`promotion_status`.`promotion_status_id`
 INNER JOIN `weight` ON `promotion`.`weight_id`=`weight`.`id` ORDER BY `end_date_time` DESC";
 $queryResult = $db->query($searchQuery);
 

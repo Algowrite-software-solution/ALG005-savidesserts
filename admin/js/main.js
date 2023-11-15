@@ -299,14 +299,14 @@ async function loadPromotionsToUi() {
   promotionsData.forEach((element) => {
     const newData = {
       id: element.promotion_id,
-      Preview: `<button class="alg-btn-pill" onclick="openSinglePromotionView('${element.promotion_id}')">View</button>`,
+      Preview: `<button class="alg-btn-pill" onclick="openSinglePromotionView('${element.promotion_id}', '${element.end_date_time}', '${element.product_product_id}', '${element.weight_id}', '${element.promotion_status_promotion_status_id}')">View</button>`,
       "start date": element.start_date_time,
       "end date": element.end_date_time,
       "product id": element.product_product_id,
       "product name": element.product_name,
       category: element.category_id,
       weight: element.weight,
-      status: `<button class="btn btn-primary" onclick="promotionStatusChanger()">${element.promotion_status_promotion_status_id}</button>`,
+      status: element.status,
     };
     newPromotionData.push(newData);
   });
@@ -552,6 +552,8 @@ async function loadProductsOnProductItemSelector() {
 }
 
 // data loaders
+
+
 async function loadPromotionData() {
   return fetch("api/productPromotionLoading.php", {
     method: "GET", // HTTP request method
@@ -568,6 +570,39 @@ async function loadPromotionData() {
     .then((data) => {
       // Handle the JSON data received from the API
       if (data.status == "success") {
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
+
+async function loadPromotionStatusData() {
+  return fetch("api/productPromotionStatusLoader.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        console.log(data.results);
         return data.results;
       } else if (data.status == "failed") {
         console.log(data.error);
