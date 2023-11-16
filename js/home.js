@@ -156,7 +156,7 @@ function latesProductLoader() {
           let miniDescription = getFirst20Words(element.description) + ".....";
 
           mainLatestProductContainer.innerHTML += `
-            < div class="bestSellingSwiper swiper-slide col-12 col-md-6 col-lg-2 d-flex justify-content-center mx-0 p-0" >
+            <div class="bestSellingSwiper swiper-slide col-12 col-md-6 col-lg-2 d-flex justify-content-center mx-0 p-0">
               <div class="row m-0 w-100 d-flex justify-content-center">
                 <div class="col-12 d-flex justify-content-between overflow-hidden flex-column alg-bg-tan ld-bs-card p-0" onclick="openSignleProductView('${element.product_id}', '${element.weight_id}');">
                   <div class="product-list-card-bacground h-50 w-100 flex-grow-1" style="background-image: url('resources/images/singleProductImg/productId=${element.product_id}&&weightId=${element.weight_id}&&image=1.jpg');width:100px;"></div>
