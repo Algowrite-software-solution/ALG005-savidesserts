@@ -47,9 +47,9 @@
         <div class="p-2 h-100 d-none alg-bg-light alg-rounded-small" id="weightProductSection">
             <div class="w-100 d-flex flex-column gap-2 alg-text-white">
                 <div class="w-100 alg-rounded-mid alg-bg-dark p-2 d-flex gap-3">
-                    <input class="alg-rounded-mid form-control w-75" placeholder="add a new weight" type="text" id="addWeightInput"><button class="w-25 alg-btn-pill" onclick="addWeight()">Add Weight</button>
+                    <input class="alg-rounded-mid form-control w-75" placeholder="add a new weight" type="text" id="addWeightInput"><button class="p-0 justify-content-center align-items-center w-25 alg-btn-pill" onclick="addWeight()"><span class="d-none d-md-block">Add Weight</span><i class="bi bi-plus d-block d-md-none"></i></button>
                 </div>
-                <div class="w-100 alg-bg-dark p-2 alg-rounded-mid" id="weightViewContainer">
+                <div class="w-100 overflow-auto alg-bg-dark p-2 alg-rounded-mid" id="weightViewContainer">
                     Loading....
                 </div>
             </div>
@@ -61,7 +61,7 @@
                         <label class="form-label" for="addCategoryInput">Add Category</label>
                         <input class="alg-rounded-mid form-control w-100" placeholder="add a new category" type="text" id="addCategoryInput">
                     </div>
-                    <div class="w-100 m-0 d-flex flex-column">
+                    <div class="w-100 m-0 d-flex flex-column overflow-auto">
                         <div class="w-100">
                             <label class="form-label" for="addCategoryImageInput">Add Category Image</label>
                             <input alt="Category Image Not Selected" onchange="previewCategoryInputImage()" class="alg-rounded-mid form-control w-100" placeholder="Select a category image" type="file" accept="image" id="addCategoryImageInput">
@@ -96,7 +96,7 @@
                         <select class="form-select" id="productItemWeightSelectInput">
                         </select>
                     </div>
-                    <div class="w-100 m-0 d-flex flex-column py-2">
+                    <div class="w-100 m-0 d-flex flex-column py-2 overflow-auto">
                         <label class="fw-bold" for="productItemImageInput">Images</label>
                         <input onchange="addProductItemImageToList()" multiple type="file" id="productItemImageInput" class="form-control">
                         <div class="my-2 p-1 rounded-1 product-items-images" id="productItemImagePreviewContainer">

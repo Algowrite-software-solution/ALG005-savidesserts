@@ -43,6 +43,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       toggleNavigation();
     });
   }
+  adminNavigationIconAutoToggle(window.innerWidth);
+  window.addEventListener("resize", () => {
+    adminNavigationIconAutoToggle(window.innerWidth);
+  });
 
   // defaults
   ALG.loadMainPanel(
@@ -65,6 +69,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     orderCheckerNotificationChecker();
   }, 1000 * 60 * 10);
 });
+
+function adminNavigationIconAutoToggle(width) {
+  const icon = document.getElementById("navigationIcon");
+  if (width > 768) {
+    icon.classList.remove("bi-list");
+    icon.classList.add("bi-x");
+  } else {
+    icon.classList.remove("bi-x");
+    icon.classList.add("bi-list");
+  }
+}
 
 async function orderCheckerNotificationChecker() {
   const data = await ALG.requestHandler(
