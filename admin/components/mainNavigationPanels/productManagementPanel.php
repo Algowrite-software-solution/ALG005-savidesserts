@@ -9,6 +9,7 @@
             <button onclick="toggleProductSection('productItem')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Set Product Item</span><i class="bi bi-box d-block d-lg-none"></i></button>
             <button onclick="toggleProductSection('extraItem')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Extra Items</span><i class="bi bi-box d-block d-lg-none"></i></button>
             <button onclick="toggleProductSection('setExtraItem')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Set Extra Items</span><i class="bi bi-box d-block d-lg-none"></i></button>
+            <button onclick="toggleProductSection('shipping')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Shipping Price</span><i class="bi bi-box d-block d-lg-none"></i></button>
         </div>
     </div>
     <div class="p-2 col-9 flex-grow-1 text-dark" id="productSectionsContainer">
@@ -142,6 +143,18 @@
                 </div>
                 <div class="w-100 alg-bg-dark p-2 alg-rounded-mid overflow-auto" id="setupExtraItemViewContainer">
                     Loading extras....
+                </div>
+            </div>
+        </div>
+
+        <div class="p-2 h-100 d-none alg-bg-light alg-rounded-small" id="shippingProductSection">
+            <div class="w-100 d-flex flex-column gap-2 alg-text-white">
+                <div class="w-100 alg-rounded-small alg-bg-dark p-2 d-flex flex-column gap-3">
+                    <div class="d-flex flex-column">
+                        <label for="shippingPriceInput">Shipping Item (LKR)</label>
+                        <input type="text" class="form-control" id="shippingPriceInput">
+                    </div>
+                    <button class="btn alg-btn-pill" onclick="addShippingPrice()">Add</button>
                 </div>
             </div>
         </div>

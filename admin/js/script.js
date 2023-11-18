@@ -1,3 +1,43 @@
+// shipping section
+function addShippingPrice() {
+  const price = document.getElementById("shippingPriceInput").value;
+
+  const form = new FormData();
+  form.append("shippingPrice", price);
+
+  fetch("api/shippingPriceUpdateProccess.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Shipping Price Edited successfully",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 // promotion section
 function editPromotions(id) {
   const productId = document.getElementById(
