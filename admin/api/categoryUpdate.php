@@ -32,10 +32,20 @@ if (!isset($_POST['id'])) {
 // input data
 $categoryId = $_POST['id'];
 $categoryType = $_POST['category_type'];
-// $image = $_FILES['image']; // image
+$image = $_POST['image']; // image
 
 //database object
 $db = new database_driver();
+if (isset($image) && !empty($image)) {
+     $oldImageName = $db->execute_query("SELECT * FROM `category` WHERE `id`=? ", "i", array($categoryId));
+     print(var_dump($oldImageName));
+     $fileRelativeLocation = "../resources/images/categoryImages/";
+     if (unlink($fileRelativeLocation . $oldImageName["category_type"] . ".jpg")) {
+          $image = file_get_contents($url);
+          file_put_contents($fileRelativeLocation . $categoryType . ".jpg", $image);
+     }
+}
+
 
 // data insert
 $categoryUpdate = "UPDATE `category` SET `category_type`=? WHERE `id`=?";

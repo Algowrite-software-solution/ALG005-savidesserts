@@ -1340,12 +1340,12 @@ async function openCategoryEditModel(categoryId, categoryType, categoryImage) {
         <div class=" alg-text-light w-25 text-center p-2">Category</div>
         <input class="rounded-pill form-control w-75" id="categoryEditInput${categoryId}" type="text" value="${categoryType}" />
       </div>
-      <div class=" alg-bg-darker alg-rounded-small d-flex w-100 ">
+      <div class=" alg-bg-darker alg-rounded-small d-flex w-100 flex-column">
         <div class=" alg-text-light w-25 text-center p-2">Image</div>
-        <div class="alg-bg-light p-2 w-100">
-          <img style="width: 200px; height: 200px; object-fit: cover;" class="rounded-pill" src="${categoryImage}" />
+        <div class="alg-bg-light p-2 w-100 d-flex justify-content-center">
+          <img id="categoryEditImageContainer" style="width: 200px; height: 200px; object-fit: cover;" class="rounded-pill" src="${categoryImage}" />
         </div>
-        <input onchange="selectCategoryImage()" type="file" id="categoryImageEditInput${categoryId}" class="form-control" />
+        <input onchange="selectCategoryImage(event)" type="file" id="categoryImageEditInput${categoryId}" class="form-control" />
       </div>
     </div>  
   `;
@@ -1357,14 +1357,25 @@ async function openCategoryEditModel(categoryId, categoryType, categoryImage) {
 // let categoryUpdatedImage;
 // function selectCategoryImage() {}
 
+let tempCategoryEditImage = null;
+function selectCategoryImage(event) {
+  const image = event.target.files[0];
+  ALG.imageFileToDataURL(image, (dataURL) => {
+    tempCategoryEditImage = dataURL;
+    document
+      .getElementById("categoryEditImageContainer")
+      .setAttribute("src", tempCategoryEditImage);
+  });
+}
+
 function editCategory(id) {
   const category = document.getElementById("categoryEditInput" + id).value;
-  const image = document.getElementById("categoryImageEditInput" + id);
 
   const form = new FormData();
   form.append("id", id);
   form.append("category_type", category);
-  form.append("image", image.files[0]);
+  form.append("image", tempCategoryEditImage);
+  console.log(tempCategoryEditImage);
 
   fetch("api/categoryUpdate.php", {
     method: "POST",
@@ -1382,6 +1393,8 @@ function editCategory(id) {
           "bi-heart",
           "Success"
         );
+
+        tempCategoryEditImage = null;
 
         ALG.addTableToContainer(
           "categoryViewContainer",
