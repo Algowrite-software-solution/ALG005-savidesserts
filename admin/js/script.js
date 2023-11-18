@@ -718,8 +718,6 @@ function addExtraItem(event) {
     body: form,
   })
     .then((response) => {
-      console.log(response);
-      // console.log(response.text());
       return response.json();
     })
     .then((data) => {
@@ -1328,8 +1326,6 @@ function deleteCategory() {
 }
 
 async function openCategoryEditModel(categoryId, categoryType, categoryImage) {
-  console.log(categoryId + "\n" + categoryImage + "\n" + categoryType);
-
   const modelBodyDesign = `
     <div class="d-flex flex-column w-100 gap-3">
       <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
@@ -1357,7 +1353,7 @@ async function openCategoryEditModel(categoryId, categoryType, categoryImage) {
 // let categoryUpdatedImage;
 // function selectCategoryImage() {}
 
-let tempCategoryEditImage = null;
+let tempCategoryEditImage = "";
 function selectCategoryImage(event) {
   const image = event.target.files[0];
   ALG.imageFileToDataURL(image, (dataURL) => {
@@ -1375,7 +1371,6 @@ function editCategory(id) {
   form.append("id", id);
   form.append("category_type", category);
   form.append("image", tempCategoryEditImage);
-  console.log(tempCategoryEditImage);
 
   fetch("api/categoryUpdate.php", {
     method: "POST",
@@ -1394,7 +1389,7 @@ function editCategory(id) {
           "Success"
         );
 
-        tempCategoryEditImage = null;
+        tempCategoryEditImage = "";
 
         ALG.addTableToContainer(
           "categoryViewContainer",
