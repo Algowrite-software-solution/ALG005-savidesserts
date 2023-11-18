@@ -6,8 +6,8 @@
         </div>
     </div>
     <div class="p-2 col-9 flex-grow-1 text-dark" id="promotionSectionContainer">
-        <div class="p-2 h-100 d-block alg-bg-light alg-rounded-small overflow-auto flex-grow-1" id="promotionViewPromotionSection">
-            <div class="alg-bg-dark alg-text-light alg-rounded-small my-3 p-3 d-flex flex-column gap-2">
+        <div class="p-2 h-100 alg-bg-light alg-rounded-small overflow-auto flex-grow-1" id="promotionViewPromotionSection">
+            <div class="alg-bg-dark  alg-text-light alg-rounded-small my-3 p-3 d-flex flex-column gap-2">
                 <div class="d-flex flex-column">
                     <label for="promotionAddProductSelect">Product</label>
                     <select name="promotionAddProductSelect" id="promotionAddProductSelect" class="form-select">
@@ -34,7 +34,11 @@
 
                 <button class="alg-btn-pill" onclick="savePromotion()">Add Promotion</button>
             </div>
-            <div id="promotionViewContainer"></div>
+            <div id="promotionViewContainer">
+                <div class="p-2 h-100 d-block alg-bg-light alg-rounded-small overflow-auto flex-grow-1">
+                    👈 Please Select a section...
+                </div>
+            </div>
         </div>
     </div>
 </section>
