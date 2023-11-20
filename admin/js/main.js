@@ -3,7 +3,7 @@ const SERVER_URL = "https://saweedessert.com/";
 // const SERVER_URL = "http://localhost:9001/";
 const ALG = new DashboardComponents();
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const mainPanelContentLoad = async (panel) => {
     switch (panel) {
       case "productManagementPanel":
@@ -16,6 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       case "orderManagementPanel":
         toggleOrderSection("ongoingOrderView");
+        break;
+
+      case "promotionManagementPanel":
+        togglePromotionSection("promotionView");
         break;
 
       default:
@@ -39,6 +43,10 @@ document.addEventListener("DOMContentLoaded", () => {
       toggleNavigation();
     });
   }
+  adminNavigationIconAutoToggle(window.innerWidth);
+  window.addEventListener("resize", () => {
+    adminNavigationIconAutoToggle(window.innerWidth);
+  });
 
   // defaults
   ALG.loadMainPanel(
@@ -61,6 +69,17 @@ document.addEventListener("DOMContentLoaded", () => {
     orderCheckerNotificationChecker();
   }, 1000 * 60 * 10);
 });
+
+function adminNavigationIconAutoToggle(width) {
+  const icon = document.getElementById("navigationIcon");
+  if (width > 768) {
+    icon.classList.remove("bi-list");
+    icon.classList.add("bi-x");
+  } else {
+    icon.classList.remove("bi-x");
+    icon.classList.add("bi-list");
+  }
+}
 
 async function orderCheckerNotificationChecker() {
   const data = await ALG.requestHandler(
@@ -130,6 +149,51 @@ function toggleNavigation() {
     contentSection.classList.remove("col-xl-10");
   }
   isNavigationPanelOpned = !isNavigationPanelOpned;
+}
+
+// promotion section
+async function togglePromotionSection(section) {
+  const sections = document.getElementById(
+    "promotionSectionContainer"
+  ).childNodes;
+
+  for (var i = 0; i < sections.length; i++) {
+    if (sections[i].nodeType === Node.ELEMENT_NODE) {
+      sections[i].classList.remove("d-block");
+      sections[i].classList.add("d-none");
+    }
+  }
+
+  const selectedSection = document.getElementById(section + "PromotionSection");
+  selectedSection.classList.add("d-block");
+  selectedSection.classList.remove("d-none");
+
+  // load data accordingly
+  if (section === "promotionView") {
+    await ALG.addTableToContainer("promotionViewContainer", loadPromotionsToUi);
+
+    const productData = await loadProductData();
+    const productListSelect = document.getElementById(
+      "promotionAddProductSelect"
+    );
+    productListSelect.innerHTML = `<option value="0">Select a Product</option>`;
+
+    productData.forEach((element) => {
+      const options = `<option value="${element.product_id}">${element.product_name}</option>`;
+      productListSelect.innerHTML += options;
+    });
+
+    const weightData = await loadWeightData();
+    const weightListSelect = document.getElementById(
+      "promotionAddWeightSelect"
+    );
+    weightListSelect.innerHTML = `<option value="0">Select a Weight</option>`;
+
+    weightData.forEach((element) => {
+      const options = `<option value="${element.weight_id}">${element.weight}</option>`;
+      weightListSelect.innerHTML += options;
+    });
+  }
 }
 
 // order section
@@ -239,10 +303,35 @@ async function toggleProductSection(section) {
       loadSetExtraItemData,
       [60, 150, 200]
     );
+  } else if (section === "shipping") {
+    const price = await loadShippingData();
+    document.getElementById("shippingPriceInput").setAttribute("value", price);
   }
 }
 
 // ui data updators
+async function loadPromotionsToUi() {
+  const promotionsData = await loadPromotionData();
+  const newPromotionData = [];
+
+  promotionsData.forEach((element) => {
+    const newData = {
+      id: element.promotion_id,
+      Preview: `<button class="alg-btn-pill" onclick="openSinglePromotionView('${element.promotion_id}', '${element.end_date_time}', '${element.product_product_id}', '${element.weight_id}', '${element.promotion_status_promotion_status_id}')">View</button>`,
+      "start date": element.start_date_time,
+      "end date": element.end_date_time,
+      "product id": element.product_product_id,
+      "product name": element.product_name,
+      category: element.category_id,
+      weight: element.weight,
+      status: element.status,
+    };
+    newPromotionData.push(newData);
+  });
+
+  return newPromotionData;
+}
+
 async function loadOrderDataToUi() {
   const orderData = await loadOrderData();
   const newOrderData = [];
@@ -481,6 +570,100 @@ async function loadProductsOnProductItemSelector() {
 }
 
 // data loaders
+async function loadShippingData() {
+  return fetch("api/shippingDataLoader.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
+async function loadPromotionData() {
+  return fetch("api/productPromotionLoading.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
+async function loadPromotionStatusData() {
+  return fetch("api/productPromotionStatusLoader.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        console.log(data.results);
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
 async function loadOrderData(id = null) {
   const query = id != null ? "?order_id=" + id.slice(1) : "";
   return fetch("api/invoiceViewProcess.php" + query, {
@@ -787,8 +970,7 @@ async function loadCategoryData() {
             id: element.category_id,
             category: element.category_type,
             image: `<img src="${element.category_image}" class="alg-list-cell-image"  />`,
-            edit: `<i class="bi bi-pen fs-4" onclick="openCategoryEditModel();"></i>`,
-            delete: `<i class="bi bi-x-circle fs-4" onclick="openCategoryEditModel();"></i>`,
+            edit: `<i class="bi bi-pen fs-4" onclick="openCategoryEditModel('${element.category_id}', '${element.category_type}', '${element.category_image}');"></i>`,
           };
 
           listArray.push(newData);

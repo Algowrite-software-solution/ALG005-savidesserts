@@ -35,6 +35,7 @@
 
 .nav-box.alg-nav-box {
   opacity: 1;
+  max-height: 1000px;
   box-shadow: 0rem 0.4rem rgba(145, 88, 88, 0.1);
 }
 
@@ -325,6 +326,7 @@
 
 /* category slider */
 .categorySwiper.swiper {
+  width: 80%;
   width: 100%;
 }
 
@@ -332,13 +334,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 20px;
-  height: 300px;
+  /* width: 20px;
+  height: 300px; */
 }
 
 .categorySwiper.swiper-slide img {
   display: block;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* best selling section */

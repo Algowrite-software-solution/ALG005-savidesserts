@@ -3,6 +3,9 @@
 require_once("../model/database_driver.php");
 require_once("../model/response_sender.php");
 
+// headers
+header("Content-Type: application/json; charset=UTF-8");
+
 //response object
 $responseObject = new stdClass();
 $responseObject->status = 'failed';
@@ -17,18 +20,12 @@ $queryResult = $db->execute_query($searchQuery, 's', array($promotionStatus));
 $responseArray = array();
 if ($queryResult['result']->num_rows > 0) {
      foreach ($queryResult['result'] as $row) {
-          $resRowDetailObject = new stdClass();
-          $resRowDetailObject->promotion_id = $row['promotion_id'];
-          $resRowDetailObject->start_date_time = $row['start_date_time'];
-          $resRowDetailObject->end_date_time = $row['end_date_time'];
-          $resRowDetailObject->product_item_id = $row['product_item_id'];
-          array_push($responseArray, $resRowDetailObject);
+          array_push($responseArray, $row);
      }
      $responseObject->status = 'success';
-     $responseObject->response = $responseArray;
+     $responseObject->result = $responseArray;
      response_sender::sendJson($responseObject);
 } else {
-     $responseObject->status = 'no results';
+     $responseObject->error = 'no result';
      response_sender::sendJson($responseObject);
-     die();
 }

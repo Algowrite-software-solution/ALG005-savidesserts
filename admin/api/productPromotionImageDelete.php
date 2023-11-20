@@ -1,8 +1,8 @@
 <?php
-//category image delete API
+//promotion image delete API
 //by madusha pravinda
-//version - 1.0.2
-//02-10-2023
+//version - 1.0.0
+//12-11-2023
 
 //include models
 require_once("../../backend/model/imageSearchEngine.php");
@@ -22,7 +22,7 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
 }
 
 
-$imagePath = $_GET['category_image_path'];
+$imagePath = $_POST['promotion_image_path'];
 
 if (file_exists($imagePath)) {
      if (unlink($imagePath)) {

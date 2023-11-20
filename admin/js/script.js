@@ -1,3 +1,256 @@
+// shipping section
+function addShippingPrice() {
+  const price = document.getElementById("shippingPriceInput").value;
+
+  const form = new FormData();
+  form.append("shippingPrice", price);
+
+  fetch("api/shippingPriceUpdateProccess.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Shipping Price Edited successfully",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+// promotion section
+function editPromotions(id) {
+  const productId = document.getElementById(
+    "promotionEditProductSelect" + id
+  ).value;
+  const weightId = document.getElementById(
+    "promotionEditWeightSelect" + id
+  ).value;
+  const endDate = document.getElementById(
+    "promotionEndDateEditInput" + id
+  ).value;
+
+  const status = document.getElementById(
+    "promotionEditStatusSelect" + id
+  ).value;
+
+  const form = new FormData();
+  form.append("product_id", productId);
+  form.append("weight_id", weightId);
+  form.append("promotion_id", id);
+  form.append("end_date_time", endDate);
+  form.append("promotion_status_id", status);
+
+  fetch("api/productPromotionUpdate.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Promotion Edited successfully",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+async function openSinglePromotionView(
+  id,
+  endDate,
+  productId,
+  weightId,
+  promotionStatusId
+) {
+  endDate = endDate.slice(0, -9);
+
+  // product
+  const productData = await loadProductData();
+  let productsDesign = "";
+  let productSelected = false;
+  productData.forEach((element) => {
+    productSelected = element.product_id === productId ? " selected " : "";
+    productsDesign += `<option ${productSelected} value="${element.product_id}">${element.product_name}</option>`;
+  });
+
+  // weight
+  const weightData = await loadWeightData();
+  let weightsDesign = "";
+  let weightSelected = false;
+  weightData.forEach((element) => {
+    weightSelected = element.product_id === weightId ? " selected " : "";
+    weightsDesign += `<option  ${weightSelected} value="${element.weight_id}">${element.weight}</option>`;
+  });
+
+  // status
+  const statusData = await loadPromotionStatusData();
+  let promotionStatusDesign = "";
+  let promotionStatusSlected = false;
+  statusData.forEach((element) => {
+    promotionStatusSlected =
+      element[0] === promotionStatusId ? " selected " : "";
+    promotionStatusDesign += `<option  ${promotionStatusSlected} value="${element[0]}">${element[1]}</option>`;
+  });
+
+  const body = `
+  <div class="d-flex justify-content-center flex-column align-items-center">
+    <div>
+    <label for="promotionImageEditInput"><i class="p-3 fs-3 text-white bi bi-pen position-absolute"></i></label>
+    <input type="file" class="d-none" id="promotionImageEditInput" />
+      <img src="../resources/images/promotionImages/${id}.jpg" style="width: 100%; height: 200px; object-fit: contain;" />
+    </div>
+    <div class="d-flex p-3 alg-bg-dark gap-2 flex-column w-100 alg-rounded-small my-2">
+      <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+        <div class=" alg-text-light w-25 text-center p-2">Id</div>
+        <input class="rounded-pill form-control w-75" type="text" disabled value="${id}" />
+      </div>
+      <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+        <div class=" alg-text-light w-25 text-center p-2">End</div>
+        <input class="rounded-pill form-control w-75" id="promotionEndDateEditInput${id}" type="date" value="${endDate}" />
+      </div>
+      <div class="d-flex flex-column">
+        <label for="promotionEditProductSelect${id}">Product</label>
+        <select name="promotionEditProductSelect" id="promotionEditProductSelect${id}" class="form-select">
+        ${productsDesign}
+        </select>
+      </div>
+      <div class="d-flex flex-column">
+        <label for="promotionEditWeightSelect${id}">Weight</label>
+        <select name="promotionEditWeightSelect" id="promotionEditWeightSelect${id}" class="form-select">
+        ${weightsDesign}
+        </select>
+      </div>
+      <div class="d-flex flex-column">
+        <label for="promotionEditStatusSelect${id}">Weight</label>
+        <select name="promotionEditStatusSelect" id="promotionEditStatusSelect${id}" class="form-select">
+        ${promotionStatusDesign}
+        </select>
+      </div>
+    </div>
+  </div>
+  `;
+
+  const footerDesign = `
+      <button class="btn btn-danger">Delete Promotion</button>
+      <button class="alg-btn-pill" onclick="editPromotions('${id}')">Edit</button>
+  `;
+
+  ALG.openModel("Promotion : " + id, body, footerDesign);
+}
+
+function savePromotion() {
+  const product = document.getElementById("promotionAddProductSelect").value;
+  const weight = document.getElementById("promotionAddWeightSelect").value;
+  const endData = document.getElementById("promotionAddEndDate").value;
+  const image = document.getElementById("promotionAddImage").files[0];
+
+  if (product == 0) {
+    ALG.openToast(
+      "Warnning",
+      "Please select a product",
+      ALG.getCurrentTime(),
+      "bi-heart",
+      "Error"
+    );
+    return;
+  } else if (weight == 0) {
+    ALG.openToast(
+      "Warnning",
+      "Please select a weight",
+      ALG.getCurrentTime(),
+      "bi-heart",
+      "Error"
+    );
+    return;
+  } else if (!endData) {
+    ALG.openToast(
+      "Warnning",
+      "Please select end date",
+      ALG.getCurrentTime(),
+      "bi-heart",
+      "Error"
+    );
+    return;
+  }
+
+  const form = new FormData();
+  form.append("product_id", product);
+  form.append("weight_id", weight);
+  form.append("end_date_time", endData);
+  form.append("promotion_image", image);
+
+  fetch("api/productPromotionAdding.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Promotion added successfully",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 // order section
 function orderStatusChange(event, id, orderId) {
   const statusId = event.target.value;
@@ -505,8 +758,6 @@ function addExtraItem(event) {
     body: form,
   })
     .then((response) => {
-      console.log(response);
-      // console.log(response.text());
       return response.json();
     })
     .then((data) => {
@@ -1114,9 +1365,90 @@ function deleteCategory() {
   );
 }
 
-function openCategoryEditModel() {
-  const modelBodyDesign = `<h5>Are you sure you want to <span class="text-danger">delete</span> this category?</h5>`;
-  const modelFooterDesign = `<button data-bs-dismiss="modal" aria-label="Close" class="btn btn-danger" onclick="deleteCategory()">Delete</button>`;
+async function openCategoryEditModel(categoryId, categoryType, categoryImage) {
+  const modelBodyDesign = `
+    <div class="d-flex flex-column w-100 gap-3">
+      <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+        <div class=" alg-text-light w-25 text-center p-2">id</div>
+        <input class="rounded-pill form-control w-75" type="text" disabled value="${categoryId}" />
+      </div>
+      <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
+        <div class=" alg-text-light w-25 text-center p-2">Category</div>
+        <input class="rounded-pill form-control w-75" id="categoryEditInput${categoryId}" type="text" value="${categoryType}" />
+      </div>
+      <div class=" alg-bg-darker alg-rounded-small d-flex w-100 flex-column">
+        <div class=" alg-text-light w-25 text-center p-2">Image</div>
+        <div class="alg-bg-light p-2 w-100 d-flex justify-content-center">
+          <img id="categoryEditImageContainer" style="width: 200px; height: 200px; object-fit: cover;" class="rounded-pill" src="${categoryImage}" />
+        </div>
+        <input onchange="selectCategoryImage(event)" type="file" id="categoryImageEditInput${categoryId}" class="form-control" />
+      </div>
+    </div>  
+  `;
+  const modelFooterDesign = `<button data-bs-dismiss="modal" aria-label="Close" class="btn btn-danger" onclick="editCategory(${categoryId})">Edit</button>`;
 
   ALG.openModel("Category Delete", modelBodyDesign, modelFooterDesign);
+}
+
+// let categoryUpdatedImage;
+// function selectCategoryImage() {}
+
+let tempCategoryEditImage = "";
+function selectCategoryImage(event) {
+  const image = event.target.files[0];
+  ALG.imageFileToDataURL(image, (dataURL) => {
+    tempCategoryEditImage = dataURL;
+    document
+      .getElementById("categoryEditImageContainer")
+      .setAttribute("src", tempCategoryEditImage);
+  });
+}
+
+function editCategory(id) {
+  const category = document.getElementById("categoryEditInput" + id).value;
+
+  const form = new FormData();
+  form.append("id", id);
+  form.append("category_type", category);
+  form.append("image", tempCategoryEditImage);
+
+  fetch("api/categoryUpdate.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Category Update was successfull",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+
+        tempCategoryEditImage = "";
+
+        ALG.addTableToContainer(
+          "categoryViewContainer",
+          loadCategoryData,
+          [40, 120, 250, 80]
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }

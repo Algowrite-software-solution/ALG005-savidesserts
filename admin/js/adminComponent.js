@@ -475,7 +475,8 @@ class DashboardComponents {
     method = "GET",
     dataSet,
     callback = () => {},
-    preventDefault = false
+    preventDefault = false,
+    test = false
   ) {
     const url = new URL(requestUrl);
 
@@ -522,10 +523,14 @@ class DashboardComponents {
       "Content-Type": headerContentType,
     };
 
-   return await fetch(url.toString(), options)
+    return await fetch(url.toString(), options)
       .then((response) => {
         if (response.ok) {
-          return response.json();
+          if (test) {
+            return response.text();
+          }else {
+            return response.json();
+          }
         } else {
           throw new Error(`Request failed with status ${response.status}`);
         }
@@ -535,7 +540,7 @@ class DashboardComponents {
           if (!preventDefault) {
             alert(data.status);
           }
-          
+
           return callback(data.results);
         } else if (data.status === "failed") {
           console.log(data.error);
