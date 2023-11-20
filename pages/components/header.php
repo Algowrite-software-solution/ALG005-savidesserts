@@ -31,12 +31,12 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
                                 </div>
                             </a>
                             <a href="products.php" class="text-decoration-none text-black">
-                                <div class="alg-bg-light px-5 py-1 rounded-pill header-btn fw-bold <?php echo ($currentPage === "products" && $currentCategory !== "Jelly") ? "header-btn-selected" : "" ?> ">
+                                <div class="alg-bg-light px-5 py-1 rounded-pill header-btn fw-bold <?php echo ($currentPage === "products" && $currentCategory !== "Ingredients") ? "header-btn-selected" : "" ?> ">
                                     <span class="d-none d-lg-block fs-6">Shop</span><i class="d-block d-lg-none bi bi-shop"></i>
                                 </div>
                             </a>
                             <a href="products.php?category=Ingredients" class="text-decoration-none text-black">
-                                <div class="alg-bg-light px-5 py-1 rounded-pill header-btn fw-bold <?php echo ($currentPage === "products" && $currentCategory === "Jelly") ? "header-btn-selected" : "" ?> ">
+                                <div class="alg-bg-light px-5 py-1 rounded-pill header-btn fw-bold <?php echo ($currentPage === "products" && $currentCategory === "Ingredients") ? "header-btn-selected" : "" ?> ">
                                     <span class="d-none d-lg-block fs-6">Other</span><i class="d-block d-lg-none bi bi-heart"></i>
                                 </div>
                             </a>
@@ -148,7 +148,7 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
                             <div class="text-start">
                                 <span class="alg-text-h3 fw-semibold">Email</span>
                                 <input type="email" id="forgottenPasswordEmail" class="ALG-model-input alg-text-h3 form-control rounded-5" placeholder="Email address" />
-                                <button id="mainButton"  class="p-2 mb-3 w-100 rounded-5 ALG-model-button alg-text-h3 text-white fw-bolder mt-2 mt-md-3" onclick="passwordReset();">
+                                <button id="mainButton" class="p-2 mb-3 w-100 rounded-5 ALG-model-button alg-text-h3 text-white fw-bolder mt-2 mt-md-3" onclick="passwordReset();">
                                     <span class="spinner-border spinner-border-sm d-none" aria-hidden="true"></span>
                                     <span role="status">Reset Password</span>
                                 </button>
