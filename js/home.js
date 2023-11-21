@@ -1,4 +1,4 @@
-SERVER_URL = "http://localhost:9001/"
+SERVER_URL = ""
 document.addEventListener("DOMContentLoaded", () => {
   loadProductPromotions();
   loadCategory();

@@ -286,7 +286,7 @@
                                     <div class="col-10 col-md-11 col-lg-8">
                                         <div class="bg-white p-2 d-flex align-items-center gap-5 px-3 alg-div-hover rounded-4">
                                             <span><i class='bx bx-mobile fs-5 fw-bold'></i></span>
-                                            <span class="fw-bold alg-text-h3">+94771378492</span>
+                                            <span class="fw-bold alg-text-h3">+94766773539</span>
                                         </div>
                                     </div>
                                 </div>
