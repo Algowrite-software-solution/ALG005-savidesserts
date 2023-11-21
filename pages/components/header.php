@@ -49,7 +49,9 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
                         </div>
                         <div class="d-flex align-items-center gap-3">
                             <div class="d-flex align-items-center gap-3 alg-cursor">
-                                <span class="rounded-circle"><i class="bi bi-whatsapp text-success fs-4"></i></span>
+                                <span class="rounded-circle">
+                                    <a class="text-decoration-none" href="https://wa.me/+94766773539"><i class="bi bi-whatsapp text-success fs-4"></i></a>
+                                </span>
                                 <div class="alg-user-Word alg-bg-gold">
                                     <?php
                                     if ($isLoggedIn) {
@@ -148,7 +150,7 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
                             <div class="text-start">
                                 <span class="alg-text-h3 fw-semibold">Email</span>
                                 <input type="email" id="forgottenPasswordEmail" class="ALG-model-input alg-text-h3 form-control rounded-5" placeholder="Email address" />
-                                <button id="mainButton"  class="p-2 mb-3 w-100 rounded-5 ALG-model-button alg-text-h3 text-white fw-bolder mt-2 mt-md-3" onclick="passwordReset();">
+                                <button id="mainButton" class="p-2 mb-3 w-100 rounded-5 ALG-model-button alg-text-h3 text-white fw-bolder mt-2 mt-md-3" onclick="passwordReset();">
                                     <span class="spinner-border spinner-border-sm d-none" aria-hidden="true"></span>
                                     <span role="status">Reset Password</span>
                                 </button>
