@@ -101,12 +101,12 @@ if (!$sessionManager->isLoggedIn()) {
         <div id="dashBoardToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
                 <i id="toastIcon" class=""></i>
-                <strong class="me-auto" id="toastTitle">Error!</strong>
-                <small id="toastTime">0 mins ago</small>
+                <strong class="me-auto" id="toastTitle">Bootstrap</strong>
+                <small id="toastTime">11 mins ago</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body" id="toastBody">
-                Something went wrong!.
+                Hello, world! This is a toast message.
             </div>
         </div>
     </div>
@@ -126,12 +126,10 @@ if (!$sessionManager->isLoggedIn()) {
     <!-- footer -->
 
     <footer class="alg-bg-darker">
-        <div class="container d-flex justify-content-center flex-column align-items-center">
+        <div class="container">
             <div class="py-1 text-center text-white alg-text-p py-3 mt-2">
                 All rights reserved 2023 &copy;
             </div>
-
-            <button onclick="openBugReportModel()" class="alg-btn-pill">BUG REPORT</button>
         </div>
     </footer>
 </body>

@@ -95,6 +95,7 @@
   width: 100%;
   padding-top: 50px;
   padding-bottom: 50px;
+
 }
 
 .category-swiper.swiper-slide {
@@ -106,6 +107,7 @@
 
 .category-container {
   min-height: 240px;
+
 }
 
 .category-hover {
@@ -326,16 +328,16 @@
 
 /* category slider */
 .categorySwiper.swiper {
-  width: 80%;
   width: 100%;
 }
+
 
 .categorySwiper.swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* width: 20px;
-  height: 300px; */
+  width: 10px;
+  height: 300px;
 }
 
 .categorySwiper.swiper-slide img {

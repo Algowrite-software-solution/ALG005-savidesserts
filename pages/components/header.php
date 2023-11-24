@@ -31,12 +31,12 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
                                 </div>
                             </a>
                             <a href="products.php" class="text-decoration-none text-black">
-                                <div class="alg-bg-light px-5 py-1 rounded-pill header-btn fw-bold <?php echo ($currentPage === "products" && $currentCategory !== "Ingredients") ? "header-btn-selected" : "" ?> ">
+                                <div class="alg-bg-light px-5 py-1 rounded-pill header-btn fw-bold <?php echo ($currentPage === "products" && $currentCategory !== "Jelly") ? "header-btn-selected" : "" ?> ">
                                     <span class="d-none d-lg-block fs-6">Shop</span><i class="d-block d-lg-none bi bi-shop"></i>
                                 </div>
                             </a>
                             <a href="products.php?category=Ingredients" class="text-decoration-none text-black">
-                                <div class="alg-bg-light px-5 py-1 rounded-pill header-btn fw-bold <?php echo ($currentPage === "products" && $currentCategory === "Ingredients") ? "header-btn-selected" : "" ?> ">
+                                <div class="alg-bg-light px-5 py-1 rounded-pill header-btn fw-bold <?php echo ($currentPage === "products" && $currentCategory === "Jelly") ? "header-btn-selected" : "" ?> ">
                                     <span class="d-none d-lg-block fs-6">Other</span><i class="d-block d-lg-none bi bi-heart"></i>
                                 </div>
                             </a>
@@ -49,7 +49,9 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
                         </div>
                         <div class="d-flex align-items-center gap-3">
                             <div class="d-flex align-items-center gap-3 alg-cursor">
-                                <span class="rounded-circle"><i class="bi bi-whatsapp text-success fs-4"></i></span>
+                                <span class="rounded-circle">
+                                    <a class="text-decoration-none" href="https://wa.me/+94766773539"><i class="bi bi-whatsapp text-success fs-4"></i></a>
+                                </span>
                                 <div class="alg-user-Word alg-bg-gold">
                                     <?php
                                     if ($isLoggedIn) {
