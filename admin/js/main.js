@@ -1,6 +1,6 @@
 // initiator
-// const SERVER_URL = "https://saweedessert.com/";
-const SERVER_URL = "http://localhost:9001/";
+const SERVER_URL = "https://saweedessert.com/";
+// const SERVER_URL = "http://localhost:9001/";
 const ALG = new DashboardComponents();
 
 document.addEventListener("DOMContentLoaded", async () => {
