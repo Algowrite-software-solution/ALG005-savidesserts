@@ -46,7 +46,7 @@ if (!$sessionManager->isLoggedIn()) {
                 <button class="btn alg-btn-pill mx-3">something2</button>
             </div>
             <div class="border-start alg-text-h2 d-flex gap-2 px-2 align-items-center justify-content-between">
-                <i class=" bi bi-bell-fill"></i>
+                <i onclick="openNotificationsPanel();" class=" bi bi-bell-fill"></i>
                 <i class=" bi bi-gear-fill"></i>
                 <i class=" bi bi-person-circle"></i>
             </div>

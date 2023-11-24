@@ -1,6 +1,6 @@
 // initiator
-const SERVER_URL = "https://saweedessert.com/";
-// const SERVER_URL = "http://localhost:9001/";
+// const SERVER_URL = "https://saweedessert.com/";
+const SERVER_URL = "http://localhost:9001/";
 const ALG = new DashboardComponents();
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -70,6 +70,21 @@ document.addEventListener("DOMContentLoaded", async () => {
   }, 1000 * 60 * 10);
 });
 
+async function openNotificationsPanel() {
+  const isNotificationAvailable = await orderCheckerNotificationChecker();
+  if (!isNotificationAvailable) {
+    const design = `
+    <div class="d-flex">
+      <div class="w-100">
+        There is on going orders for now...!
+      </div>
+    </div>
+  `;
+
+    ALG.openModel("Active Orders", design, "&nbsp;");
+  }
+}
+
 function adminNavigationIconAutoToggle(width) {
   const icon = document.getElementById("navigationIcon");
   if (width > 768) {
@@ -94,7 +109,7 @@ async function orderCheckerNotificationChecker() {
 
   let options = "";
   if (!data.length) {
-    return;
+    return false;
   }
   data.forEach((element) => {
     options += `<div class="p-2 px-4 rounded-pill w-100 alg-bg-dark d-flex justify-content-between gap-3 alg-text-light my-2" value="${element[0]}">
@@ -112,6 +127,7 @@ async function orderCheckerNotificationChecker() {
   `;
 
   ALG.openModel("Active Orders", design, "&nbsp;");
+  return true;
 }
 
 // navigation
