@@ -692,7 +692,16 @@ function openExtraItemRemoveModel() {
   );
 }
 
-function openExtraItemEditModel(id, extraItem, statusId, status, price) {
+async function openExtraItemEditModel(id, extraItem, statusId, status, price) {
+  // status select design
+  const extraItemStatusData = await loadExtraItemStatus();
+  let statusSelect = "";
+  extraItemStatusData.forEach((element) => {
+    let selected = element.extra_status_id === statusId ? " selected " : " ";
+    const option = `<option ${selected} value="${element.extra_status_id}">${element.extra_status}</option>`;
+    statusSelect += option;
+  });
+
   // design
   const design = `
     <div class="d-flex flex-column w-100 gap-3">
@@ -706,7 +715,9 @@ function openExtraItemEditModel(id, extraItem, statusId, status, price) {
       </div>
       <div class="alg-bg-darker rounded-pill d-flex w-100 rounded-pill">
         <div class=" alg-text-light w-25 text-center p-2">status</div>
-        <input id="extraItemEditStatusInput${id}" class="form-control rounded-pill w-75" type="text" placeholder="please add the status value" value="${statusId}"/>
+        <select name="" id="extraItemEditStatusInput${id}" class="form-select rounded-pill w-75">
+          ${statusSelect}
+        </select>
       </div>
       <div class="alg-bg-darker rounded-pill d-flex w-100 rounded-pill">
         <div class=" alg-text-light w-25 text-center p-2">price</div>
