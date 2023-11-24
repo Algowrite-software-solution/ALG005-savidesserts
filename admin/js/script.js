@@ -943,10 +943,45 @@ function updateProductItem(id) {
 }
 
 function openProductItemRemoveModel(id) {
-  const modelBodyDesign = `product item remove model ${id}`;
-  const modelFooterDesign = `remove`;
+  const modelBodyDesign = `Do you want to remove the product item with all of its images  ${id}`;
+  const modelFooterDesign = `<button class="btn btn-danger" onclick="deleteProductItem('${id}')">yes</button>`;
 
   ALG.openModel("Product Item Remove", modelBodyDesign, modelFooterDesign);
+}
+
+function deleteProductItem(id) {
+  fetch("api/productItemDelete.php?id=" + id, {
+    method: "GET",
+  })
+    .then((response) => {
+      console.log(response);
+      // console.log(response.text());
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Product Item delete was successfull",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 function previewProductListImages() {
