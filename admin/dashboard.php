@@ -47,7 +47,7 @@ if (!$sessionManager->isLoggedIn()) {
             </div>
             <div class="border-start alg-text-h2 d-flex gap-2 px-2 align-items-center justify-content-between">
                 <i onclick="openNotificationsPanel();" class=" bi bi-bell-fill"></i>
-                <i class=" bi bi-gear-fill"></i>
+                <i class="d-none bi bi-gear-fill"></i>
                 <i class=" bi bi-person-circle"></i>
             </div>
         </div>
