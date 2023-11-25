@@ -1476,7 +1476,7 @@ function editCategory(id) {
         );
 
         tempCategoryEditImage = "";
-
+        
         ALG.addTableToContainer(
           "categoryViewContainer",
           loadCategoryData,
