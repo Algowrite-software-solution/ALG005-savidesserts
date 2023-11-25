@@ -1191,6 +1191,12 @@ function addCategory() {
         document
           .getElementById("categoryImagePreviewBox")
           .setAttribute("src", "#");
+
+        ALG.addTableToContainer(
+          "categoryViewContainer",
+          loadCategoryData,
+          [40, 120, 250, 80]
+        );
       } else if (data.status == "failed") {
         ALG.openToast(
           "Alert",
@@ -1476,7 +1482,7 @@ function editCategory(id) {
         );
 
         tempCategoryEditImage = "";
-        
+
         ALG.addTableToContainer(
           "categoryViewContainer",
           loadCategoryData,

@@ -28,7 +28,7 @@ class AdvancedSearchEngine
         INNER JOIN `category` ON `product`.`category_id`=`category`.`id` 
         INNER JOIN `weight` ON `product_item`.`weight_id`=`weight`.`id` 
         INNER JOIN `product_status` ON `product_item`.`product_status_id` = `product_status`.`id`  
-        WHERE `product_status`.`type` = 'In a Stock' ";
+        WHERE `product_item`.`is_deleted` = 0 AND `product_status`.`type` = 'In a Stock' ";
 
 
         // chech for search term
