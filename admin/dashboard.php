@@ -39,11 +39,11 @@ if (!$sessionManager->isLoggedIn()) {
                 <div class="w-100">
                     <i class=" bi bi-x" id="navigationIcon"></i>
                 </div>
-                <div data-tooltip-holder="Home" class="logo fw-bold fs-3">SAVI</div>
+                <div data-tooltip-holder="Home" class="logo fw-bold fs-3">SAWEE</div>
             </div>
             <div class="d-none d-md-flex align-items-center justify-content-center w-100">
                 <button class="btn alg-btn-pill mx-3"><a href="" class="text-decoration-none alg-text-light">Payment Gate</a></button>
-                <button class="btn alg-btn-pill mx-3"><a href="https://www.saweedessert.com/" class="text-decoration-none alg-text-light">Sawee Dessrt</a></button>
+                <button class="btn alg-btn-pill mx-3"><a href="https://www.saweedessert.com/" class="text-decoration-none alg-text-light">Sawee Dessert</a></button>
             </div>
             <div class="border-start alg-text-h2 d-flex gap-2 px-2 align-items-center justify-content-between">
                 <i onclick="openNotificationsPanel();" class=" bi bi-bell-fill"></i>

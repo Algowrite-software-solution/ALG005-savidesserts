@@ -29,7 +29,7 @@ $db = new database_driver();
 $productItemSearchQuery = "SELECT *, `product_item`.`id` as `product_item_id` FROM `product_item` 
 INNER JOIN `product` ON `product_item`.`product_product_id`=`product`.`product_id`
 INNER JOIN `product_status` ON `product_item`.`product_status_id`=`product_status`.`id`
-INNER JOIN `weight` ON `product_item`.`weight_id`=`weight`.`id` WHERE `is_deleted` = '0' ";
+INNER JOIN `weight` ON `product_item`.`weight_id`=`weight`.`id` WHERE `is_deleted` = '0' ORDER BY `product_item`.`qty` ASC";
 $resultSet = $db->query($productItemSearchQuery);
 
 //get all product item data
