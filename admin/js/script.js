@@ -692,7 +692,16 @@ function openExtraItemRemoveModel() {
   );
 }
 
-function openExtraItemEditModel(id, extraItem, statusId, status, price) {
+async function openExtraItemEditModel(id, extraItem, statusId, status, price) {
+  // status select design
+  const extraItemStatusData = await loadExtraItemStatus();
+  let statusSelect = "";
+  extraItemStatusData.forEach((element) => {
+    let selected = element.extra_status_id === statusId ? " selected " : " ";
+    const option = `<option ${selected} value="${element.extra_status_id}">${element.extra_status}</option>`;
+    statusSelect += option;
+  });
+
   // design
   const design = `
     <div class="d-flex flex-column w-100 gap-3">
@@ -706,7 +715,9 @@ function openExtraItemEditModel(id, extraItem, statusId, status, price) {
       </div>
       <div class="alg-bg-darker rounded-pill d-flex w-100 rounded-pill">
         <div class=" alg-text-light w-25 text-center p-2">status</div>
-        <input id="extraItemEditStatusInput${id}" class="form-control rounded-pill w-75" type="text" placeholder="please add the status value" value="${statusId}"/>
+        <select name="" id="extraItemEditStatusInput${id}" class="form-select rounded-pill w-75">
+          ${statusSelect}
+        </select>
       </div>
       <div class="alg-bg-darker rounded-pill d-flex w-100 rounded-pill">
         <div class=" alg-text-light w-25 text-center p-2">price</div>
@@ -932,10 +943,45 @@ function updateProductItem(id) {
 }
 
 function openProductItemRemoveModel(id) {
-  const modelBodyDesign = `product item remove model ${id}`;
-  const modelFooterDesign = `remove`;
+  const modelBodyDesign = `Do you want to remove the product item with all of its images  ${id}`;
+  const modelFooterDesign = `<button class="btn btn-danger" onclick="deleteProductItem('${id}')">yes</button>`;
 
   ALG.openModel("Product Item Remove", modelBodyDesign, modelFooterDesign);
+}
+
+function deleteProductItem(id) {
+  fetch("api/productItemDelete.php?id=" + id, {
+    method: "GET",
+  })
+    .then((response) => {
+      console.log(response);
+      // console.log(response.text());
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Product Item delete was successfull",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 function previewProductListImages() {
@@ -1145,6 +1191,12 @@ function addCategory() {
         document
           .getElementById("categoryImagePreviewBox")
           .setAttribute("src", "#");
+
+        ALG.addTableToContainer(
+          "categoryViewContainer",
+          loadCategoryData,
+          [40, 120, 250, 80]
+        );
       } else if (data.status == "failed") {
         ALG.openToast(
           "Alert",

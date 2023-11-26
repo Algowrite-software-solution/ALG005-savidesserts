@@ -185,7 +185,7 @@ CREATE TABLE `extra` (
 
 LOCK TABLES `extra` WRITE;
 /*!40000 ALTER TABLE `extra` DISABLE KEYS */;
-INSERT INTO `extra` VALUES (1,1,'Cashew',90),(2,1,'Chocolate Chips',150),(3,1,'Dry Graps',70),(4,1,'No fruit',0),(5,1,'katarolu',40),(6,1,'black chocolate syrup',250);
+INSERT INTO `extra` VALUES (1,2,'Cashew',90),(2,1,'Chocolate Chips',150),(3,1,'Dry Graps',70),(4,1,'No fruit',0),(5,1,'katarolu',40),(6,1,'black chocolate syrup',250);
 /*!40000 ALTER TABLE `extra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -402,6 +402,7 @@ CREATE TABLE `product_item` (
   `product_status_id` int NOT NULL,
   `product_product_id` varchar(16) NOT NULL,
   `weight_id` int NOT NULL,
+  `is_deleted` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `fk_product_item_product_status1_idx` (`product_status_id`),
   KEY `fk_product_item_product1_idx` (`product_product_id`),
@@ -418,7 +419,7 @@ CREATE TABLE `product_item` (
 
 LOCK TABLES `product_item` WRITE;
 /*!40000 ALTER TABLE `product_item` DISABLE KEYS */;
-INSERT INTO `product_item` VALUES (24,6,1760,1,'452276',1),(25,17,850,1,'452276',4),(26,15,450,1,'452276',6),(27,15,3240,1,'452276',7),(28,198,180,1,'452276',2),(29,7,1760,1,'909861',1),(30,15,250,1,'221944',9),(31,2,250,1,'230434',9),(32,19,150,1,'442403',9),(33,20,150,1,'344791',9),(34,15,250,1,'224940',9);
+INSERT INTO `product_item` VALUES (24,6,1760,1,'452276',1,1),(25,17,850,1,'452276',4,1),(26,15,450,1,'452276',6,1),(27,15,3240,1,'452276',7,1),(28,198,180,1,'452276',2,1),(29,7,1760,1,'909861',1,0),(30,15,250,1,'221944',9,0),(31,2,250,1,'230434',9,0),(32,19,150,1,'442403',9,0),(33,20,150,1,'344791',9,0),(34,15,250,1,'224940',9,0);
 /*!40000 ALTER TABLE `product_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -700,4 +701,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-19  3:57:52
+-- Dump completed on 2023-11-24 17:25:16

@@ -70,6 +70,21 @@ document.addEventListener("DOMContentLoaded", async () => {
   }, 1000 * 60 * 10);
 });
 
+async function openNotificationsPanel() {
+  const isNotificationAvailable = await orderCheckerNotificationChecker();
+  if (!isNotificationAvailable) {
+    const design = `
+    <div class="d-flex">
+      <div class="w-100">
+        There is on going orders for now...!
+      </div>
+    </div>
+  `;
+
+    ALG.openModel("Active Orders", design, "&nbsp;");
+  }
+}
+
 function adminNavigationIconAutoToggle(width) {
   const icon = document.getElementById("navigationIcon");
   if (width > 768) {
@@ -94,7 +109,7 @@ async function orderCheckerNotificationChecker() {
 
   let options = "";
   if (!data.length) {
-    return;
+    return false;
   }
   data.forEach((element) => {
     options += `<div class="p-2 px-4 rounded-pill w-100 alg-bg-dark d-flex justify-content-between gap-3 alg-text-light my-2" value="${element[0]}">
@@ -112,6 +127,7 @@ async function orderCheckerNotificationChecker() {
   `;
 
   ALG.openModel("Active Orders", design, "&nbsp;");
+  return true;
 }
 
 // navigation
@@ -760,6 +776,37 @@ async function loadUserStatusData() {
 
 async function loadUserData() {
   return fetch("api/userDataLoad.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
+async function loadExtraItemStatus() {
+  return fetch("api/extraFruitStatusLoad.php", {
     method: "GET", // HTTP request method
     headers: {
       "Content-Type": "application/json", // Request headers

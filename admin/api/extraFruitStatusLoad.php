@@ -15,7 +15,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 //response
 $responseObject = new stdClass();
-$responseObject->status = 'false';
+$responseObject->status = 'failed';
 
 // checking is user logging
 $userCheckSession = new SessionManager("alg005_admin");
@@ -43,11 +43,6 @@ if ($result->num_rows > 0) {
      }
 
      $responseObject->status = 'success';
-     $responseObject->result = $responseArray;
-     response_sender::sendJson($responseObject);
-} else {
-
-     $responseObject->status = 'no row data';
-     $responseObject->result = null;
+     $responseObject->results = $responseArray;
      response_sender::sendJson($responseObject);
 }

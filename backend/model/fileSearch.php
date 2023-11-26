@@ -60,4 +60,31 @@ class FileSearch
 
           return $results;
      }
+
+     function getFilesWithSubstring($substring) {
+          // Check if the directory exists
+          $directory = $this->directory;
+          if (!is_dir($directory)) {
+              die("Error: The specified directory does not exist.");
+          }
+      
+          // Initialize an array to store matching files
+          $matchingFiles = [];
+      
+          // Open the directory
+          $dir = opendir($directory);
+      
+          // Loop through each file in the directory
+          while (($file = readdir($dir)) !== false) {
+              // Check if the file is a regular file and its name contains the specified substring
+              if (is_file($directory . '/' . $file) && strpos($file, $substring) !== false) {
+                  $matchingFiles[] = $file;
+              }
+          }
+      
+          // Close the directory
+          closedir($dir);
+      
+          return $matchingFiles;
+      }
 }
