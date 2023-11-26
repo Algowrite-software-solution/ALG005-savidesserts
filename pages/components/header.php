@@ -80,7 +80,7 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
     <div class="d-flex d-md-none text-center nav-box alg-bg-gold bg-opacity-50 position-static">
         <div class="flex-column text-center w-100 d-flex">
             <span class="py-2"><a href="index.php" class="alg-text-dark text-decoration-none fw-semibold">Home</a></span>
-            <span class="py-2"><a href="products.php" class="alg-text-dark text-decoration-none fw-semibold">Products</a></span>
+            <span class="py-2"><a href="products.php" class="alg-text-dark text-decoration-none fw-semibold">Shop</a></span>
             <span class="py-2"><a href="#cart" class="alg-text-dark text-decoration-none fw-semibold" onclick="openCartModel();">Cart</a><span class="translate-middle rounded-pill badge bg-danger header-badge position-absolute d-none d-lg-block">+</span></span>
             <span class="py-2" onclick="openWatchlistModel();"><a href="#watchlist" class="alg-text-dark text-decoration-none fw-semibold">Watchlist</a></span>
         </div>
