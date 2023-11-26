@@ -98,7 +98,7 @@
                                 <div class="col-12 alg-bg-light rounded-5 d-flex justify-content-center align-items-center gap-5">
                                     <div><img src="resources/images/service1.png" alt="" class="alg-service-img"></div>
                                     <div class="lh-1 mt-2 me-2">
-                                        <span class="fw-bold alg-text-h3">24/7 Services for any inquriy</span>
+                                        <span class="fw-bold alg-text-h3">24/7 Our Services </span>
                                         <p class="alg-text-h3">Our company provide 24/7 service on any service related
                                         </p>
                                     </div>
