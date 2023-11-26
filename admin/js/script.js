@@ -322,6 +322,24 @@ async function openSingleOrderViewModel(invoiceId) {
     index++;
   });
 
+  // invoice items
+  const invioceItemData = await loadInvoiceItemData(invoiceData[0].order_id);
+  let invoiceItems = ``;
+  let items = ``;
+  const itemData = invioceItemData[0];
+
+  for (const key in itemData) {
+    if (Object.hasOwnProperty.call(itemData, key)) {
+      const element = itemData[key];
+      items += `<tr class="w-100 d-flex border-2 border">
+        <td class="col-6 alg-text-white p-2 alg-bg-dark" >${key} : </td>
+        <td class="col-6 alg-text-dark p-2 alg-bg-light">${element}</td>
+      </tr>`;
+    }
+  }
+
+  invoiceItems += `<table border="2">${items}</table>`;
+
   const orderDesign = `
   <div class="d-flex flex-column w-100 gap-3">
     <div class=" alg-bg-darker rounded-pill d-flex w-100 ">
@@ -341,6 +359,12 @@ async function openSingleOrderViewModel(invoiceId) {
       <select onchange="orderStatusChange(event, '${invoiceData[0].invoice_id}', '${invoiceData[0].order_id}')" class="form-select ${colors}">
         ${options}
       </select>
+    </div>
+
+    <hr />
+
+    <div class="p-2 d-flex flex-column">
+      ${invoiceItems}
     </div>
   </div>
   `;
