@@ -20,7 +20,7 @@ $responseObject = new stdClass();
 $responseObject->status = "failed";
 
 //chekcing is user logging
-$userCheckSession = new SessionManager();
+$userCheckSession = new SessionManager("alg005_admin");
 if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
      $responseObject->error = 'Please login';
      response_sender::sendJson($responseObject);
@@ -31,12 +31,12 @@ if (!RequestHandler::isGetMethod()) {
      response_sender::sendJson($responseObject);
 }
 
-if (!isset($_GET['order_id'])) {
+if (!isset($_GET['order_id']) || empty($_GET["order_id"])) {
      $responseObject->error = 'Access denied';
      response_sender::sendJson($responseObject);
 }
 
-$orderId = $_GET['order_id'];
+$orderId = "#" . $_GET['order_id'];
 
 $validateReadyObject = (object) [
      "string_or_null" => [
@@ -71,5 +71,5 @@ while ($rowData = $invoiceItemResult['result']->fetch_assoc()) {
 }
 
 $responseObject->status = "success";
-$responseObject->result = $invoiceItemData;
+$responseObject->results = $invoiceItemData;
 response_sender::sendJson($responseObject);
