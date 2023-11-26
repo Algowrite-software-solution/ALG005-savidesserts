@@ -13,7 +13,7 @@ if (!$sessionManager->isLoggedIn()) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Savi Dessert</title>
+    <title>Dashboard | Sawee Dessert</title>
 
     <!-- css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -42,7 +42,7 @@ if (!$sessionManager->isLoggedIn()) {
                 <div data-tooltip-holder="Home" class="logo fw-bold fs-3">SAWEE</div>
             </div>
             <div class="d-none d-md-flex align-items-center justify-content-center w-100">
-                <button class="btn alg-btn-pill mx-3"><a href="" class="text-decoration-none alg-text-light">Payment Gate</a></button>
+                <button class="btn alg-btn-pill mx-3"><a href="https://www.payhere.lk/merchant/home" class="text-decoration-none alg-text-light">Payment Gate</a></button>
                 <button class="btn alg-btn-pill mx-3"><a href="https://www.saweedessert.com/" class="text-decoration-none alg-text-light">Sawee Dessert</a></button>
             </div>
             <div class="border-start alg-text-h2 d-flex gap-2 px-2 align-items-center justify-content-between">

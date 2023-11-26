@@ -39,11 +39,9 @@
                                 <div class="col-10 m-lg-4 mx-auto text-center text-md-start">
                                     <span class="alg-text-h1 text-white fw-semibold lh-1">Experience the Joy of
                                         Irresistible Desserts</span><br />
-                                    <p class="alg-text-h2 text-white pt-3 mt-3 shadow">Embark ona Flavorful journy of
+                                    <p class="alg-text-h2 text-white pt-3 mt-3 shadow">Embark own Flavorful journey of
                                         Irresistible Desserts discover the Delight of Authentic Sri Lankan Sweets,
-                                        Crafted to Perfection
-                                        Embark ona Flavorful journy of Irresistible Desserts discover the Delight of
-                                        Authentic Sri Lankan Sweets, Crafted to Perfectio.</p>
+                                        Crafted to Perfection.</p>
                                 </div>
                             </div>
                             <div class="row mx-4 mx-0">
@@ -171,10 +169,10 @@
                             <div>
                                 <h4 class="mt-3 alg-text-tan">Journey of sawee dessert.....</h4>
                                 <p class="alg-text-light">
-                                    Sawee Dessert started in 2014 as a small business and continues today with a successful 7-year 
-                                    journey. In the early stages, we managed to deliver the products to the customers through our 
-                                    trusted agent around the country. At the moment we have agents in Gampaha, Kandy, Yatiyanthota, 
-                                    and Anuradhapura. They managed to deliver the products within the mentioned areas while keeping 
+                                    Sawee Dessert started in 2014 as a small business and continues today with a successful 7-year
+                                    journey. In the early stages, we managed to deliver the products to the customers through our
+                                    trusted agent around the country. At the moment we have agents in Gampaha, Kandy, Yatiyanthota,
+                                    and Anuradhapura. They managed to deliver the products within the mentioned areas while keeping
                                     the freshness and goodness. We can delivering dessert products to your hand within 36
                                     Hours of the order with the good care and quality of the products. It is a huge achievement that
                                     we have gained throughout this business journey.
@@ -314,7 +312,7 @@
                                         <div class="col-6 bg-lg-white p-2 d-flex gap-4 rounded-4 px-3 justify-content-center">
                                             <span><a class="text-decoration-none" href="https://www.facebook.com/profile.php?id=61552367446267&mibextid=ZbWKwL"><i class="bi bi-facebook alg-header-text fs-5 alg-text-hover cursor"></i></a></span>
                                             <span><a class="text-decoration-none" href="https://instagram.com/saweedessert?igshid=YzAwZjE1ZTI0Zg=="><i class="bi bi-instagram alg-header-text fs-5 alg-text-hover cursor"></i></a></span>
-                                            <span><i class="bi bi-whatsapp alg-header-text fs-5 alg-text-hover cursor"></i></span>
+                                            <span><a class="text-decoration-none" href="https://wa.me/+94766773539"><i class="bi bi-whatsapp alg-header-text fs-5 alg-text-hover cursor"></i></a></span>
                                         </div>
                                     </div>
                                 </div>
