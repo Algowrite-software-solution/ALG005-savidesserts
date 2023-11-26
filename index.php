@@ -23,6 +23,7 @@
     <script defer src="js/home.js"></script>
     <script defer src="js/homeSliders.js"></script>
     <script defer src="js/script.js"></script>
+    <script defer src="js/productsSliders.js"></script>
 </head>
 
 <body class="scrollbar w-100 page">

@@ -44,43 +44,43 @@ let swiperBestSelling = new Swiper(".mySwiperBestSelling", {
 });
 
 // category
-let swiperCategory = new Swiper(".mySwiperCategory", {
-  spaceBetween: 3,
+// let swiperCategory = new Swiper(".mySwiperCategory", {
+//   spaceBetween: 3,
 
-  // centeredSlides: true,
-  freeMode: true,
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  autoplay: {
-    delay: 1000,
-  },
-  centeredSlides: true,
+//   // centeredSlides: true,
+//   freeMode: true,
+//   navigation: {
+//     nextEl: ".swiper-button-next",
+//     prevEl: ".swiper-button-prev",
+//   },
+//   autoplay: {
+//     delay: 1000,
+//   },
+//   centeredSlides: true,
   
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-  breakpoints: {
-    300: {
-      slidesPerView: 1,
-      spaceBetween: 0,
-    },
-    540: {
-      slidesPerView: 1,
-      spaceBetween: 0,
-    },
-    960: {
-      slidesPerView: 2,
-      spaceBetween: 0,
-    },
-    1200: {
-      slidesPerView: 3,
-      spaceBetween: 0,
-    },
-  }
-});
+//   pagination: {
+//     el: ".swiper-pagination",
+//     clickable: true,
+//   },
+//   breakpoints: {
+//     300: {
+//       slidesPerView: 1,
+//       spaceBetween: 0,
+//     },
+//     540: {
+//       slidesPerView: 1,
+//       spaceBetween: 0,
+//     },
+//     960: {
+//       slidesPerView: 2,
+//       spaceBetween: 0,
+//     },
+//     1200: {
+//       slidesPerView: 3,
+//       spaceBetween: 0,
+//     },
+//   }
+// });
 
 
 // checkout section slider
