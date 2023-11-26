@@ -15,10 +15,13 @@ if (!isset($_POST['product_id'])) {
 
 $productId = $_POST['product_id'];
 
+$stock = 1;
 //database object
 $db = new database_driver();
-$searchQuery = "SELECT * FROM `extra_item` INNER JOIN `extra` ON `extra_item`.`extra_id`=`extra`.`id` WHERE `product_product_id`=?";
-$resultSet = $db->execute_query($searchQuery, 's', array($productId));
+$searchQuery = "SELECT * FROM `extra_item` 
+INNER JOIN `extra` ON `extra_item`.`extra_id`=`extra`.`id` 
+WHERE `product_product_id`=? AND `extra`.`extra_status_id`=? ";
+$resultSet = $db->execute_query($searchQuery, 'si', array($productId, $stock));
 
 //result
 $result = $resultSet['result'];
@@ -39,7 +42,6 @@ if ($result->num_rows > 0) {
      $responseObject->status = 'success';
      $responseObject->response = $responseArray;
      response_sender::sendJson($responseObject);
-
 } else {
      $responseObject->status = 'no row data';
      $responseObject->response = null;

@@ -39,11 +39,9 @@
                                 <div class="col-10 m-lg-4 mx-auto text-center text-md-start">
                                     <span class="alg-text-h1 text-white fw-semibold lh-1">Experience the Joy of
                                         Irresistible Desserts</span><br />
-                                    <p class="alg-text-h2 text-white pt-3 mt-3 shadow">Embark ona Flavorful journy of
+                                    <p class="alg-text-h2 text-white pt-3 mt-3 shadow">Embark own Flavorful journey of
                                         Irresistible Desserts discover the Delight of Authentic Sri Lankan Sweets,
-                                        Crafted to Perfection
-                                        Embark ona Flavorful journy of Irresistible Desserts discover the Delight of
-                                        Authentic Sri Lankan Sweets, Crafted to Perfectio.</p>
+                                        Crafted to Perfection.</p>
                                 </div>
                             </div>
                             <div class="row mx-4 mx-0">
@@ -75,7 +73,7 @@
                 <div class="promotionSwiper swiper mySwiperPromotion mt-2">
                     <div class="swiper-wrapper" id="promotionSliderContainer">
                         <!-- image container goes here -->
-                        
+
                     </div>
                 </div>
             </div>
@@ -171,17 +169,17 @@
                             <div>
                                 <h4 class="mt-3 alg-text-tan">Journey of sawee dessert.....</h4>
                                 <p class="alg-text-light">
-                                    Sawee dessert started at 2014 as a small business and continued till today with succussful 7 years of a journey.
-                                    In the early stages we managed to deliver the products to the customers trough our trusted agest around the country.
-                                    At the moment we have agents on Gampaha, Kandy, Yatiyanthota and Anuradhapura. They managed to deliver the producsts with in the mentioned ares while keeping the freshness
-                                    and goodness.We are capable of delivering dessert products to your hand with in 36 Hours of the order with the well care and quality of the products. It is a
-                                    huge achivement that we have gained troughout this business journey.
+                                    Sawee Dessert started in 2014 as a small business and continues today with a successful 7-year
+                                    journey. In the early stages, we managed to deliver the products to the customers through our
+                                    trusted agent around the country. At the moment we have agents in Gampaha, Kandy, Yatiyanthota,
+                                    and Anuradhapura. They managed to deliver the products within the mentioned areas while keeping
+                                    the freshness and goodness. We can delivering dessert products to your hand within 36
+                                    Hours of the order with the good care and quality of the products. It is a huge achievement that
+                                    we have gained throughout this business journey.
                                     <br>
                                     <br>
                                     <br>
-                                    Even in the echnomical crisis tha are happening in the country, we still managed to provide you a well prepared desserts with the same quality in a fare
-                                    price range. We hope to continue with this and provide an amazing service to you. Our motive is providing healthy, tasty and clean dessrt to our beloved
-                                    customers who enjoy the tast of sawee dessrt.
+                                    We provide you with a quality, mouth watering and delicious dessert in a fair price range.
                                 </p>
                             </div>
                         </div>
@@ -286,7 +284,7 @@
                                     <div class="col-10 col-md-11 col-lg-8">
                                         <div class="bg-white p-2 d-flex align-items-center gap-5 px-3 alg-div-hover rounded-4">
                                             <span><i class='bx bx-mobile fs-5 fw-bold'></i></span>
-                                            <span class="fw-bold alg-text-h3">+94771378492</span>
+                                            <span class="fw-bold alg-text-h3">+94766773539</span>
                                         </div>
                                     </div>
                                 </div>
@@ -314,7 +312,7 @@
                                         <div class="col-6 bg-lg-white p-2 d-flex gap-4 rounded-4 px-3 justify-content-center">
                                             <span><a class="text-decoration-none" href="https://www.facebook.com/profile.php?id=61552367446267&mibextid=ZbWKwL"><i class="bi bi-facebook alg-header-text fs-5 alg-text-hover cursor"></i></a></span>
                                             <span><a class="text-decoration-none" href="https://instagram.com/saweedessert?igshid=YzAwZjE1ZTI0Zg=="><i class="bi bi-instagram alg-header-text fs-5 alg-text-hover cursor"></i></a></span>
-                                            <span><i class="bi bi-whatsapp alg-header-text fs-5 alg-text-hover cursor"></i></span>
+                                            <span><a class="text-decoration-none" href="https://wa.me/+94766773539"><i class="bi bi-whatsapp alg-header-text fs-5 alg-text-hover cursor"></i></a></span>
                                         </div>
                                     </div>
                                 </div>

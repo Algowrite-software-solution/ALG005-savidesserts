@@ -31,11 +31,28 @@ if (!isset($_POST['id'])) {
 
 // input data
 $categoryId = $_POST['id'];
-$categoryType = $_POST['category_type'];
-// $image = $_FILES['image']; // image
+$categoryType = isset($_POST['category_type']) ? $_POST['category_type'] : null;
+$image = isset($_POST['image']) ? $_POST['image'] : null; // image
+if (empty($categoryType) && empty($image)) {
+     $responseObject->error = 'Empty arguments';
+     response_sender::sendJson($responseObject);
+}
 
 //database object
 $db = new database_driver();
+$fileRelativeLocation = "../../resources/images/categoryImages/";
+$oldImageName = $db->execute_query("SELECT * FROM `category` WHERE `id`=? ", "i", array($categoryId));
+$oldImageName =  $oldImageName["result"]->fetch_assoc();
+
+if (isset($image) && !empty($image)) {
+     $uri = substr($image, strpos($image, ",") + 1);
+     file_put_contents($fileRelativeLocation . $categoryType . ".jpg",  base64_decode($uri));
+}
+
+if (isset($categoryType) && !empty($categoryType)) {
+     rename($fileRelativeLocation . $oldImageName["category_type"] . ".jpg", $fileRelativeLocation . $categoryType . ".jpg");
+}
+
 
 // data insert
 $categoryUpdate = "UPDATE `category` SET `category_type`=? WHERE `id`=?";

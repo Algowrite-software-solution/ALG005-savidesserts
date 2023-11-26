@@ -43,6 +43,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       toggleNavigation();
     });
   }
+  adminNavigationIconAutoToggle(window.innerWidth);
+  window.addEventListener("resize", () => {
+    adminNavigationIconAutoToggle(window.innerWidth);
+  });
 
   // defaults
   ALG.loadMainPanel(
@@ -66,6 +70,32 @@ document.addEventListener("DOMContentLoaded", async () => {
   }, 1000 * 60 * 10);
 });
 
+async function openNotificationsPanel() {
+  const isNotificationAvailable = await orderCheckerNotificationChecker();
+  if (!isNotificationAvailable) {
+    const design = `
+    <div class="d-flex">
+      <div class="w-100">
+        There is on going orders for now...!
+      </div>
+    </div>
+  `;
+
+    ALG.openModel("Active Orders", design, "&nbsp;");
+  }
+}
+
+function adminNavigationIconAutoToggle(width) {
+  const icon = document.getElementById("navigationIcon");
+  if (width > 768) {
+    icon.classList.remove("bi-list");
+    icon.classList.add("bi-x");
+  } else {
+    icon.classList.remove("bi-x");
+    icon.classList.add("bi-list");
+  }
+}
+
 async function orderCheckerNotificationChecker() {
   const data = await ALG.requestHandler(
     SERVER_URL + "admin/api/orderNotificationChecker.php",
@@ -79,7 +109,7 @@ async function orderCheckerNotificationChecker() {
 
   let options = "";
   if (!data.length) {
-    return;
+    return false;
   }
   data.forEach((element) => {
     options += `<div class="p-2 px-4 rounded-pill w-100 alg-bg-dark d-flex justify-content-between gap-3 alg-text-light my-2" value="${element[0]}">
@@ -97,6 +127,7 @@ async function orderCheckerNotificationChecker() {
   `;
 
   ALG.openModel("Active Orders", design, "&nbsp;");
+  return true;
 }
 
 // navigation
@@ -288,6 +319,9 @@ async function toggleProductSection(section) {
       loadSetExtraItemData,
       [60, 150, 200]
     );
+  } else if (section === "shipping") {
+    const price = await loadShippingData();
+    document.getElementById("shippingPriceInput").setAttribute("value", price);
   }
 }
 
@@ -552,7 +586,36 @@ async function loadProductsOnProductItemSelector() {
 }
 
 // data loaders
-
+async function loadShippingData() {
+  return fetch("api/shippingDataLoader.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
 
 async function loadPromotionData() {
   return fetch("api/productPromotionLoading.php", {
@@ -585,7 +648,6 @@ async function loadPromotionData() {
     });
 }
 
-
 async function loadPromotionStatusData() {
   return fetch("api/productPromotionStatusLoader.php", {
     method: "GET", // HTTP request method
@@ -603,6 +665,38 @@ async function loadPromotionStatusData() {
       // Handle the JSON data received from the API
       if (data.status == "success") {
         console.log(data.results);
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
+async function loadInvoiceItemData(orderId) {
+  const query = orderId != null ? "?order_id=" + orderId.slice(1) : "";
+  return fetch("api/invoiceItemViewProcess.php" + query, {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
         return data.results;
       } else if (data.status == "failed") {
         console.log(data.error);
@@ -714,6 +808,37 @@ async function loadUserStatusData() {
 
 async function loadUserData() {
   return fetch("api/userDataLoad.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
+async function loadExtraItemStatus() {
+  return fetch("api/extraFruitStatusLoad.php", {
     method: "GET", // HTTP request method
     headers: {
       "Content-Type": "application/json", // Request headers

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
--- Host: localhost    Database: savi_dessert_shop
+-- Host: localhost    Database: alg005_db
 -- ------------------------------------------------------
--- Server version	8.0.30
+-- Server version	8.0.31
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -87,7 +87,7 @@ CREATE TABLE `category` (
   `id` int NOT NULL AUTO_INCREMENT,
   `category_type` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +96,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (11,'Watalappan'),(14,'Pudding'),(15,'Ingredients');
+INSERT INTO `category` VALUES (11,'Watalappan'),(14,'Pudidngs'),(15,'Other');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,7 +185,7 @@ CREATE TABLE `extra` (
 
 LOCK TABLES `extra` WRITE;
 /*!40000 ALTER TABLE `extra` DISABLE KEYS */;
-INSERT INTO `extra` VALUES (1,1,'Cashew',90),(2,1,'Chocolate Chips',150),(3,1,'Dry Graps',70),(4,1,'No fruit',0),(5,1,'katarolu',40),(6,1,'black chocolate syrup',250);
+INSERT INTO `extra` VALUES (1,2,'Cashew',90),(2,1,'Chocolate Chips',150),(3,1,'Dry Graps',70),(4,1,'No fruit',0),(5,1,'katarolu',40),(6,1,'black chocolate syrup',250);
 /*!40000 ALTER TABLE `extra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -271,7 +271,7 @@ CREATE TABLE `invoice` (
 
 LOCK TABLES `invoice` WRITE;
 /*!40000 ALTER TABLE `invoice` DISABLE KEYS */;
-INSERT INTO `invoice` VALUES (16,'2023-10-15',7300,200,'#828871',2,1),(18,'2023-10-16',3200,200,'#353540',2,1),(19,'2023-10-17',1200,200,'#565233',2,1),(20,'2023-10-30',5200,200,'#110354',2,1),(21,'2023-10-30',4020,200,'#393427',2,1),(22,'2023-10-30',4020,200,'#611021',2,1),(23,'2023-10-30',700,200,'#269768',2,1),(24,'2023-10-30',2030,200,'#276847',2,1),(25,'2023-10-30',1240,200,'#235137',2,1),(26,'2023-10-30',10310,200,'#528179',2,1),(27,'2023-10-30',4290,200,'#386884',2,1),(28,'2023-10-30',4840,200,'#620628',2,1),(29,'2023-10-31',3720,200,'#360821',2,1),(30,'2023-10-31',3720,200,'#489180',2,1),(31,'2023-10-31',650,200,'#957623',2,1),(32,'2023-10-31',1960,200,'#783418',2,1),(33,'2023-10-31',450,200,'#675207',2,1),(34,'2023-10-31',1960,200,'#760638',2,1),(35,'2023-10-31',450,200,'#136526',2,1),(36,'2023-10-31',2110,200,'#599269',2,1),(37,'2023-10-31',1960,200,'#873861',2,1),(38,'2023-11-06',4570,200,'#483407',2,1),(39,'2023-11-06',1960,200,'#850242',2,1),(40,'2023-11-06',450,200,'#889881',2,1),(41,'2023-11-06',450,200,'#867127',2,1),(42,'2023-11-06',7120,200,'#202193',23,1),(43,'2023-11-06',1960,200,'#276168',23,1),(44,'2023-11-07',4110,200,'#484727',23,1),(45,'2023-11-07',450,200,'#730658',23,1),(46,'2023-11-07',450,200,'#615124',23,1);
+INSERT INTO `invoice` VALUES (46,'2023-11-07',450,200,'#615124',23,3);
 /*!40000 ALTER TABLE `invoice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -402,6 +402,7 @@ CREATE TABLE `product_item` (
   `product_status_id` int NOT NULL,
   `product_product_id` varchar(16) NOT NULL,
   `weight_id` int NOT NULL,
+  `is_deleted` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `fk_product_item_product_status1_idx` (`product_status_id`),
   KEY `fk_product_item_product1_idx` (`product_product_id`),
@@ -418,7 +419,7 @@ CREATE TABLE `product_item` (
 
 LOCK TABLES `product_item` WRITE;
 /*!40000 ALTER TABLE `product_item` DISABLE KEYS */;
-INSERT INTO `product_item` VALUES (24,6,1760,1,'452276',1),(25,17,850,1,'452276',4),(26,15,450,1,'452276',6),(27,15,3240,1,'452276',7),(28,198,180,1,'452276',2),(29,7,1760,1,'909861',1),(30,15,250,1,'221944',9),(31,2,250,1,'230434',9),(32,19,150,1,'442403',9),(33,20,150,1,'344791',9),(34,15,250,1,'224940',9);
+INSERT INTO `product_item` VALUES (24,6,1760,1,'452276',1,1),(25,17,850,1,'452276',4,1),(26,15,450,1,'452276',6,1),(27,15,3240,1,'452276',7,1),(28,198,180,1,'452276',2,1),(29,7,1760,1,'909861',1,0),(30,15,250,1,'221944',9,0),(31,2,250,1,'230434',9,0),(32,19,150,1,'442403',9,0),(33,20,150,1,'344791',9,0),(34,15,250,1,'224940',9,0);
 /*!40000 ALTER TABLE `product_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -476,7 +477,7 @@ CREATE TABLE `promotion` (
 
 LOCK TABLES `promotion` WRITE;
 /*!40000 ALTER TABLE `promotion` DISABLE KEYS */;
-INSERT INTO `promotion` VALUES ('6','2023-11-12 17:02:53','2023-11-12 17:02:54',1,'452276',7),('7','2023-11-12 17:20:39','2023-11-12 17:20:40',1,'909861',1);
+INSERT INTO `promotion` VALUES ('696071','2023-11-13 14:22:13','2023-11-17 00:00:00',1,'452276',1);
 /*!40000 ALTER TABLE `promotion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -700,4 +701,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-12 23:38:45
+-- Dump completed on 2023-11-26 19:54:45

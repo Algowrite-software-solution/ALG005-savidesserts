@@ -13,7 +13,7 @@ if (!$sessionManager->isLoggedIn()) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Savi Dessert</title>
+    <title>Dashboard | Sawee Dessert</title>
 
     <!-- css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -39,15 +39,15 @@ if (!$sessionManager->isLoggedIn()) {
                 <div class="w-100">
                     <i class=" bi bi-x" id="navigationIcon"></i>
                 </div>
-                <div data-tooltip-holder="Home" class="logo fw-bold fs-3">SAVI</div>
+                <div data-tooltip-holder="Home" class="logo fw-bold fs-3">SAWEE</div>
             </div>
             <div class="d-none d-md-flex align-items-center justify-content-center w-100">
-                <button class="btn alg-btn-pill mx-3">something1</button>
-                <button class="btn alg-btn-pill mx-3">something2</button>
+                <button class="btn alg-btn-pill mx-3"><a href="https://www.payhere.lk/merchant/home" class="text-decoration-none alg-text-light">Payment Gate</a></button>
+                <button class="btn alg-btn-pill mx-3"><a href="https://www.saweedessert.com/" class="text-decoration-none alg-text-light">Sawee Dessert</a></button>
             </div>
             <div class="border-start alg-text-h2 d-flex gap-2 px-2 align-items-center justify-content-between">
-                <i class=" bi bi-bell-fill"></i>
-                <i class=" bi bi-gear-fill"></i>
+                <i onclick="openNotificationsPanel();" class=" bi bi-bell-fill"></i>
+                <i class="d-none bi bi-gear-fill"></i>
                 <i class=" bi bi-person-circle"></i>
             </div>
         </div>
@@ -55,7 +55,7 @@ if (!$sessionManager->isLoggedIn()) {
 
     <!-- content -->
     <div class="alg-bg-dark d-flex flex-grow-1 position-relative alg-text-light">
-        <div class="alg-sm-position-ablsolute col-8 h-100 col-md-4 col-lg-3 col-xl-2 p-3" id="navigationSection">
+        <div class="alg-sm-position-ablsolute col-8 h-100 col-md-4 col-lg-3 col-xl-2 p-3 d-none d-lg-block" id="navigationSection">
             <div class="rounded-3 alg-bg-darker px-3 py-4 h-100 alg-shadow navigation-sidebar">
                 <button data-algMainNavigationPanel="productManagementPanel" data-algMainNavigationPanelTitle="Product Management" class="alg-btn-pill rounded-4 my-2 w-100 main-navigation-panel-btn">Product Management</button>
                 <button data-algMainNavigationPanel="userManagementPanel" data-algMainNavigationPanelTitle="User Management" class="alg-btn-pill rounded-4 my-2 w-100 main-navigation-panel-btn">User Management</button>

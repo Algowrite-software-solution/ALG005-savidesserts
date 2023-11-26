@@ -6,9 +6,9 @@
 
 
 //include models
-require_once("../model/database_driver.php");
-require_once("../model/response_sender.php");
-require_once("../model/SessionManager.php");
+require_once("../../backend/model/database_driver.php");
+require_once("../../backend/model/response_sender.php");
+require_once("../../backend/model/SessionManager.php");
 
 // headers
 header("Content-Type: application/json; charset=UTF-8");
@@ -31,5 +31,5 @@ $result = $db->query($searchQuery);
 $queryResult = $result->fetch_assoc();
 $shippingPrice = $queryResult['price'];
 $responseObject->status = 'success';
-$responseObject->result = $shippingPrice;
+$responseObject->results = $shippingPrice;
 response_sender::sendJson($responseObject);

@@ -27,7 +27,7 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
 $db = new database_driver();
 
 //search all product
-$searchQuery = "SELECT * FROM `product`";
+$searchQuery = "SELECT * FROM `product` ORDER BY `add_date` DESC ";
 $resultSet = $db->query($searchQuery);
 
 

@@ -49,7 +49,9 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
                         </div>
                         <div class="d-flex align-items-center gap-3">
                             <div class="d-flex align-items-center gap-3 alg-cursor">
-                                <span class="rounded-circle"><i class="bi bi-whatsapp text-success fs-4"></i></span>
+                                <span class="rounded-circle">
+                                    <a class="text-decoration-none" href="https://wa.me/+94766773539"><i class="bi bi-whatsapp text-success fs-4"></i></a>
+                                </span>
                                 <div class="alg-user-Word alg-bg-gold">
                                     <?php
                                     if ($isLoggedIn) {
@@ -78,7 +80,7 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
     <div class="d-flex d-md-none text-center nav-box alg-bg-gold bg-opacity-50 position-static">
         <div class="flex-column text-center w-100 d-flex">
             <span class="py-2"><a href="index.php" class="alg-text-dark text-decoration-none fw-semibold">Home</a></span>
-            <span class="py-2"><a href="products.php" class="alg-text-dark text-decoration-none fw-semibold">Products</a></span>
+            <span class="py-2"><a href="products.php" class="alg-text-dark text-decoration-none fw-semibold">Shop</a></span>
             <span class="py-2"><a href="#cart" class="alg-text-dark text-decoration-none fw-semibold" onclick="openCartModel();">Cart</a><span class="translate-middle rounded-pill badge bg-danger header-badge position-absolute d-none d-lg-block">+</span></span>
             <span class="py-2" onclick="openWatchlistModel();"><a href="#watchlist" class="alg-text-dark text-decoration-none fw-semibold">Watchlist</a></span>
         </div>
@@ -148,7 +150,7 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
                             <div class="text-start">
                                 <span class="alg-text-h3 fw-semibold">Email</span>
                                 <input type="email" id="forgottenPasswordEmail" class="ALG-model-input alg-text-h3 form-control rounded-5" placeholder="Email address" />
-                                <button id="mainButton"  class="p-2 mb-3 w-100 rounded-5 ALG-model-button alg-text-h3 text-white fw-bolder mt-2 mt-md-3" onclick="passwordReset();">
+                                <button id="mainButton" class="p-2 mb-3 w-100 rounded-5 ALG-model-button alg-text-h3 text-white fw-bolder mt-2 mt-md-3" onclick="passwordReset();">
                                     <span class="spinner-border spinner-border-sm d-none" aria-hidden="true"></span>
                                     <span role="status">Reset Password</span>
                                 </button>
