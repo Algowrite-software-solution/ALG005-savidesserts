@@ -329,6 +329,7 @@
 /* category slider */
 .categorySwiper.swiper {
   width: 100%;
+  height:100%;
 }
 
 
@@ -336,15 +337,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 10px;
-  height: 300px;
+  width: 610px;
+  /* height: 300px; */
 }
 
 .categorySwiper.swiper-slide img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* object-fit: cover; */
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  --swiper-navigation-size: 30px;
+  --swiper-navigation-fw-bold: 5000px;
+  /* --swiper-navigation-top-offset: 50%; */
+  --swiper-navigation-sides-offset: -2px;
+  /* --swiper-navigation-color: black; */
 }
 
 /* best selling section */

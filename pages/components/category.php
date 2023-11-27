@@ -4,8 +4,8 @@
         <div class="d-flex justify-content-center">
             <div class="col-10 text-center pb-4 pt-3 px-3">
                 <span class="alg-text-h2 alg-text-dark fw-bold">CATEGORY</span>
-                <div class="categorySwiper swiper mySwiperCategory mt-1 px-4 ">
-                    <div class="swiper-wrapper category-container d-flex justify-content-between gap-5" id="categorySliderContainer">
+                <div class="categorySwiper swiper mySwiperCategory mt-1">
+                    <div class="swiper-wrapper category-container d-flex justify-content-between" id="categorySliderContainer">
                         <!-- category data goes here -->
                     </div>
                     <div class="swiper-button-next alg-text-gold"></div>
