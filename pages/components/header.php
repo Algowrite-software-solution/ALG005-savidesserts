@@ -31,12 +31,12 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
                                 </div>
                             </a>
                             <a href="products.php" class="text-decoration-none text-black">
-                                <div class="alg-bg-light px-5 py-1 rounded-pill header-btn fw-bold <?php echo ($currentPage === "products" && $currentCategory !== "Jelly") ? "header-btn-selected" : "" ?> ">
+                                <div class="alg-bg-light px-5 py-1 rounded-pill header-btn fw-bold <?php echo ($currentPage === "products" && $currentCategory !== "Other") ? "header-btn-selected" : "" ?> ">
                                     <span class="d-none d-lg-block fs-6">Shop</span><i class="d-block d-lg-none bi bi-shop"></i>
                                 </div>
                             </a>
-                            <a href="products.php?category=Ingredients" class="text-decoration-none text-black">
-                                <div class="alg-bg-light px-5 py-1 rounded-pill header-btn fw-bold <?php echo ($currentPage === "products" && $currentCategory === "Jelly") ? "header-btn-selected" : "" ?> ">
+                            <a href="products.php?category=Other" class="text-decoration-none text-black">
+                                <div class="alg-bg-light px-5 py-1 rounded-pill header-btn fw-bold <?php echo ($currentPage === "products" && $currentCategory === "Other") ? "header-btn-selected" : "" ?> ">
                                     <span class="d-none d-lg-block fs-6">Other</span><i class="d-block d-lg-none bi bi-heart"></i>
                                 </div>
                             </a>
