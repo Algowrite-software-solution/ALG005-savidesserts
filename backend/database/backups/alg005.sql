@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
 --
--- Host: localhost    Database: alg005_db
+-- Host: localhost    Database: savi_dessert_shop
 -- ------------------------------------------------------
--- Server version	8.0.31
+-- Server version	8.0.30
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -50,20 +50,20 @@ DROP TABLE IF EXISTS `card`;
 CREATE TABLE `card` (
   `id` int NOT NULL AUTO_INCREMENT,
   `qty` int NOT NULL,
-  `product_item_id` int NOT NULL,
   `user_user_id` int NOT NULL,
   `weight_id` int NOT NULL,
   `extra_id` int NOT NULL,
+  `product_product_id` varchar(16) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_card_user1_idx` (`user_user_id`),
-  KEY `fk_card_product_item1_idx` (`product_item_id`),
   KEY `fk_card_weight1_idx` (`weight_id`),
   KEY `fk_card_extra1_idx` (`extra_id`),
+  KEY `fk_card_product1_idx` (`product_product_id`),
   CONSTRAINT `fk_card_extra1` FOREIGN KEY (`extra_id`) REFERENCES `extra` (`id`),
-  CONSTRAINT `fk_card_product_item1` FOREIGN KEY (`product_item_id`) REFERENCES `product_item` (`id`),
+  CONSTRAINT `fk_card_product1` FOREIGN KEY (`product_product_id`) REFERENCES `product` (`product_id`),
   CONSTRAINT `fk_card_user1` FOREIGN KEY (`user_user_id`) REFERENCES `user` (`user_id`),
   CONSTRAINT `fk_card_weight1` FOREIGN KEY (`weight_id`) REFERENCES `weight` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=156 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=158 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +72,7 @@ CREATE TABLE `card` (
 
 LOCK TABLES `card` WRITE;
 /*!40000 ALTER TABLE `card` DISABLE KEYS */;
-INSERT INTO `card` VALUES (155,1,29,2,1,4);
+INSERT INTO `card` VALUES (157,1,2,1,2,'909861');
 /*!40000 ALTER TABLE `card` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +96,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (11,'Watalappan'),(14,'Pudidngs'),(15,'Other');
+INSERT INTO `category` VALUES (11,'Watalappan'),(14,'Puddings'),(15,'Other');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,7 +185,7 @@ CREATE TABLE `extra` (
 
 LOCK TABLES `extra` WRITE;
 /*!40000 ALTER TABLE `extra` DISABLE KEYS */;
-INSERT INTO `extra` VALUES (1,2,'Cashew',90),(2,1,'Chocolate Chips',150),(3,1,'Dry Graps',70),(4,1,'No fruit',0),(5,1,'katarolu',40),(6,1,'black chocolate syrup',250);
+INSERT INTO `extra` VALUES (1,1,'No Toppings',0),(2,1,'Chocolate Chips',150),(3,1,'Dry Graps',70),(4,1,'Cashew',90),(5,1,'katarolu',40),(6,1,'black chocolate syrup',250);
 /*!40000 ALTER TABLE `extra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,7 +205,7 @@ CREATE TABLE `extra_item` (
   KEY `fk_extra_item_extra1_idx` (`extra_id`),
   CONSTRAINT `fk_extra_item_extra1` FOREIGN KEY (`extra_id`) REFERENCES `extra` (`id`),
   CONSTRAINT `fk_extra_item_product1` FOREIGN KEY (`product_product_id`) REFERENCES `product` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -214,7 +214,7 @@ CREATE TABLE `extra_item` (
 
 LOCK TABLES `extra_item` WRITE;
 /*!40000 ALTER TABLE `extra_item` DISABLE KEYS */;
-INSERT INTO `extra_item` VALUES (9,2,'909861'),(10,3,'452276'),(11,3,'452276');
+INSERT INTO `extra_item` VALUES (9,2,'909861'),(10,3,'452276'),(12,4,'452276');
 /*!40000 ALTER TABLE `extra_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -284,20 +284,14 @@ DROP TABLE IF EXISTS `invoice_item`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `invoice_item` (
   `invoice_item_id` int NOT NULL AUTO_INCREMENT,
-  `product_item_id` int NOT NULL,
-  `extra_id` int NOT NULL,
-  `weight_id` int NOT NULL,
   `qty` int NOT NULL,
   `total_product_items_price` double NOT NULL,
   `order_id` varchar(50) NOT NULL,
   `extra_item_price` double NOT NULL,
-  PRIMARY KEY (`invoice_item_id`),
-  KEY `fk_invoice_item_product_item1_idx` (`product_item_id`),
-  KEY `fk_invoice_item_extra1_idx` (`extra_id`),
-  KEY `fk_invoice_item_weight1_idx` (`weight_id`),
-  CONSTRAINT `fk_invoice_item_extra1` FOREIGN KEY (`extra_id`) REFERENCES `extra` (`id`),
-  CONSTRAINT `fk_invoice_item_product_item1` FOREIGN KEY (`product_item_id`) REFERENCES `product_item` (`id`),
-  CONSTRAINT `fk_invoice_item_weight1` FOREIGN KEY (`weight_id`) REFERENCES `weight` (`id`)
+  `product_name` varchar(45) NOT NULL,
+  `weight` varchar(20) NOT NULL,
+  `extra_item_name` varchar(45) NOT NULL,
+  PRIMARY KEY (`invoice_item_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -307,7 +301,6 @@ CREATE TABLE `invoice_item` (
 
 LOCK TABLES `invoice_item` WRITE;
 /*!40000 ALTER TABLE `invoice_item` DISABLE KEYS */;
-INSERT INTO `invoice_item` VALUES (16,24,4,1,1,3500,'#828871',0),(17,28,4,2,1,100,'#828871',0),(18,29,4,1,1,3500,'#828871',0),(19,26,4,6,2,1500,'#353540',0),(20,31,4,9,4,250,'#565233',0),(21,24,4,1,1,1760,'#110354',0),(22,27,4,7,1,3240,'#110354',0),(23,29,2,1,2,1760,'#393427',150),(24,29,2,1,2,1760,'#611021',150),(25,31,4,9,2,250,'#269768',0),(26,24,3,1,1,1760,'#276847',70),(27,26,3,6,2,450,'#235137',70),(28,27,3,7,3,3240,'#528179',70),(29,28,4,2,1,180,'#528179',0),(30,24,3,1,1,1760,'#386884',70),(31,30,4,9,2,250,'#386884',0),(32,29,4,1,1,1760,'#386884',0),(33,29,2,1,1,1760,'#620628',150),(34,24,3,1,1,1760,'#620628',70),(35,31,4,9,1,250,'#620628',0),(36,34,4,9,1,250,'#620628',0),(37,30,4,9,1,250,'#620628',0),(38,32,4,9,1,150,'#620628',0),(39,29,4,1,2,1760,'#360821',0),(40,24,4,1,2,1760,'#489180',0),(41,26,4,6,1,450,'#957623',0),(42,24,4,1,1,1760,'#783418',0),(43,30,4,9,1,250,'#675207',0),(44,24,4,1,1,1760,'#760638',0),(45,30,4,9,1,250,'#136526',0),(46,29,2,1,1,1760,'#599269',150),(47,24,4,1,1,1760,'#873861',0),(48,29,4,1,1,1760,'#483407',0),(49,24,4,1,1,1760,'#483407',0),(50,25,4,4,1,850,'#483407',0),(51,29,4,1,1,1760,'#850242',0),(52,34,4,9,1,250,'#889881',0),(53,34,4,9,1,250,'#867127',0),(54,27,3,7,1,3240,'#202193',70),(55,25,4,4,2,850,'#202193',0),(56,29,2,1,1,1760,'#202193',150),(57,24,4,1,1,1760,'#276168',0),(58,31,4,9,1,250,'#484727',0),(59,24,3,1,2,1760,'#484727',70),(60,34,4,9,1,250,'#730658',0),(61,34,4,9,1,250,'#615124',0);
 /*!40000 ALTER TABLE `invoice_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -402,7 +395,6 @@ CREATE TABLE `product_item` (
   `product_status_id` int NOT NULL,
   `product_product_id` varchar(16) NOT NULL,
   `weight_id` int NOT NULL,
-  `is_deleted` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `fk_product_item_product_status1_idx` (`product_status_id`),
   KEY `fk_product_item_product1_idx` (`product_product_id`),
@@ -419,7 +411,7 @@ CREATE TABLE `product_item` (
 
 LOCK TABLES `product_item` WRITE;
 /*!40000 ALTER TABLE `product_item` DISABLE KEYS */;
-INSERT INTO `product_item` VALUES (24,6,1760,1,'452276',1,1),(25,17,850,1,'452276',4,1),(26,15,450,1,'452276',6,1),(27,15,3240,1,'452276',7,1),(28,198,180,1,'452276',2,1),(29,7,1760,1,'909861',1,0),(30,15,250,1,'221944',9,0),(31,2,250,1,'230434',9,0),(32,19,150,1,'442403',9,0),(33,20,150,1,'344791',9,0),(34,15,250,1,'224940',9,0);
+INSERT INTO `product_item` VALUES (24,6,1760,1,'452276',1),(25,17,850,1,'452276',4),(26,15,450,1,'452276',6),(27,15,3240,1,'452276',7),(28,198,180,1,'452276',2),(29,7,1760,1,'909861',1),(30,15,250,1,'221944',9),(31,2,250,1,'230434',9),(32,19,150,1,'442403',9),(33,20,150,1,'344791',9),(34,15,250,1,'224940',9);
 /*!40000 ALTER TABLE `product_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -527,6 +519,60 @@ LOCK TABLES `province` WRITE;
 /*!40000 ALTER TABLE `province` DISABLE KEYS */;
 INSERT INTO `province` VALUES (1,'Central province'),(2,'Eastern province'),(3,'North Central province'),(4,'Northern province'),(5,'Northwest province'),(6,'Sabaragamuwa province'),(7,'Southern province'),(8,'Uva province'),(9,'Western province');
 /*!40000 ALTER TABLE `province` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `review_status`
+--
+
+DROP TABLE IF EXISTS `review_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `review_status` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `rv_status` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `review_status`
+--
+
+LOCK TABLES `review_status` WRITE;
+/*!40000 ALTER TABLE `review_status` DISABLE KEYS */;
+INSERT INTO `review_status` VALUES (1,'Active'),(2,'Deactive');
+/*!40000 ALTER TABLE `review_status` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reviews`
+--
+
+DROP TABLE IF EXISTS `reviews`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `reviews` (
+  `rev_id` int NOT NULL AUTO_INCREMENT,
+  `review` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `review_status_id` int NOT NULL,
+  `user_user_id` int NOT NULL,
+  PRIMARY KEY (`rev_id`),
+  KEY `fk_reviews_review_status1_idx` (`review_status_id`),
+  KEY `fk_reviews_user1_idx` (`user_user_id`),
+  CONSTRAINT `fk_reviews_review_status1` FOREIGN KEY (`review_status_id`) REFERENCES `review_status` (`id`),
+  CONSTRAINT `fk_reviews_user1` FOREIGN KEY (`user_user_id`) REFERENCES `user` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reviews`
+--
+
+LOCK TABLES `reviews` WRITE;
+/*!40000 ALTER TABLE `reviews` DISABLE KEYS */;
+INSERT INTO `reviews` VALUES (1,'A unique Watallappan Experience, Highly Recommended',1,2),(2,'That\'s Watallappan powder is quality product , perfect smell and unique taste',1,23),(3,'Good Product Highly recommended!',2,19),(4,'Good',1,10);
+/*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -648,13 +694,16 @@ DROP TABLE IF EXISTS `watchlist`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `watchlist` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `product_item_id` int NOT NULL,
   `user_user_id` int NOT NULL,
+  `weight_id` int NOT NULL,
+  `product_product_id` varchar(16) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_watchlist_user1_idx` (`user_user_id`),
-  KEY `fk_watchlist_product_item1_idx` (`product_item_id`),
-  CONSTRAINT `fk_watchlist_product_item1` FOREIGN KEY (`product_item_id`) REFERENCES `product_item` (`id`),
-  CONSTRAINT `fk_watchlist_user1` FOREIGN KEY (`user_user_id`) REFERENCES `user` (`user_id`)
+  KEY `fk_watchlist_weight1_idx` (`weight_id`),
+  KEY `fk_watchlist_product1_idx` (`product_product_id`),
+  CONSTRAINT `fk_watchlist_product1` FOREIGN KEY (`product_product_id`) REFERENCES `product` (`product_id`),
+  CONSTRAINT `fk_watchlist_user1` FOREIGN KEY (`user_user_id`) REFERENCES `user` (`user_id`),
+  CONSTRAINT `fk_watchlist_weight1` FOREIGN KEY (`weight_id`) REFERENCES `weight` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -664,7 +713,6 @@ CREATE TABLE `watchlist` (
 
 LOCK TABLES `watchlist` WRITE;
 /*!40000 ALTER TABLE `watchlist` DISABLE KEYS */;
-INSERT INTO `watchlist` VALUES (24,24,2),(25,29,23);
 /*!40000 ALTER TABLE `watchlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -701,4 +749,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-26 19:54:45
+-- Dump completed on 2023-11-27 23:05:18
