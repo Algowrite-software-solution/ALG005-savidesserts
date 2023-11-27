@@ -270,7 +270,7 @@ function loadExtraItem(productId) {
     .then((data) => {
       // Handle the JSON data received from the API
       // console.log("Data from the API:", data);
-      extraItemContainer.innerHTML = `<option value="4">Select Toppings</option>`;
+      extraItemContainer.innerHTML = `<option value="1">Select Toppings</option>`;
       if (data.status === "success") {
         data.response.forEach((element) => {
           extraItemData[element.extra_id] = {
@@ -282,7 +282,7 @@ function loadExtraItem(productId) {
           `;
         });
       } else if (data.status === "no row data") {
-        extraItemContainer.innerHTML = `<option disabled value="4">Select Toppings</option>`;
+        extraItemContainer.innerHTML = `<option disabled value="1">Select Toppings</option>`;
       } else {
         console.log(data);
       }
@@ -353,7 +353,7 @@ function addToCartItem(product_id, weight_id) {
   const loadWeightContainer =
     document.getElementById("loadWeightContainer").value || weight_id;
   const extraItemContainer =
-    document.getElementById("extraItemContainer").value || 4;
+    document.getElementById("extraItemContainer").value || 1;
   const qty = document.getElementById("numid").textContent;
 
   const fdata = new FormData();

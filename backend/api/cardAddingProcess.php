@@ -44,8 +44,8 @@ if ($qty < $incomingQty) {
 }
 
 // check Already have
-$searchQuery = "SELECT * FROM `card` WHERE `product_item_id`=? AND `weight_id`=? AND `extra_id`=? AND `user_user_id`=?";
-$resultCard = $db->execute_query($searchQuery, 'iiii', array($productItemId, $weightId, $extraItemId, $userId));
+$searchQuery = "SELECT * FROM `card` WHERE `product_product_id`=? AND `weight_id`=? AND `extra_id`=? AND `user_user_id`=?";
+$resultCard = $db->execute_query($searchQuery, 'iiii', array($productId, $weightId, $extraItemId, $userId));
 
 
 if ($resultCard['result']->num_rows > 0) {
@@ -54,7 +54,7 @@ if ($resultCard['result']->num_rows > 0) {
 }
 
 // //add this product to the cart
-$insertQuery = "INSERT INTO `card`(`qty`,`product_item_id`,`weight_id`,`extra_id`,`user_user_id`) VALUES (?,?,?,?,?) ";
-$db->execute_query($insertQuery, 'sssss', array($incomingQty, $productItemId, $weightId, $extraItemId, $userId));
+$insertQuery = "INSERT INTO `card`(`qty`,`product_product_id`,`weight_id`,`extra_id`,`user_user_id`) VALUES (?,?,?,?,?) ";
+$db->execute_query($insertQuery, 'sssss', array($incomingQty, $productId, $weightId, $extraItemId, $userId));
 $responseObject->status = 'product added successfully';
 response_sender::sendJson($responseObject);

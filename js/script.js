@@ -58,6 +58,8 @@ function cartProductView() {
     .then((data) => {
       // Handle the JSON data received from the API
 
+      // console.log(data);
+
       const cartMainContainer = document.getElementById("cartMainContainer");
       const cartTotalContainer = document.getElementById("cartTotalContainer");
       const cartEmptyContainer = document.getElementById("cartEmptyContainer");
@@ -80,7 +82,7 @@ function cartProductView() {
                                 <img src="${element.image}" class="watchlsit_img mt-2 mt-md-0" onclick="openSignleProductView('${element.product_id}', '${element.weight_id}');">
                                 <div class="lh-1 m-0 p-0">
                                     <span class="alg-text-h3 fw-semibold">${element.product_name}</span><br />
-                                    <span class="alg-text-h3">${element.category_type}</span><br/>
+                                    <span class="alg-text-h3">${element.category_name}</span><br/>
                                     <span class="alg-text-h3">*Per Item = LKR ${element.extra_price} (${element.extra_fruit})</span>
                                 </div>
                             </div>
@@ -164,7 +166,7 @@ function cartProductView() {
     })
     .catch((error) => {
       // Handle errors that occur during the Fetch request
-      console.error("Fetch error:", error.error);
+      console.error("Fetch error:", data.error);
     });
 }
 
@@ -279,6 +281,7 @@ function watchlistDataView() {
       return response.json(); // Parse the response body as JSON
     })
     .then((data) => {
+      
       const watchListMainContainer = document.getElementById(
         "watchListMainContainer"
       );

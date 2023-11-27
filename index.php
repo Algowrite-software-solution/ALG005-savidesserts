@@ -167,7 +167,7 @@
                         </div>
                         <div class="col-12 col-lg-6 desc-box scrollbar rounded-4">
                             <div>
-                                <h4 class="mt-3 alg-text-tan">Journey of sawee dessert.....</h4>
+                                <h4 class="mt-3 alg-text-tan">Journey of Sawee dessert.....</h4>
                                 <p class="alg-text-light">
                                     Sawee Dessert started in 2014 as a small business and continues today with a successful 7-year
                                     journey. In the early stages, we managed to deliver the products to the customers through our
@@ -194,68 +194,10 @@
         <div class="container py-3">
             <div class="col-12 d-flex flex-column justify-content-center align-items-center testm-main w-100 pt-2  px-5">
                 <div class="py-2">
-                    <span class="alg-text-h2 text-white fw-bold">TESTAMONIALS</span>
+                    <span class="alg-text-h2 text-white fw-bold">TESTIMONIALS</span>
                 </div>
-                <div class="col-12 d-flex flex-lg-row flex-column justify-content-between align-items-center gap-3 m-2 p-0">
-                    <div class="testm-card d-flex justify-content-center align-items-center  alg-bg-light p-2">
-                        <div class="col-4 p-0">
-                            <img src="resources/images/profile.png" class="img-fluid testm-card-img">
-                        </div>
-                        <div class="col-8 px-2">
-                            <p class="ld-tes-card-paragraph  alg-text-dark fw-bold">"A unique Watallappan Experience,
-                                Highly Recommended!
-                            </p>
-                            <div class="d-flex gap-2 pb-1">
-                                <i class="bi bi-star-fill text-warning fs-6"></i>
-                                <i class="bi bi-star-fill text-warning fs-6"></i>
-                                <i class="bi bi-star-fill text-warning fs-6"></i>
-                                <i class="bi bi-star-fill text-warning fs-6"></i>
-                                <i class="bi bi-star-fill text-white fs-6"></i>
-                            </div>
-                            <h5 class="alg-text-gold">
-                                -Dasun Silva
-                            </h5>
-                        </div>
-                    </div>
-                    <div class="testm-card d-flex justify-content-center align-items-center  alg-bg-light p-2">
-                        <div class="col-4 p-0">
-                            <img src="resources/images/profile.png" class="img-fluid testm-card-img">
-                        </div>
-                        <div class="col-8 px-2">
-                            <p class="ld-tes-card-paragraph  alg-text-dark fw-bold">"That's Watallappan powder is quality
-                                product , perfect smell and unique taste
-                            </p>
-                            <div class="d-flex gap-2 pb-1">
-                                <i class="bi bi-star-fill text-warning fs-6"></i>
-                                <i class="bi bi-star-fill text-warning fs-6"></i>
-                                <i class="bi bi-star-fill text-warning fs-6"></i>
-                                <i class="bi bi-star-fill text-warning fs-6"></i>
-                                <i class="bi bi-star-fill text-white fs-6"></i>
-                            </div>
-                            <h5 class="alg-text-gold">
-                                -Seleena Cooray
-                            </h5>
-                        </div>
-                    </div>
-                    <div class="testm-card d-flex justify-content-center align-items-center  alg-bg-light p-2">
-                        <div class="col-4 p-0">
-                            <img src="resources/images/profile.png" class="img-fluid testm-card-img">
-                        </div>
-                        <div class="col-8 px-2">
-                            <p class="ld-tes-card-paragraph  alg-text-dark fw-bold">"Good Product Highly recommended!
-                            </p>
-                            <div class="d-flex gap-2 pb-1">
-                                <i class="bi bi-star-fill text-warning fs-6"></i>
-                                <i class="bi bi-star-fill text-warning fs-6"></i>
-                                <i class="bi bi-star-fill text-warning fs-6"></i>
-                                <i class="bi bi-star-fill text-white fs-6"></i>
-                                <i class="bi bi-star-fill text-white fs-6"></i>
-                            </div>
-                            <h5 class="alg-text-gold">
-                                -Lalani Perera
-                            </h5>
-                        </div>
-                    </div>
+                <div class="col-12 d-flex flex-lg-row flex-column justify-content-between align-items-center gap-3 m-2 p-0" id="containerTestimonial">
+                    <!-- testimonials goes here -->
                 </div>
             </div>
         </div>

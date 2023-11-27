@@ -31,18 +31,9 @@ $weightId = $_POST['weightId'];
 
 $db = new database_driver();
 
-//search product Item Id
-$searchProductItemQuery = "SELECT id FROM `product_item` WHERE `product_product_id`=? AND `weight_id`=?";
-$resultSetProductItem = $db->execute_query($searchProductItemQuery, 'ss', array($productId, $weightId));
-
-//result and stmt
-$resultSetProductItemRow = $resultSetProductItem['result'];
-$productItemIdArray = $resultSetProductItemRow->fetch_assoc();
-$productItemId = intval($productItemIdArray['id']);
-
 //check item already have our watchlist 
-$searchQuery = "SELECT * FROM `watchlist` WHERE `product_item_id`=? AND `user_user_id`=?";
-$resultSet = $db->execute_query($searchQuery, 'ss', array($productItemId, $userId));
+$searchQuery = "SELECT * FROM `watchlist` WHERE `product_product_id`=? AND `weight_id`=? AND `user_user_id`=?";
+$resultSet = $db->execute_query($searchQuery, 'sss', array($productId, $weightId, $userId));
 
 //result and stmt
 $result = $resultSet['result'];
@@ -52,7 +43,7 @@ if ($result->num_rows > 0) {
 }
 
 //add product for database
-$insertQuery = "INSERT INTO `watchlist`(`product_item_id`,`user_user_id`) VALUES (?,?)";
-$db->execute_query($insertQuery, 'ss', array($productItemId, $userId));
+$insertQuery = "INSERT INTO `watchlist`(`user_user_id`,`weight_id`,`product_product_id`) VALUES (?,?,?)";
+$db->execute_query($insertQuery, 'sss', array($userId, $weightId, $productId));
 $responseObject->status = 'success';
 response_sender::sendJson($responseObject);

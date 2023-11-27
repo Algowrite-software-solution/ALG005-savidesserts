@@ -69,8 +69,8 @@ foreach ($elementResult as $requestArray) {
   $weight_id = $requestArray['weight_id'];
 
   // invoice item add
-  $insertInvoiceItem = "INSERT INTO `invoice_item` (`product_item_id`,`extra_id`,`weight_id`,`qty`,`total_product_items_price`,`order_id`,`extra_item_price`) VALUES (?,?,?,?,?,?,?)";
-  $db->execute_query($insertInvoiceItem, 'sssssss', array($product_item_id, $extra_id, $weight_id, $qty, $price, $orderId, $extra_price));
+  $insertInvoiceItem = "INSERT INTO `invoice_item` (`qty`,`total_product_items_price`,`order_id`,`extra_item_price`,`product_name`,`weight`,`extra_item_name`) VALUES (?,?,?,?,?,?,?)";
+  $db->execute_query($insertInvoiceItem, 'sssssss', array($qty, $price, $orderId, $extra_price, $product_name, $weight, $extra_fruit));
 
   //product Item Search
   $searchQuery = "SELECT * FROM `product_item` WHERE `id`=?";
@@ -168,7 +168,7 @@ $body .= <<< HTML
   </div>
   <hr>
   <div style="display: flex; justify-content: center;">
-    <div style="padding: 10px; background-color: #d6ad60; margin: 5px 0; border-radius: 30px;"><a style="color: #0a1411; text-decoration: none;" href="#">Give Us a Review</a></div>
+    <div style="padding: 10px; background-color: #d6ad60; margin: 5px 0; border-radius: 30px;"><a style="color: #0a1411; text-decoration: none;" href="http://localhost:9001/reviewSection.php">Give Us a Review</a></div>
   </div>
 </div>
 HTML;

@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadProductPromotions();
   loadCategory();
   latesProductLoader();
+  loadReviewSection();
 });
 
 //toast Message
@@ -55,7 +56,7 @@ function loadProductPromotions() {
 
         if (data.result.length > 0) {
           promotionContainer.classList.remove('d-none');
-          
+
           data.result.map((item) => {
 
             promotionSliderContainer.innerHTML +=
@@ -180,6 +181,60 @@ function latesProductLoader() {
               </div>
             </ >
             `;
+        });
+      } else if (data.status === "failed") {
+        console.log(data.error);
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      // Handle errors that occur during the Fetch request
+      console.error("Fetch error:", error);
+    });
+}
+
+//load Review section
+function loadReviewSection() {
+  fetch(SERVER_URL + "backend/api/loadReviewsClientSide.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status} `);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      const containerTestimonial = document.getElementById("containerTestimonial");
+
+      if (data.status === "success") {
+        containerTestimonial.innerHTML = "";
+        data.result.forEach((element) => {
+          containerTestimonial.innerHTML += `
+                    <div class="testm-card d-flex justify-content-center align-items-center  alg-bg-light p-2">
+                        <div class="col-4 p-0">
+                            <img src="resources/images/profile.png" class="img-fluid testm-card-img">
+                        </div>
+                        <div class="col-8 px-1">
+                            <p class="ld-tes-card-paragraph  alg-text-dark fw-bold">${element.review}</p>
+                            <div class="d-flex gap-2 pb-1">
+                                <i class="bi bi-star-fill text-warning fs-6"></i>
+                                <i class="bi bi-star-fill text-warning fs-6"></i>
+                                <i class="bi bi-star-fill text-warning fs-6"></i>
+                                <i class="bi bi-star-fill text-warning fs-6"></i>
+                                <i class="bi bi-star-fill text-white fs-6"></i>
+                            </div>
+                            <h5 class="alg-text-gold">
+                                -${element.full_name}
+                            </h5>
+                        </div>
+                    </div>
+          `;
         });
       } else if (data.status === "failed") {
         console.log(data.error);
