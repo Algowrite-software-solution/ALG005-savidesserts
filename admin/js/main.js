@@ -692,7 +692,7 @@ async function loadInvoiceItemData(orderId) {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      return response.json(); // Parse the response body as JSON
+      return response.text(); // Parse the response body as JSON
     })
     .then((data) => {
       // Handle the JSON data received from the API
