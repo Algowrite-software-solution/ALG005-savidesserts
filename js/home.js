@@ -63,7 +63,7 @@ function loadProductPromotions() {
               `
                <div class="promotionSwiper swiper-slide" onclick="loadRelatedPromotion('${item.product_product_id}', '${item.weight_id}')">
                   <div>
-                      <img src="resources/images/banner3.jpg" class="" alt="prommotion_img">
+                      <img src="resources/images/promotionImages/${item.promotion_id}.jpg" class="" alt="prommotion_img">
                   <div/>
                </div>
             `;
