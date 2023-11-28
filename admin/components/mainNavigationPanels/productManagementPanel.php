@@ -2,13 +2,13 @@
 <section class="alg-bg-darker alg-rounded-small my-2 d-flex h-100">
     <div class="p-2 col-3 flex-grow-1">
         <div class="px-2 algbg alg-rounded-small">
-            <button data-tooltip-holder="View Product" onclick="toggleProductSection('productView')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Products</span><i class="bi bi-box d-block d-lg-none"></i></button>
-            <button onclick="toggleProductSection('productAdd')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Add Products</span><i class="bi bi-box d-block d-lg-none"></i></button>
+            <button data-tooltip-holder="View Product" onclick="toggleProductSection('productView')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Products</span><i class="bi bi-box-fill d-block d-lg-none"></i></button>
+            <button onclick="toggleProductSection('productAdd')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Add Products</span><i class="bi bi-patch-plus-fill d-block d-lg-none"></i></button>
             <button onclick="toggleProductSection('weight')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Weight</span><i class="bi bi-box d-block d-lg-none"></i></button>
             <button onclick="toggleProductSection('category')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Category</span><i class="bi bi-box d-block d-lg-none"></i></button>
-            <button onclick="toggleProductSection('productItem')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Set Product Item</span><i class="bi bi-box d-block d-lg-none"></i></button>
-            <button onclick="toggleProductSection('extraItem')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Extra Items</span><i class="bi bi-box d-block d-lg-none"></i></button>
-            <button onclick="toggleProductSection('setExtraItem')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Set Extra Items</span><i class="bi bi-box d-block d-lg-none"></i></button>
+            <button onclick="toggleProductSection('productItem')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Product </span><i class="bi bi-box d-block d-lg-none"></i></button>
+            <button onclick="toggleProductSection('extraItem')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Toppins</span><i class="bi bi-box d-block d-lg-none"></i></button>
+            <button onclick="toggleProductSection('setExtraItem')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Set Toppins</span><i class="bi bi-box d-block d-lg-none"></i></button>
             <button onclick="toggleProductSection('shipping')" class="alg-btn-pill my-2 w-100"><span class="d-none d-lg-block">Shipping Price</span><i class="bi bi-box d-block d-lg-none"></i></button>
         </div>
     </div>
