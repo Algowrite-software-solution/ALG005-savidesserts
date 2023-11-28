@@ -317,7 +317,7 @@ async function toggleProductSection(section) {
     await ALG.addListToContainer(
       "setupExtraItemViewContainer",
       loadSetExtraItemData,
-      [60, 150, 200]
+      [60, 150, 200, 80]
     );
   } else if (section === "shipping") {
     const price = await loadShippingData();
@@ -954,6 +954,7 @@ async function loadSetExtraItemData() {
             id: element.id,
             "extra item": element.fruit,
             product: element.product_name,
+            Remove: `<i class="bi bi-x-circle fs-3 alg-text-light" onclick="removeExtraItemData('${element.id}')"></i>`,
           };
 
           listArray.push(newData);

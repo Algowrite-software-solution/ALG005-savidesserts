@@ -118,10 +118,10 @@ if (RequestHandler::isGetMethod()) {
      }
 
      //load all extra item
-     $searchTable = "SELECT * FROM `extra_item` INNER JOIN `extra` ON `extra_item`.`extra_id`=`extra`.`id` INNER JOIN `product` ON `extra_item`.`product_product_id`=`product`.`product_id`";
+     $searchTable = "SELECT `fruit`, `product_name`, `extra_item`.`id` FROM `extra_item` INNER JOIN `extra` ON `extra_item`.`extra_id`=`extra`.`id` INNER JOIN `product` ON `extra_item`.`product_product_id`=`product`.`product_id`";
      $result = $db->query($searchTable);
 
-    //response data array 
+     //response data array 
      $resultArray = [];
 
      //check row data

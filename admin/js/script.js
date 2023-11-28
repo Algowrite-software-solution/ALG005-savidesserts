@@ -594,6 +594,46 @@ function openWeightEditModel(id, weight) {
 }
 
 // extra item
+function removeExtraItemData(id) {
+  console.log(id);
+  fetch("api/extraFruitRemove.php?id=" + id, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Extra Item Remove was successfull",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+
+        ALG.addListToContainer(
+          "setupExtraItemViewContainer",
+          loadSetExtraItemData,
+          [60, 150, 200, 80]
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 function setupExtraItem() {
   const product = document.getElementById("setupProductSelector").value;
   const extraItem = document.getElementById("setupExtraItemSelector").value;
