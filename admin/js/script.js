@@ -849,6 +849,94 @@ function addProductItemImageToList() {
   }
 }
 
+function removeProductItemImage(url, id) {
+  const confirmation = confirm("Are you sure you want to remove this image?");
+  if (confirmation) {
+    const form = new FormData();
+    form.append("image_path", url);
+
+    fetch("api/productItemImageDelete.php", {
+      method: "POST",
+      body: form,
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        if (data.status == "success") {
+          ALG.openToast(
+            "Success",
+            "Image Removed Successfully",
+            ALG.getCurrentTime(),
+            "bi-heart",
+            "Success"
+          );
+
+          document.getElementById("productItemEditButton" + id).click();
+        } else if (data.status == "failed") {
+          ALG.openToast(
+            "Alert",
+            data.error,
+            ALG.getCurrentTime(),
+            "bi-x",
+            "Error"
+          );
+        } else {
+          console.log(data);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+}
+
+async function editProductItemImage(event, url, id) {
+  const file = event.target.files[0];
+  let dataURL;
+  await ALG.imageFileToDataURL(file, async (imageUrl) => {
+    dataURL = await ALG.compressImageFromDataUrl(imageUrl);
+
+    const form = new FormData();
+    form.append("image_url", url);
+    form.append("image", dataURL);
+
+    fetch("api/productItemImageUpdate.php", {
+      method: "POST",
+      body: form,
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        if (data.status == "success") {
+          ALG.openToast(
+            "Success",
+            "Image Edited Successfully",
+            ALG.getCurrentTime(),
+            "bi-heart",
+            "Success"
+          );
+
+          document.getElementById("productItemEditButton" + id).click();
+        } else if (data.status == "failed") {
+          ALG.openToast(
+            "Alert",
+            data.error,
+            ALG.getCurrentTime(),
+            "bi-x",
+            "Error"
+          );
+        } else {
+          console.log(data);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+}
+
 async function openProductItemEditModel(
   id,
   productId,
@@ -868,8 +956,19 @@ async function openProductItemEditModel(
   let imagesDesgin = ``;
   productItemsData.forEach((element) => {
     if (element.product_item_id === id) {
-      element.images.forEach((element) => {
-        imagesDesgin += `<img style="width: 300px; height: 250px; object-fit: contain;" class="m-2" src="${element}" alt="image of product" />`;
+      let count = 0;
+      element.images.forEach((imageElement) => {
+        let tmpId = id + count;
+        imagesDesgin += `<div class="position-relative">
+          <div class="position-absolute" style="right: 0;">
+            <i class=" bi  bi-x-circle-fill fs-1 alg-text-light" style="cursor: pointer;" onclick="removeProductItemImage('${imageElement}', '${id}')"></i>
+            <label for="editProductItemImageInput${tmpId}"><i class=" bi  bi-pen fs-1 alg-text-light" style=" cursor:pointer;"></i></label>
+            <input onchange="editProductItemImage(event, '${imageElement}', '${id}')" type="file" class="d-none" id="editProductItemImageInput${tmpId}" />
+          </div>
+          <img style="width: 300px; height: 250px; object-fit: contain;" class="rounded-2 m-2" src="${imageElement}?code=${Math.random()}" alt="image of product" />  
+        </div>`;
+
+        count++;
       });
     }
   });

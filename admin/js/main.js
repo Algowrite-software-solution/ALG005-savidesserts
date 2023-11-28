@@ -1029,14 +1029,14 @@ async function loadProductItems() {
             "Product Id": element.product_id,
             "Product Name": element.product_name,
             "Product Status": element.type,
+            edit: `<i class="fs-4 bi bi-pen" id="productItemEditButton${element.product_item_id}" onclick="openProductItemEditModel('${element.product_item_id}', '${element.product_id}','${element.product_status_id}','${element.qty}','${element.price}','${element.weight_id}')"></i>`,
+            remove: `<i class="fs-4 bi bi-x-circle" onclick="openProductItemRemoveModel('${element.product_item_id}')"></i>`,
             quantity: element.qty,
             price: element.price,
             "weight id": element.weight,
             image: element.images[0]
               ? `<img src="${element.images[0]}" class="alg-list-cell-image"  />`
               : "Empty",
-            edit: `<i class="fs-4 bi bi-pen" onclick="openProductItemEditModel('${element.product_item_id}', '${element.product_id}','${element.product_status_id}','${element.qty}','${element.price}','${element.weight_id}')"></i>`,
-            remove: `<i class="fs-4 bi bi-x-circle" onclick="openProductItemRemoveModel('${element.product_item_id}')"></i>`,
           };
 
           listArray.push(newData);

@@ -7,6 +7,7 @@
 //include models
 require_once("../../backend/model/imageSearchEngine.php");
 require_once("../../backend/model/response_sender.php");
+require_once("../../backend/model/SessionManager.php");
 
 // headers
 header("Content-Type: application/json; charset=UTF-8");
@@ -23,7 +24,8 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
 }
 
 
-$imagePath = $_GET['image_path'];
+$imagePath = $_POST['image_path'];
+
 
 if (file_exists($imagePath)) {
      if (unlink($imagePath)) {

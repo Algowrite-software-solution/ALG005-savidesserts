@@ -13,7 +13,7 @@ class DashboardComponents {
   }
 
   // image compressor
-  async compressImageFromDataUrl(dataURL, quality = 0.3) {
+  async compressImageFromDataUrl(dataURL, quality = 0.5) {
     return await new Promise((resolve, reject) => {
       const img = new Image();
       img.src = dataURL;
