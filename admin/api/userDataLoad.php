@@ -32,8 +32,8 @@ $db = new database_driver();
 
 $search_quary = "SELECT * FROM `user` 
                 INNER JOIN `user_status` ON `user`.`status_id` = `user_status`.`id` 
-                INNER JOIN `terms_and_condition` ON `user`.`terms_and_condition_ta_id` = `terms_and_condition`.`ta_id` 
-                INNER JOIN `marketing_email_validation` ON `user`.`marketing_email_validation_m_id` = `marketing_email_validation`.`m_id`";
+                LEFT JOIN `terms_and_condition` ON `user`.`terms_and_condition_ta_id` = `terms_and_condition`.`ta_id` 
+                LEFT JOIN `marketing_email_validation` ON `user`.`marketing_email_validation_m_id` = `marketing_email_validation`.`m_id`";
 $resultSet = $db->query($search_quary);
 
 $responseResultArray = [];
