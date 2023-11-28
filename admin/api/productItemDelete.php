@@ -49,7 +49,7 @@ if (!empty($images)) {
      }
 }
 
-$productItemDelete = "UPDATE `product_item` SET `is_deleted` = '1' WHERE `id`=?";
+$productItemDelete = "DELETE FROM `product_item`  WHERE `id`=?";
 $db->execute_query($productItemDelete, 's', array($productItemId));
 $responseObject->status = 'success';
 response_sender::sendJson($responseObject);

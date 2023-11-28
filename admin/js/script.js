@@ -864,6 +864,16 @@ async function openProductItemEditModel(
     productSelectOptions += `<option ${selected} value="${element.product_id}" id="${element.product_id}">${element.product_name}</option>`;
   });
 
+  const productItemsData = await loadProductItemsData();
+  let imagesDesgin = ``;
+  productItemsData.forEach((element) => {
+    if (element.product_item_id === id) {
+      element.images.forEach((element) => {
+        imagesDesgin += `<img style="width: 300px; height: 250px; object-fit: contain;" class="m-2" src="${element}" alt="image of product" />`;
+      });
+    }
+  });
+
   const weights = await loadWeightData();
   let weightsSelectOptions = ``;
   weights.forEach((element) => {
@@ -909,6 +919,10 @@ async function openProductItemEditModel(
                                 <select class="rounded-pill form-control w-75" name="productItemUpdateWeightSelect" id="productItemUpdateWeightSelect">
                                     ${weightsSelectOptions}
                                 </select>
+                            </div>
+
+                            <div class="p-2 d-flex rounded-2 alg-bg-dark my-2 overflow-auto">
+                              ${imagesDesgin}
                             </div>
                           </div>`;
   const modelFooterDesign = `<button onclick="updateProductItem('${id}')" class="alg-btn-pill">Edit</button>`;
@@ -973,7 +987,7 @@ function updateProductItem(id) {
 
 function openProductItemRemoveModel(id) {
   const modelBodyDesign = `Do you want to remove the product item with all of its images  ${id}`;
-  const modelFooterDesign = `<button class="btn btn-danger" onclick="deleteProductItem('${id}')">yes</button>`;
+  const modelFooterDesign = `<button class="btn btn-danger"  data-bs-dismiss="modal" aria-label="Close" onclick="deleteProductItem('${id}')">yes</button>`;
 
   ALG.openModel("Product Item Remove", modelBodyDesign, modelFooterDesign);
 }
@@ -996,6 +1010,8 @@ function deleteProductItem(id) {
           "bi-heart",
           "Success"
         );
+
+        ALG.addTableToContainer("productItemViewContainer", loadProductItems);
       } else if (data.status == "failed") {
         ALG.openToast(
           "Alert",
