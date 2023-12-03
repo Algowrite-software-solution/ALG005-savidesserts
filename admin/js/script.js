@@ -4,16 +4,25 @@ async function viewReviewsDataOnUi() {
   const reviews = await loadReviewData();
 
   const reviewStatusData = await loadReviewStatusData();
-  let selectDesign = ``;
-  let options = ``;
-  reviewStatusData.forEach((element) => {
-    const option = `<option value="${element.id}">${element.rv_status}</option>`;
-    options += option;
-  });
 
   const newReviewsData = [];
+  let selectDesign = ``;
+  let options = ``;
+
   reviews.forEach((element) => {
-    selectDesign += `<select onchange="upadteReviewStatus(event, ${element.rev_id})">${options}</select>`;
+    let color;
+
+    reviewStatusData.forEach((element2) => {
+      let isSelected =
+        element2.id === element.review_status_id ? " selected " : " ";
+
+      color = element.rv_status === "Active" ? " bg-success " : " bg-danger ";
+
+      const option = `<option ${isSelected} value="${element2.id}">${element2.rv_status}</option>`;
+      options += option;
+    });
+
+    selectDesign += `<select class="${color} form-select" onchange="upadteReviewStatus(event, ${element.rev_id})">${options}</select>`;
     newReviewsData.push({
       "User Id": element.user_user_id,
       Name: element.full_name,
@@ -46,6 +55,12 @@ function upadteReviewStatus(event, reviewId) {
           ALG.getCurrentTime(),
           "bi-heart",
           "Success"
+        );
+
+        ALG.addTableToContainer(
+          "reviewViewOrderSection",
+          viewReviewsDataOnUi,
+          [100, 150, 200, 250, 150]
         );
       } else if (data.status == "failed") {
         ALG.openToast(
@@ -410,7 +425,7 @@ async function openSingleOrderViewModel(invoiceId) {
       <div class="p-1 my-3">${items}</div>
     </div>`;
   });
-  
+
   const orderDesign = `
   <div class="d-flex flex-column w-100 gap-3">
     <div class=" alg-bg-darker rounded-pill d-flex w-100 ">

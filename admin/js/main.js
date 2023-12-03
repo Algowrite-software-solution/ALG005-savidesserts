@@ -237,7 +237,7 @@ async function toggleOrderSection(section) {
     await ALG.addTableToContainer(
       "reviewViewOrderSection",
       viewReviewsDataOnUi,
-      [100, 150, 200, 250, 80]
+      [100, 150, 200, 250, 150]
     );
   }
 }
