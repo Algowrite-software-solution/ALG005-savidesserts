@@ -1,3 +1,69 @@
+// review section
+
+async function viewReviewsDataOnUi() {
+  const reviews = await loadReviewData();
+
+  const reviewStatusData = await loadReviewStatusData();
+  let selectDesign = ``;
+  let options = ``;
+  reviewStatusData.forEach((element) => {
+    const option = `<option value="${element.id}">${element.rv_status}</option>`;
+    options += option;
+  });
+
+  const newReviewsData = [];
+  reviews.forEach((element) => {
+    selectDesign += `<select onchange="upadteReviewStatus(event, ${element.rev_id})">${options}</select>`;
+    newReviewsData.push({
+      "User Id": element.user_user_id,
+      Name: element.full_name,
+      Email: element.email,
+      review: element.review,
+      status: selectDesign,
+    });
+  });
+
+  return newReviewsData;
+}
+
+function upadteReviewStatus(event, reviewId) {
+  const form = new FormData();
+  form.append("rev_id", reviewId);
+  form.append("rv_status_id", event.target.value);
+
+  fetch("api/reviewStatusUpdate.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Status Successfully Updated",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 // shipping section
 function addShippingPrice() {
   const price = document.getElementById("shippingPriceInput").value;

@@ -233,6 +233,12 @@ async function toggleOrderSection(section) {
       "ongoingOrderViewOrderSection",
       loadOrderDataToUi
     );
+  } else if (section === "reviewView") {
+    await ALG.addTableToContainer(
+      "reviewViewOrderSection",
+      viewReviewsDataOnUi,
+      [100, 150, 200, 250, 80]
+    );
   }
 }
 
@@ -588,6 +594,68 @@ async function loadProductsOnProductItemSelector() {
 // data loaders
 async function loadShippingData() {
   return fetch("api/shippingDataLoader.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
+async function loadReviewStatusData() {
+  return fetch("api/loadReviewStatus.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
+async function loadReviewData() {
+  return fetch("api/loadReviews.php", {
     method: "GET", // HTTP request method
     headers: {
       "Content-Type": "application/json", // Request headers
