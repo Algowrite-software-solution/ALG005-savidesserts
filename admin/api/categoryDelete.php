@@ -16,7 +16,7 @@ $responseObject = new stdClass();
 $responseObject->status = 'failed';
 
 // validate request
-if (!RequestHandler::isPostMethod()) {
+if (!RequestHandler::isGetMethod()) {
        $responseObject->error = "Invalid Request";
        response_sender::sendJson($responseObject);
 }
@@ -29,8 +29,8 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
 }
 
 //request parameters
-$imagePath = $_POST['category_image_path'];
-$categoryId = $_POST['category_id'];
+$imagePath = $_GET['category_image_path'];
+$categoryId = $_GET['category_id'];
 
 
 try {
@@ -52,9 +52,6 @@ try {
               response_sender::sendJson($responseObject);
        }
 } catch (mysqli_sql_exception $e) {
-
-       if ($e->getMessage() === "Cannot delete or update a parent row: a foreign key constraint fails (`savi_dessert_shop`.`product`, CONSTRAINT `fk_product_category1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`))") {
-              $responseObject->error = "Cannot delete category because it is still being used by a product";
-              response_sender::sendJson($responseObject);
-       }
+       $responseObject->error = "Cannot delete category because it is still being used by a product";
+       response_sender::sendJson($responseObject);
 }

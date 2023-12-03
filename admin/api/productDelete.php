@@ -16,7 +16,7 @@ $responseObject = new stdClass();
 $responseObject->status = 'failed';
 
 // validate request
-if (!RequestHandler::isPostMethod()) {
+if (!RequestHandler::isGetMethod()) {
        $responseObject->error = "Invalid Request";
        response_sender::sendJson($responseObject);
 }
@@ -29,7 +29,7 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
 }
 
 //request parameters
-$productId = $_POST['product_id'];
+$productId = $_GET['product_id'];
 
 
 try {
@@ -40,9 +40,6 @@ try {
        $responseObject->status = 'success';
        response_sender::sendJson($responseObject);
 } catch (mysqli_sql_exception $e) {
-
-       if ($e->getMessage() === 'Cannot delete or update a parent row: a foreign key constraint fails (`savi_dessert_shop`.`extra_item`, CONSTRAINT `fk_extra_item_product1` FOREIGN KEY (`product_product_id`) REFERENCES `product` (`product_id`))') {
-              $responseObject->error = "Cannot delete product because it is still being used by a Set Toppings , Product Items and Promotions";
-              response_sender::sendJson($responseObject);
-       }
+       $responseObject->error = "Cannot delete product because it is still being used by a Set Toppings or Product Items or Promotions";
+       response_sender::sendJson($responseObject);
 }

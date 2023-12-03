@@ -555,12 +555,51 @@ function editProduct(id) {
     });
 }
 
-function openProductRemoveModel() {
+function openProductRemoveModel(productId) {
   ALG.openModel(
     "Remove Product",
-    "do you really want to remove this product",
-    `<button  class="alg-btn-pill" data-bs-dismiss="modal" aria-label="Close" onclick="alert('product removed removed')">Remove</button>`
+    "Do you really want to remove this product?",
+    `<button  class="alg-btn-pill" data-bs-dismiss="modal" aria-label="Close" onclick="removeProductProcess('${productId}')">Remove</button>`
   );
+}
+
+function removeProductProcess(id) {
+  fetch("api/productDelete.php?product_id=" + id, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Product remove was successfull",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+
+        ALG.addListToContainer(
+          "weightViewContainer",
+          weightListUiDesignAdder,
+          [40, 100, 60, 80]
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 function openProductEditModel(id, product, description, category, addedDate) {
@@ -834,11 +873,11 @@ function editExtraItem(id) {
     });
 }
 
-function openExtraItemRemoveModel() {
+function openExtraItemRemoveModel(id) {
   ALG.openModel(
     "Remove Extra Item",
     "do you really want to remove this extra item",
-    `<button class="alg-btn-pill" data-bs-dismiss="modal" aria-label="Close" onclick="alert('extra item removed')">Remove</button>`
+    `<button class="alg-btn-pill" data-bs-dismiss="modal" aria-label="Close" onclick="removeExtraItemData('${id}')">Remove</button>`
   );
 }
 
@@ -1407,6 +1446,59 @@ async function productItemSave(event) {
     });
 }
 
+function openCategoryRemoveModel(categoryId, imagePath) {
+  ALG.openModel(
+    "Remove Category",
+    "Do you really want to remove this category?",
+    `<button  class="alg-btn-pill" data-bs-dismiss="modal" aria-label="Close" onclick="removeCategoryProcess('${categoryId}', '${imagePath}')">Remove</button>`
+  );
+}
+
+function removeCategoryProcess(id, imagePath) {
+  fetch(
+    "api/categoryDelete.php?category_id=" +
+      id +
+      "&category_image_path=" +
+      imagePath,
+    {
+      method: "GET",
+    }
+  )
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Category remove was successfull",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+
+        ALG.addListToContainer(
+          "weightViewContainer",
+          weightListUiDesignAdder,
+          [40, 100, 60, 80]
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 function addCategory() {
   const category = document.getElementById("addCategoryInput");
   const categoryImage = document.getElementById("addCategoryImageInput");
@@ -1460,7 +1552,7 @@ function addCategory() {
         ALG.addTableToContainer(
           "categoryViewContainer",
           loadCategoryData,
-          [40, 120, 250, 80]
+          [40, 120, 250, 80, 80]
         );
       } else if (data.status == "failed") {
         ALG.openToast(

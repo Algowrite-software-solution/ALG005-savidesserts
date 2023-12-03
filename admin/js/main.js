@@ -305,7 +305,7 @@ async function toggleProductSection(section) {
     await ALG.addListToContainer(
       "categoryViewContainer",
       loadCategoryData,
-      [40, 120, 250, 80]
+      [40, 120, 250, 80, 80]
     );
   } else if (section === "productItem") {
     await ALG.addListToContainer("productItemViewContainer", loadProductItems);
@@ -485,7 +485,7 @@ async function productTableDesignData() {
       category: element.category_type,
       ["added date"]: element.add_date,
       edit: `<i class="bi bi-pen" onclick="openProductEditModel(${element.product_id}, '${element.product_name}', '${element.product_description}', '${element.category_id}', '${element.add_date}')"></i>`,
-      remove: `<i class="bi bi-x-circle" onclick="openProductRemoveModel()"></i>`,
+      remove: `<i class="bi bi-x-circle" onclick="openProductRemoveModel('${element.product_id}')"></i>`,
     };
 
     designData.push(newData);
@@ -1150,6 +1150,7 @@ async function loadCategoryData() {
             category: element.category_type,
             image: `<img src="${element.category_image}" class="alg-list-cell-image"  />`,
             edit: `<i class="bi bi-pen fs-4" onclick="openCategoryEditModel('${element.category_id}', '${element.category_type}', '${element.category_image}');"></i>`,
+            delete: `<i class="bi bi-x-circle fs-4" onclick="openCategoryRemoveModel('${element.category_id}');"></i>`,
           };
 
           listArray.push(newData);
