@@ -410,7 +410,7 @@ async function openSingleOrderViewModel(invoiceId) {
       <div class="p-1 my-3">${items}</div>
     </div>`;
   });
-
+  
   const orderDesign = `
   <div class="d-flex flex-column w-100 gap-3">
     <div class=" alg-bg-darker rounded-pill d-flex w-100 ">

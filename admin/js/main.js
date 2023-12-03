@@ -76,7 +76,7 @@ async function openNotificationsPanel() {
     const design = `
     <div class="d-flex">
       <div class="w-100">
-        There is on going orders for now...!
+        There is no on going orders for now..!
       </div>
     </div>
   `;
@@ -363,7 +363,7 @@ async function loadOrderDataToUi() {
       View: `<button class="alg-btn-pill" onclick="openSingleOrderViewModel('${element.order_id}')">View</button>`,
       "Order Id": element.order_id,
       "Order Date": element.order_date,
-      Payment: element.pay_amount,
+      Payment: element.pay_amout,
       "Shipping Price": element.shipping_price,
       Status: element.status,
       "User Id": element.user_user_id,
