@@ -715,7 +715,6 @@ function openWeightEditModel(id, weight) {
 
 // extra item
 function removeExtraItemData(id) {
-  console.log(id);
   fetch("api/extraFruitRemove.php?id=" + id, {
     method: "GET",
   })
@@ -732,11 +731,7 @@ function removeExtraItemData(id) {
           "Success"
         );
 
-        ALG.addListToContainer(
-          "setupExtraItemViewContainer",
-          loadSetExtraItemData,
-          [60, 150, 200, 80]
-        );
+        ALG.addListToContainer("extraItemViewContainer", loadExtraItem, []);
       } else if (data.status == "failed") {
         ALG.openToast(
           "Alert",
@@ -969,7 +964,10 @@ function addExtraItem(event) {
           "bi-heart",
           "Success"
         );
-        ALG.addListToContainer("extraItemViewContainer", loadExtraItem);
+        ALG.addListToContainer(
+          "extraItemViewContainer",
+          loadExtraItemsToExtraItemSettingUi
+        );
       } else if (data.status == "failed") {
         ALG.openToast(
           "Alert",
