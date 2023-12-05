@@ -32,6 +32,17 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
 //request parameters
 $extraId = $_POST['extra_id'];
 
+//delete all Topping in cart
+$searchToppingsCart = "SELECT * FROM `card` WHERE `extra_id`=?";
+$result = $db->execute_query($searchToppingsCart, 'i', array($extraId));
+
+$resultSet = $result['result'];
+
+while ($row = $resultSet->fetch_assoc()) {
+       $deleteCartFromToppings = "DELETE FROM `card` WHERE `id`=?";
+       $db->execute_query($deleteCartFromToppings, 'i', array($row['id']));
+}
+
 try {
        $db = new database_driver();
        $deleteQuery = "DELETE FROM `extra` WHERE `id`=?";
@@ -39,6 +50,7 @@ try {
 
        $responseObject->status = 'success';
        response_sender::sendJson($responseObject);
+       
 } catch (mysqli_sql_exception $ex) {
 
        if ($ex->getMessage() === "Cannot delete or update a parent row: a foreign key constraint fails (`savi_dessert_shop`.`extra_item`, CONSTRAINT `fk_extra_item_extra1` FOREIGN KEY (`extra_id`) REFERENCES `extra` (`id`))") {

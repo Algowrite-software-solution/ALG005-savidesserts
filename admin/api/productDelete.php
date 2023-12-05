@@ -30,10 +30,30 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
 
 //request parameters
 $productId = $_GET['product_id'];
+$db = new database_driver();
 
+//delete all products in product cart
+$searchProductCart = "SELECT * FROM `card` WHERE `product_product_id`=?";
+$result = $db->execute_query($searchProductCart, 's', array($productId));
+
+$resultSet = $result['result'];
+
+while ($row = $resultSet->fetch_assoc()) {
+       $deleteCartFromProduct = "DELETE FROM `card` WHERE `id`=?";
+       $db->execute_query($deleteCartFromProduct, 'i', array($row['id']));
+}
+//delete all products in product watchlist
+$searchProductWatchlist = "SELECT * FROM `watchlist` WHERE `product_product_id`=?";
+$result = $db->execute_query($searchProductWatchlist, 's', array($productId));
+
+$resultSet = $result['result'];
+
+while ($row = $resultSet->fetch_assoc()) {
+       $deleteWatchlistFromProduct = "DELETE FROM `watchlist` WHERE `id`=?";
+       $db->execute_query($deleteWatchlistFromProduct, 'i', array($row['id']));
+}
 
 try {
-       $db = new database_driver();
        $deleteQuery = "DELETE FROM `product` WHERE `product_id`=?";
        $db->execute_query($deleteQuery, 's', array($productId));
 
@@ -41,5 +61,6 @@ try {
        response_sender::sendJson($responseObject);
 } catch (mysqli_sql_exception $e) {
        $responseObject->error = "Cannot delete product because it is still being used by a Set Toppings or Product Items or Promotions";
+       // $responseObject->error = $e->getMessage();
        response_sender::sendJson($responseObject);
 }
