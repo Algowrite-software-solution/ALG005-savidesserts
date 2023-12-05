@@ -168,7 +168,7 @@ $body .= <<< HTML
   </div>
   <hr>
   <div style="display: flex; justify-content: center;">
-    <div style="padding: 10px; background-color: #d6ad60; margin: 5px 0; border-radius: 30px;"><a style="color: #0a1411; text-decoration: none;" href="http://localhost:9001/reviewSection.php">Give Us a Review</a></div>
+    <div style="padding: 10px; background-color: #d6ad60; margin: 5px 0; border-radius: 30px;"><a style="color: #0a1411; text-decoration: none;" href="https://saweedessert.com/reviewSection.php">Give Us a Review</a></div>
   </div>
 </div>
 HTML;

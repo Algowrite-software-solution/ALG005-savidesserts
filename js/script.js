@@ -525,10 +525,6 @@ function passwordResetLast() {
     "forgottenPasswordEmail"
   ).value;
 
-  console.log(password);
-  console.log(confPassword);
-  console.log(forgotPasswordEmail);
-
   const formData = new FormData();
   formData.append("newPassword", password);
   formData.append("confPassword", confPassword);
