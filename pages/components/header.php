@@ -262,6 +262,15 @@ $currentCategory = (isset($_GET["category"])) ? $_GET["category"] : null;
                         <input type="password" id="signUp-retypepassword" class="form-control rounded-5" placeholder="Retype the Password" />
                     </div>
 
+                    <!-- password condition -->
+                    <ul class="mb-4">
+                        <li>password must be at least 8 characters</li>
+                        <li>Your password must contain at least one lower case (a-z) letter.</li>
+                        <li>Your password must contain at least one upper case (A-Z) letter.</li>
+                        <li>Your password must contain at least one digit (0-9).</li>
+                        <li>Your password must contain at least special char from ( ! @ # $ % ^ & * _ )</li>
+                    </ul>
+
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" id="defaultCheck1" onclick="activateSignUpBtn();">
                         <label class="form-check-label" for="flexRadioDefault1">
