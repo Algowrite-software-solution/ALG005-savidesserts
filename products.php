@@ -11,13 +11,14 @@ $category = (isset($_GET["category"]) ? $_GET["category"] : "");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sawee Dessert | Shop</title>
 
-    <link rel="shortcut icon" href="resources/images/favicon.png" >
+    <link rel="shortcut icon" href="resources/images/favicon.png">
 
     <!-- css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/snow.css">
     <!-- boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
@@ -28,10 +29,11 @@ $category = (isset($_GET["category"]) ? $_GET["category"] : "");
     <script defer src="js/products.js"></script>
     <script defer src="js/productsSliders.js"></script>
     <script defer src="js/script.js"></script>
+    <script defer src="js/snow.js"></script>
 </head>
 
 <body style="overflow-x:hidden;" data-category="<?php echo $category ?>">
-
+    <div id="snow-container"></div>
     <!-- header -->
     <?php include("pages/components/header.php") ?>
 

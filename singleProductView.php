@@ -23,6 +23,7 @@ if (!isset($_GET["product_id"])) {
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/singleProduct.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/snow.css">
 
     <!-- boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
@@ -35,10 +36,12 @@ if (!isset($_GET["product_id"])) {
     <script defer src="js/bootstrap.bundle.js"></script>
     <script defer src="js/singleProduct.js"></script>
     <script defer src="js/script.js"></script>
+    <script defer src="js/snow.js"></script>
 </head>
 
 <body data-productid="<?php echo $_GET["product_id"] ?>" data-weight="<?php echo $_GET["weightId"] ?>">
 
+    <div id="snow-container"></div>
     <!-- header -->
     <?php include("pages/components/header.php") ?>
 

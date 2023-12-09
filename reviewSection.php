@@ -12,6 +12,7 @@
        <link rel="stylesheet" href="css/bootstrap.css">
        <link rel="stylesheet" href="css/main.css">
        <link rel="stylesheet" href="css/style.css">
+       <link rel="stylesheet" href="css/snow.css">
 
        <!-- boxicons -->
        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
@@ -21,10 +22,13 @@
        <script defer src="js/bootstrap.bundle.js"></script>
        <script defer src="js/script.js"></script>
        <script defer src="js/review.js"></script>
+       <script defer src="js/snow.js"></script>
 
 </head>
 
 <body class="alg-bg-light">
+
+       <div id="snow-container"></div>
 
        <?php include("pages/components/header.php") ?>
 
