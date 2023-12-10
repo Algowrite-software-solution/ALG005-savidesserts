@@ -506,7 +506,7 @@ async function addCategoriesToSelect() {
 
   categories.forEach((element) => {
     const option = document.createElement("option");
-    option.value = element.id;
+    option.value = element.category_id;
     option.innerText = element.category_type;
     select.appendChild(option);
   });

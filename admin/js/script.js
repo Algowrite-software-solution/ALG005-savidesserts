@@ -1594,6 +1594,8 @@ function addProduct() {
   const description = document.getElementById("productDescriptionInputField");
   const category = document.getElementById("productCategoryInputField");
 
+  console.log(category.value);
+
   const form = new FormData();
   form.append("product_name", name.value);
   form.append("description", description.value);
