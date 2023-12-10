@@ -1,7 +1,7 @@
 <?php
 
-//dev by madusha
-//dev date = 2023/11/27
+//dev by Janith
+//dev date = 2023/11/29
 //version =  1.0.0
 
 //include models
@@ -33,23 +33,10 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
 
 //load
 $db = new database_driver();
-$searchQuery = "SELECT `user`.`email`, `user`.`full_name`, `review_status`.* , `reviews`.* FROM `reviews` 
-INNER JOIN `user` ON `user`.`user_id`= `reviews`.`user_user_id`
-INNER JOIN `review_status` ON `review_status`.`id`=`reviews`.`review_status_id`";
+$searchQuery = "SELECT * FROM `review_status`";
 
 $resultSet = $db->query($searchQuery);
 
-if ($resultSet->num_rows < 1) {
-       $responseObject->error = "no reviews";
-       response_sender::sendJson($responseObject);
-}
-
-$responseResultArray = [];
-
-while ($row = $resultSet->fetch_assoc()) {
-       array_push($responseResultArray, $row);
-}
-
 $responseObject->status = "success";
-$responseObject->results = $responseResultArray;
+$responseObject->results = $resultSet->fetch_all(1);
 response_sender::sendJson($responseObject);

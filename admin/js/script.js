@@ -1,3 +1,86 @@
+// review section
+
+async function viewReviewsDataOnUi() {
+  const reviews = await loadReviewData();
+
+  const reviewStatusData = await loadReviewStatusData();
+
+  const newReviewsData = [];
+  let selectDesign = ``;
+
+  reviews.forEach((element) => {
+    let color;
+    let options = ``;
+
+    reviewStatusData.forEach((element2) => {
+      let isSelected =
+        element2.id === element.review_status_id ? " selected " : " ";
+
+      color = element.rv_status === "Active" ? " bg-success " : " bg-danger ";
+
+      const option = `<option ${isSelected} value="${element2.id}">${element2.rv_status}</option>`;
+      options += option;
+    });
+
+    selectDesign += `<select class="${color} form-select" onchange="upadteReviewStatus(event, ${element.rev_id})">${options}</select>`;
+    newReviewsData.push({
+      "User Id": element.user_user_id,
+      Name: element.full_name,
+      Email: element.email,
+      review: element.review,
+      status: selectDesign,
+    });
+    options = ``;
+    selectDesign = ``;
+  });
+
+  return newReviewsData;
+}
+
+function upadteReviewStatus(event, reviewId) {
+  const form = new FormData();
+  form.append("rev_id", reviewId);
+  form.append("rv_status_id", event.target.value);
+
+  fetch("api/reviewStatusUpdate.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Status Successfully Updated",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+
+        ALG.addTableToContainer(
+          "reviewViewOrderSection",
+          viewReviewsDataOnUi,
+          [100, 150, 200, 250, 150]
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 // shipping section
 function addShippingPrice() {
   const price = document.getElementById("shippingPriceInput").value;
@@ -474,12 +557,51 @@ function editProduct(id) {
     });
 }
 
-function openProductRemoveModel() {
+function openProductRemoveModel(productId) {
   ALG.openModel(
     "Remove Product",
-    "do you really want to remove this product",
-    `<button  class="alg-btn-pill" data-bs-dismiss="modal" aria-label="Close" onclick="alert('product removed removed')">Remove</button>`
+    "Do you really want to remove this product?",
+    `<button  class="alg-btn-pill" data-bs-dismiss="modal" aria-label="Close" onclick="removeProductProcess('${productId}')">Remove</button>`
   );
+}
+
+function removeProductProcess(id) {
+  fetch("api/productDelete.php?product_id=" + id, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Product remove was successfull",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+
+        ALG.addListToContainer(
+          "weightViewContainer",
+          weightListUiDesignAdder,
+          [40, 100, 60, 80]
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 function openProductEditModel(id, product, description, category, addedDate) {
@@ -595,7 +717,6 @@ function openWeightEditModel(id, weight) {
 
 // extra item
 function removeExtraItemData(id) {
-  console.log(id);
   fetch("api/extraFruitRemove.php?id=" + id, {
     method: "GET",
   })
@@ -612,11 +733,7 @@ function removeExtraItemData(id) {
           "Success"
         );
 
-        ALG.addListToContainer(
-          "setupExtraItemViewContainer",
-          loadSetExtraItemData,
-          [60, 150, 200, 80]
-        );
+        ALG.addListToContainer("extraItemViewContainer", loadExtraItem, []);
       } else if (data.status == "failed") {
         ALG.openToast(
           "Alert",
@@ -753,11 +870,11 @@ function editExtraItem(id) {
     });
 }
 
-function openExtraItemRemoveModel() {
+function openExtraItemRemoveModel(id) {
   ALG.openModel(
     "Remove Extra Item",
     "do you really want to remove this extra item",
-    `<button class="alg-btn-pill" data-bs-dismiss="modal" aria-label="Close" onclick="alert('extra item removed')">Remove</button>`
+    `<button class="alg-btn-pill" data-bs-dismiss="modal" aria-label="Close" onclick="removeExtraItemData('${id}')">Remove</button>`
   );
 }
 
@@ -849,7 +966,10 @@ function addExtraItem(event) {
           "bi-heart",
           "Success"
         );
-        ALG.addListToContainer("extraItemViewContainer", loadExtraItem);
+        ALG.addListToContainer(
+          "extraItemViewContainer",
+          loadExtraItemsToExtraItemSettingUi
+        );
       } else if (data.status == "failed") {
         ALG.openToast(
           "Alert",
@@ -1326,6 +1446,59 @@ async function productItemSave(event) {
     });
 }
 
+function openCategoryRemoveModel(categoryId, imagePath) {
+  ALG.openModel(
+    "Remove Category",
+    "Do you really want to remove this category?",
+    `<button  class="alg-btn-pill" data-bs-dismiss="modal" aria-label="Close" onclick="removeCategoryProcess('${categoryId}', '${imagePath}')">Remove</button>`
+  );
+}
+
+function removeCategoryProcess(id, imagePath) {
+  fetch(
+    "api/categoryDelete.php?category_id=" +
+      id +
+      "&category_image_path=" +
+      imagePath,
+    {
+      method: "GET",
+    }
+  )
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status == "success") {
+        ALG.openToast(
+          "Success",
+          "Category remove was successfull",
+          ALG.getCurrentTime(),
+          "bi-heart",
+          "Success"
+        );
+
+        ALG.addListToContainer(
+          "weightViewContainer",
+          weightListUiDesignAdder,
+          [40, 100, 60, 80]
+        );
+      } else if (data.status == "failed") {
+        ALG.openToast(
+          "Alert",
+          data.error,
+          ALG.getCurrentTime(),
+          "bi-x",
+          "Error"
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 function addCategory() {
   const category = document.getElementById("addCategoryInput");
   const categoryImage = document.getElementById("addCategoryImageInput");
@@ -1379,7 +1552,7 @@ function addCategory() {
         ALG.addTableToContainer(
           "categoryViewContainer",
           loadCategoryData,
-          [40, 120, 250, 80]
+          [40, 120, 250, 80, 80]
         );
       } else if (data.status == "failed") {
         ALG.openToast(
@@ -1422,6 +1595,8 @@ function addProduct() {
   const name = document.getElementById("productNameInputField");
   const description = document.getElementById("productDescriptionInputField");
   const category = document.getElementById("productCategoryInputField");
+
+  console.log(category.value);
 
   const form = new FormData();
   form.append("product_name", name.value);

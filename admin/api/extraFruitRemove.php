@@ -28,8 +28,14 @@ $id = $_GET["id"];
 
 //database object
 $db = new database_driver();
-$extraStatusSearch = "DELETE FROM `extra_item` WHERE `id`=? ";
-$result = $db->execute_query($extraStatusSearch, 'i', [$id]);
+
+try {
+     $extraStatusSearch = "DELETE FROM `extra` WHERE `id`=? ";
+     $result = $db->execute_query($extraStatusSearch, 'i', [$id]);
+} catch (\Throwable $th) {
+     $responseObject->error = 'Something Went Wrong!';
+     response_sender::sendJson($responseObject);
+}
 
 $responseObject->status = 'success';
 response_sender::sendJson($responseObject);

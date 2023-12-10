@@ -29,7 +29,7 @@
                 <textarea type="text" id="productDescriptionInputField" class="form-control" rows="5"></textarea>
             </div>
             <div class="w-100">
-                <label class="form-label" for="productCategoryInputField">Product Description</label>
+                <label class="form-label" for="productCategoryInputField">Product Category</label>
                 <select id="productCategoryInputField" class="form-select">
                     Something Went Wrong..!!
                 </select>

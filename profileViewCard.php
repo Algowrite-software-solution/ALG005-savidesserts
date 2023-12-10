@@ -24,6 +24,8 @@ if (!$session_manager->isLoggedIn()) {
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/snow.css">
+
 
     <!-- boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
@@ -33,12 +35,14 @@ if (!$session_manager->isLoggedIn()) {
     <script defer src="js/bootstrap.bundle.js"></script>
     <script defer src="js/script.js"></script>
     <script defer src="js/userDataLoad.js"></script>
+    <script defer src="js/snow.js"></script>
 
 </head>
 
 <body>
 
     <section class="alg-bg-light profile-pg">
+        <div id="snow-container"></div>
 
         <?php include("pages/components/header.php") ?>
         <?php include("pages/components/profileNavigation.php") ?>

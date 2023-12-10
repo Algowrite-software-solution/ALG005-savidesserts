@@ -76,7 +76,7 @@ async function openNotificationsPanel() {
     const design = `
     <div class="d-flex">
       <div class="w-100">
-        There is on going orders for now...!
+        There is no on going orders for now..!
       </div>
     </div>
   `;
@@ -233,6 +233,12 @@ async function toggleOrderSection(section) {
       "ongoingOrderViewOrderSection",
       loadOrderDataToUi
     );
+  } else if (section === "reviewView") {
+    await ALG.addTableToContainer(
+      "reviewViewOrderSection",
+      viewReviewsDataOnUi,
+      [100, 150, 200, 250, 150]
+    );
   }
 }
 
@@ -299,7 +305,7 @@ async function toggleProductSection(section) {
     await ALG.addListToContainer(
       "categoryViewContainer",
       loadCategoryData,
-      [40, 120, 250, 80]
+      [40, 120, 250, 80, 80]
     );
   } else if (section === "productItem") {
     await ALG.addListToContainer("productItemViewContainer", loadProductItems);
@@ -357,7 +363,7 @@ async function loadOrderDataToUi() {
       View: `<button class="alg-btn-pill" onclick="openSingleOrderViewModel('${element.order_id}')">View</button>`,
       "Order Id": element.order_id,
       "Order Date": element.order_date,
-      Payment: element.pay_amount,
+      Payment: element.pay_amout,
       "Shipping Price": element.shipping_price,
       Status: element.status,
       "User Id": element.user_user_id,
@@ -479,7 +485,7 @@ async function productTableDesignData() {
       category: element.category_type,
       ["added date"]: element.add_date,
       edit: `<i class="bi bi-pen" onclick="openProductEditModel(${element.product_id}, '${element.product_name}', '${element.product_description}', '${element.category_id}', '${element.add_date}')"></i>`,
-      remove: `<i class="bi bi-x-circle" onclick="openProductRemoveModel()"></i>`,
+      remove: `<i class="bi bi-x-circle" onclick="openProductRemoveModel('${element.product_id}')"></i>`,
     };
 
     designData.push(newData);
@@ -500,7 +506,7 @@ async function addCategoriesToSelect() {
 
   categories.forEach((element) => {
     const option = document.createElement("option");
-    option.value = element.id;
+    option.value = element.category_id;
     option.innerText = element.category_type;
     select.appendChild(option);
   });
@@ -535,7 +541,7 @@ async function extraItemTableDesignLoad() {
       price: element.price,
       availability: element.extraItem_status_type,
       edit: `<i class="bi bi-pen" onclick="openExtraItemEditModel('${element.extra_id}', '${element.extra_fruit}', '${element.extra_status_id}', '${element.extraItem_status_type}', '${element.price}')"></i>`,
-      remove: `<i class="bi bi-x-circle" onclick="openExtraItemRemoveModel()"></i>`,
+      remove: `<i class="bi bi-x-circle" onclick="openExtraItemRemoveModel('${element.extra_id}')"></i>`,
     };
     newListDataSet.push(newData);
   });
@@ -588,6 +594,68 @@ async function loadProductsOnProductItemSelector() {
 // data loaders
 async function loadShippingData() {
   return fetch("api/shippingDataLoader.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
+async function loadReviewStatusData() {
+  return fetch("api/loadReviewStatus.php", {
+    method: "GET", // HTTP request method
+    headers: {
+      "Content-Type": "application/json", // Request headers
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((data) => {
+      // Handle the JSON data received from the API
+      if (data.status == "success") {
+        return data.results;
+      } else if (data.status == "failed") {
+        console.log(data.error);
+        return null;
+      } else {
+        console.log(data);
+        return null;
+      }
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error);
+      return null;
+    });
+}
+
+async function loadReviewData() {
+  return fetch("api/loadReviews.php", {
     method: "GET", // HTTP request method
     headers: {
       "Content-Type": "application/json", // Request headers
@@ -1082,6 +1150,7 @@ async function loadCategoryData() {
             category: element.category_type,
             image: `<img src="${element.category_image}" class="alg-list-cell-image"  />`,
             edit: `<i class="bi bi-pen fs-4" onclick="openCategoryEditModel('${element.category_id}', '${element.category_type}', '${element.category_image}');"></i>`,
+            delete: `<i class="bi bi-x-circle fs-4" onclick="openCategoryRemoveModel('${element.category_id}');"></i>`,
           };
 
           listArray.push(newData);

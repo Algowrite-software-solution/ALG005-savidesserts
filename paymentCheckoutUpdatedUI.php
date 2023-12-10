@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/singleProduct.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/snow.css">
 
 
     <!-- boxicons -->
@@ -28,9 +29,11 @@
     <script defer type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
     <script defer src="../js/script.js"></script>
     <script defer src="../js/paymentCheckout.js"></script>
+    <script defer src="js/snow.js"></script>
 </head>
 
 <body class="alg-bg-light">
+    <div id="snow-container"></div>
     <?php include("pages/components/header.php") ?>
     <!-- spinner bootstrap -->
     <div class="spinner-wrapper bg-black opacity-50">
@@ -148,7 +151,7 @@
     <!-- toast mode -->
     <?php include("pages/components/toastMessage.php") ?>
 
-    
+
 
 
     <?php include("pages/components/footer.php") ?>
