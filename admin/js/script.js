@@ -7,10 +7,10 @@ async function viewReviewsDataOnUi() {
 
   const newReviewsData = [];
   let selectDesign = ``;
-  let options = ``;
 
   reviews.forEach((element) => {
     let color;
+    let options = ``;
 
     reviewStatusData.forEach((element2) => {
       let isSelected =
@@ -30,6 +30,8 @@ async function viewReviewsDataOnUi() {
       review: element.review,
       status: selectDesign,
     });
+    options = ``;
+    selectDesign = ``;
   });
 
   return newReviewsData;
@@ -1593,6 +1595,8 @@ function addProduct() {
   const name = document.getElementById("productNameInputField");
   const description = document.getElementById("productDescriptionInputField");
   const category = document.getElementById("productCategoryInputField");
+
+  console.log(category.value);
 
   const form = new FormData();
   form.append("product_name", name.value);
