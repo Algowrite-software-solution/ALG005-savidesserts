@@ -744,5 +744,5 @@ function cartRowCount() {
 }
 
 function backend() {
-  window.location.assign('http://localhost:9001/index.php');
+  window.location.assign('https://saweedessert.com/');
 }
