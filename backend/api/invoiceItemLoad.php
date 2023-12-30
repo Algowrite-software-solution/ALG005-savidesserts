@@ -28,7 +28,7 @@ if (!$userCheckSession->isLoggedIn() || !$userCheckSession->getUserId()) {
 //load invoice details
 $db = new database_driver();
 
-$query = "SELECT ii.*, pi.*, ex.*, w.*, p.*, ii.qty AS invoice_item_qty FROM `invoice_item` AS `ii` INNER JOIN `product_item` AS `pi` ON `ii`.`product_item_id`= `pi`.`id` INNER JOIN `extra` AS `ex` ON `ii`.`extra_id`=`ex`.`id` INNER JOIN `weight` AS `w` ON `ii`.`weight_id`=`w`.`id` INNER JOIN `product` AS `p` ON `pi`.`product_product_id`=`p`.`product_id` WHERE `order_id`=? ";
+$query = "SELECT * FROM `invoice_item` WHERE `order_id`=? ";
 $resultSet = $db->execute_query($query, 's', array($orderId));
 
 $dataObjectsArray = [];

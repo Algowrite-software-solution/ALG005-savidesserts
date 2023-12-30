@@ -157,9 +157,9 @@ function loadInvoiceItem(orderId) {
 
                     data.result.forEach((element) => {
                          ProductItemPrice = 0;
-                         let extraPrice = element.invoice_item_qty * element.extra_item_price;
+                         let extraPrice = element.qty * element.extra_item_price;
 
-                         let productItemsPrice = extraPrice + (element.invoice_item_qty * element.total_product_items_price);
+                         let productItemsPrice = extraPrice + (element.qty * element.total_product_items_price);
                          ProductItemPrice += productItemsPrice;
 
 
@@ -167,9 +167,9 @@ function loadInvoiceItem(orderId) {
                               
                          <div class="d-flex justify-content-around alg-bg-light align-items-center alg-text-h3 p-2 px-0 px-lg-0 mb-2 rounded-3">
                                 <span>${element.product_name}</span>
-                                <span>${element.fruit}</span>
+                                <span>${element.extra_item_name}</span>
                                 <span>Rs. ${element.extra_item_price}</span>
-                                <span>QTY ${element.invoice_item_qty}</span>
+                                <span>QTY ${element.qty}</span>
                                 <span>${element.weight}</span>
                                 <span>Rs. ${element.total_product_items_price}.00</span>
                                 <span>Rs. ${ProductItemPrice}.00</span>
