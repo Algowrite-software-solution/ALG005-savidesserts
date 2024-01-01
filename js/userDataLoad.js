@@ -104,14 +104,14 @@ function loadInvoiceData() {
                          orderContainer.innerHTML += `
                                 
               
-                <div class="d-flex justify-content-around">
+                         <div class="d-flex justify-content-around">
                             <span id="orderId">${element.order_id}</span>
                             <span>${element.order_date}</span>
                             <span>${estimateDeliveryDate}</span>
                             <span>Rs. ${element.shipping_price}</span>
                             <span>Rs. ${element.pay_amout}</span>
                             <span class="fw-bold">${element.status}</span> 
-                </div>
+                         </div>
 
                
                          
