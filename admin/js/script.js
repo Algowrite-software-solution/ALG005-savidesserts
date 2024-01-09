@@ -1122,7 +1122,7 @@ async function openProductItemEditModel(
       let count = 0;
 
       if (element.images.length == 0) {
-        imagesDesgin += `<input type="file" onclick="editProductItemImage(event, 'productId=442403&&weightId=9&&image=0.jpg', '0')" class="btn btn-outline-secondary"/>`;
+        imagesDesgin += `<input type="file" onclick="editProductItemImage(event, '../../resources/images/singleProductImg/productId=${productId}&&weightId=${weightId}&&image=0.jpg', '${id}')" class="btn btn-outline-secondary"/>`;
       }
 
       console.log(id);
