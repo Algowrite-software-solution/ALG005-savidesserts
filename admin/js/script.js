@@ -1121,7 +1121,7 @@ async function openProductItemEditModel(
       let count = 0;
 
       if (element.images.length == 0) {
-        imagesDesgin += `<input type="file" onchange="editProductItemImage(event, '../../resources/images/singleProductImg/productId=${productId}&&weightId=${weightId}&&image=0.jpg', '${id}')" class="btn btn-outline-secondary"/>`;
+        imagesDesgin += `<input type="file" onchange="editProductItemImage(event, '../../resources/images/singleProductImg/productId=${productId}&&weightId=${weightId}&&image=0.jpg', '${id}')" class="btn btn-secondary"/>`;
       }
 
       element.images.forEach((imageElement) => {
@@ -1139,7 +1139,7 @@ async function openProductItemEditModel(
       });
 
       if (element.images.length != 0) {
-        imagesDesgin += `<input type="file" onchange="editProductItemImage(event, '../../resources/images/singleProductImg/productId=${productId}&&weightId=${weightId}&&image=${count}.jpg', '${id}')" class="btn btn-outline-secondary"/>`;
+        imagesDesgin += `<input style="width: 50px" type="file" onchange="editProductItemImage(event, '../../resources/images/singleProductImg/productId=${productId}&&weightId=${weightId}&&image=${count}.jpg', '${id}')" class="btn btn-secondary"/>`;
       }
     }
   });
