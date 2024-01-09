@@ -396,7 +396,7 @@ let qty = 1;
 function singleProductPriceCalculation() {
   //extra Item Container
   const extraItemContainer =
-    document.getElementById("extraItemContainer").value || 4;
+    document.getElementById("extraItemContainer").value || 1;
   //price container
   const productPrice = document.getElementById("productPrice");
 
