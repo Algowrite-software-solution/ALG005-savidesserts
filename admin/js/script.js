@@ -1056,10 +1056,11 @@ function removeProductItemImage(url, id) {
 
 async function editProductItemImage(event, url, id) {
   const file = event.target.files[0];
+  console.log(file)
   let dataURL;
   await ALG.imageFileToDataURL(file, async (imageUrl) => {
     dataURL = await ALG.compressImageFromDataUrl(imageUrl);
-
+    console.log(dataURL);
     const form = new FormData();
     form.append("image_url", url);
     form.append("image", dataURL);
@@ -1122,7 +1123,7 @@ async function openProductItemEditModel(
       let count = 0;
 
       if (element.images.length == 0) {
-        imagesDesgin += `<input type="file" onclick="editProductItemImage(event, '../../resources/images/singleProductImg/productId=${productId}&&weightId=${weightId}&&image=0.jpg', '${id}')" class="btn btn-outline-secondary"/>`;
+        imagesDesgin += `<input type="file" onchange="editProductItemImage(event, '../../resources/images/singleProductImg/productId=${productId}&&weightId=${weightId}&&image=0.jpg', '${id}')" class="btn btn-outline-secondary"/>`;
       }
 
       console.log(id);
