@@ -416,7 +416,10 @@ async function openSingleOrderViewModel(invoiceId) {
       if (Object.hasOwnProperty.call(itemData, key)) {
         const element = itemData[key];
         items += `<div class="w-100 d-flex border-2 border-dark">
-          <div class="col-6 alg-text-white p-2 alg-bg-dark" >${key.replaceAll("_", " ")} : </div>
+          <div class="col-6 alg-text-white p-2 alg-bg-dark" >${key.replaceAll(
+            "_",
+            " "
+          )} : </div>
           <div class="col-6 alg-text-dark p-2 alg-bg-light">${element}</div>
         </div>`;
       }
@@ -1117,6 +1120,11 @@ async function openProductItemEditModel(
   productItemsData.forEach((element) => {
     if (element.product_item_id === id) {
       let count = 0;
+
+      if (element.images.length == 0) {
+        imagesDesgin += `<input type="file" onclick="" class="btn btn-outline-secondary"/>`;
+      }
+
       element.images.forEach((imageElement) => {
         let tmpId = id + count;
         imagesDesgin += `<div class="position-relative">
