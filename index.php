@@ -30,7 +30,7 @@
 
 <body class="scrollbar w-100 page">
 
-    <div id="snow-container"></div>
+    <!-- <div id="snow-container"></div> -->
 
     <?php include("pages/components/header.php") ?>
 
