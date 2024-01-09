@@ -1124,7 +1124,6 @@ async function openProductItemEditModel(
         imagesDesgin += `<input type="file" onchange="editProductItemImage(event, '../../resources/images/singleProductImg/productId=${productId}&&weightId=${weightId}&&image=0.jpg', '${id}')" class="btn btn-outline-secondary"/>`;
       }
 
-
       element.images.forEach((imageElement) => {
         let tmpId = id + count;
         imagesDesgin += `<div class="position-relative">
@@ -1138,6 +1137,10 @@ async function openProductItemEditModel(
 
         count++;
       });
+
+      if (element.images.length != 0) {
+        imagesDesgin += `<input type="file" onchange="editProductItemImage(event, '../../resources/images/singleProductImg/productId=${productId}&&weightId=${weightId}&&image=${count}.jpg', '${id}')" class="btn btn-outline-secondary"/>`;
+      }
     }
   });
 
