@@ -1139,7 +1139,7 @@ async function openProductItemEditModel(
       });
 
       if (element.images.length != 0) {
-        imagesDesgin += `<div style="width: 150px"><input type="file" onchange="editProductItemImage(event, '../../resources/images/singleProductImg/productId=${productId}&&weightId=${weightId}&&image=${count}.jpg', '${id}')" class="btn btn-secondary"/>`;
+        imagesDesgin += `<div style="width: 100px"><input placeholder="add more images" type="file" onchange="editProductItemImage(event, '../../resources/images/singleProductImg/productId=${productId}&&weightId=${weightId}&&image=${count}.jpg', '${id}')" class="btn btn-secondary"/></div>`;
       }
     }
   });
